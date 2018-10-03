@@ -22,6 +22,7 @@ public class Student {
     private double dishWeight;
     private double draWeight;
     private double janWeight;
+    private double coldWeight;
 
 
 
@@ -111,6 +112,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workPeaks(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -124,6 +126,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workHearth(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -137,6 +140,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workSalads(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -150,6 +154,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workToast(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -163,6 +168,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workMid(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -176,6 +182,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workCurry(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -189,6 +196,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workGrange(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -202,6 +210,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workDish(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -215,6 +224,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() - .1);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workDra(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -228,6 +238,7 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() + .025);
         this.setDraWeight(this.getDraWeight() - .1);
+        this.setColdWeight(this.getColdWeight() + .025);
     }
     public void workJan(){
         this.setCheckWeight(this.getCheckWeight() + .025);
@@ -241,6 +252,22 @@ public class Student {
         this.setDishWeight(this.getDishWeight() + .025);
         this.setJanWeight(this.getJanWeight() - .1);
         this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() + .025);
+    }
+
+    public void workCold(){
+        this.setCheckWeight(this.getCheckWeight() + .025);
+        this.setPeaksWeight(this.getPeaksWeight() + .025);
+        this.setHearthWeight(this.getHearthWeight() + .025);
+        this.setSaladsWeight(this.getSaladsWeight() + .025);
+        this.setToastWeight(this.getToastWeight() + .025);
+        this.setMidWeight(this.getMidWeight() + .025);
+        this.setCurryWeight(this.getCurryWeight() + .025);
+        this.setGrangeWeight(this.getGrangeWeight() + .025);
+        this.setDishWeight(this.getDishWeight() + .025);
+        this.setJanWeight(this.getJanWeight() + .025);
+        this.setDraWeight(this.getDraWeight() + .025);
+        this.setColdWeight(this.getColdWeight() - .1);
     }
 
     public String getName() {
@@ -294,6 +321,15 @@ public class Student {
             return getWorkSaturday();
         }
         return false;
+    }
+
+
+    public double getColdWeight() {
+        return coldWeight;
+    }
+
+    public void setColdWeight(double coldWeight) {
+        this.coldWeight = coldWeight;
     }
 
     public double getCheckWeight() {

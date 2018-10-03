@@ -143,6 +143,7 @@ public class Schedule {
         List<List<Student>> dish = new ArrayList<List<Student>>();
         List<List<Student>> dra = new ArrayList<List<Student>>();
         List<List<Student>> jan = new ArrayList<List<Student>>();
+        List<List<Student>> cold = new ArrayList<List<Student>>();
 
         List<Student> checkMorn = new ArrayList<Student>();
         List<Student> checkMidday = new ArrayList<Student>();
@@ -177,6 +178,9 @@ public class Schedule {
         List<Student> janMorn = new ArrayList<Student>();
         List<Student> janMidday = new ArrayList<Student>();
         List<Student> janDin = new ArrayList<Student>();
+        List<Student> coldMorn = new ArrayList<Student>();
+        List<Student> coldMidday = new ArrayList<Student>();
+        List<Student> coldDin = new ArrayList<Student>();
 
         checker.add(checkMorn);
         checker.add(checkMidday);
@@ -211,6 +215,9 @@ public class Schedule {
         jan.add(janMorn);
         jan.add(janMidday);
         jan.add(janDin);
+        cold.add(coldMorn);
+        cold.add(coldMidday);
+        cold.add(coldDin);
 
 
 
@@ -224,69 +231,75 @@ public class Schedule {
         masterList.add(grange); //7
         masterList.add(dish); //8
         masterList.add(dra); //9
-        masterList.add(jan); //10
+        masterList.add(cold);//10
+        masterList.add(jan); //11
 
         while(pool.get(0).size() > 0) {
-
-            if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning()) {  // fill checker
+            if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
                 masterList.get(0).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(0).addMorningStudent();
             }
-            if (stationList.get(1).getMorningPeopleNeeded() > stationList.get(1).getTotalMorning()) { // fill peaks
+            if (stationList.get(1).getMorningPeopleNeeded() > stationList.get(1).getTotalMorning() && pool.get(0).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(0), 2);
                 masterList.get(1).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(1).addMorningStudent();
             }
-            if (stationList.get(2).getMorningPeopleNeeded() > stationList.get(2).getTotalMorning()) { // fill hearth
+            if (stationList.get(2).getMorningPeopleNeeded() > stationList.get(2).getTotalMorning() && pool.get(0).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(0), 3);
                 masterList.get(2).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(2).addMorningStudent();
             }
-            if (stationList.get(3).getMorningPeopleNeeded() > stationList.get(3).getTotalMorning()) { // fill salads
+            if (stationList.get(3).getMorningPeopleNeeded() > stationList.get(3).getTotalMorning() && pool.get(0).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(0), 4);
                 masterList.get(3).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(3).addMorningStudent();
             }
-            if (stationList.get(4).getMorningPeopleNeeded() > stationList.get(4).getTotalMorning()) { //fill toast
+            if (stationList.get(4).getMorningPeopleNeeded() > stationList.get(4).getTotalMorning() && pool.get(0).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(0), 5);
                 masterList.get(4).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(4).addMorningStudent();
             }
-            if (stationList.get(5).getMorningPeopleNeeded() > stationList.get(5).getTotalMorning()) { //fill mid
+            if (stationList.get(5).getMorningPeopleNeeded() > stationList.get(5).getTotalMorning() && pool.get(0).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(0), 6);
                 masterList.get(5).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(5).addMorningStudent();
             }
-            if (stationList.get(6).getMorningPeopleNeeded() > stationList.get(6).getTotalMorning()) { //fill curry
+            if (stationList.get(6).getMorningPeopleNeeded() > stationList.get(6).getTotalMorning() && pool.get(0).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(0), 7);
                 masterList.get(6).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(6).addMorningStudent();
             }
-            if (stationList.get(7).getMorningPeopleNeeded() > stationList.get(7).getTotalMorning()) { //fill grange
+            if (stationList.get(7).getMorningPeopleNeeded() > stationList.get(7).getTotalMorning() && pool.get(0).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(0), 8);
                 masterList.get(7).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(7).addMorningStudent();
             }
-            if (stationList.get(8).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning()) { //fill dish
+            if (stationList.get(8).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(0), 9);
                 masterList.get(8).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                 stationList.get(8).addMorningStudent();
             }
-            if (stationList.get(9).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning()){  //fill dra
+            if (stationList.get(9).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(0), 10);
                 masterList.get(9).get(0).add(temp);
                 pool.set(0, removeByName(temp.getName(), pool.get(0)));
                 stationList.get(9).addMorningStudent();
+            }
+            if (stationList.get(10).getMorningPeopleNeeded() > stationList.get(10).getTotalMorning() && pool.get(0).size() != 0){  //fill cold runner
+                Student temp = randomChooser(pool.get(0), 11);
+                masterList.get(10).get(0).add(temp);
+                pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                stationList.get(10).addMorningStudent();
             }
             if((stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningPeopleNeeded()) &&
                     (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningPeopleNeeded()) &&
@@ -297,11 +310,12 @@ public class Schedule {
                     (stationList.get(7).getTotalMorning() >= stationList.get(7).getMorningPeopleNeeded()) &&
                     (stationList.get(8).getTotalMorning() >= stationList.get(8).getMorningPeopleNeeded()) &&
                     (stationList.get(9).getTotalMorning() >= stationList.get(9).getMorningPeopleNeeded()) &&
-                    (stationList.get(10).getTotalMorning() < stationList.get(10).getMorningPeopleNeeded())){   //fill jan if other stations meet minimum (until jan meets its min)
-                Student temp = randomChooser(pool.get(0), 11);
-                masterList.get(10).get(0).add(temp);
+                    (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningPeopleNeeded()) &&
+                    (stationList.get(11).getTotalMorning() < stationList.get(11).getMorningPeopleNeeded()) && pool.get(0).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
+                Student temp = randomChooser(pool.get(0), 12);
+                masterList.get(11).get(0).add(temp);
                 pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(10).addMorningStudent();
+                stationList.get(11).addMorningStudent();
             }
             if( (stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningPeopleNeeded()) &&
                     (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningPeopleNeeded()) &&
@@ -312,73 +326,80 @@ public class Schedule {
                     (stationList.get(7).getTotalMorning() >= stationList.get(7).getMorningPeopleNeeded()) &&
                     (stationList.get(8).getTotalMorning() >= stationList.get(8).getMorningPeopleNeeded()) &&
                     (stationList.get(9).getTotalMorning() >= stationList.get(9).getMorningPeopleNeeded()) &&
-                    (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningPeopleNeeded())){  //if all stations meet minimum requirements, start filling to max
+                    (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningPeopleNeeded()) &&
+                    (stationList.get(11).getTotalMorning() >= stationList.get(11).getMorningPeopleNeeded()) && pool.get(0).size() != 0){  //if all stations meet minimum requirements, start filling to max
                 while(pool.get(0).size() > 0){ //order switched so extras go where help is more needed first
-                    if (stationList.get(8).getMorningMaxWorkers() > stationList.get(8).getTotalMorning()) {  //fill dish
+                    if (stationList.get(8).getMorningMaxWorkers() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0) {  //fill dish
                         Student temp = randomChooser(pool.get(0), 9);
                         masterList.get(8).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(8).addMorningStudent();
                     }
-                    if (stationList.get(1).getMorningMaxWorkers() > stationList.get(1).getTotalMorning()) { // fill peaks
+                    if (stationList.get(1).getMorningMaxWorkers() > stationList.get(1).getTotalMorning() && pool.get(0).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(0), 2);
                         masterList.get(1).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(1).addMorningStudent();
                     }
-                    if (stationList.get(2).getMorningMaxWorkers() > stationList.get(2).getTotalMorning()) { // fill hearth
+                    if (stationList.get(10).getMorningMaxWorkers() > stationList.get(10).getTotalMorning() && pool.get(0).size() != 0){ //fill cold runner
+                        Student temp = randomChooser(pool.get(0), 11);
+                        masterList.get(10).get(0).add(temp);
+                        pool.set(0, removeByName(temp.getName(), pool.get(0)) );
+                        stationList.get(10).addMorningStudent();
+                    }
+                    if (stationList.get(2).getMorningMaxWorkers() > stationList.get(2).getTotalMorning() && pool.get(0).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(0), 3);
                         masterList.get(2).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(2).addMorningStudent();
                     }
-                    if (stationList.get(3).getMorningMaxWorkers() > stationList.get(3).getTotalMorning()) { // fill salads
+                    if (stationList.get(3).getMorningMaxWorkers() > stationList.get(3).getTotalMorning() && pool.get(0).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(0), 4);
                         masterList.get(3).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(3).addMorningStudent();
                     }
-                    if (stationList.get(4).getMorningMaxWorkers() > stationList.get(4).getTotalMorning()) { //fill toast
+                    if (stationList.get(4).getMorningMaxWorkers() > stationList.get(4).getTotalMorning() && pool.get(0).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(0), 5);
                         masterList.get(4).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(4).addMorningStudent();
                     }
-                    if (stationList.get(5).getMorningMaxWorkers() > stationList.get(5).getTotalMorning()) { //fill mid
+                    if (stationList.get(5).getMorningMaxWorkers() > stationList.get(5).getTotalMorning() && pool.get(0).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(0), 6);
                         masterList.get(5).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(5).addMorningStudent();
                     }
-                    if (stationList.get(6).getMorningMaxWorkers() > stationList.get(6).getTotalMorning()) { //fill curry
+                    if (stationList.get(6).getMorningMaxWorkers() > stationList.get(6).getTotalMorning() && pool.get(0).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(0), 7);
                         masterList.get(6).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(6).addMorningStudent();
                     }
-                    if (stationList.get(7).getMorningMaxWorkers() > stationList.get(7).getTotalMorning()) { //fill grange
+                    if (stationList.get(7).getMorningMaxWorkers() > stationList.get(7).getTotalMorning() && pool.get(0).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(0), 8);
                         masterList.get(7).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(7).addMorningStudent();
                     }
-                    if (stationList.get(9).getMorningMaxWorkers() > stationList.get(9).getTotalMorning()) { //fill dra
+                    if (stationList.get(9).getMorningMaxWorkers() > stationList.get(9).getTotalMorning() && pool.get(0).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(0), 10);
                         masterList.get(9).get(0).add(temp);
                         pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
                         stationList.get(9).addMorningStudent();
                     }
-                    if (stationList.get(0).getMorningMaxWorkers() > stationList.get(0).getTotalMorning()){  //fill check
+                    if (stationList.get(0).getMorningMaxWorkers() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(0), 1);
                         masterList.get(0).get(0).add(temp);
                         pool.set(0, removeByName(temp.getName(), pool.get(0)));
                         stationList.get(0).addMorningStudent();
                     }
-                    if(stationList.get(10).getMorningMaxWorkers() > stationList.get(10).getTotalMorning()){
-                        Student temp = randomChooser(pool.get(0), 11);
-                        masterList.get(10).get(0).add(temp);
+                    if(stationList.get(11).getMorningMaxWorkers() > stationList.get(11).getTotalMorning() && pool.get(0).size() != 0){
+                        Student temp = randomChooser(pool.get(0), 12);
+                        masterList.get(11).get(0).add(temp);
                         pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                        stationList.get(10).addMorningStudent();
+                        stationList.get(11).addMorningStudent();
                     }
                     if((stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningMaxWorkers()) &&
                             (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningMaxWorkers()) &&
@@ -389,7 +410,8 @@ public class Schedule {
                             (stationList.get(7).getTotalMorning() >= stationList.get(7).getMorningMaxWorkers()) &&
                             (stationList.get(8).getTotalMorning() >= stationList.get(8).getMorningMaxWorkers()) &&
                             (stationList.get(9).getTotalMorning() >= stationList.get(9).getMorningMaxWorkers()) &&
-                            (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningMaxWorkers())) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
+                            (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningMaxWorkers()) &&
+                            (stationList.get(11).getTotalMorning() >= stationList.get(11).getMorningMaxWorkers()) &&pool.get(0).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(0), 9);
                         masterList.get(8).get(0).add(temp);
                         pool.set(0, removeByName(temp.getName(), pool.get(0)));
@@ -399,68 +421,73 @@ public class Schedule {
             }
 
         }
-        System.out.println("are we getting here");
         while(pool.get(1).size() > 0) {
-
-            if (stationList.get(0).getMidPeopleNeeded() > stationList.get(0).getTotalMid()) {  // fill checker
+            if (stationList.get(0).getMidPeopleNeeded() > stationList.get(0).getTotalMid() && pool.get(1).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(1), 1);
                 masterList.get(0).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(0).addMidStudent();
             }
-            if (stationList.get(1).getMidPeopleNeeded() > stationList.get(1).getTotalMid()) { // fill peaks
+            if (stationList.get(1).getMidPeopleNeeded() > stationList.get(1).getTotalMid() && pool.get(1).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(1), 2);
                 masterList.get(1).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(1).addMidStudent();
             }
-            if (stationList.get(2).getMidPeopleNeeded() > stationList.get(2).getTotalMid()) { // fill hearth
+            if (stationList.get(2).getMidPeopleNeeded() > stationList.get(2).getTotalMid() && pool.get(1).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(1), 3);
                 masterList.get(2).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(2).addMidStudent();
             }
-            if (stationList.get(3).getMidPeopleNeeded() > stationList.get(3).getTotalMid()) { // fill salads
+            if (stationList.get(3).getMidPeopleNeeded() > stationList.get(3).getTotalMid() && pool.get(1).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(1), 4);
                 masterList.get(3).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(3).addMidStudent();
             }
-            if (stationList.get(4).getMidPeopleNeeded() > stationList.get(4).getTotalMid()) { //fill toast
+            if (stationList.get(4).getMidPeopleNeeded() > stationList.get(4).getTotalMid() && pool.get(1).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(1), 5);
                 masterList.get(4).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(4).addMidStudent();
             }
-            if (stationList.get(5).getMidPeopleNeeded() > stationList.get(5).getTotalMid()) { //fill mid
+            if (stationList.get(5).getMidPeopleNeeded() > stationList.get(5).getTotalMid() && pool.get(1).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(1), 6);
                 masterList.get(5).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(5).addMidStudent();
             }
-            if (stationList.get(6).getMidPeopleNeeded() > stationList.get(6).getTotalMid()) { //fill curry
+            if (stationList.get(6).getMidPeopleNeeded() > stationList.get(6).getTotalMid() && pool.get(1).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(1), 7);
                 masterList.get(6).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(6).addMidStudent();
             }
-            if (stationList.get(7).getMidPeopleNeeded() > stationList.get(7).getTotalMid()) { //fill grange
+            if (stationList.get(7).getMidPeopleNeeded() > stationList.get(7).getTotalMid() && pool.get(1).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(1), 8);
                 masterList.get(7).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(7).addMidStudent();
             }
-            if (stationList.get(8).getMidPeopleNeeded() > stationList.get(8).getTotalMid()) { //fill dish
+            if (stationList.get(8).getMidPeopleNeeded() > stationList.get(8).getTotalMid() && pool.get(1).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(1), 9);
                 masterList.get(8).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(8).addMidStudent();
             }
-            if (stationList.get(9).getMidPeopleNeeded() > stationList.get(8).getTotalMid()){  //fill dra
+
+            if (stationList.get(9).getMidPeopleNeeded() > stationList.get(9).getTotalMid() && pool.get(1).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(1), 10);
                 masterList.get(9).get(1).add(temp);
                 pool.set(1, removeByName(temp.getName(), pool.get(1)));
                 stationList.get(9).addMidStudent();
+            }
+            if (stationList.get(10).getMidPeopleNeeded() > stationList.get(10).getTotalMid() && pool.get(1).size() != 0){  //fill dra
+                Student temp = randomChooser(pool.get(1), 11);
+                masterList.get(10).get(1).add(temp);
+                pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                stationList.get(10).addMidStudent();
             }
             if((stationList.get(0).getTotalMid() >= stationList.get(0).getMidPeopleNeeded()) &&
                     (stationList.get(1).getTotalMid() >= stationList.get(1).getMidPeopleNeeded()) &&
@@ -471,12 +498,15 @@ public class Schedule {
                     (stationList.get(7).getTotalMid() >= stationList.get(7).getMidPeopleNeeded()) &&
                     (stationList.get(8).getTotalMid() >= stationList.get(8).getMidPeopleNeeded()) &&
                     (stationList.get(9).getTotalMid() >= stationList.get(9).getMidPeopleNeeded()) &&
-                    (stationList.get(10).getTotalMid() < stationList.get(10).getMidPeopleNeeded())){   //fill jan if other stations meet minimum (until jan meets its min)
+                    (stationList.get(10).getTotalMid() >= stationList.get(10).getMidPeopleNeeded()) &&
+                    (stationList.get(11).getTotalMid() < stationList.get(11).getMidPeopleNeeded()) && pool.get(1).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
                 Student temp = randomChooser(pool.get(1), 11);
                 masterList.get(10).get(1).add(temp);
                 pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                 stationList.get(10).addMidStudent();
+                
             }
+            System.out.println("pool size is: " + pool.get(1).size());
             if( (stationList.get(0).getTotalMid() >= stationList.get(0).getMidPeopleNeeded()) &&
                     (stationList.get(1).getTotalMid() >= stationList.get(1).getMidPeopleNeeded()) &&
                     (stationList.get(2).getTotalMid() >= stationList.get(2).getMidPeopleNeeded()) &&
@@ -486,75 +516,75 @@ public class Schedule {
                     (stationList.get(7).getTotalMid() >= stationList.get(7).getMidPeopleNeeded()) &&
                     (stationList.get(8).getTotalMid() >= stationList.get(8).getMidPeopleNeeded()) &&
                     (stationList.get(9).getTotalMid() >= stationList.get(9).getMidPeopleNeeded()) &&
-                    (stationList.get(10).getTotalMid() >= stationList.get(10).getMidPeopleNeeded())){  //if all stations meet minimum requirements, start filling to max
+                    (stationList.get(10).getTotalMid() >= stationList.get(10).getMidPeopleNeeded()) && pool.get(1).size() != 0){  //if all stations meet minimum requirements, start filling to max
                 while(pool.get(1).size() > 0){ //order switched so extras go where help is more needed first
-                    if (stationList.get(8).getMidMaxWorkers() > stationList.get(8).getTotalMid()) {  //fill dish
-                        Student temp = randomChooser(pool.get(0), 9);
+                    if (stationList.get(8).getMidMaxWorkers() > stationList.get(8).getTotalMid() && pool.get(1).size() != 0) {  //fill dish
+                        Student temp = randomChooser(pool.get(1), 9);
                         masterList.get(8).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(8).addMidStudent();
                     }
-                    if (stationList.get(1).getMidMaxWorkers() > stationList.get(1).getTotalMid()) { // fill peaks
+                    if (stationList.get(1).getMidMaxWorkers() > stationList.get(1).getTotalMid() && pool.get(1).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(1), 2);
                         masterList.get(1).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(1).addMidStudent();
                     }
-                    if (stationList.get(2).getMidMaxWorkers() > stationList.get(2).getTotalMid()) { // fill hearth
+                    if (stationList.get(2).getMidMaxWorkers() > stationList.get(2).getTotalMid() && pool.get(1).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(1), 3);
                         masterList.get(2).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(2).addMidStudent();
                     }
-                    if (stationList.get(3).getMidMaxWorkers() > stationList.get(3).getTotalMid()) { // fill salads
+                    if (stationList.get(3).getMidMaxWorkers() > stationList.get(3).getTotalMid() && pool.get(1).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(1), 4);
                         masterList.get(3).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(3).addMidStudent();
                     }
-                    if (stationList.get(4).getMidMaxWorkers() > stationList.get(4).getTotalMid()) { //fill toast
+                    if (stationList.get(4).getMidMaxWorkers() > stationList.get(4).getTotalMid() && pool.get(1).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(1), 5);
                         masterList.get(4).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(4).addMidStudent();
                     }
-                    if (stationList.get(5).getMidMaxWorkers() > stationList.get(5).getTotalMid()) { //fill mid
+                    if (stationList.get(5).getMidMaxWorkers() > stationList.get(5).getTotalMid() && pool.get(1).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(1), 6);
                         masterList.get(5).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(5).addMidStudent();
                     }
-                    if (stationList.get(6).getMidMaxWorkers() > stationList.get(6).getTotalMid()) { //fill curry
+                    if (stationList.get(6).getMidMaxWorkers() > stationList.get(6).getTotalMid() && pool.get(1).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(1), 7);
                         masterList.get(6).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(6).addMidStudent();
                     }
-                    if (stationList.get(7).getMidMaxWorkers() > stationList.get(7).getTotalMid()) { //fill grange
+                    if (stationList.get(7).getMidMaxWorkers() > stationList.get(7).getTotalMid() && pool.get(1).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(1), 8);
                         masterList.get(7).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(7).addMidStudent();
                     }
-                    if (stationList.get(9).getMidMaxWorkers() > stationList.get(9).getTotalMid()) { //fill dra
+                    if (stationList.get(9).getMidMaxWorkers() > stationList.get(9).getTotalMid() && pool.get(1).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(1), 10);
                         masterList.get(9).get(1).add(temp);
                         pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
                         stationList.get(9).addMidStudent();
                     }
-                    if (stationList.get(0).getMidMaxWorkers() > stationList.get(0).getTotalMid()){  //fill check
+                    if (stationList.get(0).getMidMaxWorkers() > stationList.get(0).getTotalMid() && pool.get(1).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(1), 1);
                         masterList.get(0).get(1).add(temp);
                         pool.set(1, removeByName(temp.getName(), pool.get(1)));
                         stationList.get(0).addMidStudent();
                     }
-                    if(stationList.get(10).getMidMaxWorkers() > stationList.get(10).getTotalMid()){
+                    if(stationList.get(10).getMidMaxWorkers() > stationList.get(10).getTotalMid() && pool.get(1).size() != 0){
                         Student temp = randomChooser(pool.get(1), 11);
                         masterList.get(10).get(1).add(temp);
                         pool.set(1, removeByName(temp.getName(), pool.get(1)));
                         stationList.get(10).addMidStudent();
                     }
-                    if((stationList.get(0).getTotalMid() >= stationList.get(0).getMorningMaxWorkers()) &&
+                    if((stationList.get(0).getTotalMid() >= stationList.get(0).getMidMaxWorkers()) &&
                             (stationList.get(1).getTotalMid() >= stationList.get(1).getMidMaxWorkers()) &&
                             (stationList.get(2).getTotalMid() >= stationList.get(2).getMidMaxWorkers()) &&
                             (stationList.get(3).getTotalMid() >= stationList.get(3).getMidMaxWorkers()) &&
@@ -563,80 +593,81 @@ public class Schedule {
                             (stationList.get(7).getTotalMid() >= stationList.get(7).getMidMaxWorkers()) &&
                             (stationList.get(8).getTotalMid() >= stationList.get(8).getMidMaxWorkers()) &&
                             (stationList.get(9).getTotalMid() >= stationList.get(9).getMidMaxWorkers()) &&
-                            (stationList.get(10).getTotalMid() >= stationList.get(10).getMidMaxWorkers())) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
+                            (stationList.get(10).getTotalMid() >= stationList.get(10).getMidMaxWorkers()) && pool.get(1).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(1), 9);
                         masterList.get(8).get(1).add(temp);
                         pool.set(1, removeByName(temp.getName(), pool.get(1)));
                         stationList.get(8).addMidStudent();
                     }
+
                 }
             }
 
         }
-        System.out.println("what about here");
-        while(pool.get(2).size() > 0) {
 
-            if (stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()) {  // fill checker
+        while(pool.get(2).size() > 0) {
+            if (stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner() && pool.get(2).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(2), 1);
                 masterList.get(0).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(0).addDinnerStudent();
             }
-            if (stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()) { // fill peaks
+            if (stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner() && pool.get(2).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(2), 2);
                 masterList.get(1).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(1).addDinnerStudent();
             }
-            if (stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()) { // fill hearth
+            if (stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner() && pool.get(2).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(2), 3);
                 masterList.get(2).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(2).addDinnerStudent();
             }
-            if (stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()) { // fill salads
+            if (stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner() && pool.get(2).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(2), 4);
                 masterList.get(3).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(3).addDinnerStudent();
             }
-            if (stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()) { //fill toast
+            if (stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner() && pool.get(2).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(2), 5);
                 masterList.get(4).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(4).addDinnerStudent();
             }
-            if (stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()) { //fill mid
+            if (stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner() && pool.get(2).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(2), 6);
                 masterList.get(5).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2) )) ;
                 stationList.get(5).addDinnerStudent();
             }
-            if (stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()) { //fill curry
+            if (stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner() && pool.get(2).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(2), 7);
                 masterList.get(6).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(6).addDinnerStudent();
             }
-            if (stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()) { //fill grange
+            if (stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner() && pool.get(2).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(2), 8);
                 masterList.get(7).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(7).addDinnerStudent();
             }
-            if (stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()) { //fill dish
+            if (stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner() && pool.get(2).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(2), 9);
                 masterList.get(8).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(8).addDinnerStudent();
             }
-            if (stationList.get(9).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){  //fill dra
+            if (stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner() && pool.get(2).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(2), 10);
                 masterList.get(9).get(2).add(temp);
                 pool.set(2, removeByName(temp.getName(), pool.get(2)));
                 stationList.get(9).addDinnerStudent();
             }
-            if((stationList.get(0).getTotalDinner() >= stationList.get(0).getMorningPeopleNeeded()) &&
+
+            if((stationList.get(0).getTotalDinner() >= stationList.get(0).getDinnerPeopleNeeded()) &&
                     (stationList.get(1).getTotalDinner() >= stationList.get(1).getDinnerPeopleNeeded()) &&
                     (stationList.get(2).getTotalDinner() >= stationList.get(2).getDinnerPeopleNeeded()) &&
                     (stationList.get(3).getTotalDinner() >= stationList.get(3).getDinnerPeopleNeeded()) &&
@@ -645,13 +676,14 @@ public class Schedule {
                     (stationList.get(7).getTotalDinner() >= stationList.get(7).getDinnerPeopleNeeded()) &&
                     (stationList.get(8).getTotalDinner() >= stationList.get(8).getDinnerPeopleNeeded()) &&
                     (stationList.get(9).getTotalDinner() >= stationList.get(9).getDinnerPeopleNeeded()) &&
-                    (stationList.get(10).getTotalDinner() < stationList.get(10).getDinnerPeopleNeeded())){   //fill jan if other stations meet minimum (until jan meets its min)
+                    (stationList.get(10).getTotalDinner() < stationList.get(10).getDinnerPeopleNeeded()) && pool.get(2).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
                 Student temp = randomChooser(pool.get(2), 11);
                 masterList.get(10).get(2).add(temp);
                 pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                 stationList.get(10).addDinnerStudent();
+
             }
-            if( (stationList.get(0).getTotalDinner() >= stationList.get(0).getMorningPeopleNeeded()) &&
+            if( (stationList.get(0).getTotalDinner() >= stationList.get(0).getDinnerPeopleNeeded()) &&
                     (stationList.get(1).getTotalDinner() >= stationList.get(1).getDinnerPeopleNeeded()) &&
                     (stationList.get(2).getTotalDinner() >= stationList.get(2).getDinnerPeopleNeeded()) &&
                     (stationList.get(3).getTotalDinner() >= stationList.get(3).getDinnerPeopleNeeded()) &&
@@ -660,69 +692,70 @@ public class Schedule {
                     (stationList.get(7).getTotalDinner() >= stationList.get(7).getDinnerPeopleNeeded()) &&
                     (stationList.get(8).getTotalDinner() >= stationList.get(8).getDinnerPeopleNeeded()) &&
                     (stationList.get(9).getTotalDinner() >= stationList.get(9).getDinnerPeopleNeeded()) &&
-                    (stationList.get(10).getTotalDinner() >= stationList.get(10).getDinnerPeopleNeeded())){  //if all stations meet minimum requirements, start filling to max
+                    (stationList.get(10).getTotalDinner() >= stationList.get(10).getDinnerPeopleNeeded()) && pool.get(2).size() != 0){  //if all stations meet minimum requirements, start filling to max
                 while(pool.get(2).size() > 0){ //order switched so extras go where help is more needed first
-                    if (stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()) {  //fill dish
+
+                    if (stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner() && pool.get(2).size() != 0) {  //fill dish
                         Student temp = randomChooser(pool.get(2), 9);
                         masterList.get(8).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(8).addDinnerStudent();
                     }
-                    if (stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner()) { // fill peaks
+                    if (stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner() && pool.get(2).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(2), 2);
                         masterList.get(1).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(1).addDinnerStudent();
                     }
-                    if (stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner()) { // fill hearth
+                    if (stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner() && pool.get(2).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(2), 3);
                         masterList.get(2).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(2).addDinnerStudent();
                     }
-                    if (stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner()) { // fill salads
+                    if (stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner() && pool.get(2).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(2), 4);
                         masterList.get(3).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(3).addDinnerStudent();
                     }
-                    if (stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner()) { //fill toast
+                    if (stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner() && pool.get(2).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(2), 5);
                         masterList.get(4).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(4).addDinnerStudent();
                     }
-                    if (stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner()) { //fill mid
+                    if (stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner() && pool.get(2).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(2), 6);
                         masterList.get(5).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(5).addDinnerStudent();
                     }
-                    if (stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner()) { //fill curry
+                    if (stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner() && pool.get(2).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(2), 7);
                         masterList.get(6).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(6).addDinnerStudent();
                     }
-                    if (stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner()) { //fill grange
+                    if (stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner() && pool.get(2).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(2), 8);
                         masterList.get(7).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(7).addDinnerStudent();
                     }
-                    if (stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner()) { //fill dra
+                    if (stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner() && pool.get(2).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(2), 10);
                         masterList.get(9).get(2).add(temp);
                         pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
                         stationList.get(9).addDinnerStudent();
                     }
-                    if (stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner()){  //fill check
+                    if (stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner() && pool.get(2).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(2), 1);
                         masterList.get(0).get(2).add(temp);
                         pool.set(2, removeByName(temp.getName(), pool.get(2)));
                         stationList.get(0).addDinnerStudent();
                     }
-                    if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner()){
+                    if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner() && pool.get(2).size() != 0){
                         Student temp = randomChooser(pool.get(2), 11);
                         masterList.get(10).get(2).add(temp);
                         pool.set(2, removeByName(temp.getName(), pool.get(2)));
@@ -737,7 +770,7 @@ public class Schedule {
                             (stationList.get(7).getTotalDinner() >= stationList.get(7).getDinnerMaxWorkers()) &&
                             (stationList.get(8).getTotalDinner() >= stationList.get(8).getDinnerMaxWorkers()) &&
                             (stationList.get(9).getTotalDinner() >= stationList.get(9).getDinnerMaxWorkers()) &&
-                            (stationList.get(10).getTotalDinner() >= stationList.get(10).getDinnerMaxWorkers())) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
+                            (stationList.get(10).getTotalDinner() >= stationList.get(10).getDinnerMaxWorkers()) && pool.get(2).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(2), 9);
                         masterList.get(8).get(2).add(temp);
                         pool.set(2, removeByName(temp.getName(), pool.get(2)));
@@ -764,7 +797,8 @@ public class Schedule {
             if( station == 8) totalWeight += student.getGrangeWeight();
             if( station == 9) totalWeight += student.getDishWeight();
             if( station == 10) totalWeight += student.getDraWeight();
-            if( station == 11) totalWeight += student.getJanWeight();
+            if( station == 11) totalWeight += student.getColdWeight();
+            if( station == 12) totalWeight += student.getJanWeight();
         }
 
         double r = Math.random() * totalWeight;
@@ -780,7 +814,8 @@ public class Schedule {
             if( station == 8) countWeight += student.getGrangeWeight();
             if( station == 9) countWeight += student.getDishWeight();
             if( station == 10) countWeight += student.getDraWeight();
-            if( station == 11) countWeight += student.getJanWeight();
+            if( station == 11) countWeight += student.getColdWeight();
+            if( station == 12) countWeight += student.getJanWeight();
 
             if(countWeight >= r){
                 if( station == 1){
@@ -824,6 +859,10 @@ public class Schedule {
                     return student;
                 }
                 if( station == 11){
+                    student.workCold();
+                    return student;
+                }
+                if( station == 12){
                     student.workJan();
                     return student;
                 }
