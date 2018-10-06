@@ -222,15 +222,15 @@ public class SheetsQuickstart {
         satStations.add(satDra);
         satStations.add(satJan);
 
-        int day = 7;
+        int day = 13;
 
-        List<Student> pool = schedule.buildDayPool(7);
-        List<List<Student>> bigpool = schedule.buildPool(pool, 7);
+        List<Student> pool = schedule.buildDayPool(day);
+        List<List<Student>> bigpool = schedule.buildPool(pool, day);
         System.out.println(" Morning coverage is: " + bigpool.get(0).size());
         System.out.println(" Mid coverage is: " + bigpool.get(1).size());
         System.out.println(" Dinner coverage is: " + bigpool.get(2).size());
 
-
+    /*
         List<List<List<Student>>> trying = schedule.createDuck(bigpool, wedStations );
 
 
@@ -437,7 +437,7 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(10).get(2).get(i).getName() +trying.get(10).get(2).get(i).getSchedule().get(day) + "-" + trying.get(10).get(2).get(i).getSchedule().get(day+1) + ", ");
         }
-
+*/
         /*
 
                TODO: Write to document
