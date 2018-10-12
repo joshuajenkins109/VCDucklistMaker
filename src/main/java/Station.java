@@ -1,21 +1,22 @@
 public class Station {
 
     private int morningPeopleNeeded;
-
-
-
-    private int midPeopleNeeded;
+    private int earlyMidPeopleNeeded;
+    private int lateMidPeopleNeeded;
     private int dinnerPeopleNeeded;
     private int morningFullTime;
-    private int midFullTime;
+    private int earlyMidFullTime;
+    private int lateMidFullTime;
     private int dinnerFullTime;
     private int morningStudents;
-    private int midStudents;
+    private int earlyMidStudents;
+    private int lateMidStudents;
     private int dinnerStudents;
     private int morningMaxWorkers;
-    private int midMaxWorkers;
 
 
+    private int earlyMidMaxWorkers;
+    private int lateMidMaxWorkers;
     private int dinnerMaxWorkers;
 
 
@@ -23,30 +24,40 @@ public class Station {
         UI -> day -> usual variables on day <Option to change>
 
      */
-    public Station(int morn, int mid, int din, int maxmorn, int maxmid, int maxdin){
+    public Station(int morn, int mid, int lmid, int din, int maxmorn, int maxmid, int maxlmid, int maxdin){
         this.morningPeopleNeeded = morn;
-        this.midPeopleNeeded = mid;
+        this.earlyMidPeopleNeeded = mid;
+        this.lateMidPeopleNeeded = lmid;
         this.dinnerPeopleNeeded = din;
         this.morningMaxWorkers = maxmorn;
-        this.midMaxWorkers = maxmid;
+        this.earlyMidMaxWorkers = maxmid;
+        this.lateMidMaxWorkers = maxlmid;
         this.dinnerMaxWorkers = maxdin;
         this.morningFullTime = 0;
-        this.midFullTime = 0;
+        this.earlyMidFullTime = 0;
+        this.lateMidFullTime = 0;
         this.dinnerFullTime = 0;
         this.morningStudents = 0;
-        this.midStudents = 0;
+        this.earlyMidStudents = 0;
+        this.lateMidStudents = 0;
         this.dinnerStudents = 0;
     }
 
     public void addDinnerStudent(){this.dinnerStudents++;}
 
-    public void addMidStudent(){ this.midStudents++;}
+    public void addEarlyMidStudent(){ this.earlyMidStudents++;}
+
+    public void addLateMidStudent() { this.lateMidStudents++;}
 
     public void addMorningStudent(){ this.morningStudents++;}
 
     public int getTotalMorning(){ return morningFullTime + morningStudents;}
 
-    public int getTotalMid(){ return midFullTime + midStudents;}
+    public int getTotalMid(){ return earlyMidFullTime + earlyMidStudents + lateMidFullTime + lateMidStudents;}
+
+    public int getEarlyMid() { return earlyMidFullTime + earlyMidStudents;}
+
+    public int getLateMid() { return lateMidFullTime + lateMidStudents;}
 
     public int getTotalDinner(){ return dinnerFullTime + dinnerStudents;}
 
@@ -58,12 +69,12 @@ public class Station {
         this.morningPeopleNeeded = morningPeopleNeeded;
     }
 
-    public int getMidPeopleNeeded() {
-        return midPeopleNeeded;
+    public int getEarlyMidPeopleNeeded() {
+        return earlyMidPeopleNeeded;
     }
 
-    public void setMidPeopleNeeded(int midPeopleNeeded) {
-        this.midPeopleNeeded = midPeopleNeeded;
+    public void setEarlyMidPeopleNeeded(int earlyMidPeopleNeeded) {
+        this.earlyMidPeopleNeeded = earlyMidPeopleNeeded;
     }
 
     public int getDinnerPeopleNeeded() {
@@ -82,14 +93,6 @@ public class Station {
         this.morningFullTime = morningFullTime;
     }
 
-    public int getMidFullTime() {
-        return midFullTime;
-    }
-
-    public void setMidFullTime(int midFullTime) {
-        this.midFullTime = midFullTime;
-    }
-
     public int getDinnerFullTime() {
         return dinnerFullTime;
     }
@@ -104,14 +107,6 @@ public class Station {
 
     public void setMorningStudents(int morningStudents) {
         this.morningStudents = morningStudents;
-    }
-
-    public int getMidStudents() {
-        return midStudents;
-    }
-
-    public void setMidStudents(int midStudents) {
-        this.midStudents = midStudents;
     }
 
     public int getDinnerStudents() {
@@ -130,14 +125,6 @@ public class Station {
         this.morningMaxWorkers = morningMaxWorkers;
     }
 
-    public int getMidMaxWorkers() {
-        return midMaxWorkers;
-    }
-
-    public void setMidMaxWorkers(int midMaxWorkers) {
-        this.midMaxWorkers = midMaxWorkers;
-    }
-
     public int getDinnerMaxWorkers() {
         return dinnerMaxWorkers;
     }
@@ -145,6 +132,63 @@ public class Station {
     public void setDinnerMaxWorkers(int dinnerMaxWorkers) {
         this.dinnerMaxWorkers = dinnerMaxWorkers;
     }
+
+    public int getLateMidPeopleNeeded() {
+        return lateMidPeopleNeeded;
+    }
+
+    public void setLateMidPeopleNeeded(int lateMidPeopleNeeded) {
+        this.lateMidPeopleNeeded = lateMidPeopleNeeded;
+    }
+
+    public int getEarlyMidFullTime() {
+        return earlyMidFullTime;
+    }
+
+    public void setEarlyMidFullTime(int earlyMidFullTime) {
+        this.earlyMidFullTime = earlyMidFullTime;
+    }
+
+    public int getLateMidFullTime() {
+        return lateMidFullTime;
+    }
+
+    public void setLateMidFullTime(int lateMidFullTime) {
+        this.lateMidFullTime = lateMidFullTime;
+    }
+
+    public int getEarlyMidStudents() {
+        return earlyMidStudents;
+    }
+
+    public void setEarlyMidStudents(int earlyMidStudents) {
+        this.earlyMidStudents = earlyMidStudents;
+    }
+
+    public int getLateMidStudents() {
+        return lateMidStudents;
+    }
+
+    public void setLateMidStudents(int lateMidStudents) {
+        this.lateMidStudents = lateMidStudents;
+    }
+
+    public int getEarlyMidMaxWorkers() {
+        return earlyMidMaxWorkers;
+    }
+
+    public void setEarlyMidMaxWorkers(int earlyMidMaxWorkers) {
+        this.earlyMidMaxWorkers = earlyMidMaxWorkers;
+    }
+
+    public int getLateMidMaxWorkers() {
+        return lateMidMaxWorkers;
+    }
+
+    public void setLateMidMaxWorkers(int lateMidMaxWorkers) {
+        this.lateMidMaxWorkers = lateMidMaxWorkers;
+    }
+
 
 
 }

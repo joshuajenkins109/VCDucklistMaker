@@ -104,8 +104,8 @@ public class SheetsQuickstart {
         Station sunGrange = new Station( 2, 3, 3);
         Station sunDish = new Station( 8, 8 , 9);
 */
-        //monday
-        Station monChecker = new Station(0,1,1, 0, 1, 1);
+        /*//monday
+        Station monChecker = new Station(0,1, 1, 0,1 ,1 ,1 ,1);
         Station monHearth = new Station(0, 0, 0, 0, 3, 3);
         Station monSalads = new Station( 0, 0, 1, 2, 1, 2);
         Station monPeaks = new Station( 0, 0, 1, 1, 1, 2);
@@ -141,7 +141,7 @@ public class SheetsQuickstart {
         Station tuesCurry = new Station( 2, 2, 4);
         Station tuesgrange = new Station( 2, 3, 3);
         Station tuesDish = new Station( 8, 8 , 9);
-*/
+
         //wednesday
 
         Station wedChecker = new Station(0,0,1, 0, 0, 1);
@@ -169,7 +169,7 @@ public class SheetsQuickstart {
         wedStations.add(wedDish);
         wedStations.add(wedDra);
         wedStations.add(wedJan);
-        wedStations.add(wedCold);
+        wedStations.add(wedCold);*/
 /*
 
         //thursday
@@ -184,20 +184,36 @@ public class SheetsQuickstart {
         Station thurDish = new Station( 8, 8 , 9);
 
         //friday
-
-        Station friChecker = new Station(1,1,1);
-        Station friHearth = new Station(2, 2, 3);
-        Station friSalads = new Station( 2, 2, 2);
-        Station friPeaks = new Station( 1, 1, 1);
-        Station friToast = new Station( 4, 2, 4);
-        Station friMiddie = new Station(0, 2, 2);
-        Station friCurry = new Station( 2, 2, 4);
-        Station friGrange = new Station( 2, 3, 3);
-        Station friDish = new Station( 8, 8 , 9);
 */
+        Station friChecker = new Station(0,1,1, 1, 1, 1, 1, 1);
+        Station friHearth = new Station(2, 2, 3 , 1, 1, 1, 1, 1);
+        Station friSalads = new Station( 2, 2, 2, 1, 1, 1, 1, 1);
+        Station friPeaks = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
+        Station friToast = new Station( 4, 2, 4, 1, 1, 1, 1, 1);
+        Station friMiddie = new Station(0, 2, 2, 1, 1, 1, 1, 1);
+        Station friCurry = new Station( 2, 2, 4, 1, 1, 1,1, 1);
+        Station friGrange = new Station( 2, 3, 3,1 ,1 ,1, 1 , 1);
+        Station friDish = new Station( 8, 8 , 9, 1, 1, 1, 1, 1);
+        Station friDra = new Station( 1, 1, 1, 1, 1, 2, 2, 2);
+        Station friJan = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
+        Station friCold = new Station(1, 1, 1, 1, 2, 2, 2, 2);
+
+        List<Station> friStations = new ArrayList<Station>();
+        friStations.add(friChecker);
+        friStations.add(friPeaks);
+        friStations.add(friHearth);
+        friStations.add(friSalads);
+        friStations.add(friToast);
+        friStations.add(friMiddie);
+        friStations.add(friCurry);
+        friStations.add(friGrange);
+        friStations.add(friDish);
+        friStations.add(friDra);
+        friStations.add(friJan);
+        friStations.add(friCold);
         //saturday
 
-        Station satChecker = new Station(1,1,1, 1, 1, 1);
+       /* Station satChecker = new Station(1,1,1, 1, 1, 1);
         Station satHearth = new Station(2, 2, 3, 3, 4, 4);
         Station satSalads = new Station( 2, 2, 2, 3, 4, 4);
         Station satPeaks = new Station( 1, 1, 1, 2, 2, 2);
@@ -220,9 +236,9 @@ public class SheetsQuickstart {
         satStations.add(satGrange);
         satStations.add(satDish);
         satStations.add(satDra);
-        satStations.add(satJan);
+        satStations.add(satJan);*/
 
-        int day = 13;
+        int day = 11;
 
         List<Student> pool = schedule.buildDayPool(day);
         List<List<Student>> bigpool = schedule.buildPool(pool, day);
@@ -230,8 +246,8 @@ public class SheetsQuickstart {
         System.out.println(" Mid coverage is: " + bigpool.get(1).size());
         System.out.println(" Dinner coverage is: " + bigpool.get(2).size());
 
-    /*
-        List<List<List<Student>>> trying = schedule.createDuck(bigpool, wedStations );
+
+        List<List<List<Student>>> trying = schedule.createDuck(bigpool, friStations );
 
 
 
@@ -310,11 +326,19 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(0).get(1).get(i).getName() + trying.get(0).get(1).get(i).getSchedule().get(day) + "-" + trying.get(0).get(1).get(i).getSchedule().get(day+1) +", ");
         }
+        for(int i = 0; i < trying.get(0).get(2).size(); i++)
+        {
+            System.out.print(trying.get(0).get(2).get(i).getName() + trying.get(0).get(2).get(i).getSchedule().get(day) + "-" + trying.get(0).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.print("Peaks: ");
         for(int i = 0; i < trying.get(1).get(1).size(); i++)
         {
             System.out.print(trying.get(1).get(1).get(i).getName() + trying.get(1).get(1).get(i).getSchedule().get(day) + "-" + trying.get(1).get(1).get(i).getSchedule().get(day+1) + ", ");
+        }
+        for(int i = 0; i < trying.get(1).get(2).size(); i++)
+        {
+            System.out.print(trying.get(1).get(2).get(i).getName() + trying.get(1).get(2).get(i).getSchedule().get(day) + "-" + trying.get(1).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Hearth: ");
@@ -322,11 +346,19 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(2).get(1).get(i).getName() + trying.get(2).get(1).get(i).getSchedule().get(day) + "-" + trying.get(2).get(1).get(i).getSchedule().get(day+1) + ", ");
         }
+        for(int i = 0; i < trying.get(2).get(2).size(); i++)
+        {
+            System.out.print(trying.get(2).get(2).get(i).getName() + trying.get(2).get(2).get(i).getSchedule().get(day) + "-" + trying.get(2).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.print("Salads: ");
         for(int i = 0; i < trying.get(3).get(1).size(); i++)
         {
             System.out.print(trying.get(3).get(1).get(i).getName() + trying.get(3).get(1).get(i).getSchedule().get(day) + "-" + trying.get(3).get(1).get(i).getSchedule().get(day+1) +", ");
+        }
+        for(int i = 0; i < trying.get(3).get(2).size(); i++)
+        {
+            System.out.print(trying.get(3).get(2).get(i).getName() + trying.get(3).get(2).get(i).getSchedule().get(day) + "-" + trying.get(3).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Toast: ");
@@ -334,11 +366,19 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(4).get(1).get(i).getName() + trying.get(4).get(1).get(i).getSchedule().get(day) + "-" + trying.get(4).get(1).get(i).getSchedule().get(day+1) + ", ");
         }
+        for(int i = 0; i < trying.get(4).get(2).size(); i++)
+        {
+            System.out.print(trying.get(4).get(2).get(i).getName() + trying.get(4).get(2).get(i).getSchedule().get(day) + "-" + trying.get(4).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.print("Mid: ");
         for(int i = 0; i < trying.get(5).get(1).size(); i++)
         {
             System.out.print(trying.get(5).get(1).get(i).getName() +trying.get(5).get(1).get(i).getSchedule().get(day) + "-" + trying.get(5).get(1).get(i).getSchedule().get(day+1) + ", ");
+        }
+        for(int i = 0; i < trying.get(5).get(2).size(); i++)
+        {
+            System.out.print(trying.get(5).get(2).get(i).getName() + trying.get(5).get(2).get(i).getSchedule().get(day) + "-" + trying.get(5).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Curry: ");
@@ -346,11 +386,19 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(6).get(1).get(i).getName() + trying.get(6).get(1).get(i).getSchedule().get(day) + "-" + trying.get(6).get(1).get(i).getSchedule().get(day+1) +", ");
         }
+        for(int i = 0; i < trying.get(6).get(2).size(); i++)
+        {
+            System.out.print(trying.get(6).get(2).get(i).getName() + trying.get(6).get(2).get(i).getSchedule().get(day) + "-" + trying.get(6).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.print("Grange: ");
         for(int i = 0; i < trying.get(7).get(1).size(); i++)
         {
             System.out.print(trying.get(7).get(1).get(i).getName() +trying.get(7).get(1).get(i).getSchedule().get(day) + "-" + trying.get(7).get(1).get(i).getSchedule().get(day+1) + ", ");
+        }
+        for(int i = 0; i < trying.get(7).get(2).size(); i++)
+        {
+            System.out.print(trying.get(7).get(2).get(i).getName() + trying.get(7).get(2).get(i).getSchedule().get(day) + "-" + trying.get(7).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Dish: ");
@@ -358,11 +406,19 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(8).get(1).get(i).getName() + trying.get(8).get(1).get(i).getSchedule().get(day) + "-" + trying.get(8).get(1).get(i).getSchedule().get(day+1) +", ");
         }
+        for(int i = 0; i < trying.get(8).get(2).size(); i++)
+        {
+            System.out.print(trying.get(8).get(2).get(i).getName() + trying.get(8).get(2).get(i).getSchedule().get(day) + "-" + trying.get(8).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.print("Dra: ");
         for(int i = 0; i < trying.get(9).get(1).size(); i++)
         {
             System.out.print(trying.get(9).get(1).get(i).getName() + trying.get(9).get(1).get(i).getSchedule().get(day) + "-" + trying.get(9).get(1).get(i).getSchedule().get(day+1) +", ");
+        }
+        for(int i = 0; i < trying.get(9).get(2).size(); i++)
+        {
+            System.out.print(trying.get(9).get(2).get(i).getName() + trying.get(9).get(2).get(i).getSchedule().get(day) + "-" + trying.get(9).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Janitor: ");
@@ -370,74 +426,78 @@ public class SheetsQuickstart {
         {
             System.out.print(trying.get(10).get(1).get(i).getName() +trying.get(10).get(1).get(i).getSchedule().get(day) + "-" + trying.get(10).get(1).get(i).getSchedule().get(day+1) + ", ");
         }
+        for(int i = 0; i < trying.get(10).get(2).size(); i++)
+        {
+            System.out.print(trying.get(10).get(2).get(i).getName() + trying.get(10).get(2).get(i).getSchedule().get(day) + "-" + trying.get(10).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
         System.out.println("");
         System.out.println("Dinner");
         System.out.print("Checker: ");
-        for(int i = 0; i < trying.get(0).get(2).size(); i++)
+        for(int i = 0; i < trying.get(0).get(3).size(); i++)
         {
-            System.out.print(trying.get(0).get(2).get(i).getName() + trying.get(0).get(2).get(i).getSchedule().get(day) + "-" + trying.get(0).get(2).get(i).getSchedule().get(day+1) + ", ");
+            System.out.print(trying.get(0).get(3).get(i).getName() + trying.get(0).get(3).get(i).getSchedule().get(day) + "-" + trying.get(0).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
         System.out.println("");
         System.out.print("Peaks: ");
-        for(int i = 0; i < trying.get(1).get(2).size(); i++)
+        for(int i = 0; i < trying.get(1).get(3).size(); i++)
         {
-            System.out.print(trying.get(1).get(2).get(i).getName() + trying.get(1).get(2).get(i).getSchedule().get(day) + "-" + trying.get(1).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(1).get(3).get(i).getName() + trying.get(1).get(3).get(i).getSchedule().get(day) + "-" + trying.get(1).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Hearth: ");
-        for(int i = 0; i < trying.get(2).get(2).size(); i++)
+        for(int i = 0; i < trying.get(2).get(3).size(); i++)
         {
-            System.out.print(trying.get(2).get(2).get(i).getName() +trying.get(2).get(2).get(i).getSchedule().get(day) + "-" + trying.get(2).get(2).get(i).getSchedule().get(day+1) + ", ");
+            System.out.print(trying.get(2).get(3).get(i).getName() +trying.get(2).get(3).get(i).getSchedule().get(day) + "-" + trying.get(2).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
         System.out.println("");
         System.out.print("Salads: ");
-        for(int i = 0; i < trying.get(3).get(2).size(); i++)
+        for(int i = 0; i < trying.get(3).get(3).size(); i++)
         {
-            System.out.print(trying.get(3).get(2).get(i).getName() + trying.get(3).get(2).get(i).getSchedule().get(day) + "-" + trying.get(3).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(3).get(3).get(i).getName() + trying.get(3).get(3).get(i).getSchedule().get(day) + "-" + trying.get(3).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Toast: ");
-        for(int i = 0; i < trying.get(4).get(2).size(); i++)
+        for(int i = 0; i < trying.get(4).get(3).size(); i++)
         {
-            System.out.print(trying.get(4).get(2).get(i).getName() + trying.get(4).get(2).get(i).getSchedule().get(day) + "-" + trying.get(4).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(4).get(3).get(i).getName() + trying.get(4).get(3).get(i).getSchedule().get(day) + "-" + trying.get(4).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Mid: ");
-        for(int i = 0; i < trying.get(5).get(2).size(); i++)
+        for(int i = 0; i < trying.get(5).get(3).size(); i++)
         {
-            System.out.print(trying.get(5).get(2).get(i).getName() + trying.get(5).get(2).get(i).getSchedule().get(day) + "-" + trying.get(5).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(5).get(3).get(i).getName() + trying.get(5).get(3).get(i).getSchedule().get(day) + "-" + trying.get(5).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Curry: ");
-        for(int i = 0; i < trying.get(6).get(2).size(); i++)
+        for(int i = 0; i < trying.get(6).get(3).size(); i++)
         {
-            System.out.print(trying.get(6).get(2).get(i).getName() + trying.get(6).get(2).get(i).getSchedule().get(day) + "-" + trying.get(6).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(6).get(3).get(i).getName() + trying.get(6).get(3).get(i).getSchedule().get(day) + "-" + trying.get(6).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Grange: ");
-        for(int i = 0; i < trying.get(7).get(2).size(); i++)
+        for(int i = 0; i < trying.get(7).get(3).size(); i++)
         {
-            System.out.print(trying.get(7).get(2).get(i).getName() + trying.get(7).get(2).get(i).getSchedule().get(day) + "-" + trying.get(7).get(2).get(i).getSchedule().get(day+1) +", ");
+            System.out.print(trying.get(7).get(3).get(i).getName() + trying.get(7).get(3).get(i).getSchedule().get(day) + "-" + trying.get(7).get(3).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.print("Dish: ");
-        for(int i = 0; i < trying.get(8).get(2).size(); i++)
+        for(int i = 0; i < trying.get(8).get(3).size(); i++)
         {
-            System.out.print(trying.get(8).get(2).get(i).getName() +trying.get(8).get(2).get(i).getSchedule().get(day) + "-" + trying.get(8).get(2).get(i).getSchedule().get(day+1) + ", ");
+            System.out.print(trying.get(8).get(3).get(i).getName() +trying.get(8).get(3).get(i).getSchedule().get(day) + "-" + trying.get(8).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
         System.out.println("");
         System.out.print("Dra: ");
-        for(int i = 0; i < trying.get(9).get(2).size(); i++)
+        for(int i = 0; i < trying.get(9).get(3).size(); i++)
         {
-            System.out.print(trying.get(9).get(2).get(i).getName() +trying.get(9).get(2).get(i).getSchedule().get(day) + "-" + trying.get(9).get(2).get(i).getSchedule().get(day+1) + ", ");
+            System.out.print(trying.get(9).get(3).get(i).getName() +trying.get(9).get(3).get(i).getSchedule().get(day) + "-" + trying.get(9).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
         System.out.println("");
         System.out.print("Janitor: ");
-        for(int i = 0; i < trying.get(10).get(2).size(); i++)
+        for(int i = 0; i < trying.get(10).get(3).size(); i++)
         {
-            System.out.print(trying.get(10).get(2).get(i).getName() +trying.get(10).get(2).get(i).getSchedule().get(day) + "-" + trying.get(10).get(2).get(i).getSchedule().get(day+1) + ", ");
+            System.out.print(trying.get(10).get(3).get(i).getName() +trying.get(10).get(3).get(i).getSchedule().get(day) + "-" + trying.get(10).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
-*/
+
         /*
 
                TODO: Write to document
