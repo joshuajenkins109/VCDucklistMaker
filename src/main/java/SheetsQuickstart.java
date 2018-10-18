@@ -120,6 +120,11 @@ public class SheetsQuickstart {
                 ui.setDay(0);
                 rui.setExitCode(0);
             }
+            if(rui.getExitCode() == -1)
+            {
+                resultsFrame.setVisible(false);
+                break;
+            }
             if(ui.getDay() == 1){
                 Station sunChecker = new Station(0,1,1, 1, 1, 1, 1, 1);
                 Station sunHearth = new Station(2, 2, 3 , 1, 1, 1, 1, 1);
