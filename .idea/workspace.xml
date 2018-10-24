@@ -7,26 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/CoverageUI.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/CoverageUI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$1.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$2.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$3.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$4.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$5.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$6.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$7.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI$8.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/DuckListUI.class" afterPath="$PROJECT_DIR$/out/production/classes/DuckListUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Schedule.class" afterPath="$PROJECT_DIR$/out/production/classes/Schedule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/DuckListUI.form" afterPath="$PROJECT_DIR$/src/main/java/DuckListUI.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/DuckListUI.java" afterPath="$PROJECT_DIR$/src/main/java/DuckListUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/Schedule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -45,32 +27,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
+            <state relative-caret-position="17">
               <caret line="78" column="16" lean-forward="false" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="1657" column="23" lean-forward="false" selection-start-line="1657" selection-start-column="23" selection-end-line="1657" selection-end-column="23" />
+            <state relative-caret-position="5355">
+              <caret line="1661" column="136" lean-forward="false" selection-start-line="1661" selection-start-column="136" selection-end-line="1661" selection-end-column="136" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
                 <element signature="method#building#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+                <element signature="e#1229#1238#0" expanded="true" />
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+                <element signature="e#1798#1813#0" expanded="true" />
+                <element signature="e#1859#1868#0" expanded="true" />
+                <element signature="e#1915#1924#0" expanded="true" />
+                <element signature="e#1970#1979#0" expanded="true" />
+                <element signature="e#2024#2033#0" expanded="true" />
                 <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+                <element signature="e#7218#7239#0" expanded="true" />
+                <element signature="e#7294#7309#0" expanded="true" />
+                <element signature="e#7362#7377#0" expanded="true" />
+                <element signature="e#7431#7446#0" expanded="true" />
+                <element signature="e#7500#7515#0" expanded="true" />
+                <element signature="e#7568#7583#0" expanded="true" />
+                <element signature="e#7634#7649#0" expanded="true" />
+                <element signature="e#7702#7717#0" expanded="true" />
+                <element signature="e#7771#7786#0" expanded="true" />
+                <element signature="e#7838#7853#0" expanded="true" />
+                <element signature="e#7904#7919#0" expanded="true" />
+                <element signature="e#7970#7985#0" expanded="true" />
+                <element signature="e#8037#8052#0" expanded="true" />
+                <element signature="e#8104#8113#0" expanded="true" />
+                <element signature="e#8168#8177#0" expanded="true" />
+                <element signature="e#8231#8240#0" expanded="true" />
+                <element signature="e#8290#8299#0" expanded="true" />
+                <element signature="e#8350#8359#0" expanded="true" />
+                <element signature="e#8414#8423#0" expanded="true" />
+                <element signature="e#8477#8486#0" expanded="true" />
+                <element signature="e#8536#8545#0" expanded="true" />
+                <element signature="e#8597#8606#0" expanded="true" />
+                <element signature="e#8662#8671#0" expanded="true" />
+                <element signature="e#8726#8735#0" expanded="true" />
+                <element signature="e#8786#8795#0" expanded="true" />
+                <element signature="e#8847#8856#0" expanded="true" />
+                <element signature="e#8912#8921#0" expanded="true" />
+                <element signature="e#8976#8985#0" expanded="true" />
+                <element signature="e#9036#9045#0" expanded="true" />
+                <element signature="e#9096#9105#0" expanded="true" />
+                <element signature="e#9160#9169#0" expanded="true" />
+                <element signature="e#9223#9232#0" expanded="true" />
+                <element signature="e#9282#9291#0" expanded="true" />
+                <element signature="e#9340#9349#0" expanded="true" />
+                <element signature="e#9402#9411#0" expanded="true" />
+                <element signature="e#9463#9472#0" expanded="true" />
+                <element signature="e#9520#9529#0" expanded="true" />
+                <element signature="e#9580#9589#0" expanded="true" />
+                <element signature="e#9644#9653#0" expanded="true" />
+                <element signature="e#9707#9716#0" expanded="true" />
+                <element signature="e#9766#9775#0" expanded="true" />
+                <element signature="e#9827#9836#0" expanded="true" />
+                <element signature="e#9892#9901#0" expanded="true" />
+                <element signature="e#9956#9965#0" expanded="true" />
+                <element signature="e#10016#10025#0" expanded="true" />
+                <element signature="e#10075#10084#0" expanded="true" />
+                <element signature="e#10138#10147#0" expanded="true" />
+                <element signature="e#10200#10209#0" expanded="true" />
+                <element signature="e#10258#10267#0" expanded="true" />
+                <element signature="e#10316#10325#0" expanded="true" />
+                <element signature="e#10378#10387#0" expanded="true" />
+                <element signature="e#10439#10448#0" expanded="true" />
+                <element signature="e#10496#10505#0" expanded="true" />
+                <element signature="e#10554#10563#0" expanded="true" />
+                <element signature="e#10616#10625#0" expanded="true" />
+                <element signature="e#10677#10686#0" expanded="true" />
+                <element signature="e#10734#10743#0" expanded="true" />
+                <element signature="e#10793#10802#0" expanded="true" />
+                <element signature="e#10856#10865#0" expanded="true" />
+                <element signature="e#10918#10927#0" expanded="true" />
+                <element signature="e#10976#10985#0" expanded="true" />
                 <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
                 <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
                 <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-                <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -79,7 +128,7 @@
       <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
+            <state relative-caret-position="969">
               <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -109,12 +158,10 @@
       <file leaf-file-name="DuckListUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DuckListUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="691">
+            <state relative-caret-position="1173">
               <caret line="111" column="27" lean-forward="false" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3691#3844#0" expanded="true" />
-                <element signature="e#3843#3844#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,7 +170,7 @@
       <file leaf-file-name="CoverageUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/CoverageUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
+            <state relative-caret-position="646">
               <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -501,9 +548,9 @@
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/CoverageUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/CoverageUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
       </list>
     </option>
   </component>
@@ -535,8 +582,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -566,8 +611,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -833,12 +880,13 @@
       <workItem from="1539891247525" duration="1337000" />
       <workItem from="1540170528970" duration="1062000" />
       <workItem from="1540175567452" duration="1503000" />
-      <workItem from="1540404474058" duration="649000" />
+      <workItem from="1540404474058" duration="1661000" />
+      <workItem from="1540406171430" duration="707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158926000" />
+    <option name="totallyTimeSpent" value="160645000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -852,8 +900,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45387062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45387062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -864,8 +912,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -896,12 +944,79 @@
             <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
             <element signature="method#building#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1229#1238#0" expanded="true" />
             <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1798#1813#0" expanded="true" />
+            <element signature="e#1859#1868#0" expanded="true" />
+            <element signature="e#1915#1924#0" expanded="true" />
+            <element signature="e#1970#1979#0" expanded="true" />
+            <element signature="e#2024#2033#0" expanded="true" />
             <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="e#7218#7239#0" expanded="true" />
+            <element signature="e#7294#7309#0" expanded="true" />
+            <element signature="e#7362#7377#0" expanded="true" />
+            <element signature="e#7431#7446#0" expanded="true" />
+            <element signature="e#7500#7515#0" expanded="true" />
+            <element signature="e#7568#7583#0" expanded="true" />
+            <element signature="e#7634#7649#0" expanded="true" />
+            <element signature="e#7702#7717#0" expanded="true" />
+            <element signature="e#7771#7786#0" expanded="true" />
+            <element signature="e#7838#7853#0" expanded="true" />
+            <element signature="e#7904#7919#0" expanded="true" />
+            <element signature="e#7970#7985#0" expanded="true" />
+            <element signature="e#8037#8052#0" expanded="true" />
+            <element signature="e#8104#8113#0" expanded="true" />
+            <element signature="e#8168#8177#0" expanded="true" />
+            <element signature="e#8231#8240#0" expanded="true" />
+            <element signature="e#8290#8299#0" expanded="true" />
+            <element signature="e#8350#8359#0" expanded="true" />
+            <element signature="e#8414#8423#0" expanded="true" />
+            <element signature="e#8477#8486#0" expanded="true" />
+            <element signature="e#8536#8545#0" expanded="true" />
+            <element signature="e#8597#8606#0" expanded="true" />
+            <element signature="e#8662#8671#0" expanded="true" />
+            <element signature="e#8726#8735#0" expanded="true" />
+            <element signature="e#8786#8795#0" expanded="true" />
+            <element signature="e#8847#8856#0" expanded="true" />
+            <element signature="e#8912#8921#0" expanded="true" />
+            <element signature="e#8976#8985#0" expanded="true" />
+            <element signature="e#9036#9045#0" expanded="true" />
+            <element signature="e#9096#9105#0" expanded="true" />
+            <element signature="e#9160#9169#0" expanded="true" />
+            <element signature="e#9223#9232#0" expanded="true" />
+            <element signature="e#9282#9291#0" expanded="true" />
+            <element signature="e#9340#9349#0" expanded="true" />
+            <element signature="e#9402#9411#0" expanded="true" />
+            <element signature="e#9463#9472#0" expanded="true" />
+            <element signature="e#9520#9529#0" expanded="true" />
+            <element signature="e#9580#9589#0" expanded="true" />
+            <element signature="e#9644#9653#0" expanded="true" />
+            <element signature="e#9707#9716#0" expanded="true" />
+            <element signature="e#9766#9775#0" expanded="true" />
+            <element signature="e#9827#9836#0" expanded="true" />
+            <element signature="e#9892#9901#0" expanded="true" />
+            <element signature="e#9956#9965#0" expanded="true" />
+            <element signature="e#10016#10025#0" expanded="true" />
+            <element signature="e#10075#10084#0" expanded="true" />
+            <element signature="e#10138#10147#0" expanded="true" />
+            <element signature="e#10200#10209#0" expanded="true" />
+            <element signature="e#10258#10267#0" expanded="true" />
+            <element signature="e#10316#10325#0" expanded="true" />
+            <element signature="e#10378#10387#0" expanded="true" />
+            <element signature="e#10439#10448#0" expanded="true" />
+            <element signature="e#10496#10505#0" expanded="true" />
+            <element signature="e#10554#10563#0" expanded="true" />
+            <element signature="e#10616#10625#0" expanded="true" />
+            <element signature="e#10677#10686#0" expanded="true" />
+            <element signature="e#10734#10743#0" expanded="true" />
+            <element signature="e#10793#10802#0" expanded="true" />
+            <element signature="e#10856#10865#0" expanded="true" />
+            <element signature="e#10918#10927#0" expanded="true" />
+            <element signature="e#10976#10985#0" expanded="true" />
             <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
             <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
             <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -945,12 +1060,79 @@
             <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
             <element signature="method#building#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1229#1238#0" expanded="true" />
             <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1798#1813#0" expanded="true" />
+            <element signature="e#1859#1868#0" expanded="true" />
+            <element signature="e#1915#1924#0" expanded="true" />
+            <element signature="e#1970#1979#0" expanded="true" />
+            <element signature="e#2024#2033#0" expanded="true" />
             <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="e#7218#7239#0" expanded="true" />
+            <element signature="e#7294#7309#0" expanded="true" />
+            <element signature="e#7362#7377#0" expanded="true" />
+            <element signature="e#7431#7446#0" expanded="true" />
+            <element signature="e#7500#7515#0" expanded="true" />
+            <element signature="e#7568#7583#0" expanded="true" />
+            <element signature="e#7634#7649#0" expanded="true" />
+            <element signature="e#7702#7717#0" expanded="true" />
+            <element signature="e#7771#7786#0" expanded="true" />
+            <element signature="e#7838#7853#0" expanded="true" />
+            <element signature="e#7904#7919#0" expanded="true" />
+            <element signature="e#7970#7985#0" expanded="true" />
+            <element signature="e#8037#8052#0" expanded="true" />
+            <element signature="e#8104#8113#0" expanded="true" />
+            <element signature="e#8168#8177#0" expanded="true" />
+            <element signature="e#8231#8240#0" expanded="true" />
+            <element signature="e#8290#8299#0" expanded="true" />
+            <element signature="e#8350#8359#0" expanded="true" />
+            <element signature="e#8414#8423#0" expanded="true" />
+            <element signature="e#8477#8486#0" expanded="true" />
+            <element signature="e#8536#8545#0" expanded="true" />
+            <element signature="e#8597#8606#0" expanded="true" />
+            <element signature="e#8662#8671#0" expanded="true" />
+            <element signature="e#8726#8735#0" expanded="true" />
+            <element signature="e#8786#8795#0" expanded="true" />
+            <element signature="e#8847#8856#0" expanded="true" />
+            <element signature="e#8912#8921#0" expanded="true" />
+            <element signature="e#8976#8985#0" expanded="true" />
+            <element signature="e#9036#9045#0" expanded="true" />
+            <element signature="e#9096#9105#0" expanded="true" />
+            <element signature="e#9160#9169#0" expanded="true" />
+            <element signature="e#9223#9232#0" expanded="true" />
+            <element signature="e#9282#9291#0" expanded="true" />
+            <element signature="e#9340#9349#0" expanded="true" />
+            <element signature="e#9402#9411#0" expanded="true" />
+            <element signature="e#9463#9472#0" expanded="true" />
+            <element signature="e#9520#9529#0" expanded="true" />
+            <element signature="e#9580#9589#0" expanded="true" />
+            <element signature="e#9644#9653#0" expanded="true" />
+            <element signature="e#9707#9716#0" expanded="true" />
+            <element signature="e#9766#9775#0" expanded="true" />
+            <element signature="e#9827#9836#0" expanded="true" />
+            <element signature="e#9892#9901#0" expanded="true" />
+            <element signature="e#9956#9965#0" expanded="true" />
+            <element signature="e#10016#10025#0" expanded="true" />
+            <element signature="e#10075#10084#0" expanded="true" />
+            <element signature="e#10138#10147#0" expanded="true" />
+            <element signature="e#10200#10209#0" expanded="true" />
+            <element signature="e#10258#10267#0" expanded="true" />
+            <element signature="e#10316#10325#0" expanded="true" />
+            <element signature="e#10378#10387#0" expanded="true" />
+            <element signature="e#10439#10448#0" expanded="true" />
+            <element signature="e#10496#10505#0" expanded="true" />
+            <element signature="e#10554#10563#0" expanded="true" />
+            <element signature="e#10616#10625#0" expanded="true" />
+            <element signature="e#10677#10686#0" expanded="true" />
+            <element signature="e#10734#10743#0" expanded="true" />
+            <element signature="e#10793#10802#0" expanded="true" />
+            <element signature="e#10856#10865#0" expanded="true" />
+            <element signature="e#10918#10927#0" expanded="true" />
+            <element signature="e#10976#10985#0" expanded="true" />
             <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
             <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
             <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1007,12 +1189,79 @@
             <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
             <element signature="method#building#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1229#1238#0" expanded="true" />
             <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1798#1813#0" expanded="true" />
+            <element signature="e#1859#1868#0" expanded="true" />
+            <element signature="e#1915#1924#0" expanded="true" />
+            <element signature="e#1970#1979#0" expanded="true" />
+            <element signature="e#2024#2033#0" expanded="true" />
             <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="e#7218#7239#0" expanded="true" />
+            <element signature="e#7294#7309#0" expanded="true" />
+            <element signature="e#7362#7377#0" expanded="true" />
+            <element signature="e#7431#7446#0" expanded="true" />
+            <element signature="e#7500#7515#0" expanded="true" />
+            <element signature="e#7568#7583#0" expanded="true" />
+            <element signature="e#7634#7649#0" expanded="true" />
+            <element signature="e#7702#7717#0" expanded="true" />
+            <element signature="e#7771#7786#0" expanded="true" />
+            <element signature="e#7838#7853#0" expanded="true" />
+            <element signature="e#7904#7919#0" expanded="true" />
+            <element signature="e#7970#7985#0" expanded="true" />
+            <element signature="e#8037#8052#0" expanded="true" />
+            <element signature="e#8104#8113#0" expanded="true" />
+            <element signature="e#8168#8177#0" expanded="true" />
+            <element signature="e#8231#8240#0" expanded="true" />
+            <element signature="e#8290#8299#0" expanded="true" />
+            <element signature="e#8350#8359#0" expanded="true" />
+            <element signature="e#8414#8423#0" expanded="true" />
+            <element signature="e#8477#8486#0" expanded="true" />
+            <element signature="e#8536#8545#0" expanded="true" />
+            <element signature="e#8597#8606#0" expanded="true" />
+            <element signature="e#8662#8671#0" expanded="true" />
+            <element signature="e#8726#8735#0" expanded="true" />
+            <element signature="e#8786#8795#0" expanded="true" />
+            <element signature="e#8847#8856#0" expanded="true" />
+            <element signature="e#8912#8921#0" expanded="true" />
+            <element signature="e#8976#8985#0" expanded="true" />
+            <element signature="e#9036#9045#0" expanded="true" />
+            <element signature="e#9096#9105#0" expanded="true" />
+            <element signature="e#9160#9169#0" expanded="true" />
+            <element signature="e#9223#9232#0" expanded="true" />
+            <element signature="e#9282#9291#0" expanded="true" />
+            <element signature="e#9340#9349#0" expanded="true" />
+            <element signature="e#9402#9411#0" expanded="true" />
+            <element signature="e#9463#9472#0" expanded="true" />
+            <element signature="e#9520#9529#0" expanded="true" />
+            <element signature="e#9580#9589#0" expanded="true" />
+            <element signature="e#9644#9653#0" expanded="true" />
+            <element signature="e#9707#9716#0" expanded="true" />
+            <element signature="e#9766#9775#0" expanded="true" />
+            <element signature="e#9827#9836#0" expanded="true" />
+            <element signature="e#9892#9901#0" expanded="true" />
+            <element signature="e#9956#9965#0" expanded="true" />
+            <element signature="e#10016#10025#0" expanded="true" />
+            <element signature="e#10075#10084#0" expanded="true" />
+            <element signature="e#10138#10147#0" expanded="true" />
+            <element signature="e#10200#10209#0" expanded="true" />
+            <element signature="e#10258#10267#0" expanded="true" />
+            <element signature="e#10316#10325#0" expanded="true" />
+            <element signature="e#10378#10387#0" expanded="true" />
+            <element signature="e#10439#10448#0" expanded="true" />
+            <element signature="e#10496#10505#0" expanded="true" />
+            <element signature="e#10554#10563#0" expanded="true" />
+            <element signature="e#10616#10625#0" expanded="true" />
+            <element signature="e#10677#10686#0" expanded="true" />
+            <element signature="e#10734#10743#0" expanded="true" />
+            <element signature="e#10793#10802#0" expanded="true" />
+            <element signature="e#10856#10865#0" expanded="true" />
+            <element signature="e#10918#10927#0" expanded="true" />
+            <element signature="e#10976#10985#0" expanded="true" />
             <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
             <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
             <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1241,30 +1490,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
+        <state relative-caret-position="969">
           <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="1657" column="23" lean-forward="false" selection-start-line="1657" selection-start-column="23" selection-end-line="1657" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
-            <element signature="method#building#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1276,12 +1506,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DuckListUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
+        <state relative-caret-position="1173">
           <caret line="111" column="27" lean-forward="false" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3691#3844#0" expanded="true" />
-            <element signature="e#3843#3844#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1298,7 +1526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CoverageUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
+        <state relative-caret-position="646">
           <caret line="44" column="17" lean-forward="false" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1308,9 +1536,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
+        <state relative-caret-position="17">
           <caret line="78" column="16" lean-forward="false" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5355">
+          <caret line="1661" column="136" lean-forward="false" selection-start-line="1661" selection-start-column="136" selection-end-line="1661" selection-end-column="136" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
+            <element signature="method#building#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1229#1238#0" expanded="true" />
+            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1798#1813#0" expanded="true" />
+            <element signature="e#1859#1868#0" expanded="true" />
+            <element signature="e#1915#1924#0" expanded="true" />
+            <element signature="e#1970#1979#0" expanded="true" />
+            <element signature="e#2024#2033#0" expanded="true" />
+            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="e#7218#7239#0" expanded="true" />
+            <element signature="e#7294#7309#0" expanded="true" />
+            <element signature="e#7362#7377#0" expanded="true" />
+            <element signature="e#7431#7446#0" expanded="true" />
+            <element signature="e#7500#7515#0" expanded="true" />
+            <element signature="e#7568#7583#0" expanded="true" />
+            <element signature="e#7634#7649#0" expanded="true" />
+            <element signature="e#7702#7717#0" expanded="true" />
+            <element signature="e#7771#7786#0" expanded="true" />
+            <element signature="e#7838#7853#0" expanded="true" />
+            <element signature="e#7904#7919#0" expanded="true" />
+            <element signature="e#7970#7985#0" expanded="true" />
+            <element signature="e#8037#8052#0" expanded="true" />
+            <element signature="e#8104#8113#0" expanded="true" />
+            <element signature="e#8168#8177#0" expanded="true" />
+            <element signature="e#8231#8240#0" expanded="true" />
+            <element signature="e#8290#8299#0" expanded="true" />
+            <element signature="e#8350#8359#0" expanded="true" />
+            <element signature="e#8414#8423#0" expanded="true" />
+            <element signature="e#8477#8486#0" expanded="true" />
+            <element signature="e#8536#8545#0" expanded="true" />
+            <element signature="e#8597#8606#0" expanded="true" />
+            <element signature="e#8662#8671#0" expanded="true" />
+            <element signature="e#8726#8735#0" expanded="true" />
+            <element signature="e#8786#8795#0" expanded="true" />
+            <element signature="e#8847#8856#0" expanded="true" />
+            <element signature="e#8912#8921#0" expanded="true" />
+            <element signature="e#8976#8985#0" expanded="true" />
+            <element signature="e#9036#9045#0" expanded="true" />
+            <element signature="e#9096#9105#0" expanded="true" />
+            <element signature="e#9160#9169#0" expanded="true" />
+            <element signature="e#9223#9232#0" expanded="true" />
+            <element signature="e#9282#9291#0" expanded="true" />
+            <element signature="e#9340#9349#0" expanded="true" />
+            <element signature="e#9402#9411#0" expanded="true" />
+            <element signature="e#9463#9472#0" expanded="true" />
+            <element signature="e#9520#9529#0" expanded="true" />
+            <element signature="e#9580#9589#0" expanded="true" />
+            <element signature="e#9644#9653#0" expanded="true" />
+            <element signature="e#9707#9716#0" expanded="true" />
+            <element signature="e#9766#9775#0" expanded="true" />
+            <element signature="e#9827#9836#0" expanded="true" />
+            <element signature="e#9892#9901#0" expanded="true" />
+            <element signature="e#9956#9965#0" expanded="true" />
+            <element signature="e#10016#10025#0" expanded="true" />
+            <element signature="e#10075#10084#0" expanded="true" />
+            <element signature="e#10138#10147#0" expanded="true" />
+            <element signature="e#10200#10209#0" expanded="true" />
+            <element signature="e#10258#10267#0" expanded="true" />
+            <element signature="e#10316#10325#0" expanded="true" />
+            <element signature="e#10378#10387#0" expanded="true" />
+            <element signature="e#10439#10448#0" expanded="true" />
+            <element signature="e#10496#10505#0" expanded="true" />
+            <element signature="e#10554#10563#0" expanded="true" />
+            <element signature="e#10616#10625#0" expanded="true" />
+            <element signature="e#10677#10686#0" expanded="true" />
+            <element signature="e#10734#10743#0" expanded="true" />
+            <element signature="e#10793#10802#0" expanded="true" />
+            <element signature="e#10856#10865#0" expanded="true" />
+            <element signature="e#10918#10927#0" expanded="true" />
+            <element signature="e#10976#10985#0" expanded="true" />
+            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
