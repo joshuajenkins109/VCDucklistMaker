@@ -1642,4 +1642,24 @@ public class Schedule {
         return outputs;
     }
 
+    public String getCoverage(List<List<Student>> pool, int day){
+        String result = "";
+        if(day == 1)  result = "Sunday \n";
+        if(day == 3) result = "Monday \n";
+        if(day == 5) result = "Tuesday \n";
+        if(day == 7) result = "Wednesday \n";
+        if(day == 9) result = "Thursday \n";
+        if(day == 11) result = "Friday \n";
+        if(day == 13) result = "Saturday \n";
+        result += "\n";
+        result +=  "Morning: " + pool.get(0).size() + "\n \n";
+        result +=  "Early Mid: " + pool.get(1).size()+ "   Late Mid: " + pool.get(2).size() + "\n";
+        result +=  "Total Mid: " + (pool.get(1).size()+ pool.get(2).size()) + "\n \n";
+        result += "\n";
+        result +=  "Dinner: " + pool.get(2).size();
+
+        return result;
+
+    }
+
 }

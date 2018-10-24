@@ -26,82 +26,23 @@ import java.util.List;
 public class SheetsQuickstart {
 
 
-    private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
-    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
-    /**
-     * Global instance of the scopes required by this quickstart.
-     * If modifying these scopes, delete your previously saved tokens/ folder.
-     */
-    private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-    private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
-
-    /**
-     * Creates an authorized Credential object.
-     * @param HTTP_TRANSPORT The network HTTP Transport.
-     * @return An authorized Credential object.
-     * @throws IOException If the credentials.json file cannot be found.
-     */
-    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
-        // Load client secrets.
-        InputStream in = SheetsQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-        // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-                .setAccessType("offline")
-                .build();
-        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
-    }
-
-    public Schedule generateList() throws IOException, GeneralSecurityException {
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
-        final String sunday = "Sheet1!A6:O165";
-        final String range = "Sheet1!A1:A14";
-        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
-        ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, sunday)
-                .execute();
-
-
-
-        List<List<Object>> values = response.getValues();
-        Schedule schedule = new Schedule(values);
-
-        return schedule;
-    }
-
-    public static void main(String... args) throws IOException, GeneralSecurityException {
-        // Build a new authorized API client service.
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
-        final String sunday = "Sheet1!A6:O165";
-        final String range = "Sheet1!A1:A14";
-        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
-        ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, sunday)
-                .execute();
 
 
 
-        List<List<Object>> values = response.getValues();
+    public static void main(String... args) throws IOException, GeneralSecurityException {
+
+        SheetsCommunicator sheet = new SheetsCommunicator();
         DuckListUI ui = new DuckListUI();
         ResultsUI rui = new ResultsUI();
+        CoverageUI cui = new CoverageUI();
 
         JFrame frame = new JFrame("DuckListUI");
         frame.setContentPane(ui.getMainView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        Schedule schedule = new Schedule( values);
+        Schedule schedule = sheet.generateList();
         List<Student> pool = new ArrayList<Student>();
         List<List<Student>> bigpool = new ArrayList<List<Student>>();
         List<List<List<Student>>> trying = new ArrayList<List<List<Student>>>();
@@ -109,6 +50,11 @@ public class SheetsQuickstart {
         resultsFrame.setContentPane(rui.getResultsPanel());
         resultsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         resultsFrame.pack();
+        JFrame coverageFrame = new JFrame("CoverageUI");
+        coverageFrame.setContentPane(cui.getCoveragePanel());
+        coverageFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        coverageFrame.pack();
+
 
         while(ui.getDay() != -1) {
 
@@ -120,9 +66,18 @@ public class SheetsQuickstart {
                 ui.setDay(0);
                 rui.setExitCode(0);
             }
-            if(rui.getExitCode() == -1)
-            {
+            if(cui.getExitCode() == 1){
+                coverageFrame.setVisible(false);
+                frame.setVisible(true);
+                cui.setExitCode(0);
+                ui.setDay(0);
+            }
+            if(rui.getExitCode() == -1) {
                 resultsFrame.setVisible(false);
+                break;
+            }
+            if(cui.getExitCode() == -1){
+                coverageFrame.setVisible(false);
                 break;
             }
             if(ui.getDay() == 1){
@@ -399,6 +354,32 @@ public class SheetsQuickstart {
                 rui.setDinnerDuckList(printer.get(2));
                 frame.setVisible(false);
                 resultsFrame.setVisible(true);
+            }
+            if(ui.getDay() == 15){
+                pool = schedule.buildDayPool(1);
+                bigpool = schedule.buildPool(pool, 1);
+                cui.setSundayCoverage(schedule.getCoverage(bigpool,1));
+                pool = schedule.buildDayPool(3);
+                bigpool = schedule.buildPool(pool, 3);
+                cui.setMondayCoverage(schedule.getCoverage(bigpool,3));
+                pool = schedule.buildDayPool(5);
+                bigpool = schedule.buildPool(pool, 5);
+                cui.setTuesdayCoverage(schedule.getCoverage(bigpool,5));
+                pool = schedule.buildDayPool(7);
+                bigpool = schedule.buildPool(pool, 7);
+                cui.setWednesdayCoverage(schedule.getCoverage(bigpool,7));
+                pool = schedule.buildDayPool(9);
+                bigpool = schedule.buildPool(pool, 9);
+                cui.setThursdayCoverage(schedule.getCoverage(bigpool,9));
+                pool = schedule.buildDayPool(11);
+                bigpool = schedule.buildPool(pool, 11);
+                cui.setFridayCoverage(schedule.getCoverage(bigpool,11));
+                pool = schedule.buildDayPool(13);
+                bigpool = schedule.buildPool(pool, 13);
+                cui.setSaturdayCoverage(schedule.getCoverage(bigpool,13));
+                frame.setVisible(false);
+                coverageFrame.setVisible(true);
+                ui.setDay(0);
             }
         }
         System.exit(0);

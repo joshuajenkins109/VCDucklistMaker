@@ -36,6 +36,7 @@ public class DuckListUI {
     private JButton SaturdayButton;
     private JTextArea DayText;
     private JButton ExitButton;
+    private JButton CoverageButton;
     private int day = 0;
 
     public void setDay(int day) {
@@ -103,6 +104,12 @@ public class DuckListUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setDay(-1);
+            }
+        });
+        CoverageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setDay(15);
             }
         });
     }
