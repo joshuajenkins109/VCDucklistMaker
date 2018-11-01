@@ -50,7 +50,7 @@ public class Schedule {
         return pool;
     }
     /*
-        Builds daily pool of students separated by Morning, Mid, and Dinner shifts
+        Builds daily pool of students separated by Morning, Early Mid, Late mid, and Dinner shifts
 
         @param List<Student> studentsWorking (list of people working that day)
         @param int day (day index for intended day
@@ -927,6 +927,7 @@ public class Schedule {
                 pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
                 stationList.get(11).addDinnerStudent();
 
+
             }
             if( (stationList.get(0).getTotalDinner() >= stationList.get(0).getDinnerPeopleNeeded()) &&
                     (stationList.get(1).getTotalDinner() >= stationList.get(1).getDinnerPeopleNeeded()) &&
@@ -939,6 +940,7 @@ public class Schedule {
                     (stationList.get(9).getTotalDinner() >= stationList.get(9).getDinnerPeopleNeeded()) &&
                     (stationList.get(10).getTotalDinner() >= stationList.get(10).getDinnerPeopleNeeded()) &&
                     (stationList.get(11).getTotalDinner() >= stationList.get(11).getDinnerPeopleNeeded()) && pool.get(3).size() != 0){  //if all stations meet minimum requirements, start filling to max
+
                 while(pool.get(3).size() > 0){ //order switched so extras go where help is more needed first
 
                     if (stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner() && pool.get(3).size() != 0) {  //fill dish
@@ -1054,7 +1056,6 @@ public class Schedule {
             if( station == 11) totalWeight += student.getColdWeight();
             if( station == 12) totalWeight += student.getJanWeight();
         }
-
         double r = Math.random() * totalWeight;
         double countWeight = 0.0;
         for(Student student : options){
@@ -1070,7 +1071,6 @@ public class Schedule {
             if( station == 10) countWeight += student.getDraWeight();
             if( station == 11) countWeight += student.getColdWeight();
             if( station == 12) countWeight += student.getJanWeight();
-
             if(countWeight >= r){
                 if( station == 1){
                     student.workCheck();
@@ -1310,7 +1310,7 @@ public class Schedule {
             System.out.print(trying.get(9).get(2).get(i).getName() + trying.get(9).get(2).get(i).getSchedule().get(day) + "-" + trying.get(9).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
-        System.out.print("Janitor: ");
+        System.out.print("Cold Runner: ");
         for(int i = 0; i < trying.get(10).get(1).size(); i++)
         {
             System.out.print(trying.get(10).get(1).get(i).getName() +trying.get(10).get(1).get(i).getSchedule().get(day) + "-" + trying.get(10).get(1).get(i).getSchedule().get(day+1) + ", ");
@@ -1318,6 +1318,16 @@ public class Schedule {
         for(int i = 0; i < trying.get(10).get(2).size(); i++)
         {
             System.out.print(trying.get(10).get(2).get(i).getName() + trying.get(10).get(2).get(i).getSchedule().get(day) + "-" + trying.get(10).get(2).get(i).getSchedule().get(day+1) +", ");
+        }
+        System.out.println("");
+        System.out.print("Janitor: ");
+        for(int i = 0; i < trying.get(11).get(1).size(); i++)
+        {
+            System.out.print(trying.get(11).get(1).get(i).getName() +trying.get(11).get(1).get(i).getSchedule().get(day) + "-" + trying.get(11).get(1).get(i).getSchedule().get(day+1) + ", ");
+        }
+        for(int i = 0; i < trying.get(11).get(2).size(); i++)
+        {
+            System.out.print(trying.get(11).get(2).get(i).getName() + trying.get(11).get(2).get(i).getSchedule().get(day) + "-" + trying.get(11).get(2).get(i).getSchedule().get(day+1) +", ");
         }
         System.out.println("");
         System.out.println("Dinner");
@@ -1381,10 +1391,16 @@ public class Schedule {
             System.out.print(trying.get(9).get(3).get(i).getName() +trying.get(9).get(3).get(i).getSchedule().get(day) + "-" + trying.get(9).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
         System.out.println("");
-        System.out.print("Janitor: ");
+        System.out.print("Cold Runner: ");
         for(int i = 0; i < trying.get(10).get(3).size(); i++)
         {
             System.out.print(trying.get(10).get(3).get(i).getName() +trying.get(10).get(3).get(i).getSchedule().get(day) + "-" + trying.get(10).get(3).get(i).getSchedule().get(day+1) + ", ");
+        }
+        System.out.println("");
+        System.out.print("Janitor: ");
+        for(int i = 0; i < trying.get(11).get(3).size(); i++)
+        {
+            System.out.print(trying.get(11).get(3).get(i).getName() +trying.get(11).get(3).get(i).getSchedule().get(day) + "-" + trying.get(11).get(3).get(i).getSchedule().get(day+1) + ", ");
         }
     }
 
@@ -1640,7 +1656,7 @@ public class Schedule {
         for(int i = 0; i < trying.get(10).get(3).size(); i++)
         {
             output3 += trying.get(10).get(3).get(i).getName() +trying.get(10).get(3).get(i).getSchedule().get(day) + "-" + trying.get(10).get(3).get(i).getSchedule().get(day+1) + ", ";
-            if(i % 4 == 0){ output3 += "\n"; }
+
         }
         output3 += "\n";
         output3 += "DRA: ";
@@ -1654,6 +1670,7 @@ public class Schedule {
         for(int i = 0; i < trying.get(8).get(3).size(); i++)
         {
             output3 += trying.get(8).get(3).get(i).getName() +trying.get(8).get(3).get(i).getSchedule().get(day) + "-" + trying.get(8).get(3).get(i).getSchedule().get(day+1) + ", ";
+            if(i % 4 == 0){ output3 += "\n"; }
         }
         output3 += "\n";
         output3 += "Janitor: ";
@@ -1681,7 +1698,7 @@ public class Schedule {
         result +=  "Early Mid: " + pool.get(1).size()+ "   Late Mid: " + pool.get(2).size() + "\n";
         result +=  "Total Mid: " + (pool.get(1).size()+ pool.get(2).size()) + "\n \n";
         result += "\n";
-        result +=  "Dinner: " + pool.get(2).size();
+        result +=  "Dinner: " + pool.get(3).size();
 
         return result;
 

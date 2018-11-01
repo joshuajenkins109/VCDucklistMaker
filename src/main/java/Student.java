@@ -47,6 +47,7 @@ public class Student {
         this.dishWeight = 1.0;
         this.draWeight = 1.0;
         this.janWeight = 1.0;
+        this.coldWeight = 1.0;
     }
 
     public List<Object> getSchedule(){
