@@ -22,17 +22,22 @@ public class Schedule {
 
 
     public List<Student> building(List<List<Object>> times) {
-
         List<Student> students = new ArrayList<>();
         int studentIndex = 0;
+        boolean leads = true;
         for(int i = 0; i < times.size(); i++){
+            if(times.get(i).size() > 0){
+                if(times.get(i).get(0).toString().compareTo("Crew") == 0) {
+                    leads = false;
+                }
+            }
             if(times.get(i).size() > 1) {
                 //If student has split shift name won't be on same row, so it sets it to the name from previous row
                 if(times.get(i).get(0).toString().compareTo("") != 0) {
-                    students.add(new Student(times.get(i).get(0).toString(), times.get(i)));
+                    students.add(new Student(times.get(i).get(0).toString(), times.get(i), leads));
                 }
-                else{
-                    students.add(new Student(times.get(i-1).get(0).toString(), times.get(i)));
+                else if(times.get(i-1).get(0).toString().compareTo("") != 0){
+                    students.add(new Student(times.get(i-1).get(0).toString(), times.get(i), leads));
                 }
             }
         }
@@ -1410,272 +1415,272 @@ public class Schedule {
         String output2 = "Mid \n";
         String output3 = "Dinner \n";
         output += "Checker: ";
-        for(int i = 0; i < trying.get(0).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(0).get(0).size(); i++) {
+            if(trying.get(0).get(0).get(i).getLead()) output += "*";
             output += trying.get(0).get(0).get(i).getName() + trying.get(0).get(0).get(i).getSchedule().get(day) + "-" + trying.get(0).get(0).get(i).getSchedule().get(day+1) + ", ";
         }
         output += "\n";
         output += "Mid: ";
-        for(int i = 0; i < trying.get(5).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(5).get(0).size(); i++) {
+            if(trying.get(5).get(0).get(i).getLead()) output += "*";
             output += trying.get(5).get(0).get(i).getName() + trying.get(5).get(0).get(i).getSchedule().get(day) + "-" + trying.get(5).get(0).get(i).getSchedule().get(day+1) + ", ";
         }
         output += "\n";
         output += "Curry: ";
-        for(int i = 0; i < trying.get(6).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(6).get(0).size(); i++) {
+            if(trying.get(6).get(0).get(i).getLead()) output += "*";
             output += trying.get(6).get(0).get(i).getName() + trying.get(6).get(0).get(i).getSchedule().get(day) + "-" + trying.get(6).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
         output += "Grange: ";
         for(int i = 0; i < trying.get(7).get(0).size(); i++){
-
+            if(trying.get(7).get(0).get(i).getLead()) output += "*";
             output += trying.get(7).get(0).get(i).getName() +trying.get(7).get(0).get(i).getSchedule().get(day) + "-" + trying.get(7).get(0).get(i).getSchedule().get(day+1) + ", " ;
         }
         output += "\n";
         output += "Toast: ";
-        for(int i = 0; i < trying.get(4).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(4).get(0).size(); i++) {
+            if(trying.get(4).get(0).get(i).getLead()) output += "*";
             output += trying.get(4).get(0).get(i).getName() +trying.get(4).get(0).get(i).getSchedule().get(day) + "-" + trying.get(4).get(0).get(i).getSchedule().get(day+1) + ", ";
         }
         output += "\n";
         output += "Hearth: ";
-        for(int i = 0; i < trying.get(2).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(2).get(0).size(); i++) {
+            if(trying.get(2).get(0).get(i).getLead()) output += "*";
             output += trying.get(2).get(0).get(i).getName() +trying.get(2).get(0).get(i).getSchedule().get(day) + "-" + trying.get(2).get(0).get(i).getSchedule().get(day+1) + ", ";
         }
         output += "\n";
         output += "Peaks: ";
-        for(int i = 0; i < trying.get(1).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(1).get(0).size(); i++) {
+            if(trying.get(1).get(0).get(i).getLead()) output += "*";
             output += trying.get(1).get(0).get(i).getName() + trying.get(1).get(0).get(i).getSchedule().get(day) + "-" + trying.get(1).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output +=  "\n";
         output += "Salads: ";
-        for(int i = 0; i < trying.get(3).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(3).get(0).size(); i++) {
+            if(trying.get(3).get(0).get(i).getLead()) output += "*";
             output += trying.get(3).get(0).get(i).getName() + trying.get(3).get(0).get(i).getSchedule().get(day) + "-" + trying.get(3).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
         output += "Cold Runner: ";
-        for(int i = 0; i < trying.get(10).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(10).get(0).size(); i++) {
+            if(trying.get(10).get(0).get(i).getLead()) output += "*";
             output += trying.get(10).get(0).get(i).getName() + trying.get(10).get(0).get(i).getSchedule().get(day) + "-" + trying.get(10).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
         output += "Dra: ";
-        for(int i = 0; i < trying.get(9).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(9).get(0).size(); i++) {
+            if(trying.get(9).get(0).get(i).getLead()) output += "*";
             output += trying.get(9).get(0).get(i).getName() + trying.get(9).get(0).get(i).getSchedule().get(day) + "-" + trying.get(9).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
         output += "Dish: ";
-        for(int i = 0; i < trying.get(8).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(8).get(0).size(); i++) {
+            if(trying.get(8).get(0).get(i).getLead()) output += "*";
             output += trying.get(8).get(0).get(i).getName() + trying.get(8).get(0).get(i).getSchedule().get(day) + "-" + trying.get(8).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
         output += "Janitor: ";
-        for(int i = 0; i < trying.get(11).get(0).size(); i++)
-        {
+        for(int i = 0; i < trying.get(11).get(0).size(); i++) {
+            if(trying.get(11).get(0).get(i).getLead()) output += "*";
             output += trying.get(11).get(0).get(i).getName() + trying.get(11).get(0).get(i).getSchedule().get(day) + "-" + trying.get(11).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "Checker: ";
-        for(int i = 0; i < trying.get(0).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(0).get(1).size(); i++) {
+            if(trying.get(0).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(0).get(1).get(i).getName() + trying.get(0).get(1).get(i).getSchedule().get(day) + "-" + trying.get(0).get(1).get(i).getSchedule().get(day+1) +", ";
         }
-        for(int i = 0; i < trying.get(0).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(0).get(2).size(); i++) {
+            if(trying.get(0).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(0).get(2).get(i).getName() + trying.get(0).get(2).get(i).getSchedule().get(day) + "-" + trying.get(0).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Mid: ";
-        for(int i = 0; i < trying.get(5).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(5).get(1).size(); i++) {
+            if(trying.get(5).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(5).get(1).get(i).getName() + trying.get(5).get(1).get(i).getSchedule().get(day) + "-" + trying.get(5).get(1).get(i).getSchedule().get(day+1) + ", ";
         }
-        for(int i = 0; i < trying.get(5).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(5).get(2).size(); i++) {
+            if(trying.get(5).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(5).get(2).get(i).getName() + trying.get(5).get(2).get(i).getSchedule().get(day) + "-" + trying.get(5).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Curry: ";
-        for(int i = 0; i < trying.get(6).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(6).get(1).size(); i++) {
+            if(trying.get(6).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(6).get(1).get(i).getName() + trying.get(6).get(1).get(i).getSchedule().get(day) + "-" + trying.get(6).get(1).get(i).getSchedule().get(day+1) + ", ";
         }
-        for(int i = 0; i < trying.get(6).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(6).get(2).size(); i++) {
+            if(trying.get(6).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(6).get(2).get(i).getName() + trying.get(6).get(2).get(i).getSchedule().get(day) + "-" + trying.get(6).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Grange: ";
-        for(int i = 0; i < trying.get(7).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(7).get(1).size(); i++) {
+            if(trying.get(7).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(7).get(1).get(i).getName() + trying.get(7).get(1).get(i).getSchedule().get(day) + "-" + trying.get(7).get(1).get(i).getSchedule().get(day+1) +", ";
         }
-        for(int i = 0; i < trying.get(7).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(7).get(2).size(); i++) {
+            if(trying.get(7).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(7).get(2).get(i).getName() + trying.get(7).get(2).get(i).getSchedule().get(day) + "-" + trying.get(7).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Toast: ";
-        for(int i = 0; i < trying.get(4).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(4).get(1).size(); i++) {
+            if(trying.get(4).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(4).get(1).get(i).getName() + trying.get(4).get(1).get(i).getSchedule().get(day) + "-" + trying.get(4).get(1).get(i).getSchedule().get(day+1) + ", ";
         }
-        for(int i = 0; i < trying.get(4).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(4).get(2).size(); i++) {
+            if(trying.get(4).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(4).get(2).get(i).getName() + trying.get(4).get(2).get(i).getSchedule().get(day) + "-" + trying.get(4).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Hearth: ";
-        for(int i = 0; i < trying.get(2).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(2).get(1).size(); i++) {
+            if(trying.get(2).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(2).get(1).get(i).getName() +trying.get(2).get(1).get(i).getSchedule().get(day) + "-" + trying.get(2).get(1).get(i).getSchedule().get(day+1) + ", ";
         }
-        for(int i = 0; i < trying.get(2).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(2).get(2).size(); i++) {
+            if(trying.get(2).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(2).get(2).get(i).getName() + trying.get(2).get(2).get(i).getSchedule().get(day) + "-" + trying.get(2).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Peaks: ";
-        for(int i = 0; i < trying.get(1).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(1).get(1).size(); i++) {
+            if(trying.get(1).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(1).get(1).get(i).getName() + trying.get(1).get(1).get(i).getSchedule().get(day) + "-" + trying.get(1).get(1).get(i).getSchedule().get(day+1) +", ";
         }
-        for(int i = 0; i < trying.get(1).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(1).get(2).size(); i++) {
+            if(trying.get(1).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(1).get(2).get(i).getName() + trying.get(1).get(2).get(i).getSchedule().get(day) + "-" + trying.get(1).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Salads: ";
-        for(int i = 0; i < trying.get(3).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(3).get(1).size(); i++) {
+            if(trying.get(3).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(3).get(1).get(i).getName() +trying.get(3).get(1).get(i).getSchedule().get(day) + "-" + trying.get(3).get(1).get(i).getSchedule().get(day+1) + ", " ;
         }
-        for(int i = 0; i < trying.get(3).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(3).get(2).size(); i++) {
+            if(trying.get(3).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(3).get(2).get(i).getName() + trying.get(3).get(2).get(i).getSchedule().get(day) + "-" + trying.get(3).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 +=  "\n";
         output2 += "Cold Runner: ";
-        for(int i = 0; i < trying.get(10).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(10).get(1).size(); i++) {
+            if(trying.get(10).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(10).get(1).get(i).getName() + trying.get(10).get(1).get(i).getSchedule().get(day) + "-" + trying.get(10).get(1).get(i).getSchedule().get(day+1) +", ";
             if(i % 4 == 0){ output2 += "\n"; }
         }
-        for(int i = 0; i < trying.get(10).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(10).get(2).size(); i++) {
+            if(trying.get(10).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(10).get(2).get(i).getName() + trying.get(10).get(2).get(i).getSchedule().get(day) + "-" + trying.get(10).get(2).get(i).getSchedule().get(day+1) +", ";
             if(i % 4 == 0){ output2 += "\n"; }
         }
         output2 +=  "\n";
         output2 += "DRA: ";
-        for(int i = 0; i < trying.get(9).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(9).get(1).size(); i++) {
+            if(trying.get(9).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(9).get(1).get(i).getName() + trying.get(9).get(1).get(i).getSchedule().get(day) + "-" + trying.get(9).get(1).get(i).getSchedule().get(day+1) +", ";
             if(i % 4 == 0){ output2 += "\n"; }
         }
-        for(int i = 0; i < trying.get(9).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(9).get(2).size(); i++) {
+            if(trying.get(9).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(9).get(2).get(i).getName() + trying.get(9).get(2).get(i).getSchedule().get(day) + "-" + trying.get(9).get(2).get(i).getSchedule().get(day+1) +", ";
             if(i % 4 == 0){ output2 += "\n"; }
         }
         output2 += "\n";
         output2 += "Dish: ";
-        for(int i = 0; i < trying.get(8).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(8).get(1).size(); i++) {
+            if(trying.get(8).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(8).get(1).get(i).getName() + trying.get(8).get(1).get(i).getSchedule().get(day) + "-" + trying.get(8).get(1).get(i).getSchedule().get(day+1) +", ";
         }
-        for(int i = 0; i < trying.get(8).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(8).get(2).size(); i++) {
+            if(trying.get(8).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(8).get(2).get(i).getName() + trying.get(8).get(2).get(i).getSchedule().get(day) + "-" + trying.get(8).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output2 += "\n";
         output2 += "Janitor: ";
-        for(int i = 0; i < trying.get(11).get(1).size(); i++)
-        {
+        for(int i = 0; i < trying.get(11).get(1).size(); i++) {
+            if(trying.get(11).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(11).get(1).get(i).getName() +trying.get(11).get(1).get(i).getSchedule().get(day) + "-" + trying.get(11).get(1).get(i).getSchedule().get(day+1) + ", ";
         }
-        for(int i = 0; i < trying.get(11).get(2).size(); i++)
-        {
+        for(int i = 0; i < trying.get(11).get(2).size(); i++) {
+            if(trying.get(11).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(11).get(2).get(i).getName() + trying.get(11).get(2).get(i).getSchedule().get(day) + "-" + trying.get(11).get(2).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "Checker: ";
-        for(int i = 0; i < trying.get(0).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(0).get(3).size(); i++) {
+            if(trying.get(0).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(0).get(3).get(i).getName() + trying.get(0).get(3).get(i).getSchedule().get(day) + "-" + trying.get(0).get(3).get(i).getSchedule().get(day+1) + ", ";
         }
         output3 += "\n";
         output3 += "Mid: ";
-        for(int i = 0; i < trying.get(5).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(5).get(3).size(); i++) {
+            if(trying.get(5).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(5).get(3).get(i).getName() + trying.get(5).get(3).get(i).getSchedule().get(day) + "-" + trying.get(5).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Curry: ";
-        for(int i = 0; i < trying.get(6).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(6).get(3).size(); i++) {
+            if(trying.get(6).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(6).get(3).get(i).getName() +trying.get(6).get(3).get(i).getSchedule().get(day) + "-" + trying.get(6).get(3).get(i).getSchedule().get(day+1) + ", ";
         }
         output3 += "\n";
         output3 += "Grange: ";
-        for(int i = 0; i < trying.get(7).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(7).get(3).size(); i++) {
+            if(trying.get(7).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(7).get(3).get(i).getName() + trying.get(7).get(3).get(i).getSchedule().get(day) + "-" + trying.get(7).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Toast: ";
-        for(int i = 0; i < trying.get(4).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(4).get(3).size(); i++) {
+            if(trying.get(4).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(4).get(3).get(i).getName() + trying.get(4).get(3).get(i).getSchedule().get(day) + "-" + trying.get(4).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Hearth: ";
-        for(int i = 0; i < trying.get(2).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(2).get(3).size(); i++) {
+            if(trying.get(2).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(2).get(3).get(i).getName() + trying.get(2).get(3).get(i).getSchedule().get(day) + "-" + trying.get(2).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Peaks: ";
-        for(int i = 0; i < trying.get(1).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(1).get(3).size(); i++) {
+            if(trying.get(1).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(1).get(3).get(i).getName() + trying.get(1).get(3).get(i).getSchedule().get(day) + "-" + trying.get(1).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Salads: ";
-        for(int i = 0; i < trying.get(3).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(3).get(3).size(); i++) {
+            if(trying.get(3).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(3).get(3).get(i).getName() + trying.get(3).get(3).get(i).getSchedule().get(day) + "-" + trying.get(3).get(3).get(i).getSchedule().get(day+1) +", ";
             if(i % 4 == 0){ output3 += "\n"; }
         }
         output3 += "\n";
         output3 += "Cold Runner: ";
-        for(int i = 0; i < trying.get(10).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(10).get(3).size(); i++) {
+            if(trying.get(10).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(10).get(3).get(i).getName() +trying.get(10).get(3).get(i).getSchedule().get(day) + "-" + trying.get(10).get(3).get(i).getSchedule().get(day+1) + ", ";
 
         }
         output3 += "\n";
         output3 += "DRA: ";
-        for(int i = 0; i < trying.get(9).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(9).get(3).size(); i++) {
+            if(trying.get(9).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(9).get(3).get(i).getName() +trying.get(9).get(3).get(i).getSchedule().get(day) + "-" + trying.get(9).get(3).get(i).getSchedule().get(day+1) + ", ";
             if(i % 4 == 0){ output3 += "\n"; }
         }
         output3 += "\n";
         output3 += "Dish: ";
-        for(int i = 0; i < trying.get(8).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(8).get(3).size(); i++) {
+            if(trying.get(8).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(8).get(3).get(i).getName() +trying.get(8).get(3).get(i).getSchedule().get(day) + "-" + trying.get(8).get(3).get(i).getSchedule().get(day+1) + ", ";
             if(i % 4 == 0){ output3 += "\n"; }
         }
         output3 += "\n";
         output3 += "Janitor: ";
-        for(int i = 0; i < trying.get(11).get(3).size(); i++)
-        {
+        for(int i = 0; i < trying.get(11).get(3).size(); i++) {
+            if(trying.get(11).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(11).get(3).get(i).getName() +trying.get(11).get(3).get(i).getSchedule().get(day) + "-" + trying.get(11).get(3).get(i).getSchedule().get(day+1) + ", ";
         }
         outputs.add(output);

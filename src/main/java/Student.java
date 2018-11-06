@@ -24,11 +24,14 @@ public class Student {
     private double janWeight;
     private double coldWeight;
 
+    private boolean isLead;
+
+
 
 
     private String name;
 
-    public Student(String name, List<Object> schedule){
+    public Student(String name, List<Object> schedule, Boolean lead){
         this.schedule = schedule;
         this.name = name;
         this.setWorkDays();
@@ -48,7 +51,10 @@ public class Student {
         this.draWeight = 1.0;
         this.janWeight = 1.0;
         this.coldWeight = 1.0;
+        this.isLead = lead;
     }
+
+
 
     public List<Object> getSchedule(){
         return this.schedule;
@@ -241,7 +247,7 @@ public class Student {
         this.setDraWeight(this.getDraWeight() - .1);
         this.setColdWeight(this.getColdWeight() + .025);
     }
-    public void workJan(){
+    public void workJan() {
         this.setCheckWeight(this.getCheckWeight() + .025);
         this.setPeaksWeight(this.getPeaksWeight() + .025);
         this.setHearthWeight(this.getHearthWeight() + .025);
@@ -271,12 +277,16 @@ public class Student {
         this.setColdWeight(this.getColdWeight() - .1);
     }
 
+    public boolean getLead(){ return this.isLead;}
+    
+
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
+
     public Boolean getWorkSunday() {
         return workSunday;
     }

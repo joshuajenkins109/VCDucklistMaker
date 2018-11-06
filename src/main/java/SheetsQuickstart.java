@@ -105,8 +105,9 @@ public class SheetsQuickstart {
                 sunStations.add(sunGrange);
                 sunStations.add(sunDish);
                 sunStations.add(sunDra);
-                sunStations.add(sunJan);
                 sunStations.add(sunCold);
+                sunStations.add(sunJan);
+
                 pool = schedule.buildDayPool(1);
                 bigpool = schedule.buildPool(pool, 1);
                 trying = schedule.createDuck(bigpool, sunStations);
@@ -146,8 +147,9 @@ public class SheetsQuickstart {
                 monStations.add(monGrange);
                 monStations.add(monDish);
                 monStations.add(monDra);
-                monStations.add(monJan);
                 monStations.add(monCold);
+                monStations.add(monJan);
+
                 pool = schedule.buildDayPool(3);
                 bigpool = schedule.buildPool(pool, 3);
                 trying = schedule.createDuck(bigpool, monStations);
@@ -185,8 +187,9 @@ public class SheetsQuickstart {
                 tuesStations.add(tuesGrange);
                 tuesStations.add(tuesDish);
                 tuesStations.add(tuesDra);
-                tuesStations.add(tuesJan);
                 tuesStations.add(tuesCold);
+                tuesStations.add(tuesJan);
+
                 pool = schedule.buildDayPool(5);
                 bigpool = schedule.buildPool(pool, 5);
                 trying = schedule.createDuck(bigpool, tuesStations);
@@ -224,8 +227,9 @@ public class SheetsQuickstart {
                 wedStations.add(wedGrange);
                 wedStations.add(wedDish);
                 wedStations.add(wedDra);
-                wedStations.add(wedJan);
                 wedStations.add(wedCold);
+                wedStations.add(wedJan);
+
                 pool = schedule.buildDayPool(7);
                 bigpool = schedule.buildPool(pool, 7);
                 trying = schedule.createDuck(bigpool, wedStations);
@@ -263,8 +267,9 @@ public class SheetsQuickstart {
                 thurStations.add(thurGrange);
                 thurStations.add(thurDish);
                 thurStations.add(thurDra);
-                thurStations.add(thurJan);
                 thurStations.add(thurCold);
+                thurStations.add(thurJan);
+
                 pool = schedule.buildDayPool(9);
                 bigpool = schedule.buildPool(pool, 9);
                 trying = schedule.createDuck(bigpool, thurStations);
@@ -278,17 +283,17 @@ public class SheetsQuickstart {
                 resultsFrame.setVisible(true);
             }
             if( ui.getDay() == 11){
-                Station friChecker = new Station(0,1,1, 1, 1, 1, 1, 1);
-                Station friHearth = new Station(2, 2, 3 , 1, 1, 1, 1, 1);
-                Station friSalads = new Station( 2, 2, 2, 1, 1, 1, 1, 1);
-                Station friPeaks = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
-                Station friToast = new Station( 4, 2, 4, 1, 1, 1, 1, 1);
-                Station friMiddie = new Station(0, 2, 2, 1, 1, 1, 1, 1);
-                Station friCurry = new Station( 2, 2, 4, 1, 1, 1,1, 1);
+                Station friChecker = new Station(0,0,1, 1, 0, 0, 1, 1);
+                Station friHearth = new Station(0, 2, 3 , 1, 1, 1, 1, 1);
+                Station friSalads = new Station( 0, 2, 2, 1, 1, 1, 1, 1);
+                Station friPeaks = new Station( 0, 1, 1, 1, 1, 1, 1, 1);
+                Station friToast = new Station( 4, 2, 4, 1, 5, 2, 4, 4);
+                Station friMiddie = new Station(0, 2, 2, 1, 1, 2, 2, 2);
+                Station friCurry = new Station( 0, 2, 4, 1, 1, 1,1, 1);
                 Station friGrange = new Station( 2, 3, 3,1 ,1 ,1, 1 , 1);
-                Station friDish = new Station( 8, 8 , 9, 1, 1, 1, 1, 1);
+                Station friDish = new Station( 0, 4 , 4, 8, 1, 6, 6, 10);
                 Station friDra = new Station( 1, 1, 1, 1, 1, 2, 2, 2);
-                Station friJan = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
+                Station friJan = new Station( 1, 1, 1, 1, 1, 1, 1, 2);
                 Station friCold = new Station(1, 1, 1, 1, 2, 2, 2, 2);
 
                 List<Station> friStations = new ArrayList<Station>();
@@ -302,8 +307,9 @@ public class SheetsQuickstart {
                 friStations.add(friGrange);
                 friStations.add(friDish);
                 friStations.add(friDra);
-                friStations.add(friJan);
                 friStations.add(friCold);
+                friStations.add(friJan);
+
                 pool = schedule.buildDayPool(11);
                 bigpool = schedule.buildPool(pool, 11);
                 trying = schedule.createDuck(bigpool, friStations);
@@ -317,18 +323,18 @@ public class SheetsQuickstart {
                 resultsFrame.setVisible(true);
             }
             if( ui.getDay() == 13){
-                Station satChecker = new Station(0,1,1, 1, 1, 1, 1, 1);
-                Station satHearth = new Station(2, 2, 3 , 1, 1, 1, 1, 1);
-                Station satSalads = new Station( 2, 2, 2, 1, 1, 1, 1, 1);
-                Station satPeaks = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
-                Station satToast = new Station( 4, 2, 4, 1, 1, 1, 1, 1);
-                Station satMiddie = new Station(0, 2, 2, 1, 1, 1, 1, 1);
-                Station satCurry = new Station( 2, 2, 4, 1, 1, 1,1, 1);
-                Station satGrange = new Station( 2, 3, 3,1 ,1 ,1, 1 , 1);
-                Station satDish = new Station( 8, 8 , 9, 1, 1, 1, 1, 1);
-                Station satDra = new Station( 1, 1, 1, 1, 1, 2, 2, 2);
-                Station satJan = new Station( 1, 1, 1, 1, 1, 1, 1, 1);
-                Station satCold = new Station(1, 1, 1, 1, 2, 2, 2, 2);
+                Station satChecker = new Station(1 ,1,1, 1, 1, 1, 1, 1);
+                Station satHearth = new Station(0, 1, 1 , 1, 1, 2, 2, 3);
+                Station satSalads = new Station( 0, 0, 0, 1, 2, 1, 1, 3);
+                Station satPeaks = new Station( 0, 0, 0, 1, 1, 1, 1, 2);
+                Station satToast = new Station( 3, 2, 1, 2, 9, 6, 3, 5);
+                Station satMiddie = new Station(0, 0, 1, 1, 0, 3, 1, 3);
+                Station satCurry = new Station( 0, 0, 0, 0, 0, 0,0, 0);
+                Station satGrange = new Station( 0, 1, 1,2 ,2 ,3, 3 , 5);
+                Station satDish = new Station( 3, 2 , 2, 6, 6, 5, 5, 12);
+                Station satDra = new Station( 0, 0, 0, 2, 1, 1, 1, 2);
+                Station satJan = new Station( 0, 0, 0, 0, 1, 1, 1, 3);
+                Station satCold = new Station(1, 1, 1, 2, 1, 1, 1, 2);
 
                 List<Station> satStations = new ArrayList<Station>();
                 satStations.add(satChecker);
@@ -341,8 +347,8 @@ public class SheetsQuickstart {
                 satStations.add(satGrange);
                 satStations.add(satDish);
                 satStations.add(satDra);
-                satStations.add(satJan);
                 satStations.add(satCold);
+                satStations.add(satJan);
                 pool = schedule.buildDayPool(13);
                 bigpool = schedule.buildPool(pool, 13);
                 trying = schedule.createDuck(bigpool, satStations);
@@ -409,10 +415,15 @@ public class SheetsQuickstart {
 
 
 
-                              Weekend   -> start at 12 or later
+               TODO: Ability to identify leads, bolded on schedule, placement based on leads, float position
+
+               TODO: Can i get checker to have perfect coverage (or at least no over lapping and only short gaps in between.
+
+               TODO: if they have multiple shifts, put them in the same place
+               TODO: Produce names so Ryan can easily cross check list as he makes changes.
 
 
-               TODO: important functinality: dealing with split shifts
+
 
 
 
