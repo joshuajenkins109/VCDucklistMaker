@@ -83,9 +83,11 @@ public class Schedule {
              if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
                  pool.get(2).add(studentsWorking.get(i));
                  pool.get(3).add(studentsWorking.get(i));
+                 studentsWorking.get(i).setMultipleShifts(true);
              }
              else if(Integer.parseInt(studentsWorking.get(i).getSchedule().get(day+1).toString().substring(0,1)) > 1){
                  pool.get(1).add(studentsWorking.get(i));
+                 studentsWorking.get(i).setMultipleShifts(true);
              }
          }
 
@@ -94,15 +96,16 @@ public class Schedule {
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) < 10 &&
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 5 && (day == 1 || day == 13)){
              pool.get(0).add(studentsWorking.get(i));
-             System.out.println("weekend Morning: " + studentsWorking.get(i).getName());
              //if they leave at CL add them to mid and close as well
              if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
                  pool.get(1).add(studentsWorking.get(i));
                  pool.get(3).add(studentsWorking.get(i));
+                 studentsWorking.get(i).setMultipleShifts(true);
              }
              //else if they leave after 1pm but before close, add them to mid
              else if(Integer.parseInt(studentsWorking.get(i).getSchedule().get(day+1).toString().substring(0,1)) > 1){
                  pool.get(1).add(studentsWorking.get(i));
+                 studentsWorking.get(i).setMultipleShifts(true);
              }
          }
          //Weekend/Weekday Mid + Close shift (starting before 3pm and Closing)
@@ -111,11 +114,10 @@ public class Schedule {
                          (Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 7)  )){
              pool.get(2).add(studentsWorking.get(i));
              pool.get(3).add(studentsWorking.get(i));
-             System.out.println("mid to close: "+ studentsWorking.get(i).getName());
+          studentsWorking.get(i).setMultipleShifts(true);
          }
          //weekend/weekday Close (Starts 3pm or later and Closing)
          else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
-             System.out.println("Dinner: " + studentsWorking.get(i).getName());
              pool.get(3).add(studentsWorking.get(i));
          }
          else if(studentsWorking.get(i).getSchedule().get(day).toString().compareTo("") == 0){
@@ -149,7 +151,14 @@ public class Schedule {
         return pool;
     }
 
-
+    public Boolean worksShift( List<Student> pool, String name){
+        for(int i = 0; i < pool.size(); i++){
+            if(pool.get(i).getName().compareTo(name) == 0){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public List<List<List<Student>>> createDuck(List<List<Student>> pool, List<Station> stationList){
 
@@ -283,69 +292,410 @@ public class Schedule {
         while(pool.get(0).size() > 0) {
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
-                masterList.get(0).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(0).addMorningStudent();
+               if(temp.getMultipleShifts()){
+                   if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                       if(stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid()){
+                           masterList.get(0).get(0).add(temp);
+                           masterList.get(0).get(1).add(temp);
+                           pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                           if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                           if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                           stationList.get(0).addMorningStudent();
+                           stationList.get(0).addEarlyMidStudent();
+                       }
+                   }
+                   else if(worksShift(pool.get(3), temp.getName())){
+                       if((stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() || stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid()) &&
+                               stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                           masterList.get(0).get(0).add(temp);
+                           masterList.get(0).get(1).add(temp);
+                           masterList.get(0).get(3).add(temp);
+                           pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                           pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                           pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                           pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                           stationList.get(0).addMorningStudent();
+                           stationList.get(0).addEarlyMidStudent();
+                           stationList.get(0).addLateMidStudent();
+                           stationList.get(0).addDinnerStudent();
+                       }
+                   }
+               }
+               else{
+                   masterList.get(0).get(0).add(temp);
+                   pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                   stationList.get(0).addMorningStudent();
+               }
             }
             if (stationList.get(1).getMorningPeopleNeeded() > stationList.get(1).getTotalMorning() && pool.get(0).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(0), 2);
-                masterList.get(1).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(1).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid()){
+                            masterList.get(1).get(0).add(temp);
+                            masterList.get(1).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(1).addMorningStudent();
+                            stationList.get(1).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid() || stationList.get(1).getLateMidPeopleNeeded() > stationList.get(1).getLateMid()) &&
+                                stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                            masterList.get(1).get(0).add(temp);
+                            masterList.get(1).get(1).add(temp);
+                            masterList.get(1).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(1).addMorningStudent();
+                            stationList.get(1).addEarlyMidStudent();
+                            stationList.get(1).addLateMidStudent();
+                            stationList.get(1).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(1).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(1).addMorningStudent();
+                }
             }
             if (stationList.get(2).getMorningPeopleNeeded() > stationList.get(2).getTotalMorning() && pool.get(0).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(0), 3);
-                masterList.get(2).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(2).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid()){
+                            masterList.get(2).get(0).add(temp);
+                            masterList.get(2).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(2).addMorningStudent();
+                            stationList.get(2).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid() || stationList.get(2).getLateMidPeopleNeeded() > stationList.get(2).getLateMid()) &&
+                                stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                            masterList.get(2).get(0).add(temp);
+                            masterList.get(2).get(1).add(temp);
+                            masterList.get(2).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(2).addMorningStudent();
+                            stationList.get(2).addEarlyMidStudent();
+                            stationList.get(2).addLateMidStudent();
+                            stationList.get(2).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(2).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(2).addMorningStudent();
+                }
             }
             if (stationList.get(3).getMorningPeopleNeeded() > stationList.get(3).getTotalMorning() && pool.get(0).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(0), 4);
-                masterList.get(3).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(3).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid()){
+                            masterList.get(0).get(0).add(temp);
+                            masterList.get(0).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(3).addMorningStudent();
+                            stationList.get(3).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid() || stationList.get(3).getLateMidPeopleNeeded() > stationList.get(3).getLateMid()) &&
+                                stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                            masterList.get(3).get(0).add(temp);
+                            masterList.get(3).get(1).add(temp);
+                            masterList.get(3).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(3).addMorningStudent();
+                            stationList.get(3).addEarlyMidStudent();
+                            stationList.get(3).addLateMidStudent();
+                            stationList.get(3).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(3).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(3).addMorningStudent();
+                }
             }
             if (stationList.get(4).getMorningPeopleNeeded() > stationList.get(4).getTotalMorning() && pool.get(0).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(0), 5);
-                masterList.get(4).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(4).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid()){
+                            masterList.get(4).get(0).add(temp);
+                            masterList.get(4).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(4).addMorningStudent();
+                            stationList.get(4).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid() || stationList.get(4).getLateMidPeopleNeeded() > stationList.get(4).getLateMid()) &&
+                                stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                            masterList.get(4).get(0).add(temp);
+                            masterList.get(4).get(1).add(temp);
+                            masterList.get(4).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(4).addMorningStudent();
+                            stationList.get(4).addEarlyMidStudent();
+                            stationList.get(4).addLateMidStudent();
+                            stationList.get(4).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(4).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(4).addMorningStudent();
+                }
             }
             if (stationList.get(5).getMorningPeopleNeeded() > stationList.get(5).getTotalMorning() && pool.get(0).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(0), 6);
-                masterList.get(5).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(5).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid()){
+                            masterList.get(5).get(0).add(temp);
+                            masterList.get(5).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(5).addMorningStudent();
+                            stationList.get(5).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid() || stationList.get(5).getLateMidPeopleNeeded() > stationList.get(5).getLateMid()) &&
+                                stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                            masterList.get(5).get(0).add(temp);
+                            masterList.get(5).get(1).add(temp);
+                            masterList.get(5).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(5).addMorningStudent();
+                            stationList.get(5).addEarlyMidStudent();
+                            stationList.get(5).addLateMidStudent();
+                            stationList.get(5).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(5).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(5).addMorningStudent();
+                }
             }
             if (stationList.get(6).getMorningPeopleNeeded() > stationList.get(6).getTotalMorning() && pool.get(0).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(0), 7);
-                masterList.get(6).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(6).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid()){
+                            masterList.get(6).get(0).add(temp);
+                            masterList.get(6).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(6).addMorningStudent();
+                            stationList.get(6).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid() || stationList.get(6).getLateMidPeopleNeeded() > stationList.get(6).getLateMid()) &&
+                                stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                            masterList.get(6).get(0).add(temp);
+                            masterList.get(6).get(1).add(temp);
+                            masterList.get(6).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(6).addMorningStudent();
+                            stationList.get(6).addEarlyMidStudent();
+                            stationList.get(6).addLateMidStudent();
+                            stationList.get(6).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(6).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(6).addMorningStudent();
+                }
             }
             if (stationList.get(7).getMorningPeopleNeeded() > stationList.get(7).getTotalMorning() && pool.get(0).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(0), 8);
-                masterList.get(7).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(7).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(7).getEarlyMid()){
+                            masterList.get(7).get(0).add(temp);
+                            masterList.get(7).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(7).addMorningStudent();
+                            stationList.get(7).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(7).getEarlyMid() || stationList.get(7).getLateMidPeopleNeeded() > stationList.get(7).getLateMid()) &&
+                                stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                            masterList.get(7).get(0).add(temp);
+                            masterList.get(7).get(1).add(temp);
+                            masterList.get(7).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(7).addMorningStudent();
+                            stationList.get(7).addEarlyMidStudent();
+                            stationList.get(7).addLateMidStudent();
+                            stationList.get(7).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(7).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(7).addMorningStudent();
+                }
             }
             if (stationList.get(8).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(0), 9);
-                masterList.get(8).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(8).addMorningStudent();
+                if(temp.getMultipleShifts() == true){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid()){
+                            masterList.get(8).get(0).add(temp);
+                            masterList.get(8).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(8).addMorningStudent();
+                            stationList.get(8).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid() || stationList.get(8).getLateMidPeopleNeeded() > stationList.get(8).getLateMid()) &&
+                                stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                            masterList.get(8).get(0).add(temp);
+                            masterList.get(8).get(1).add(temp);
+                            masterList.get(8).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(8).addMorningStudent();
+                            stationList.get(8).addEarlyMidStudent();
+                            stationList.get(8).addLateMidStudent();
+                            stationList.get(8).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(8).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(8).addMorningStudent();
+                }
             }
             if (stationList.get(9).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(0), 10);
-                masterList.get(9).get(0).add(temp);
-                pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                stationList.get(9).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid()){
+                            masterList.get(9).get(0).add(temp);
+                            masterList.get(9).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(9).addMorningStudent();
+                            stationList.get(9).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid() || stationList.get(9).getLateMidPeopleNeeded() > stationList.get(9).getLateMid()) &&
+                                stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                            masterList.get(9).get(0).add(temp);
+                            masterList.get(9).get(1).add(temp);
+                            masterList.get(9).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(9).addMorningStudent();
+                            stationList.get(9).addEarlyMidStudent();
+                            stationList.get(9).addLateMidStudent();
+                            stationList.get(9).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(9).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(9).addMorningStudent();
+                }
             }
             if (stationList.get(10).getMorningPeopleNeeded() > stationList.get(10).getTotalMorning() && pool.get(0).size() != 0){  //fill cold runner
                 Student temp = randomChooser(pool.get(0), 11);
-                masterList.get(10).get(0).add(temp);
-                pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                stationList.get(10).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid()){
+                            masterList.get(10).get(0).add(temp);
+                            masterList.get(10).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(10).addMorningStudent();
+                            stationList.get(10).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid() || stationList.get(10).getLateMidPeopleNeeded() > stationList.get(10).getLateMid()) &&
+                                stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                            masterList.get(10).get(0).add(temp);
+                            masterList.get(10).get(1).add(temp);
+                            masterList.get(10).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(10).addMorningStudent();
+                            stationList.get(10).addEarlyMidStudent();
+                            stationList.get(10).addLateMidStudent();
+                            stationList.get(10).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(10).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(10).addMorningStudent();
+                }
             }
             if((stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningPeopleNeeded()) &&
                     (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningPeopleNeeded()) &&
@@ -359,9 +709,39 @@ public class Schedule {
                     (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningPeopleNeeded()) &&
                     (stationList.get(11).getTotalMorning() < stationList.get(11).getMorningPeopleNeeded()) && pool.get(0).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
                 Student temp = randomChooser(pool.get(0), 12);
-                masterList.get(11).get(0).add(temp);
-                pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                stationList.get(11).addMorningStudent();
+                if(temp.getMultipleShifts()){
+                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                        if(stationList.get(11).getEarlyMidPeopleNeeded() > stationList.get(11).getEarlyMid()){
+                            masterList.get(11).get(0).add(temp);
+                            masterList.get(11).get(1).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(11).addMorningStudent();
+                            stationList.get(11).addEarlyMidStudent();
+                        }
+                    }
+                    else if(worksShift(pool.get(3), temp.getName())){
+                        if((stationList.get(11).getEarlyMidPeopleNeeded() > stationList.get(11).getEarlyMid() || stationList.get(11).getLateMidPeopleNeeded() > stationList.get(11).getLateMid()) &&
+                                stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                            masterList.get(11).get(0).add(temp);
+                            masterList.get(11).get(1).add(temp);
+                            masterList.get(11).get(3).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                            stationList.get(11).addMorningStudent();
+                            stationList.get(11).addEarlyMidStudent();
+                            stationList.get(11).addDinnerStudent();
+                        }
+                    }
+                }
+                else {
+                    masterList.get(11).get(0).add(temp);
+                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    stationList.get(11).addMorningStudent();
+                }
             }
             if( (stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningPeopleNeeded()) &&
                     (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningPeopleNeeded()) &&
@@ -377,75 +757,827 @@ public class Schedule {
                 while(pool.get(0).size() > 0){ //order switched so extras go where help is more needed first
                     if (stationList.get(8).getMorningMaxWorkers() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0) {  //fill dish
                         Student temp = randomChooser(pool.get(0), 9);
-                        masterList.get(8).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(8).addMorningStudent();
+                        if(temp.getMultipleShifts() == true){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid()){
+                                    masterList.get(8).get(0).add(temp);
+                                    masterList.get(8).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(8).addMorningStudent();
+                                    stationList.get(8).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(8).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid()){
+                                            masterList.get(8).get(0).add(temp);
+                                            masterList.get(8).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(8).addMorningStudent();
+                                            stationList.get(8).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid() || stationList.get(8).getLateMidPeopleNeeded() > stationList.get(8).getLateMid()) &&
+                                        stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(0).add(temp);
+                                    masterList.get(8).get(1).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(8).addMorningStudent();
+                                    stationList.get(8).addEarlyMidStudent();
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0) ){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner() && stationList.get(8).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid()){
+                                            masterList.get(8).get(0).add(temp);
+                                            masterList.get(8).get(1).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(8).addMorningStudent();
+                                            stationList.get(8).addEarlyMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(8).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(8).addMorningStudent();
+                        }
                     }
                     if (stationList.get(1).getMorningMaxWorkers() > stationList.get(1).getTotalMorning() && pool.get(0).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(0), 2);
-                        masterList.get(1).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(1).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid()){
+                                    masterList.get(1).get(0).add(temp);
+                                    masterList.get(1).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(1).addMorningStudent();
+                                    stationList.get(1).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(1).getEarlyMidMaxWorkers() > stationList.get(1).getEarlyMid()){
+                                            masterList.get(1).get(0).add(temp);
+                                            masterList.get(1).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(1).addMorningStudent();
+                                            stationList.get(1).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid() || stationList.get(1).getLateMidPeopleNeeded() > stationList.get(1).getLateMid()) &&
+                                        stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                                    masterList.get(1).get(0).add(temp);
+                                    masterList.get(1).get(1).add(temp);
+                                    masterList.get(1).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(1).addMorningStudent();
+                                    stationList.get(1).addEarlyMidStudent();
+                                    stationList.get(1).addLateMidStudent();
+                                    stationList.get(1).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner() && stationList.get(1).getEarlyMidMaxWorkers() > stationList.get(1).getEarlyMid()){
+                                            masterList.get(1).get(0).add(temp);
+                                            masterList.get(1).get(1).add(temp);
+                                            masterList.get(1).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(1).addMorningStudent();
+                                            stationList.get(1).addEarlyMidStudent();
+                                            stationList.get(1).addLateMidStudent();
+                                            stationList.get(1).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(1).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(1).addMorningStudent();
+                        }
                     }
                     if (stationList.get(10).getMorningMaxWorkers() > stationList.get(10).getTotalMorning() && pool.get(0).size() != 0){ //fill cold runner
                         Student temp = randomChooser(pool.get(0), 11);
-                        masterList.get(10).get(0).add(temp);
-                        pool.set(0, removeByName(temp.getName(), pool.get(0)) );
-                        stationList.get(10).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid()){
+                                    masterList.get(10).get(0).add(temp);
+                                    masterList.get(10).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(10).addMorningStudent();
+                                    stationList.get(10).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(10).getEarlyMidMaxWorkers() > stationList.get(10).getEarlyMid()){
+                                            masterList.get(10).get(0).add(temp);
+                                            masterList.get(10).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(10).addMorningStudent();
+                                            stationList.get(10).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid() || stationList.get(10).getLateMidPeopleNeeded() > stationList.get(10).getLateMid()) &&
+                                        stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                                    masterList.get(10).get(0).add(temp);
+                                    masterList.get(10).get(1).add(temp);
+                                    masterList.get(10).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(10).addMorningStudent();
+                                    stationList.get(10).addEarlyMidStudent();
+                                    stationList.get(10).addLateMidStudent();
+                                    stationList.get(10).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)&& availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner() && stationList.get(10).getEarlyMidMaxWorkers() > stationList.get(10).getEarlyMid()){
+                                            masterList.get(10).get(0).add(temp);
+                                            masterList.get(10).get(1).add(temp);
+                                            masterList.get(10).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(10).addMorningStudent();
+                                            stationList.get(10).addEarlyMidStudent();
+                                            stationList.get(10).addLateMidStudent();
+                                            stationList.get(10).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(10).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(10).addMorningStudent();
+                        }
                     }
                     if (stationList.get(2).getMorningMaxWorkers() > stationList.get(2).getTotalMorning() && pool.get(0).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(0), 3);
-                        masterList.get(2).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(2).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid()){
+                                    masterList.get(2).get(0).add(temp);
+                                    masterList.get(2).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(2).addMorningStudent();
+                                    stationList.get(2).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(2).getEarlyMidMaxWorkers() > stationList.get(2).getEarlyMid()){
+                                            masterList.get(2).get(0).add(temp);
+                                            masterList.get(2).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(2).addMorningStudent();
+                                            stationList.get(2).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid() || stationList.get(2).getLateMidPeopleNeeded() > stationList.get(2).getLateMid()) &&
+                                        stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                                    masterList.get(2).get(0).add(temp);
+                                    masterList.get(2).get(1).add(temp);
+                                    masterList.get(2).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(2).addMorningStudent();
+                                    stationList.get(2).addEarlyMidStudent();
+                                    stationList.get(2).addLateMidStudent();
+                                    stationList.get(2).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner() && stationList.get(2).getEarlyMidMaxWorkers() > stationList.get(2).getEarlyMid()){
+                                            masterList.get(2).get(0).add(temp);
+                                            masterList.get(2).get(1).add(temp);
+                                            masterList.get(2).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(2).addMorningStudent();
+                                            stationList.get(2).addEarlyMidStudent();
+                                            stationList.get(2).addLateMidStudent();
+                                            stationList.get(2).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(2).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(2).addMorningStudent();
+                        }
                     }
                     if (stationList.get(3).getMorningMaxWorkers() > stationList.get(3).getTotalMorning() && pool.get(0).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(0), 4);
-                        masterList.get(3).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(3).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid()){
+                                    masterList.get(3).get(0).add(temp);
+                                    masterList.get(3).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(3).addMorningStudent();
+                                    stationList.get(3).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(3).getEarlyMidMaxWorkers() > stationList.get(3).getEarlyMid()){
+                                            masterList.get(3).get(0).add(temp);
+                                            masterList.get(3).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(3).addMorningStudent();
+                                            stationList.get(3).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid() || stationList.get(3).getLateMidPeopleNeeded() > stationList.get(3).getLateMid()) &&
+                                        stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                                    masterList.get(3).get(0).add(temp);
+                                    masterList.get(3).get(1).add(temp);
+                                    masterList.get(3).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(3).addMorningStudent();
+                                    stationList.get(3).addEarlyMidStudent();
+                                    stationList.get(3).addLateMidStudent();
+                                    stationList.get(3).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)&& availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner() && stationList.get(3).getEarlyMidMaxWorkers() > stationList.get(3).getEarlyMid()){
+                                            masterList.get(3).get(0).add(temp);
+                                            masterList.get(3).get(1).add(temp);
+                                            masterList.get(3).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(3).addMorningStudent();
+                                            stationList.get(3).addEarlyMidStudent();
+                                            stationList.get(3).addLateMidStudent();
+                                            stationList.get(3).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(3).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(3).addMorningStudent();
+                        }
                     }
                     if (stationList.get(4).getMorningMaxWorkers() > stationList.get(4).getTotalMorning() && pool.get(0).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(0), 5);
-                        masterList.get(4).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(4).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid()){
+                                    masterList.get(4).get(0).add(temp);
+                                    masterList.get(4).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(4).addMorningStudent();
+                                    stationList.get(4).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(4).getEarlyMidMaxWorkers() > stationList.get(4).getEarlyMid()){
+                                            masterList.get(4).get(0).add(temp);
+                                            masterList.get(4).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(4).addMorningStudent();
+                                            stationList.get(4).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid() || stationList.get(4).getLateMidPeopleNeeded() > stationList.get(4).getLateMid()) &&
+                                        stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                                    masterList.get(4).get(0).add(temp);
+                                    masterList.get(4).get(1).add(temp);
+                                    masterList.get(4).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(4).addMorningStudent();
+                                    stationList.get(4).addEarlyMidStudent();
+                                    stationList.get(4).addLateMidStudent();
+                                    stationList.get(4).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner() && stationList.get(4).getEarlyMidMaxWorkers() > stationList.get(4).getEarlyMid()){
+                                            masterList.get(4).get(0).add(temp);
+                                            masterList.get(4).get(1).add(temp);
+                                            masterList.get(4).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(4).addMorningStudent();
+                                            stationList.get(4).addEarlyMidStudent();
+                                            stationList.get(4).addLateMidStudent();
+                                            stationList.get(4).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(4).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(4).addMorningStudent();
+                        }
                     }
                     if (stationList.get(5).getMorningMaxWorkers() > stationList.get(5).getTotalMorning() && pool.get(0).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(0), 6);
-                        masterList.get(5).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(5).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid()){
+                                    masterList.get(5).get(0).add(temp);
+                                    masterList.get(5).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(5).addMorningStudent();
+                                    stationList.get(5).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(5).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid()){
+                                            masterList.get(5).get(0).add(temp);
+                                            masterList.get(5).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(5).addMorningStudent();
+                                            stationList.get(5).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid() || stationList.get(5).getLateMidPeopleNeeded() > stationList.get(5).getLateMid()) &&
+                                        stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                                    masterList.get(5).get(0).add(temp);
+                                    masterList.get(5).get(1).add(temp);
+                                    masterList.get(5).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(5).addMorningStudent();
+                                    stationList.get(5).addEarlyMidStudent();
+                                    stationList.get(5).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner() && stationList.get(5).getEarlyMidMaxWorkers() > stationList.get(5).getEarlyMid()){
+                                            masterList.get(5).get(0).add(temp);
+                                            masterList.get(5).get(1).add(temp);
+                                            masterList.get(5).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(5).addMorningStudent();
+                                            stationList.get(5).addEarlyMidStudent();
+                                            stationList.get(5).addLateMidStudent();
+                                            stationList.get(5).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(5).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(5).addMorningStudent();
+                        }
                     }
                     if (stationList.get(6).getMorningMaxWorkers() > stationList.get(6).getTotalMorning() && pool.get(0).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(0), 7);
-                        masterList.get(6).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(6).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid()){
+                                    masterList.get(6).get(0).add(temp);
+                                    masterList.get(6).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(6).addMorningStudent();
+                                    stationList.get(6).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(6).getEarlyMidMaxWorkers() > stationList.get(6).getEarlyMid()){
+                                            masterList.get(6).get(0).add(temp);
+                                            masterList.get(6).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(6).addMorningStudent();
+                                            stationList.get(6).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid() || stationList.get(6).getLateMidPeopleNeeded() > stationList.get(6).getLateMid()) &&
+                                        stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                                    masterList.get(6).get(0).add(temp);
+                                    masterList.get(6).get(1).add(temp);
+                                    masterList.get(6).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(6).addMorningStudent();
+                                    stationList.get(6).addEarlyMidStudent();
+                                    stationList.get(6).addLateMidStudent();
+                                    stationList.get(6).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner() && stationList.get(6).getEarlyMidMaxWorkers() > stationList.get(6).getEarlyMid()){
+                                            masterList.get(6).get(0).add(temp);
+                                            masterList.get(6).get(1).add(temp);
+                                            masterList.get(6).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(6).addMorningStudent();
+                                            stationList.get(6).addEarlyMidStudent();
+                                            stationList.get(6).addLateMidStudent();
+                                            stationList.get(6).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(6).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(6).addMorningStudent();
+                        }
                     }
                     if (stationList.get(7).getMorningMaxWorkers() > stationList.get(7).getTotalMorning() && pool.get(0).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(0), 8);
-                        masterList.get(7).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(7).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(11).getEarlyMid()){
+                                    masterList.get(7).get(0).add(temp);
+                                    masterList.get(7).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(7).addMorningStudent();
+                                    stationList.get(7).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(7).getEarlyMidMaxWorkers() > stationList.get(7).getEarlyMid()){
+                                            masterList.get(7).get(0).add(temp);
+                                            masterList.get(7).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(7).addMorningStudent();
+                                            stationList.get(7).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(7).getEarlyMid() || stationList.get(7).getLateMidPeopleNeeded() > stationList.get(7).getLateMid()) &&
+                                        stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                                    masterList.get(7).get(0).add(temp);
+                                    masterList.get(7).get(1).add(temp);
+                                    masterList.get(7).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(7).addMorningStudent();
+                                    stationList.get(7).addEarlyMidStudent();
+                                    stationList.get(7).addLateMidStudent();
+                                    stationList.get(7).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner() && stationList.get(7).getEarlyMidMaxWorkers() > stationList.get(7).getEarlyMid()){
+                                            masterList.get(7).get(0).add(temp);
+                                            masterList.get(7).get(1).add(temp);
+                                            masterList.get(7).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(7).addMorningStudent();
+                                            stationList.get(7).addEarlyMidStudent();
+                                            stationList.get(7).addLateMidStudent();
+                                            stationList.get(7).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(7).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(7).addMorningStudent();
+                        }
                     }
                     if (stationList.get(9).getMorningMaxWorkers() > stationList.get(9).getTotalMorning() && pool.get(0).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(0), 10);
-                        masterList.get(9).get(0).add(temp);
-                        pool.set(0,removeByName(temp.getName(), pool.get(0)) ) ;
-                        stationList.get(9).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid()){
+                                    masterList.get(9).get(0).add(temp);
+                                    masterList.get(9).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(9).addMorningStudent();
+                                    stationList.get(9).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(9).getEarlyMidMaxWorkers() > stationList.get(9).getEarlyMid()){
+                                            masterList.get(9).get(0).add(temp);
+                                            masterList.get(9).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(9).addMorningStudent();
+                                            stationList.get(9).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid() || stationList.get(9).getLateMidPeopleNeeded() > stationList.get(9).getLateMid()) &&
+                                        stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                                    masterList.get(9).get(0).add(temp);
+                                    masterList.get(9).get(1).add(temp);
+                                    masterList.get(9).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(9).addMorningStudent();
+                                    stationList.get(9).addEarlyMidStudent();
+                                    stationList.get(9).addLateMidStudent();
+                                    stationList.get(9).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner() && stationList.get(9).getEarlyMidMaxWorkers() > stationList.get(9).getEarlyMid()){
+                                            masterList.get(9).get(0).add(temp);
+                                            masterList.get(9).get(1).add(temp);
+                                            masterList.get(9).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(9).addMorningStudent();
+                                            stationList.get(9).addEarlyMidStudent();
+                                            stationList.get(9).addLateMidStudent();
+                                            stationList.get(9).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(9).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(9).addMorningStudent();
+                        }
                     }
                     if (stationList.get(0).getMorningMaxWorkers() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(0), 1);
-                        masterList.get(0).get(0).add(temp);
-                        pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                        stationList.get(0).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid()){
+                                    masterList.get(0).get(0).add(temp);
+                                    masterList.get(0).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(0).addMorningStudent();
+                                    stationList.get(0).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(0).getEarlyMidMaxWorkers() > stationList.get(0).getEarlyMid()){
+                                            masterList.get(0).get(0).add(temp);
+                                            masterList.get(0).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(0).addMorningStudent();
+                                            stationList.get(0).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() || stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid()) &&
+                                        stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                                    masterList.get(0).get(0).add(temp);
+                                    masterList.get(0).get(1).add(temp);
+                                    masterList.get(0).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(0).addMorningStudent();
+                                    stationList.get(0).addEarlyMidStudent();
+                                    stationList.get(0).addLateMidStudent();
+                                    stationList.get(0).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner() && stationList.get(0).getEarlyMidMaxWorkers() > stationList.get(0).getEarlyMid()){
+                                            masterList.get(0).get(0).add(temp);
+                                            masterList.get(0).get(1).add(temp);
+                                            masterList.get(0).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(0).addMorningStudent();
+                                            stationList.get(0).addEarlyMidStudent();
+                                            stationList.get(0).addLateMidStudent();
+                                            stationList.get(0).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(0).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(0).addMorningStudent();
+                        }
                     }
                     if(stationList.get(11).getMorningMaxWorkers() > stationList.get(11).getTotalMorning() && pool.get(0).size() != 0){
                         Student temp = randomChooser(pool.get(0), 12);
-                        masterList.get(11).get(0).add(temp);
-                        pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                        stationList.get(11).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(11).getEarlyMidPeopleNeeded() > stationList.get(11).getEarlyMid()){
+                                    masterList.get(11).get(0).add(temp);
+                                    masterList.get(11).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(11).addMorningStudent();
+                                    stationList.get(11).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(11).getEarlyMidMaxWorkers() > stationList.get(11).getEarlyMid()){
+                                            masterList.get(11).get(0).add(temp);
+                                            masterList.get(11).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(11).addMorningStudent();
+                                            stationList.get(11).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(11).getEarlyMidPeopleNeeded() > stationList.get(11).getEarlyMid() || stationList.get(11).getLateMidPeopleNeeded() > stationList.get(11).getLateMid()) &&
+                                        stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                                    masterList.get(11).get(0).add(temp);
+                                    masterList.get(11).get(1).add(temp);
+                                    masterList.get(11).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(11).addMorningStudent();
+                                    stationList.get(11).addEarlyMidStudent();
+                                    stationList.get(11).addLateMidStudent();
+                                    stationList.get(11).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(11).getDinnerMaxWorkers() > stationList.get(11).getTotalDinner() && stationList.get(11).getEarlyMidMaxWorkers() > stationList.get(11).getEarlyMid()){
+                                            masterList.get(11).get(0).add(temp);
+                                            masterList.get(11).get(1).add(temp);
+                                            masterList.get(11).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(11).addMorningStudent();
+                                            stationList.get(11).addEarlyMidStudent();
+                                            stationList.get(11).addLateMidStudent();
+                                            stationList.get(11).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(11).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(11).addMorningStudent();
+                        }
                     }
                     if((stationList.get(0).getTotalMorning() >= stationList.get(0).getMorningMaxWorkers()) &&
                             (stationList.get(1).getTotalMorning() >= stationList.get(1).getMorningMaxWorkers()) &&
@@ -459,10 +1591,74 @@ public class Schedule {
                             (stationList.get(10).getTotalMorning() >= stationList.get(10).getMorningMaxWorkers()) &&
                             (stationList.get(11).getTotalMorning() >= stationList.get(11).getMorningMaxWorkers()) &&pool.get(0).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(0), 9);
-                        masterList.get(8).get(0).add(temp);
-                        pool.set(0, removeByName(temp.getName(), pool.get(0)));
-                        stationList.get(8).addMorningStudent();
+                        if(temp.getMultipleShifts()){
+                            if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
+                                if(stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid()){
+                                    masterList.get(8).get(0).add(temp);
+                                    masterList.get(8).get(1).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(8).addMorningStudent();
+                                    stationList.get(8).addEarlyMidStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList)){
+                                        if(stationList.get(8).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid()){
+                                            masterList.get(8).get(0).add(temp);
+                                            masterList.get(8).get(1).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            if(worksShift(pool.get(1), temp.getName())) pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(8).addMorningStudent();
+                                            stationList.get(8).addEarlyMidStudent();
+                                        }
+                                    }
+                                }
+                            }
+                            else if(worksShift(pool.get(3), temp.getName())){
+                                if((stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid() || stationList.get(8).getLateMidPeopleNeeded() > stationList.get(8).getLateMid()) &&
+                                        stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(0).add(temp);
+                                    masterList.get(8).get(1).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(8).addMorningStudent();
+                                    stationList.get(8).addEarlyMidStudent();
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableMidMinShiftsFilled(stationList) && availableCloseMinShiftsFilled(stationList, 0)){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner() && stationList.get(8).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid()){
+                                            masterList.get(8).get(0).add(temp);
+                                            masterList.get(8).get(1).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(8).addMorningStudent();
+                                            stationList.get(8).addEarlyMidStudent();
+                                            stationList.get(8).addLateMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            masterList.get(8).get(0).add(temp);
+                            pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                            stationList.get(8).addMorningStudent();
+                        }
                     }
+
                 }
             }
 
@@ -471,70 +1667,401 @@ public class Schedule {
         while(pool.get(1).size() > 0) {
             if (stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() && pool.get(1).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(1), 1);
-                masterList.get(0).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(0).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                            masterList.get(0).get(1).add(temp);
+                            masterList.get(0).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(0).addEarlyMidStudent();
+                            stationList.get(0).addLateMidStudent();
+                            stationList.get(0).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner()){
+                                    masterList.get(0).get(1).add(temp);
+                                    masterList.get(0).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(0).addEarlyMidStudent();
+                                    stationList.get(0).addLateMidStudent();
+                                    stationList.get(0).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(0).get(1).add(temp);
+                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                    stationList.get(0).addEarlyMidStudent();
+                }
+
             }
             if (stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid() && pool.get(1).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(1), 2);
-                masterList.get(1).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(1).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                            masterList.get(1).get(1).add(temp);
+                            masterList.get(1).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(1).addEarlyMidStudent();
+                            stationList.get(1).addLateMidStudent();
+                            stationList.get(1).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner()){
+                                    masterList.get(1).get(1).add(temp);
+                                    masterList.get(1).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(1).addEarlyMidStudent();
+                                    stationList.get(1).addLateMidStudent();
+                                    stationList.get(1).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(1).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(1).addEarlyMidStudent();
+                }
             }
             if (stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid() && pool.get(1).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(1), 3);
-                masterList.get(2).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(2).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                            masterList.get(2).get(1).add(temp);
+                            masterList.get(2).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(2).addEarlyMidStudent();
+                            stationList.get(2).addLateMidStudent();
+                            stationList.get(2).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner()){
+                                    masterList.get(2).get(1).add(temp);
+                                    masterList.get(2).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(2).addEarlyMidStudent();
+                                    stationList.get(2).addLateMidStudent();
+                                    stationList.get(2).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(2).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(2).addEarlyMidStudent();
+                }
             }
             if (stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid() && pool.get(1).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(1), 4);
-                masterList.get(3).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(3).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                            masterList.get(3).get(1).add(temp);
+                            masterList.get(3).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(3).addEarlyMidStudent();
+                            stationList.get(3).addLateMidStudent();
+                            stationList.get(3).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner()){
+                                    masterList.get(3).get(1).add(temp);
+                                    masterList.get(3).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(3).addEarlyMidStudent();
+                                    stationList.get(3).addLateMidStudent();
+                                    stationList.get(3).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(3).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(3).addEarlyMidStudent();
+                }
             }
             if (stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid() && pool.get(1).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(1), 5);
-                masterList.get(4).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(4).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                            masterList.get(4).get(1).add(temp);
+                            masterList.get(4).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(4).addEarlyMidStudent();
+                            stationList.get(4).addLateMidStudent();
+                            stationList.get(4).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner()){
+                                    masterList.get(4).get(1).add(temp);
+                                    masterList.get(4).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(4).addEarlyMidStudent();
+                                    stationList.get(4).addLateMidStudent();
+                                    stationList.get(4).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(4).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(4).addEarlyMidStudent();
+                }
             }
             if (stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid() && pool.get(1).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(1), 6);
-                masterList.get(5).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(5).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                            masterList.get(5).get(1).add(temp);
+                            masterList.get(5).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(5).addEarlyMidStudent();
+                            stationList.get(5).addLateMidStudent();
+                            stationList.get(5).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner()){
+                                    masterList.get(5).get(1).add(temp);
+                                    masterList.get(5).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(5).addEarlyMidStudent();
+                                    stationList.get(5).addLateMidStudent();
+                                    stationList.get(5).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(5).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(5).addEarlyMidStudent();
+                }
             }
             if (stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid() && pool.get(1).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(1), 7);
-                masterList.get(6).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(6).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                            masterList.get(6).get(1).add(temp);
+                            masterList.get(6).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(6).addEarlyMidStudent();
+                            stationList.get(6).addLateMidStudent();
+                            stationList.get(6).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner()){
+                                    masterList.get(6).get(1).add(temp);
+                                    masterList.get(6).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(6).addEarlyMidStudent();
+                                    stationList.get(6).addLateMidStudent();
+                                    stationList.get(6).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(6).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(6).addEarlyMidStudent();
+                }
             }
             if (stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(7).getEarlyMid() && pool.get(1).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(1), 8);
-                masterList.get(7).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(7).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                            masterList.get(7).get(1).add(temp);
+                            masterList.get(7).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(7).addEarlyMidStudent();
+                            stationList.get(7).addLateMidStudent();
+                            stationList.get(7).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner()){
+                                    masterList.get(7).get(1).add(temp);
+                                    masterList.get(7).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(7).addEarlyMidStudent();
+                                    stationList.get(7).addLateMidStudent();
+                                    stationList.get(7).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(7).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(7).addEarlyMidStudent();
+                }
             }
             if (stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid() && pool.get(1).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(1), 9);
-                masterList.get(8).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(8).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                            masterList.get(8).get(1).add(temp);
+                            masterList.get(8).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(8).addEarlyMidStudent();
+                            stationList.get(8).addLateMidStudent();
+                            stationList.get(8).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(1).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(8).addEarlyMidStudent();
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(8).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(8).addEarlyMidStudent();
+                }
             }
 
             if (stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid() && pool.get(1).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(1), 10);
-                masterList.get(9).get(1).add(temp);
-                pool.set(1, removeByName(temp.getName(), pool.get(1)));
-                stationList.get(9).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                            masterList.get(9).get(1).add(temp);
+                            masterList.get(9).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(9).addEarlyMidStudent();
+                            stationList.get(9).addLateMidStudent();
+                            stationList.get(9).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner()){
+                                    masterList.get(9).get(1).add(temp);
+                                    masterList.get(9).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(9).addEarlyMidStudent();
+                                    stationList.get(9).addLateMidStudent();
+                                    stationList.get(9).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(9).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(9).addEarlyMidStudent();
+                }
             }
-            if (stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid() && pool.get(1).size() != 0){  //fill dra
+            if (stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid() && pool.get(1).size() != 0){  //fill CR
                 Student temp = randomChooser(pool.get(1), 11);
-                masterList.get(10).get(1).add(temp);
-                pool.set(1, removeByName(temp.getName(), pool.get(1)));
-                stationList.get(10).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                            masterList.get(10).get(1).add(temp);
+                            masterList.get(10).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(10).addEarlyMidStudent();
+                            stationList.get(10).addLateMidStudent();
+                            stationList.get(10).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner()){
+                                    masterList.get(10).get(1).add(temp);
+                                    masterList.get(10).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(10).addEarlyMidStudent();
+                                    stationList.get(10).addLateMidStudent();
+                                    stationList.get(10).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(10).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(10).addEarlyMidStudent();
+                }
             }
             if((stationList.get(0).getEarlyMid() >= stationList.get(0).getEarlyMidPeopleNeeded()) &&
                     (stationList.get(1).getEarlyMid() >= stationList.get(1).getEarlyMidPeopleNeeded()) &&
@@ -548,9 +2075,39 @@ public class Schedule {
                     (stationList.get(10).getEarlyMid() >= stationList.get(10).getEarlyMidPeopleNeeded()) &&
                     (stationList.get(11).getEarlyMid() < stationList.get(11).getEarlyMidPeopleNeeded()) && pool.get(1).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
                 Student temp = randomChooser(pool.get(1), 11);
-                masterList.get(10).get(1).add(temp);
-                pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                stationList.get(10).addEarlyMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                            masterList.get(11).get(1).add(temp);
+                            masterList.get(11).get(3).add(temp);
+                            pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(11).addEarlyMidStudent();
+                            stationList.get(11).addLateMidStudent();
+                            stationList.get(11).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 1)){
+                                if(stationList.get(11).getDinnerMaxWorkers() > stationList.get(11).getTotalDinner()){
+                                    masterList.get(11).get(1).add(temp);
+                                    masterList.get(11).get(3).add(temp);
+                                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    stationList.get(11).addEarlyMidStudent();
+                                    stationList.get(11).addLateMidStudent();
+                                    stationList.get(11).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(11).get(1).add(temp);
+                    pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    stationList.get(11).addEarlyMidStudent();
+                }
 
             }
             if( (stationList.get(0).getEarlyMid() >= stationList.get(0).getEarlyMidPeopleNeeded()) &&
@@ -567,75 +2124,435 @@ public class Schedule {
                 while(pool.get(1).size() > 0){ //order switched so extras go where help is more needed first
                     if (stationList.get(8).getEarlyMidMaxWorkers() > stationList.get(8).getEarlyMid() && pool.get(1).size() != 0) {  //fill dish
                         Student temp = randomChooser(pool.get(1), 9);
-                        masterList.get(8).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(8).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(1).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(8).addEarlyMidStudent();
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                            masterList.get(8).get(1).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(8).addEarlyMidStudent();
+                                            stationList.get(8).addLateMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(8).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(8).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(1).getEarlyMidMaxWorkers() > stationList.get(1).getEarlyMid() && pool.get(1).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(1), 2);
-                        masterList.get(1).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(1).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                                    masterList.get(1).get(1).add(temp);
+                                    masterList.get(1).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(1).addEarlyMidStudent();
+                                    stationList.get(1).addLateMidStudent();
+                                    stationList.get(1).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner()){
+                                            masterList.get(1).get(1).add(temp);
+                                            masterList.get(1).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(1).addEarlyMidStudent();
+                                            stationList.get(1).addLateMidStudent();
+                                            stationList.get(1).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(1).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(1).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(10).getEarlyMidMaxWorkers() > stationList.get(10).getEarlyMid() && pool.get(1).size() != 0) { //fill cold
                         Student temp = randomChooser(pool.get(1), 11);
-                        masterList.get(10).get(1).add(temp);
-                        pool.set(1,  removeByName(temp.getName(), pool.get(1)));
-                        stationList.get(10).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                                    masterList.get(10).get(1).add(temp);
+                                    masterList.get(10).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(10).addEarlyMidStudent();
+                                    stationList.get(10).addLateMidStudent();
+                                    stationList.get(10).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner()){
+                                            masterList.get(10).get(1).add(temp);
+                                            masterList.get(10).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(10).addEarlyMidStudent();
+                                            stationList.get(10).addLateMidStudent();
+                                            stationList.get(10).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(10).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(10).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(2).getEarlyMidMaxWorkers() > stationList.get(2).getEarlyMid() && pool.get(1).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(1), 3);
-                        masterList.get(2).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(2).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                                    masterList.get(2).get(1).add(temp);
+                                    masterList.get(2).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(2).addEarlyMidStudent();
+                                    stationList.get(2).addLateMidStudent();
+                                    stationList.get(2).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner()){
+                                            masterList.get(2).get(1).add(temp);
+                                            masterList.get(2).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(2).addEarlyMidStudent();
+                                            stationList.get(2).addLateMidStudent();
+                                            stationList.get(2).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(2).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(2).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(3).getEarlyMidMaxWorkers() > stationList.get(3).getEarlyMid() && pool.get(1).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(1), 4);
-                        masterList.get(3).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(3).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                                    masterList.get(3).get(1).add(temp);
+                                    masterList.get(3).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(3).addEarlyMidStudent();
+                                    stationList.get(3).addLateMidStudent();
+                                    stationList.get(3).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner()){
+                                            masterList.get(3).get(1).add(temp);
+                                            masterList.get(3).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(3).addEarlyMidStudent();
+                                            stationList.get(3).addLateMidStudent();
+                                            stationList.get(3).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(3).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(3).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(4).getEarlyMidMaxWorkers() > stationList.get(4).getEarlyMid() && pool.get(1).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(1), 5);
-                        masterList.get(4).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(4).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                                    masterList.get(4).get(1).add(temp);
+                                    masterList.get(4).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(4).addEarlyMidStudent();
+                                    stationList.get(4).addLateMidStudent();
+                                    stationList.get(4).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner()){
+                                            masterList.get(4).get(1).add(temp);
+                                            masterList.get(4).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(4).addEarlyMidStudent();
+                                            stationList.get(4).addLateMidStudent();
+                                            stationList.get(4).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(4).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(4).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(5).getEarlyMidMaxWorkers() > stationList.get(5).getEarlyMid() && pool.get(1).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(1), 6);
-                        masterList.get(5).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(5).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                                    masterList.get(5).get(1).add(temp);
+                                    masterList.get(5).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(5).addEarlyMidStudent();
+                                    stationList.get(5).addLateMidStudent();
+                                    stationList.get(5).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner()){
+                                            masterList.get(5).get(1).add(temp);
+                                            masterList.get(5).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(5).addEarlyMidStudent();
+                                            stationList.get(5).addLateMidStudent();
+                                            stationList.get(5).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(5).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(5).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(6).getEarlyMidMaxWorkers() > stationList.get(6).getEarlyMid() && pool.get(1).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(1), 7);
-                        masterList.get(6).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(6).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                                    masterList.get(6).get(1).add(temp);
+                                    masterList.get(6).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(6).addEarlyMidStudent();
+                                    stationList.get(6).addLateMidStudent();
+                                    stationList.get(6).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner()){
+                                            masterList.get(6).get(1).add(temp);
+                                            masterList.get(6).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(6).addEarlyMidStudent();
+                                            stationList.get(6).addLateMidStudent();
+                                            stationList.get(6).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(6).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(6).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(7).getEarlyMidMaxWorkers() > stationList.get(7).getEarlyMid() && pool.get(1).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(1), 8);
-                        masterList.get(7).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(7).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                                    masterList.get(7).get(1).add(temp);
+                                    masterList.get(7).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(7).addEarlyMidStudent();
+                                    stationList.get(7).addLateMidStudent();
+                                    stationList.get(7).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner()){
+                                            masterList.get(7).get(1).add(temp);
+                                            masterList.get(7).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(7).addEarlyMidStudent();
+                                            stationList.get(7).addLateMidStudent();
+                                            stationList.get(7).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(7).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(7).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(9).getEarlyMidMaxWorkers() > stationList.get(9).getEarlyMid() && pool.get(1).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(1), 10);
-                        masterList.get(9).get(1).add(temp);
-                        pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
-                        stationList.get(9).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                                    masterList.get(9).get(1).add(temp);
+                                    masterList.get(9).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(9).addEarlyMidStudent();
+                                    stationList.get(9).addLateMidStudent();
+                                    stationList.get(9).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner()){
+                                            masterList.get(9).get(1).add(temp);
+                                            masterList.get(9).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(9).addEarlyMidStudent();
+                                            stationList.get(9).addLateMidStudent();
+                                            stationList.get(9).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(9).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(9).addEarlyMidStudent();
+                        }
                     }
                     if (stationList.get(0).getEarlyMidMaxWorkers() > stationList.get(0).getEarlyMid() && pool.get(1).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(1), 1);
-                        masterList.get(0).get(1).add(temp);
-                        pool.set(1, removeByName(temp.getName(), pool.get(1)));
-                        stationList.get(0).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                                    masterList.get(0).get(1).add(temp);
+                                    masterList.get(0).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(0).addEarlyMidStudent();
+                                    stationList.get(0).addLateMidStudent();
+                                    stationList.get(0).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner()){
+                                            masterList.get(0).get(1).add(temp);
+                                            masterList.get(0).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(0).addEarlyMidStudent();
+                                            stationList.get(0).addLateMidStudent();
+                                            stationList.get(0).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(0).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(0).addEarlyMidStudent();
+                        }
                     }
                     if(stationList.get(11).getEarlyMidMaxWorkers() > stationList.get(11).getEarlyMid() && pool.get(1).size() != 0){ //fill jan
                         Student temp = randomChooser(pool.get(1), 12);
-                        masterList.get(11).get(1).add(temp);
-                        pool.set(1, removeByName(temp.getName(), pool.get(1)));
-                        stationList.get(11).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                                    masterList.get(11).get(1).add(temp);
+                                    masterList.get(11).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(11).addEarlyMidStudent();
+                                    stationList.get(11).addLateMidStudent();
+                                    stationList.get(11).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(11).getDinnerMaxWorkers() > stationList.get(11).getTotalDinner()){
+                                            masterList.get(11).get(1).add(temp);
+                                            masterList.get(11).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(11).addEarlyMidStudent();
+                                            stationList.get(11).addLateMidStudent();
+                                            stationList.get(11).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(11).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(11).addEarlyMidStudent();
+                        }
                     }
                     if((stationList.get(0).getEarlyMid() >= stationList.get(0).getEarlyMidMaxWorkers()) &&
                             (stationList.get(1).getEarlyMid() >= stationList.get(1).getEarlyMidMaxWorkers()) &&
@@ -649,9 +2566,39 @@ public class Schedule {
                             (stationList.get(10).getEarlyMid() >= stationList.get(10).getEarlyMidMaxWorkers()) &&
                             (stationList.get(11).getEarlyMid() >= stationList.get(11).getEarlyMidMaxWorkers()) && pool.get(1).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(1), 9);
-                        masterList.get(8).get(1).add(temp);
-                        pool.set(1, removeByName(temp.getName(), pool.get(1)));
-                        stationList.get(8).addEarlyMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(1).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(1,removeByName(temp.getName(), pool.get(1)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(8).addEarlyMidStudent();
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 1)){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                            masterList.get(8).get(1).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            if(worksShift(pool.get(2), temp.getName())) pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            stationList.get(8).addEarlyMidStudent();
+                                            stationList.get(8).addLateMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(8).get(1).add(temp);
+                            pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                            stationList.get(8).addEarlyMidStudent();
+                        }
                     }
 
                 }
@@ -661,70 +2608,367 @@ public class Schedule {
         while(pool.get(2).size() > 0) {
             if (stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid() && pool.get(2).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(2), 1);
-                masterList.get(0).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(0).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                            masterList.get(0).get(2).add(temp);
+                            masterList.get(0).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(0).addLateMidStudent();
+                            stationList.get(0).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner()){
+                                    masterList.get(0).get(2).add(temp);
+                                    masterList.get(0).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(0).addLateMidStudent();
+                                    stationList.get(0).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(0).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(0).addLateMidStudent();
+                }
             }
             if (stationList.get(1).getLateMidPeopleNeeded() > stationList.get(1).getLateMid() && pool.get(2).size() != 0) { // fill peaks
                 Student temp = randomChooser(pool.get(2), 2);
-                masterList.get(1).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(1).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                            masterList.get(1).get(2).add(temp);
+                            masterList.get(1).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(1).addLateMidStudent();
+                            stationList.get(1).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner()){
+                                    masterList.get(1).get(2).add(temp);
+                                    masterList.get(1).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(1).addLateMidStudent();
+                                    stationList.get(1).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(1).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(1).addLateMidStudent();
+                }
             }
             if (stationList.get(2).getLateMidPeopleNeeded() > stationList.get(2).getLateMid() && pool.get(2).size() != 0) { // fill hearth
                 Student temp = randomChooser(pool.get(2), 3);
-                masterList.get(2).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(2).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                            masterList.get(2).get(2).add(temp);
+                            masterList.get(2).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(2).addLateMidStudent();
+                            stationList.get(2).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner()){
+                                    masterList.get(2).get(2).add(temp);
+                                    masterList.get(2).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(2).addLateMidStudent();
+                                    stationList.get(2).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(2).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(2).addLateMidStudent();
+                }
             }
             if (stationList.get(3).getLateMidPeopleNeeded() > stationList.get(3).getLateMid() && pool.get(2).size() != 0) { // fill salads
                 Student temp = randomChooser(pool.get(2), 4);
-                masterList.get(3).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(3).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                            masterList.get(3).get(2).add(temp);
+                            masterList.get(3).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(3).addLateMidStudent();
+                            stationList.get(3).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner()){
+                                    masterList.get(3).get(2).add(temp);
+                                    masterList.get(3).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(3).addLateMidStudent();
+                                    stationList.get(3).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(3).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(3).addLateMidStudent();
+                }
             }
             if (stationList.get(4).getLateMidPeopleNeeded() > stationList.get(4).getLateMid() && pool.get(2).size() != 0) { //fill toast
                 Student temp = randomChooser(pool.get(2), 5);
-                masterList.get(4).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(4).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                            masterList.get(4).get(2).add(temp);
+                            masterList.get(4).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(4).addLateMidStudent();
+                            stationList.get(4).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner()){
+                                    masterList.get(4).get(2).add(temp);
+                                    masterList.get(4).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(4).addLateMidStudent();
+                                    stationList.get(4).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(4).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(4).addLateMidStudent();
+                }
             }
             if (stationList.get(5).getLateMidPeopleNeeded() > stationList.get(5).getLateMid() && pool.get(2).size() != 0) { //fill mid
                 Student temp = randomChooser(pool.get(2), 6);
-                masterList.get(5).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(5).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                            masterList.get(5).get(2).add(temp);
+                            masterList.get(5).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(5).addLateMidStudent();
+                            stationList.get(5).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner()){
+                                    masterList.get(5).get(2).add(temp);
+                                    masterList.get(5).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(5).addLateMidStudent();
+                                    stationList.get(5).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(5).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(5).addLateMidStudent();
+                }
             }
             if (stationList.get(6).getLateMidPeopleNeeded() > stationList.get(6).getLateMid() && pool.get(2).size() != 0) { //fill curry
                 Student temp = randomChooser(pool.get(2), 7);
-                masterList.get(6).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(6).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                            masterList.get(6).get(2).add(temp);
+                            masterList.get(6).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(6).addLateMidStudent();
+                            stationList.get(6).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner()){
+                                    masterList.get(6).get(2).add(temp);
+                                    masterList.get(6).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(6).addLateMidStudent();
+                                    stationList.get(6).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(6).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(6).addLateMidStudent();
+                }
             }
             if (stationList.get(7).getLateMidPeopleNeeded() > stationList.get(7).getLateMid() && pool.get(2).size() != 0) { //fill grange
                 Student temp = randomChooser(pool.get(2), 8);
-                masterList.get(7).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(7).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                            masterList.get(7).get(2).add(temp);
+                            masterList.get(7).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(7).addLateMidStudent();
+                            stationList.get(7).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner()){
+                                    masterList.get(7).get(2).add(temp);
+                                    masterList.get(7).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(7).addLateMidStudent();
+                                    stationList.get(7).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(7).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(7).addLateMidStudent();
+                }
             }
             if (stationList.get(8).getLateMidPeopleNeeded() > stationList.get(8).getLateMid() && pool.get(2).size() != 0) { //fill dish
                 Student temp = randomChooser(pool.get(2), 9);
-                masterList.get(8).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(8).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                            masterList.get(8).get(2).add(temp);
+                            masterList.get(8).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(8).addLateMidStudent();
+                            stationList.get(8).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(2).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(8).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(8).addLateMidStudent();
+                }
             }
 
             if (stationList.get(9).getLateMidPeopleNeeded() > stationList.get(9).getLateMid() && pool.get(2).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(2), 10);
-                masterList.get(9).get(2).add(temp);
-                pool.set(2, removeByName(temp.getName(), pool.get(2)));
-                stationList.get(9).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                            masterList.get(9).get(2).add(temp);
+                            masterList.get(9).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(9).addLateMidStudent();
+                            stationList.get(9).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner()){
+                                    masterList.get(9).get(2).add(temp);
+                                    masterList.get(9).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(9).addLateMidStudent();
+                                    stationList.get(9).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(9).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(9).addLateMidStudent();
+                }
             }
             if (stationList.get(10).getLateMidPeopleNeeded() > stationList.get(10).getLateMid() && pool.get(2).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(2), 11);
-                masterList.get(10).get(2).add(temp);
-                pool.set(2, removeByName(temp.getName(), pool.get(2)));
-                stationList.get(10).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                            masterList.get(10).get(2).add(temp);
+                            masterList.get(10).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(10).addLateMidStudent();
+                            stationList.get(10).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner()){
+                                    masterList.get(10).get(2).add(temp);
+                                    masterList.get(10).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(10).addLateMidStudent();
+                                    stationList.get(10).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(10).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(10).addLateMidStudent();
+                }
             }
             if((stationList.get(0).getLateMid() >= stationList.get(0).getLateMidPeopleNeeded()) &&
                     (stationList.get(1).getLateMid() >= stationList.get(1).getLateMidPeopleNeeded()) &&
@@ -738,9 +2982,36 @@ public class Schedule {
                     (stationList.get(10).getLateMid() >= stationList.get(10).getLateMidPeopleNeeded()) &&
                     (stationList.get(11).getLateMid() < stationList.get(11).getLateMidPeopleNeeded()) && pool.get(2).size() != 0){   //fill jan if other stations meet minimum (until jan meets its min)
                 Student temp = randomChooser(pool.get(2), 11);
-                masterList.get(10).get(2).add(temp);
-                pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                stationList.get(10).addLateMidStudent();
+                if(temp.getMultipleShifts()){
+                    if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                        if(stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                            masterList.get(11).get(2).add(temp);
+                            masterList.get(11).get(3).add(temp);
+                            pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                            pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                            stationList.get(11).addLateMidStudent();
+                            stationList.get(11).addDinnerStudent();
+                        }
+                        else{
+                            if(availableCloseMinShiftsFilled(stationList, 2)){
+                                if(stationList.get(11).getDinnerMaxWorkers() > stationList.get(11).getTotalDinner()){
+                                    masterList.get(11).get(2).add(temp);
+                                    masterList.get(11).get(3).add(temp);
+                                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                    pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                    stationList.get(11).addLateMidStudent();
+                                    stationList.get(11).addDinnerStudent();
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else {
+                    masterList.get(11).get(2).add(temp);
+                    pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                    stationList.get(11).addLateMidStudent();
+                }
 
             }
             if( (stationList.get(0).getLateMid() >= stationList.get(0).getLateMidPeopleNeeded()) &&
@@ -757,75 +3028,399 @@ public class Schedule {
                 while(pool.get(2).size() > 0){ //order switched so extras go where help is more needed first
                     if (stationList.get(8).getLateMidMaxWorkers() > stationList.get(8).getLateMid() && pool.get(2).size() != 0) {  //fill dish
                         Student temp = randomChooser(pool.get(2), 9);
-                        masterList.get(8).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(8).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(2).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                            masterList.get(8).get(2).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(8).addLateMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(8).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(8).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(1).getLateMidMaxWorkers() > stationList.get(1).getLateMid() && pool.get(2).size() != 0) { // fill peaks
                         Student temp = randomChooser(pool.get(2), 2);
-                        masterList.get(1).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(1).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(1).getDinnerPeopleNeeded() > stationList.get(1).getTotalDinner()){
+                                    masterList.get(1).get(2).add(temp);
+                                    masterList.get(1).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(1).addLateMidStudent();
+                                    stationList.get(1).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(1).getDinnerMaxWorkers() > stationList.get(1).getTotalDinner()){
+                                            masterList.get(1).get(2).add(temp);
+                                            masterList.get(1).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(1).addLateMidStudent();
+                                            stationList.get(1).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(1).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(1).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(10).getLateMidMaxWorkers() > stationList.get(10).getLateMid() && pool.get(2).size() != 0) { //fill cold
                         Student temp = randomChooser(pool.get(2), 11);
-                        masterList.get(10).get(2).add(temp);
-                        pool.set(2,  removeByName(temp.getName(), pool.get(2)));
-                        stationList.get(10).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(10).getDinnerPeopleNeeded() > stationList.get(10).getTotalDinner()){
+                                    masterList.get(10).get(2).add(temp);
+                                    masterList.get(10).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(10).addLateMidStudent();
+                                    stationList.get(10).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(10).getDinnerMaxWorkers() > stationList.get(10).getTotalDinner()){
+                                            masterList.get(10).get(2).add(temp);
+                                            masterList.get(10).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(10).addLateMidStudent();
+                                            stationList.get(10).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(10).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(10).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(2).getLateMidMaxWorkers() > stationList.get(2).getLateMid() && pool.get(2).size() != 0) { // fill hearth
                         Student temp = randomChooser(pool.get(2), 3);
-                        masterList.get(2).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(2).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(2).getDinnerPeopleNeeded() > stationList.get(2).getTotalDinner()){
+                                    masterList.get(2).get(2).add(temp);
+                                    masterList.get(2).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(2).addLateMidStudent();
+                                    stationList.get(2).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(2).getDinnerMaxWorkers() > stationList.get(2).getTotalDinner()){
+                                            masterList.get(2).get(2).add(temp);
+                                            masterList.get(2).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(2).addLateMidStudent();
+                                            stationList.get(2).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(2).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(2).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(3).getLateMidMaxWorkers() > stationList.get(3).getLateMid() && pool.get(2).size() != 0) { // fill salads
                         Student temp = randomChooser(pool.get(2), 4);
-                        masterList.get(3).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(3).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(3).getDinnerPeopleNeeded() > stationList.get(3).getTotalDinner()){
+                                    masterList.get(3).get(2).add(temp);
+                                    masterList.get(3).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(3).addLateMidStudent();
+                                    stationList.get(3).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(3).getDinnerMaxWorkers() > stationList.get(3).getTotalDinner()){
+                                            masterList.get(3).get(2).add(temp);
+                                            masterList.get(3).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(3).addLateMidStudent();
+                                            stationList.get(3).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(3).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(3).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(4).getLateMidMaxWorkers() > stationList.get(4).getLateMid() && pool.get(2).size() != 0) { //fill toast
                         Student temp = randomChooser(pool.get(2), 5);
-                        masterList.get(4).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(4).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(4).getDinnerPeopleNeeded() > stationList.get(4).getTotalDinner()){
+                                    masterList.get(4).get(2).add(temp);
+                                    masterList.get(4).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(4).addLateMidStudent();
+                                    stationList.get(4).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(4).getDinnerMaxWorkers() > stationList.get(4).getTotalDinner()){
+                                            masterList.get(4).get(2).add(temp);
+                                            masterList.get(4).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(4).addLateMidStudent();
+                                            stationList.get(4).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(4).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(4).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(5).getLateMidMaxWorkers() > stationList.get(5).getLateMid() && pool.get(2).size() != 0) { //fill mid
                         Student temp = randomChooser(pool.get(2), 6);
-                        masterList.get(5).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(5).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(5).getDinnerPeopleNeeded() > stationList.get(5).getTotalDinner()){
+                                    masterList.get(5).get(2).add(temp);
+                                    masterList.get(5).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(5).addLateMidStudent();
+                                    stationList.get(5).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(5).getDinnerMaxWorkers() > stationList.get(5).getTotalDinner()){
+                                            masterList.get(5).get(2).add(temp);
+                                            masterList.get(5).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(5).addLateMidStudent();
+                                            stationList.get(5).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(5).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(5).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(6).getLateMidMaxWorkers() > stationList.get(6).getLateMid() && pool.get(2).size() != 0) { //fill curry
                         Student temp = randomChooser(pool.get(2), 7);
-                        masterList.get(6).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(6).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(6).getDinnerPeopleNeeded() > stationList.get(6).getTotalDinner()){
+                                    masterList.get(6).get(2).add(temp);
+                                    masterList.get(6).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(6).addLateMidStudent();
+                                    stationList.get(6).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(6).getDinnerMaxWorkers() > stationList.get(6).getTotalDinner()){
+                                            masterList.get(6).get(2).add(temp);
+                                            masterList.get(6).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(6).addLateMidStudent();
+                                            stationList.get(6).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(6).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(6).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(7).getLateMidMaxWorkers() > stationList.get(7).getLateMid() && pool.get(2).size() != 0) { //fill grange
                         Student temp = randomChooser(pool.get(2), 8);
-                        masterList.get(7).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(7).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(7).getDinnerPeopleNeeded() > stationList.get(7).getTotalDinner()){
+                                    masterList.get(7).get(2).add(temp);
+                                    masterList.get(7).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(7).addLateMidStudent();
+                                    stationList.get(7).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(7).getDinnerMaxWorkers() > stationList.get(7).getTotalDinner()){
+                                            masterList.get(7).get(2).add(temp);
+                                            masterList.get(7).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(7).addLateMidStudent();
+                                            stationList.get(7).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(7).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(7).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(9).getLateMidMaxWorkers() > stationList.get(9).getLateMid() && pool.get(2).size() != 0) { //fill dra
                         Student temp = randomChooser(pool.get(2), 10);
-                        masterList.get(9).get(2).add(temp);
-                        pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
-                        stationList.get(9).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(9).getDinnerPeopleNeeded() > stationList.get(9).getTotalDinner()){
+                                    masterList.get(9).get(2).add(temp);
+                                    masterList.get(9).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(9).addLateMidStudent();
+                                    stationList.get(9).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(9).getDinnerMaxWorkers() > stationList.get(9).getTotalDinner()){
+                                            masterList.get(9).get(2).add(temp);
+                                            masterList.get(9).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(9).addLateMidStudent();
+                                            stationList.get(9).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(9).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(9).addLateMidStudent();
+                        }
                     }
                     if (stationList.get(0).getLateMidMaxWorkers() > stationList.get(0).getLateMid() && pool.get(2).size() != 0){  //fill check
                         Student temp = randomChooser(pool.get(2), 1);
-                        masterList.get(0).get(2).add(temp);
-                        pool.set(2, removeByName(temp.getName(), pool.get(2)));
-                        stationList.get(0).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner()){
+                                    masterList.get(0).get(2).add(temp);
+                                    masterList.get(0).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(0).addLateMidStudent();
+                                    stationList.get(0).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(0).getDinnerMaxWorkers() > stationList.get(0).getTotalDinner()){
+                                            masterList.get(0).get(2).add(temp);
+                                            masterList.get(0).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(0).addLateMidStudent();
+                                            stationList.get(0).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(0).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(0).addLateMidStudent();
+                        }
                     }
                     if(stationList.get(11).getLateMidMaxWorkers() > stationList.get(11).getLateMid() && pool.get(2).size() != 0){ //fill jan
                         Student temp = randomChooser(pool.get(2), 12);
-                        masterList.get(11).get(2).add(temp);
-                        pool.set(2, removeByName(temp.getName(), pool.get(2)));
-                        stationList.get(11).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(11).getDinnerPeopleNeeded() > stationList.get(11).getTotalDinner()){
+                                    masterList.get(11).get(2).add(temp);
+                                    masterList.get(11).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(11).addLateMidStudent();
+                                    stationList.get(11).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(11).getDinnerMaxWorkers() > stationList.get(11).getTotalDinner()){
+                                            masterList.get(11).get(2).add(temp);
+                                            masterList.get(11).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(11).addLateMidStudent();
+                                            stationList.get(11).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(11).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(11).addLateMidStudent();
+                        }
                     }
                     if((stationList.get(0).getLateMid() >= stationList.get(0).getEarlyMidMaxWorkers()) &&
                             (stationList.get(1).getLateMid() >= stationList.get(1).getLateMidMaxWorkers()) &&
@@ -839,9 +3434,36 @@ public class Schedule {
                             (stationList.get(10).getLateMid() >= stationList.get(10).getLateMidMaxWorkers()) &&
                             (stationList.get(11).getLateMid() >= stationList.get(11).getLateMidMaxWorkers()) && pool.get(2).size() != 0) { //if all stations at max -> go to dish? //TODO: ask ryan what he prefers to happen here
                         Student temp = randomChooser(pool.get(2), 9);
-                        masterList.get(8).get(2).add(temp);
-                        pool.set(2, removeByName(temp.getName(), pool.get(2)));
-                        stationList.get(8).addLateMidStudent();
+                        if(temp.getMultipleShifts()){
+                            if(((worksShift(pool.get(3), temp.getName())))){ //works from mid until close
+                                if(stationList.get(8).getDinnerPeopleNeeded() > stationList.get(8).getTotalDinner()){
+                                    masterList.get(8).get(2).add(temp);
+                                    masterList.get(8).get(3).add(temp);
+                                    pool.set(2,removeByName(temp.getName(), pool.get(2)) ) ;
+                                    pool.set(3,removeByName(temp.getName(), pool.get(3)) ) ;
+                                    stationList.get(8).addLateMidStudent();
+                                    stationList.get(8).addDinnerStudent();
+                                }
+                                else{
+                                    if(availableCloseMinShiftsFilled(stationList, 2)){
+                                        if(stationList.get(8).getDinnerMaxWorkers() > stationList.get(8).getTotalDinner()){
+                                            masterList.get(8).get(2).add(temp);
+                                            masterList.get(8).get(3).add(temp);
+                                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                                            pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                                            stationList.get(8).addLateMidStudent();
+                                            stationList.get(8).addDinnerStudent();
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        else {
+                            masterList.get(8).get(2).add(temp);
+                            pool.set(2, removeByName(temp.getName(), pool.get(2)));
+                            stationList.get(8).addLateMidStudent();
+                        }
                     }
 
                 }
@@ -1076,56 +3698,9 @@ public class Schedule {
             if( station == 10) countWeight += student.getDraWeight();
             if( station == 11) countWeight += student.getColdWeight();
             if( station == 12) countWeight += student.getJanWeight();
+            //System.out.println("C: " + countWeight + " r: " + r);
             if(countWeight >= r){
-                if( station == 1){
-                    student.workCheck();
-                    return student;
-                }
-                if( station == 2){
-                    student.workPeaks();
-                    return student;
-                }
-                if( station == 3){
-                    student.workHearth();
-                    return student;
-                }
-                if( station == 4){
-                    student.workSalads();
-                    return student;
-                }
-                if( station == 5){
-                    student.workToast();
-                    return student;
-                }
-                if( station == 6){
-                    student.workMid();
-                    return student;
-                }
-                if( station == 7){
-                    student.workCurry();
-                    return student;
-                }
-                if( station == 8) {
-                    student.workGrange();
-                    return student;
-                }
-                if( station == 9) {
-                    student.workDish();
-                    return student;
-                }
-                if( station == 10){
-                    student.workDra();
-                    return student;
-                }
-                if( station == 11){
-                    student.workCold();
-                    return student;
-                }
-                if( station == 12){
-                    student.workJan();
-                    return student;
-                }
-
+                return student;
             }
 
         }
@@ -1593,10 +4168,12 @@ public class Schedule {
         for(int i = 0; i < trying.get(8).get(1).size(); i++) {
             if(trying.get(8).get(1).get(i).getLead()) output2 += "*";
             output2 += trying.get(8).get(1).get(i).getName() + trying.get(8).get(1).get(i).getSchedule().get(day) + "-" + trying.get(8).get(1).get(i).getSchedule().get(day+1) +", ";
+            if(i % 4 == 0){ output2 += "\n"; }
         }
         for(int i = 0; i < trying.get(8).get(2).size(); i++) {
             if(trying.get(8).get(2).get(i).getLead()) output2 += "*";
             output2 += trying.get(8).get(2).get(i).getName() + trying.get(8).get(2).get(i).getSchedule().get(day) + "-" + trying.get(8).get(2).get(i).getSchedule().get(day+1) +", ";
+            if(i % 4 == 0){ output2 += "\n"; }
         }
         output2 += "\n";
         output2 += "Janitor: ";
@@ -1708,5 +4285,48 @@ public class Schedule {
         return result;
 
     }
+    /// TODO: cool idea, in coverage I can mark priority based on how well shifts are filled with current schedule
+    private Boolean availableMidMinShiftsFilled(List<Station> stations){
+        Boolean filled = true;
+        for(Station station: stations ){
 
+                if(station.getMorningMaxWorkers() > station.getTotalMorning()){
+                    if(station.getEarlyMidPeopleNeeded() > station.getEarlyMid()){
+                        filled = false;
+                    }
+                }
+
+
+        }
+        return filled;
+    }
+    private Boolean availableCloseMinShiftsFilled(List<Station> stations, int shift){
+        Boolean filled = true;
+        for(Station station: stations){
+            if(shift == 1){
+                if(station.getEarlyMidMaxWorkers() > station.getEarlyMid()){
+                    if(station.getDinnerPeopleNeeded() > station.getTotalDinner()){
+                        filled = false;
+                    }
+                }
+            }
+            else if(shift == 2){
+                if(station.getLateMidMaxWorkers() > station.getLateMid()){
+                    if(station.getDinnerPeopleNeeded() > station.getTotalDinner()){
+                        filled = false;
+                    }
+                }
+            }
+            else{
+                if(station.getMorningMaxWorkers() > station.getTotalMorning()){
+                    if(station.getDinnerPeopleNeeded() > station.getTotalDinner()){
+                        filled = false;
+                    }
+                }
+            }
+
+        }
+        return filled;
+
+    }
 }

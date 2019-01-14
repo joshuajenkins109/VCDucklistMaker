@@ -413,13 +413,11 @@ public class SheetsQuickstart {
                TODO: Write to document
 
 
+                TODO: When placing multiples, if they are early mid - close , also fill late mid (should fix double checker issue) *** morning -> early mid can cause double checker
+
+               TODO: placement based on leads, float position
 
 
-               TODO: Ability to identify leads, bolded on schedule, placement based on leads, float position
-
-               TODO: Can i get checker to have perfect coverage (or at least no over lapping and only short gaps in between.
-
-               TODO: if they have multiple shifts, put them in the same place
                TODO: Produce names so Ryan can easily cross check list as he makes changes.
 
 

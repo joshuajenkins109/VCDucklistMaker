@@ -25,6 +25,7 @@ public class Student {
     private double coldWeight;
 
     private boolean isLead;
+    private boolean multipleShifts;
 
 
 
@@ -52,6 +53,7 @@ public class Student {
         this.janWeight = 1.0;
         this.coldWeight = 1.0;
         this.isLead = lead;
+        this.multipleShifts = false;
     }
 
 
@@ -90,16 +92,7 @@ public class Student {
 
         return message;
     }
-    /*
-        todo: So I need to remember to handle certain cases.
-            Issue 1: times that are 6:30
-            Issue 2: finding which shift a time applies to
 
-           ( 6:30 7 8 9) (10 11 12 1 2) (3 4 5 6 7 8 9 Cl)
-
-           (0)(1 , 2) (3, 4) (5, 6) (7, 8) (9, 10) (11, 12) (13, 14)
-
-     */
 
 
 
@@ -278,7 +271,7 @@ public class Student {
     }
 
     public boolean getLead(){ return this.isLead;}
-    
+
 
     public String getName() {
         return name;
@@ -334,6 +327,9 @@ public class Student {
         return false;
     }
 
+
+    public void setMultipleShifts(Boolean multipleShifts){this.multipleShifts = multipleShifts; }
+    public Boolean getMultipleShifts() {return multipleShifts;}
 
     public double getColdWeight() {
         return coldWeight;
