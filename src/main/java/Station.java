@@ -8,7 +8,7 @@ public class Station {
     private int earlyMidFullTime;
     private int lateMidFullTime;
     private int dinnerFullTime;
-    private int morningStudents;
+    private int morningStudents;    //TODO: refactor for consistency among variable names
     private int earlyMidStudents;
     private int lateMidStudents;
     private int dinnerStudents;
@@ -19,12 +19,17 @@ public class Station {
     private int lateMidMaxWorkers;
     private int dinnerMaxWorkers;
 
+    private int morningLeads;
+    private int earlyLeads;
+    private int lateLeads;
+    private int dinnerLeads;
+
 
     /*
         UI -> day -> usual variables on day <Option to change>
 
      */
-    public Station(int morn, int mid, int lmid, int din, int maxmorn, int maxmid, int maxlmid, int maxdin){
+    public Station(int morn, int mid, int lmid, int din, int maxmorn, int maxmid, int maxlmid, int maxdin, int morningLeads, int earlyLeads, int lateLeads, int dinnerLeads){
         this.morningPeopleNeeded = morn;
         this.earlyMidPeopleNeeded = mid;
         this.lateMidPeopleNeeded = lmid;
@@ -33,6 +38,10 @@ public class Station {
         this.earlyMidMaxWorkers = maxmid;
         this.lateMidMaxWorkers = maxlmid;
         this.dinnerMaxWorkers = maxdin;
+        this.morningLeads = morningLeads;
+        this.earlyLeads = earlyLeads;
+        this.lateLeads = lateLeads;
+        this.dinnerLeads = dinnerLeads;
         this.morningFullTime = 0;
         this.earlyMidFullTime = 0;
         this.lateMidFullTime = 0;

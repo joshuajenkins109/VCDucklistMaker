@@ -1,26 +1,9 @@
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
-import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
-import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.ValueRange;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DuckListUI {
@@ -37,15 +20,35 @@ public class DuckListUI {
     private JTextArea DayText;
     private JButton ExitButton;
     private JButton CoverageButton;
+    private JButton EditSundayButton;
+    private JButton EditMondayButton;
+    private JButton EditTuesdayButton;
+    private JButton EditWednesdayButton;
+    private JButton EditThursdayButton;
+    private JButton EditFridayButton;
+    private JButton EditSaturdayButton;
+    private int action = 0;
+
+
+
     private int day = 0;
+
+    private List<Integer> shiftInput;
+
+    public void setAction(int action) {
+        this.action = action;
+    }
+    public int getAction(){
+        return action;
+    }
+
+    public int getDay() {
+        return day;
+    }
 
     public void setDay(int day) {
         this.day = day;
     }
-    public int getDay(){
-        return day;
-    }
-
 
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
@@ -63,53 +66,112 @@ public class DuckListUI {
 
         SundayButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { setDay(1); }});
+            public void actionPerformed(ActionEvent e) {
+                setAction(1);
+                setDay(1);
+            }
+        });
         MondayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(3);
             }
         });
         TuesdayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(5);
             }
         });
         Wednesday.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(7);
             }
         });
         ThursdayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(9);
             }
         });
         FridayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(11);
             }
         });
         SaturdayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setAction(1);
                 setDay(13);
             }
         });
         ExitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setDay(-1);
+                setAction(-1);
             }
         });
         CoverageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setDay(15);
+                setAction(3);
+            }
+        });
+        EditSundayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(1);
+            }
+        });
+        EditMondayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(3);
+            }
+        });
+        EditTuesdayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(5);
+            }
+        });
+        EditWednesdayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(7);
+            }
+        });
+        EditThursdayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(9);
+            }
+        });
+        EditFridayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(11);
+            }
+        });
+        EditSaturdayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAction(2);
+                setDay(13);
             }
         });
     }

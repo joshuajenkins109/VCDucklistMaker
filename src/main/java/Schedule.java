@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,12 +10,22 @@ public class Schedule {
     private List<List<Student>> pool;
 
     private List<Student> students;
+    private String sundayRange = "ShiftNumbers!B2:M13";
+    private String mondayRange = "ShiftNumbers!B14:M25";
+    private String tuesdayRange = "ShiftNumbers!B26:M37";
+    private String wednesdayRange = "ShiftNumbers!B38:M49";
+    private String thursdayRange = "ShiftNumbers!B50:M61";
+    private String fridayRange = "ShiftNumbers!B62:M73";
+    private String saturdayRange = "ShiftNumbers!B74:M85";
 
     public Schedule(List<List<Object>> times){
         this.students = building(times);
         buildMasterList();
     }
 
+    /*
+       Fills master list with stations and shifts
+    */
     private void buildMasterList(){
         List<List<Student>> checker = new ArrayList<List<Student>>();
         List<List<Student>> peaks = new ArrayList<List<Student>>();
@@ -142,6 +154,98 @@ public class Schedule {
         this.masterList.add(jan); //11
     }
 
+    public List<List<Object>> getDefaultStationNumbers(int day) throws IOException, GeneralSecurityException{
+        SheetsCommunicator sheets = new SheetsCommunicator();
+        List<List<Object>> values = new ArrayList<List<Object>>();
+        if (day == 1) {  values = sheets.getShiftDefaults(sundayRange); }
+        else if (day == 3) { values = sheets.getShiftDefaults(mondayRange); }
+        else if (day == 5) {  values = sheets.getShiftDefaults(tuesdayRange); }
+        else if (day == 7) { values = sheets.getShiftDefaults(wednesdayRange); }
+        else if (day == 9) { values = sheets.getShiftDefaults(thursdayRange); }
+        else if (day == 11) {  values = sheets.getShiftDefaults(fridayRange); }
+        else if (day == 13) {  values = sheets.getShiftDefaults(saturdayRange); }
+        return values;
+    }
+    /*
+        Fill Stations with Default numbers from database
+        @Param int day
+     */
+    public void fillStations(List<List<Object>> values) throws IOException, GeneralSecurityException{
+
+
+        Station Checker = new Station(Integer.parseInt((String)values.get(0).get(0)),Integer.parseInt((String)values.get(0).get(1)),Integer.parseInt((String)values.get(0).get(2)),
+                Integer.parseInt((String)values.get(0).get(3)), Integer.parseInt((String)values.get(0).get(4)), Integer.parseInt((String)values.get(0).get(5)), Integer.parseInt((String)values.get(0).get(6)),
+                Integer.parseInt((String)values.get(0).get(7)), Integer.parseInt((String)values.get(0).get(8)), Integer.parseInt((String)values.get(0).get(9)), Integer.parseInt((String)values.get(0).get(10)),
+                Integer.parseInt((String)values.get(0).get(11)));
+        Station Peaks = new Station(Integer.parseInt((String)values.get(1).get(0)),Integer.parseInt((String)values.get(1).get(1)),Integer.parseInt((String)values.get(1).get(2)),
+                Integer.parseInt((String)values.get(1).get(3)), Integer.parseInt((String)values.get(1).get(4)), Integer.parseInt((String)values.get(1).get(5)), Integer.parseInt((String)values.get(1).get(6)),
+                Integer.parseInt((String)values.get(1).get(7)), Integer.parseInt((String)values.get(1).get(8)), Integer.parseInt((String)values.get(1).get(9)), Integer.parseInt((String)values.get(1).get(10)),
+                Integer.parseInt((String)values.get(1).get(11)));
+        Station Hearth = new Station(Integer.parseInt((String)values.get(2).get(0)),Integer.parseInt((String)values.get(2).get(1)),Integer.parseInt((String)values.get(2).get(2)),
+                Integer.parseInt((String)values.get(2).get(3)), Integer.parseInt((String)values.get(2).get(4)), Integer.parseInt((String)values.get(2).get(5)), Integer.parseInt((String)values.get(2).get(6)),
+                Integer.parseInt((String)values.get(2).get(7)), Integer.parseInt((String)values.get(2).get(8)), Integer.parseInt((String)values.get(2).get(9)), Integer.parseInt((String)values.get(2).get(10)),
+                Integer.parseInt((String)values.get(2).get(11)));
+        Station Salads = new Station(Integer.parseInt((String)values.get(3).get(0)),Integer.parseInt((String)values.get(3).get(1)),Integer.parseInt((String)values.get(3).get(2)),
+                Integer.parseInt((String)values.get(3).get(3)), Integer.parseInt((String)values.get(3).get(4)), Integer.parseInt((String)values.get(3).get(5)), Integer.parseInt((String)values.get(3).get(6)),
+                Integer.parseInt((String)values.get(3).get(7)), Integer.parseInt((String)values.get(3).get(8)), Integer.parseInt((String)values.get(3).get(9)), Integer.parseInt((String)values.get(3).get(10)),
+                Integer.parseInt((String)values.get(3).get(11)));
+        Station Toast = new Station(Integer.parseInt((String)values.get(4).get(0)),Integer.parseInt((String)values.get(4).get(1)),Integer.parseInt((String)values.get(4).get(2)),
+                Integer.parseInt((String)values.get(4).get(3)), Integer.parseInt((String)values.get(4).get(4)), Integer.parseInt((String)values.get(4).get(5)), Integer.parseInt((String)values.get(4).get(6)),
+                Integer.parseInt((String)values.get(4).get(7)), Integer.parseInt((String)values.get(4).get(8)), Integer.parseInt((String)values.get(4).get(9)), Integer.parseInt((String)values.get(4).get(10)),
+                Integer.parseInt((String)values.get(4).get(11)));
+        Station Middie = new Station(Integer.parseInt((String)values.get(5).get(0)),Integer.parseInt((String)values.get(5).get(1)),Integer.parseInt((String)values.get(5).get(2)),
+                Integer.parseInt((String)values.get(5).get(3)), Integer.parseInt((String)values.get(5).get(4)), Integer.parseInt((String)values.get(5).get(5)), Integer.parseInt((String)values.get(5).get(6)),
+                Integer.parseInt((String)values.get(5).get(7)), Integer.parseInt((String)values.get(5).get(8)), Integer.parseInt((String)values.get(5).get(9)), Integer.parseInt((String)values.get(5).get(10)),
+                Integer.parseInt((String)values.get(5).get(11)));
+        Station Curry = new Station(Integer.parseInt((String)values.get(6).get(0)),Integer.parseInt((String)values.get(6).get(1)),Integer.parseInt((String)values.get(6).get(2)),
+                Integer.parseInt((String)values.get(6).get(3)), Integer.parseInt((String)values.get(6).get(4)), Integer.parseInt((String)values.get(6).get(5)), Integer.parseInt((String)values.get(6).get(6)),
+                Integer.parseInt((String)values.get(6).get(7)), Integer.parseInt((String)values.get(6).get(8)), Integer.parseInt((String)values.get(6).get(9)), Integer.parseInt((String)values.get(6).get(10)),
+                Integer.parseInt((String)values.get(6).get(11)));
+        Station Grange = new Station(Integer.parseInt((String)values.get(7).get(0)),Integer.parseInt((String)values.get(7).get(1)),Integer.parseInt((String)values.get(7).get(2)),
+                Integer.parseInt((String)values.get(7).get(3)), Integer.parseInt((String)values.get(7).get(4)), Integer.parseInt((String)values.get(7).get(5)), Integer.parseInt((String)values.get(7).get(6)),
+                Integer.parseInt((String)values.get(7).get(7)), Integer.parseInt((String)values.get(7).get(8)), Integer.parseInt((String)values.get(7).get(9)), Integer.parseInt((String)values.get(7).get(10)),
+                Integer.parseInt((String)values.get(7).get(11)));
+        Station Dish = new Station(Integer.parseInt((String)values.get(8).get(0)),Integer.parseInt((String)values.get(8).get(1)),Integer.parseInt((String)values.get(8).get(2)),
+                Integer.parseInt((String)values.get(8).get(3)), Integer.parseInt((String)values.get(8).get(4)), Integer.parseInt((String)values.get(8).get(5)), Integer.parseInt((String)values.get(8).get(6)),
+                Integer.parseInt((String)values.get(8).get(7)), Integer.parseInt((String)values.get(8).get(8)), Integer.parseInt((String)values.get(8).get(9)), Integer.parseInt((String)values.get(8).get(10)),
+                Integer.parseInt((String)values.get(8).get(11)));
+        Station DRA = new Station(Integer.parseInt((String)values.get(9).get(0)),Integer.parseInt((String)values.get(9).get(1)),Integer.parseInt((String)values.get(9).get(2)),
+                Integer.parseInt((String)values.get(9).get(3)), Integer.parseInt((String)values.get(9).get(4)), Integer.parseInt((String)values.get(9).get(5)), Integer.parseInt((String)values.get(9).get(6)),
+                Integer.parseInt((String)values.get(9).get(7)), Integer.parseInt((String)values.get(9).get(8)), Integer.parseInt((String)values.get(9).get(9)), Integer.parseInt((String)values.get(9).get(10)),
+                Integer.parseInt((String)values.get(9).get(11)));
+        Station ColdRunner = new Station(Integer.parseInt((String)values.get(10).get(0)),Integer.parseInt((String)values.get(10).get(1)),Integer.parseInt((String)values.get(10).get(2)),
+                Integer.parseInt((String)values.get(10).get(3)), Integer.parseInt((String)values.get(10).get(4)), Integer.parseInt((String)values.get(10).get(5)), Integer.parseInt((String)values.get(10).get(6)),
+                Integer.parseInt((String)values.get(10).get(7)), Integer.parseInt((String)values.get(10).get(8)), Integer.parseInt((String)values.get(10).get(9)), Integer.parseInt((String)values.get(10).get(10)),
+                Integer.parseInt((String)values.get(10).get(11)));
+        Station Janitor = new Station(Integer.parseInt((String)values.get(11).get(0)),Integer.parseInt((String)values.get(11).get(1)),Integer.parseInt((String)values.get(11).get(2)),
+                Integer.parseInt((String)values.get(11).get(3)), Integer.parseInt((String)values.get(11).get(4)), Integer.parseInt((String)values.get(11).get(5)), Integer.parseInt((String)values.get(11).get(6)),
+                Integer.parseInt((String)values.get(11).get(7)), Integer.parseInt((String)values.get(11).get(8)), Integer.parseInt((String)values.get(11).get(9)), Integer.parseInt((String)values.get(11).get(10)),
+                Integer.parseInt((String)values.get(11).get(11)));
+
+        List<Station> stations = new ArrayList<Station>();
+        stations.add(Checker);
+        stations.add(Peaks);
+        stations.add(Hearth);
+        stations.add(Salads);
+        stations.add(Toast);
+        stations.add(Middie);
+        stations.add(Curry);
+        stations.add(Grange);
+        stations.add(Dish);
+        stations.add(DRA);
+        stations.add(ColdRunner);
+        stations.add(Janitor);
+
+        this.stationList = stations;
+    }
+
+    /*
+       Builds list of students from list of objects retrieved from google sheets
+
+       @param List<List<Object>> times (data pulled from google sheets)
+
+
+    */
     public List<Student> building(List<List<Object>> times) {
         List<Student> students = new ArrayList<>();
         int studentIndex = 0;
@@ -167,6 +271,15 @@ public class Schedule {
         }
         return students;
     }
+
+
+    /*
+        Builds pool for students working on given day
+
+
+        @param int day (day index for intended day
+
+     */
     public List<Student> buildDayPool(int day)
     {
         List<Student> pool = new ArrayList<Student>();
@@ -178,6 +291,7 @@ public class Schedule {
         }
         return pool;
     }
+
     /*
         Builds daily pool of students separated by Morning, Early Mid, Late mid, and Dinner shifts
 
@@ -199,10 +313,12 @@ public class Schedule {
 
      for(int i = 0; i < studentsWorking.size(); i++){
          //Weekday morning (starting before 8am)
-      try{   if(studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") &&
+      try{
+          //System.out.println(studentsWorking.get(i).getName());
+          if(studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") &&
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) < 8 &&
          Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 5 && day != 1 && day != 13){
-             System.out.println("Morning: " + studentsWorking.get(i).getName())   ;
+             //System.out.println("Morning: " + studentsWorking.get(i).getName())   ;
              pool.get(0).add(studentsWorking.get(i));
              if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
                  pool.get(2).add(studentsWorking.get(i));
@@ -269,12 +385,19 @@ public class Schedule {
              pool.get(2).add(studentsWorking.get(i));
          }}
          catch(Exception exception){
-          System.out.println("Cannot convert"); //todo: check with justin on this
+          System.out.println("Cannot convert********************************************"); //todo: check with justin on this
          }
      }
         return pool;
     }
 
+    /*
+           Checks if a student with given name works during given shift
+
+           @param List<Student> pool (list of people working during a shift)
+           @param String name (name of student we are checking for)
+
+        */
     public Boolean worksShift( List<Student> pool, String name){
         for(int i = 0; i < pool.size(); i++){
             if(pool.get(i).getName().compareTo(name) == 0){
@@ -326,13 +449,14 @@ public class Schedule {
         this.stationList.get(stationID).addDinnerStudent();
     }
 
-    public List<List<List<Student>>> createDuck(List<List<Student>> pool, List<Station> stationList){
-        this.stationList = stationList;
+    public List<List<List<Student>>> createDuck(List<List<Student>> pool){
         this.pool = pool;
 
 
         while(pool.get(0).size() > 0) {
-
+            System.out.println("hang4");
+            System.out.println(pool.get(0).size());
+            System.out.println(pool.get(0).get(0).getName());
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
                if(temp.getMultipleShifts()){
@@ -1087,6 +1211,7 @@ public class Schedule {
         }
 
         while(pool.get(1).size() > 0) {
+            System.out.println("hang5");
             if (stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() && pool.get(1).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(1), 1);
                 if(temp.getMultipleShifts()){
@@ -1703,6 +1828,7 @@ public class Schedule {
 
         }
         while(pool.get(2).size() > 0) {
+            System.out.println("hang7");
             if (stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid() && pool.get(2).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(2), 1);
                 if(temp.getMultipleShifts()){
