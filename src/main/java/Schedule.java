@@ -454,15 +454,28 @@ public class Schedule {
 
 
         while(pool.get(0).size() > 0) {
-            System.out.println("hang4");
+            System.out.println("hanging");
             System.out.println(pool.get(0).size());
-            System.out.println(pool.get(0).get(0).getName());
+            if(pool.get(0).size() == 1){
+                System.out.println(pool.get(0).get(0).getName());
+                for(int i = 0; i < stationList.size(); i++){
+                    System.out.println("Station #: " + i);
+                    System.out.println("Morning Min: " + stationList.get(i).getMorningPeopleNeeded() + " Mid Min: " + stationList.get(i).getEarlyMidPeopleNeeded());
+                    System.out.println("Morning Max: " + stationList.get(i).getMorningMaxWorkers() + " Mid Max: " + stationList.get(i).getEarlyMidMaxWorkers());
+                    System.out.println("Total Students: " + stationList.get(i).getTotalMorning() + " Total Mid: " + stationList.get(i).getEarlyMid());
+
+                }
+            }
+
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
                if(temp.getMultipleShifts()){
                    if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                        if(stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid()){
                           addMorningEarlyMid(0, temp);
+                       }
+                       else if(neededMidMinShiftsFilled(stationList) && stationList.get(0).getEarlyMid() <= stationList.get(0).getEarlyMidMaxWorkers()){
+                           addMorningEarlyMid(0, temp);
                        }
                    }
                    else if(worksShift(pool.get(3), temp.getName())){
@@ -483,6 +496,9 @@ public class Schedule {
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                         if(stationList.get(1).getEarlyMidPeopleNeeded() > stationList.get(1).getEarlyMid()){
+                            addMorningEarlyMid(1, temp);
+                        }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(1).getEarlyMid() <= stationList.get(1).getEarlyMidMaxWorkers()){
                             addMorningEarlyMid(1, temp);
                         }
                     }
@@ -506,6 +522,9 @@ public class Schedule {
                         if(stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid()){
                             addMorningEarlyMid(2, temp);
                         }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(2).getEarlyMid() <= stationList.get(2).getEarlyMidMaxWorkers()){
+                            addMorningEarlyMid(2, temp);
+                        }
                     }
                     else if(worksShift(pool.get(3), temp.getName())){
                         if((stationList.get(2).getEarlyMidPeopleNeeded() > stationList.get(2).getEarlyMid() || stationList.get(2).getLateMidPeopleNeeded() > stationList.get(2).getLateMid()) &&
@@ -525,6 +544,9 @@ public class Schedule {
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                         if(stationList.get(3).getEarlyMidPeopleNeeded() > stationList.get(3).getEarlyMid()){
+                            addMorningEarlyMid(3, temp);
+                        }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(3).getEarlyMid() <= stationList.get(3).getEarlyMidMaxWorkers()){
                             addMorningEarlyMid(3, temp);
                         }
                     }
@@ -548,6 +570,9 @@ public class Schedule {
                         if(stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid()){
                             addMorningEarlyMid(4, temp);
                         }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(4).getEarlyMid() <= stationList.get(4).getEarlyMidMaxWorkers()){
+                            addMorningEarlyMid(4, temp);
+                        }
                     }
                     else if(worksShift(pool.get(3), temp.getName())){
                         if((stationList.get(4).getEarlyMidPeopleNeeded() > stationList.get(4).getEarlyMid() || stationList.get(4).getLateMidPeopleNeeded() > stationList.get(4).getLateMid()) &&
@@ -567,6 +592,9 @@ public class Schedule {
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                         if(stationList.get(5).getEarlyMidPeopleNeeded() > stationList.get(5).getEarlyMid()){
+                            addMorningEarlyMid(5, temp);
+                        }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(5).getEarlyMid() <= stationList.get(5).getEarlyMidMaxWorkers()){
                             addMorningEarlyMid(5, temp);
                         }
                     }
@@ -590,6 +618,9 @@ public class Schedule {
                         if(stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid()){
                             addMorningEarlyMid(6, temp);
                         }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(6).getEarlyMid() <= stationList.get(6).getEarlyMidMaxWorkers()){
+                            addMorningEarlyMid(6, temp);
+                        }
                     }
                     else if(worksShift(pool.get(3), temp.getName())){
                         if((stationList.get(6).getEarlyMidPeopleNeeded() > stationList.get(6).getEarlyMid() || stationList.get(6).getLateMidPeopleNeeded() > stationList.get(6).getLateMid()) &&
@@ -609,6 +640,9 @@ public class Schedule {
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                         if(stationList.get(7).getEarlyMidPeopleNeeded() > stationList.get(7).getEarlyMid()){
+                            addMorningEarlyMid(7, temp);
+                        }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(7).getEarlyMid() <= stationList.get(7).getEarlyMidMaxWorkers()){
                             addMorningEarlyMid(7, temp);
                         }
                     }
@@ -632,6 +666,9 @@ public class Schedule {
                         if(stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid()){
                             addMorningEarlyMid(8, temp);
                         }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(8).getEarlyMid() <= stationList.get(8).getEarlyMidMaxWorkers()){
+                            addMorningEarlyMid(0, temp);
+                        }
                     }
                     else if(worksShift(pool.get(3), temp.getName())){
                         if((stationList.get(8).getEarlyMidPeopleNeeded() > stationList.get(8).getEarlyMid() || stationList.get(8).getLateMidPeopleNeeded() > stationList.get(8).getLateMid()) &&
@@ -653,6 +690,9 @@ public class Schedule {
                         if(stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid()){
                             addMorningEarlyMid(9, temp);
                         }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(9).getEarlyMid() <= stationList.get(9).getEarlyMidMaxWorkers()){
+                            addMorningEarlyMid(9, temp);
+                        }
                     }
                     else if(worksShift(pool.get(3), temp.getName())){
                         if((stationList.get(9).getEarlyMidPeopleNeeded() > stationList.get(9).getEarlyMid() || stationList.get(9).getLateMidPeopleNeeded() > stationList.get(9).getLateMid()) &&
@@ -672,6 +712,9 @@ public class Schedule {
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
                         if(stationList.get(10).getEarlyMidPeopleNeeded() > stationList.get(10).getEarlyMid()){
+                            addMorningEarlyMid(10, temp);
+                        }
+                        else if(neededMidMinShiftsFilled(stationList) && stationList.get(10).getEarlyMid() <= stationList.get(10).getEarlyMidMaxWorkers()){
                             addMorningEarlyMid(10, temp);
                         }
                     }
@@ -3259,6 +3302,19 @@ public class Schedule {
 
     }
     /// TODO: cool idea, in coverage I can mark priority based on how well shifts are filled with current schedule
+
+    private Boolean neededMidMinShiftsFilled(List<Station> stations){
+        Boolean filled = true;
+        for(Station station: stations){
+            if(station.getMorningPeopleNeeded() > station.getTotalMorning()){
+                if(station.getEarlyMidPeopleNeeded() > station.getEarlyMid()){
+                    filled = false;
+                }
+            }
+        }
+        return filled;
+    }
+
     private Boolean availableMidMinShiftsFilled(List<Station> stations){
         Boolean filled = true;
         for(Station station: stations ){
