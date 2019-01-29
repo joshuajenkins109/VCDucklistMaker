@@ -172,7 +172,7 @@ public class Schedule {
      */
     public void fillStations(List<List<Object>> values) throws IOException, GeneralSecurityException{
 
-
+        //TODO: make this a loop like a smart person
         Station Checker = new Station(Integer.parseInt((String)values.get(0).get(0)),Integer.parseInt((String)values.get(0).get(1)),Integer.parseInt((String)values.get(0).get(2)),
                 Integer.parseInt((String)values.get(0).get(3)), Integer.parseInt((String)values.get(0).get(4)), Integer.parseInt((String)values.get(0).get(5)), Integer.parseInt((String)values.get(0).get(6)),
                 Integer.parseInt((String)values.get(0).get(7)), Integer.parseInt((String)values.get(0).get(8)), Integer.parseInt((String)values.get(0).get(9)), Integer.parseInt((String)values.get(0).get(10)),
@@ -238,6 +238,39 @@ public class Schedule {
 
         this.stationList = stations;
     }
+
+    private Boolean leadsNeeded(int shift){
+        Boolean need = false;
+        for(Station station: stationList){
+            if(shift == 0 && station.getMorningLeads() > station.getAssignedMorningLeads()){
+                need = true;
+                break;
+            }
+            if(shift == 1 &&station.getEarlyLeads() > station.getAssignedEarlyLeads()){
+                need = true;
+                break;
+            }
+            if(shift == 2 && station.getLateLeads() > station.getAssignedLateLeads()){
+                need = true;
+                break;
+            }
+            if(shift == 3 && station.getDinnerLeads() > station.getAssignedDinnerLeads()){
+                need = true;
+                break;
+
+            }
+        }
+        return need;
+    }
+
+    public List<Student> getLeads(List<Student> pool){
+        List<Student> leads = new ArrayList<>();
+        for(Student student: pool){
+            if(student.getLead()) leads.add(student);
+        }
+        return leads;
+    }
+
 
     /*
        Builds list of students from list of objects retrieved from google sheets
@@ -427,6 +460,27 @@ public class Schedule {
         this.stationList.get(stationID).addDinnerStudent();
     }
 
+    private void addLeadToShift(int shift, int stationID,  Student temp){
+        this.masterList.get(stationID).get(shift).add(temp);
+        this.pool.set(shift, removeByName(temp.getName(), pool.get(shift)));
+        if(shift == 0){
+            this.stationList.get(stationID).addMorningLead();
+            this.stationList.get(stationID).addMorningStudent();
+        }
+        if(shift == 1){
+            this.stationList.get(stationID).addEarlyLead();
+            this.stationList.get(stationID).addEarlyMidStudent();
+        }
+        if(shift == 2){
+            this.stationList.get(stationID).addLateLead();
+            this.stationList.get(stationID).addLateMidStudent();
+        }
+        if(shift == 3){
+            this.stationList.get(stationID).addDinnerLead();
+            this.stationList.get(stationID).addDinnerStudent();
+        }
+    }
+
     private void addMorningEarlyMid( int stationID, Student temp){
         this.masterList.get(stationID).get(0).add(temp);
         this.masterList.get(stationID).get(1).add(temp);
@@ -449,24 +503,76 @@ public class Schedule {
         this.stationList.get(stationID).addDinnerStudent();
     }
 
+    private void scheduleLeads(int shift, List<Student> leads){
+        while(!leads.isEmpty() && leadsNeeded(shift)){
+            for(int i = 0; i < stationList.size(); i++)
+            {
+                if(!leads.isEmpty()){
+                    if(shift == 0){
+                        if(stationList.get(i).getAssignedMorningLeads() < stationList.get(i).getMorningLeads()){
+                            Student temp = randomChooser(leads, i+1);
+                            addLeadToShift(shift, i, temp);
+                            leads = removeByName(temp.getName(), leads);
+                            if(temp.getMultipleShifts()){
+                                if(worksShift(pool.get(1),temp.getName()) && !worksShift(pool.get(3), temp.getName())){
+                                    addLeadToShift(1, i, temp);
+                                }
+                                else if(worksShift(pool.get(3), temp.getName())){
+                                    addLeadToShift(1, i, temp);
+                                    addLeadToShift(2, i, temp);
+                                    addLeadToShift(3, i, temp);
+                                }
+                            }
+
+                            //if works multiple shifts -> also add (dont worry about scheduling around mid needs (lead request should be used sparingly)
+                        }
+                    }
+                    else if(shift == 1){
+                        if(stationList.get(i).getAssignedEarlyLeads() < stationList.get(i).getEarlyLeads()){
+                            Student temp = randomChooser(leads, i+1);
+                            addLeadToShift(shift, i, temp);
+                            leads = removeByName(temp.getName(), leads);
+                            if(temp.getMultipleShifts()){
+                                if(worksShift(pool.get(3),temp.getName())){
+                                    addLeadToShift(2, i, temp);
+                                    addLeadToShift(3, i, temp);
+                                }
+                            }
+
+                        }
+                    }
+                    else if(shift == 2){
+                        if(stationList.get(i).getAssignedLateLeads() < stationList.get(i).getLateLeads()){
+                            Student temp = randomChooser(leads, i+1);
+                            addLeadToShift(shift, i, temp);
+                            leads = removeByName(temp.getName(), leads);
+                            if(temp.getMultipleShifts()){
+                                if(worksShift(pool.get(3),temp.getName())){
+                                    addLeadToShift(3, i, temp);
+                                }
+                            }
+
+                        }
+
+                    }
+                    else if(shift == 3){
+                        if(stationList.get(i).getAssignedDinnerLeads() < stationList.get(i).getDinnerLeads()){
+                            Student temp = randomChooser(leads, i+1);
+                            addLeadToShift(shift, i, temp);
+                            leads = removeByName(temp.getName(), leads);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
     public List<List<List<Student>>> createDuck(List<List<Student>> pool){
         this.pool = pool;
 
-
         while(pool.get(0).size() > 0) {
-            System.out.println("hanging");
-            System.out.println(pool.get(0).size());
-            if(pool.get(0).size() == 1){
-                System.out.println(pool.get(0).get(0).getName());
-                for(int i = 0; i < stationList.size(); i++){
-                    System.out.println("Station #: " + i);
-                    System.out.println("Morning Min: " + stationList.get(i).getMorningPeopleNeeded() + " Mid Min: " + stationList.get(i).getEarlyMidPeopleNeeded());
-                    System.out.println("Morning Max: " + stationList.get(i).getMorningMaxWorkers() + " Mid Max: " + stationList.get(i).getEarlyMidMaxWorkers());
-                    System.out.println("Total Students: " + stationList.get(i).getTotalMorning() + " Total Mid: " + stationList.get(i).getEarlyMid());
-
-                }
-            }
-
+            if(leadsNeeded(0)) scheduleLeads(0, getLeads(pool.get(0)));
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
                if(temp.getMultipleShifts()){
@@ -1254,7 +1360,7 @@ public class Schedule {
         }
 
         while(pool.get(1).size() > 0) {
-            System.out.println("hang5");
+            if(leadsNeeded(1)) scheduleLeads(1, getLeads(pool.get(1)));
             if (stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() && pool.get(1).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(1), 1);
                 if(temp.getMultipleShifts()){
@@ -1871,7 +1977,7 @@ public class Schedule {
 
         }
         while(pool.get(2).size() > 0) {
-            System.out.println("hang7");
+            if(leadsNeeded(2)) scheduleLeads(2, getLeads(pool.get(2)));
             if (stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid() && pool.get(2).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(2), 1);
                 if(temp.getMultipleShifts()){
@@ -2487,6 +2593,7 @@ public class Schedule {
 
         }
         while(pool.get(3).size() > 0) {
+            if(leadsNeeded(3)) scheduleLeads(3, getLeads(pool.get(3)));
             if (stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner() && pool.get(3).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(3), 1);
                 masterList.get(0).get(3).add(temp);

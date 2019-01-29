@@ -24,6 +24,11 @@ public class Station {
     private int lateLeads;
     private int dinnerLeads;
 
+    private int assignedMorningLeads;
+    private int assignedEarlyLeads;
+    private int assignedLateLeads;
+    private int assignedDinnerLeads;
+
 
     /*
         UI -> day -> usual variables on day <Option to change>
@@ -50,7 +55,19 @@ public class Station {
         this.earlyMidStudents = 0;
         this.lateMidStudents = 0;
         this.dinnerStudents = 0;
+        this.assignedMorningLeads = 0;
+        this.assignedEarlyLeads = 0;
+        this.assignedLateLeads = 0;
+        this.assignedDinnerLeads = 0;
     }
+
+    public void addMorningLead(){ this.assignedMorningLeads++;}
+
+    public void addEarlyLead(){ this.assignedEarlyLeads++;}
+
+    public void addLateLead(){ this.assignedLateLeads++;}
+
+    public void addDinnerLead(){ this.assignedDinnerLeads++;}
 
     public void addDinnerStudent(){this.dinnerStudents++;}
 
@@ -198,6 +215,67 @@ public class Station {
         this.lateMidMaxWorkers = lateMidMaxWorkers;
     }
 
+    public int getMorningLeads() {
+        return morningLeads;
+    }
 
+    public void setMorningLeads(int morningLeads) {
+        this.morningLeads = morningLeads;
+    }
 
+    public int getEarlyLeads() {
+        return earlyLeads;
+    }
+
+    public void setEarlyLeads(int earlyLeads) {
+        this.earlyLeads = earlyLeads;
+    }
+
+    public int getLateLeads() {
+        return lateLeads;
+    }
+
+    public void setLateLeads(int lateLeads) {
+        this.lateLeads = lateLeads;
+    }
+
+    public int getDinnerLeads() {
+        return dinnerLeads;
+    }
+
+    public void setDinnerLeads(int dinnerLeads) {
+        this.dinnerLeads = dinnerLeads;
+    }
+
+    public int getAssignedMorningLeads() {
+        return assignedMorningLeads;
+    }
+
+    public void setAssignedMorningLeads(int assignedMorningLeads) {
+        this.assignedMorningLeads = assignedMorningLeads;
+    }
+
+    public int getAssignedEarlyLeads() {
+        return assignedEarlyLeads;
+    }
+
+    public void setAssignedEarlyLeads(int assignedEarlyLeads) {
+        this.assignedEarlyLeads = assignedEarlyLeads;
+    }
+
+    public int getAssignedLateLeads() {
+        return assignedLateLeads;
+    }
+
+    public void setAssignedLateLeads(int assignedLateLeads) {
+        this.assignedLateLeads = assignedLateLeads;
+    }
+
+    public int getAssignedDinnerLeads() {
+        return assignedDinnerLeads;
+    }
+
+    public void setAssignedDinnerLeads(int assignedDinnerLeads) {
+        this.assignedDinnerLeads = assignedDinnerLeads;
+    }
 }

@@ -114,7 +114,7 @@ public class SheetsQuickstart {
                 rui.setMorningDuckList(printer.get(0));
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
-                frame.setVisible(false);
+                shiftNumberChangeFrame.setVisible(false);
                 resultsFrame.setVisible(true);
 
 
@@ -133,7 +133,7 @@ public class SheetsQuickstart {
                 rui.setMorningDuckList(printer.get(0));
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
-                frame.setVisible(false);
+                shiftNumberChangeFrame.setVisible(false);
                 resultsFrame.setVisible(true);
             }
             if(ui.getAction() == 2){
@@ -196,9 +196,9 @@ public class SheetsQuickstart {
 
                TODO: Write to document
 
-                TODO: Make schedule reading more efficient at catching human error (cl vs CL)
+               TODO: Make schedule reading more efficient at catching human error (cl vs CL)
 
-                TODO: Check if need to fix double checker
+               TODO: Check if need to fix double checker
 
                TODO: placement based on leads, float position
 
