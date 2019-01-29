@@ -35,6 +35,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Morning Min"/>
@@ -58,6 +59,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Early Mid Min"/>
@@ -81,6 +83,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Late Mid Min"/>
@@ -104,6 +107,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Dinner Min"/>
@@ -127,6 +131,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Morning Max"/>
@@ -150,6 +155,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Early Mid Max"/>
@@ -173,6 +179,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Late Mid Max"/>
@@ -196,6 +203,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Dinner Max"/>
@@ -219,6 +227,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Morning Leads"/>
@@ -242,6 +251,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Early Mid Leads"/>
@@ -265,6 +275,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10173531"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Late Mid Leads"/>
@@ -288,6 +299,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10177471"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Checker"/>
@@ -311,6 +323,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Peaks"/>
@@ -334,6 +347,8 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10176191"/>
+              <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Hearth"/>
             </properties>
@@ -356,6 +371,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Salads"/>
@@ -379,6 +395,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10176191"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Toast"/>
@@ -402,6 +419,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Middie"/>
@@ -425,6 +443,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10176191"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Curry"/>
@@ -448,6 +467,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Grange"/>
@@ -471,6 +491,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10176191"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Dish"/>
@@ -494,6 +515,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="DRA"/>
@@ -517,6 +539,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-10176191"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Cold Runner"/>
@@ -589,6 +612,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Janitor Helper"/>
@@ -612,6 +636,7 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-9177641"/>
               <editable value="false"/>
               <horizontalAlignment value="0"/>
               <text value="Dinner Leads"/>
@@ -626,7 +651,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="985ca" class="javax.swing.JTextField" binding="HearthMorningMin">
         <constraints>
@@ -635,7 +663,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="cb276" class="javax.swing.JTextField" binding="SaladsMorningMin">
         <constraints>
@@ -644,7 +675,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ce38c" class="javax.swing.JTextField" binding="ToastMorningMin">
         <constraints>
@@ -653,7 +687,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e56c9" class="javax.swing.JTextField" binding="MiddieMorningMin">
         <constraints>
@@ -662,7 +699,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e69c" class="javax.swing.JTextField" binding="CurryMorningMin">
         <constraints>
@@ -671,7 +711,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="7a29e" class="javax.swing.JTextField" binding="GrangeMorningMin">
         <constraints>
@@ -680,7 +723,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="996f5" class="javax.swing.JTextField" binding="DishMorningMin">
         <constraints>
@@ -689,7 +735,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2624a" class="javax.swing.JTextField" binding="DRAMorningMin">
         <constraints>
@@ -698,7 +747,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="8f1a0" class="javax.swing.JTextField" binding="CRMorningMin">
         <constraints>
@@ -707,7 +759,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b65e3" class="javax.swing.JTextField" binding="JanitorMorningMin">
         <constraints>
@@ -716,7 +771,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d9e56" class="javax.swing.JTextField" binding="PeaksEarlyMin">
         <constraints>
@@ -725,7 +783,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e8f77" class="javax.swing.JTextField" binding="HearthEarlyMin">
         <constraints>
@@ -734,7 +795,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="eb879" class="javax.swing.JTextField" binding="SaladsEarlyMin">
         <constraints>
@@ -743,7 +807,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d81e0" class="javax.swing.JTextField" binding="ToastEarlyMin">
         <constraints>
@@ -752,7 +819,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="845e3" class="javax.swing.JTextField" binding="MiddieEarlyMin">
         <constraints>
@@ -761,7 +831,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9b8f0" class="javax.swing.JTextField" binding="CurryEarlyMin">
         <constraints>
@@ -770,7 +843,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2c827" class="javax.swing.JTextField" binding="GrangeEarlyMin">
         <constraints>
@@ -779,7 +855,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="eb4a0" class="javax.swing.JTextField" binding="DishEarlyMin">
         <constraints>
@@ -788,7 +867,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b4000" class="javax.swing.JTextField" binding="DRAEarlyMin">
         <constraints>
@@ -797,7 +879,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="87b53" class="javax.swing.JTextField" binding="PeaksLateMin">
         <constraints>
@@ -806,7 +891,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="a8e07" class="javax.swing.JTextField" binding="HearthLateMin">
         <constraints>
@@ -815,7 +903,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="bc662" class="javax.swing.JTextField" binding="SaladsLateMin">
         <constraints>
@@ -824,16 +915,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
-      </component>
-      <component id="af80b" class="javax.swing.JTextField" binding="ToastLateMin">
-        <constraints>
-          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="da253" class="javax.swing.JTextField" binding="MiddieLateMin">
         <constraints>
@@ -842,7 +927,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="bda15" class="javax.swing.JTextField" binding="CurryLateMin">
         <constraints>
@@ -851,7 +939,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="7b93c" class="javax.swing.JTextField" binding="GrangeLateMin">
         <constraints>
@@ -860,7 +951,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2973f" class="javax.swing.JTextField" binding="DishLateMin">
         <constraints>
@@ -869,7 +963,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2ba14" class="javax.swing.JTextField" binding="DRALateMin">
         <constraints>
@@ -878,7 +975,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="bd783" class="javax.swing.JTextField" binding="CREarlyMin">
         <constraints>
@@ -887,7 +987,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="29988" class="javax.swing.JTextField" binding="JanitorEarlyMin">
         <constraints>
@@ -896,7 +999,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="74fdb" class="javax.swing.JTextField" binding="CRLateMin">
         <constraints>
@@ -905,7 +1011,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="37afa" class="javax.swing.JTextField" binding="PeaksDinnerMin">
         <constraints>
@@ -914,7 +1023,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d26e6" class="javax.swing.JTextField" binding="HearthDinnerMin">
         <constraints>
@@ -923,7 +1035,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4a2be" class="javax.swing.JTextField" binding="SaladsDinnerMin">
         <constraints>
@@ -932,7 +1047,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4355e" class="javax.swing.JTextField" binding="ToastDinnerMin">
         <constraints>
@@ -941,7 +1059,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2614a" class="javax.swing.JTextField" binding="MiddieDinnerMin">
         <constraints>
@@ -950,7 +1071,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="82226" class="javax.swing.JTextField" binding="CurryDinnerMin">
         <constraints>
@@ -959,7 +1083,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="191d7" class="javax.swing.JTextField" binding="GrangeDinnerMin">
         <constraints>
@@ -968,7 +1095,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b77b9" class="javax.swing.JTextField" binding="DishDinnerMin">
         <constraints>
@@ -977,7 +1107,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4e8d7" class="javax.swing.JTextField" binding="DRADinnerMin">
         <constraints>
@@ -986,7 +1119,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="5b9a9" class="javax.swing.JTextField" binding="JanitorLateMin">
         <constraints>
@@ -995,7 +1131,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="cbc6b" class="javax.swing.JTextField" binding="CRDinnerMin">
         <constraints>
@@ -1004,7 +1143,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="95183" class="javax.swing.JTextField" binding="JanitorDinnerMin">
         <constraints>
@@ -1013,7 +1155,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ca8aa" class="javax.swing.JTextField" binding="PeaksMorningMax">
         <constraints>
@@ -1022,7 +1167,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="84a33" class="javax.swing.JTextField" binding="HearthMorningMax">
         <constraints>
@@ -1031,7 +1179,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="411ea" class="javax.swing.JTextField" binding="SaladsMorningMax">
         <constraints>
@@ -1040,7 +1191,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b0c9a" class="javax.swing.JTextField" binding="ToastMorningMax">
         <constraints>
@@ -1049,7 +1203,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="c16a6" class="javax.swing.JTextField" binding="MiddieMorningMax">
         <constraints>
@@ -1058,7 +1215,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="5477c" class="javax.swing.JTextField" binding="CurryMorningMax">
         <constraints>
@@ -1067,7 +1227,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="538c3" class="javax.swing.JTextField" binding="GrangeMorningMax">
         <constraints>
@@ -1076,7 +1239,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9a4c8" class="javax.swing.JTextField" binding="DishMorningMax">
         <constraints>
@@ -1085,7 +1251,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="7c7e5" class="javax.swing.JTextField" binding="DRAMorningMax">
         <constraints>
@@ -1094,7 +1263,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="43851" class="javax.swing.JTextField" binding="CRMorningMax">
         <constraints>
@@ -1103,7 +1275,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="8ca61" class="javax.swing.JTextField" binding="JanitorMorningMax">
         <constraints>
@@ -1112,7 +1287,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="5511" class="javax.swing.JTextField" binding="CheckerEarlyMax">
         <constraints>
@@ -1121,7 +1299,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="93460" class="javax.swing.JTextField" binding="PeaksEarlyMax">
         <constraints>
@@ -1130,7 +1311,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="74ce9" class="javax.swing.JTextField" binding="HearthEarlyMax">
         <constraints>
@@ -1139,7 +1323,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="3fdc4" class="javax.swing.JTextField" binding="SaladsEarlyMax">
         <constraints>
@@ -1148,7 +1335,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="62c0f" class="javax.swing.JTextField" binding="ToastEarlyMax">
         <constraints>
@@ -1157,7 +1347,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="39e14" class="javax.swing.JTextField" binding="MiddieEarlyMax">
         <constraints>
@@ -1166,7 +1359,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9c56f" class="javax.swing.JTextField" binding="CurryEarlyMax">
         <constraints>
@@ -1175,7 +1371,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="5d057" class="javax.swing.JTextField" binding="GrangeEarlyMax">
         <constraints>
@@ -1184,7 +1383,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f47b1" class="javax.swing.JTextField" binding="DishEarlyMax">
         <constraints>
@@ -1193,7 +1395,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="743e3" class="javax.swing.JTextField" binding="DRAEarlyMax">
         <constraints>
@@ -1202,7 +1407,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="7b738" class="javax.swing.JTextField" binding="CREarlyMax">
         <constraints>
@@ -1211,7 +1419,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e4e47" class="javax.swing.JTextField" binding="JanitorEarlyMax">
         <constraints>
@@ -1220,7 +1431,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="7f442" class="javax.swing.JTextField" binding="CheckerLateMax">
         <constraints>
@@ -1229,7 +1443,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="a522b" class="javax.swing.JTextField" binding="PeaksLateMax">
         <constraints>
@@ -1238,7 +1455,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9899e" class="javax.swing.JTextField" binding="HearthLateMax">
         <constraints>
@@ -1247,7 +1467,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="82297" class="javax.swing.JTextField" binding="SaladsLateMax">
         <constraints>
@@ -1256,7 +1479,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="cc396" class="javax.swing.JTextField" binding="ToastLateMax">
         <constraints>
@@ -1265,7 +1491,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="5362d" class="javax.swing.JTextField" binding="MiddieLateMax">
         <constraints>
@@ -1274,7 +1503,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f248d" class="javax.swing.JTextField" binding="CurryLateMax">
         <constraints>
@@ -1283,7 +1515,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="34624" class="javax.swing.JTextField" binding="GrangeLateMax">
         <constraints>
@@ -1292,7 +1527,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d1882" class="javax.swing.JTextField" binding="DishLateMax">
         <constraints>
@@ -1301,7 +1539,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="37d5e" class="javax.swing.JTextField" binding="DRALateMax">
         <constraints>
@@ -1310,7 +1551,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="feeec" class="javax.swing.JTextField" binding="CRLateMax">
         <constraints>
@@ -1319,7 +1563,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="76897" class="javax.swing.JTextField" binding="JanitorLateMax">
         <constraints>
@@ -1328,7 +1575,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d06bf" class="javax.swing.JTextField" binding="CheckerDinnerMax">
         <constraints>
@@ -1337,7 +1587,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="a6dd7" class="javax.swing.JTextField" binding="PeaksDinnerMax">
         <constraints>
@@ -1346,7 +1599,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e5eff" class="javax.swing.JTextField" binding="HearthDinnerMax">
         <constraints>
@@ -1355,7 +1611,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f285" class="javax.swing.JTextField" binding="SaladsDinnerMax">
         <constraints>
@@ -1364,7 +1623,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b4b50" class="javax.swing.JTextField" binding="ToastDinnerMax">
         <constraints>
@@ -1373,7 +1635,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="308e8" class="javax.swing.JTextField" binding="MiddieDinnerMax">
         <constraints>
@@ -1382,7 +1647,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="802de" class="javax.swing.JTextField" binding="CurryDinnerMax">
         <constraints>
@@ -1391,7 +1659,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="c43cf" class="javax.swing.JTextField" binding="GrangeDinnerMax">
         <constraints>
@@ -1400,7 +1671,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="88596" class="javax.swing.JTextField" binding="DishDinnerMax">
         <constraints>
@@ -1409,7 +1683,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e2d02" class="javax.swing.JTextField" binding="DRADinnerMax">
         <constraints>
@@ -1418,7 +1695,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="58b28" class="javax.swing.JTextField" binding="CRDinnerMax">
         <constraints>
@@ -1427,7 +1707,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="8155c" class="javax.swing.JTextField" binding="JanitorDinnerMax">
         <constraints>
@@ -1436,7 +1719,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="dbd2e" class="javax.swing.JTextField" binding="CheckerMorningLeads">
         <constraints>
@@ -1445,7 +1731,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f1014" class="javax.swing.JTextField" binding="PeaksMorningLeads">
         <constraints>
@@ -1454,7 +1743,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="98615" class="javax.swing.JTextField" binding="HearthMorningLeads">
         <constraints>
@@ -1463,7 +1755,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="1a958" class="javax.swing.JTextField" binding="SaladsMorningLeads">
         <constraints>
@@ -1472,7 +1767,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9a4af" class="javax.swing.JTextField" binding="ToastMorningLeads">
         <constraints>
@@ -1481,7 +1779,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="a4f77" class="javax.swing.JTextField" binding="MiddieMorningLeads">
         <constraints>
@@ -1490,7 +1791,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="81cf4" class="javax.swing.JTextField" binding="CurryMorningLeads">
         <constraints>
@@ -1499,7 +1803,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="bb91a" class="javax.swing.JTextField" binding="GrangeMorningLeads">
         <constraints>
@@ -1508,7 +1815,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ded7e" class="javax.swing.JTextField" binding="DishMorningLeads">
         <constraints>
@@ -1517,7 +1827,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="65689" class="javax.swing.JTextField" binding="DRAMorningLeads">
         <constraints>
@@ -1526,7 +1839,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="e4a4b" class="javax.swing.JTextField" binding="CRMorningLeads">
         <constraints>
@@ -1535,7 +1851,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="3d3bf" class="javax.swing.JTextField" binding="JanitorMorningLeads">
         <constraints>
@@ -1544,7 +1863,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="64c4" class="javax.swing.JTextField" binding="CheckerEarlyLeads">
         <constraints>
@@ -1553,7 +1875,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4e11b" class="javax.swing.JTextField" binding="PeaksEarlyLeads">
         <constraints>
@@ -1562,7 +1887,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ba2b2" class="javax.swing.JTextField" binding="HearthEarlyLeads">
         <constraints>
@@ -1571,7 +1899,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="124af" class="javax.swing.JTextField" binding="SaladsEarlyLeads">
         <constraints>
@@ -1580,7 +1911,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="675a7" class="javax.swing.JTextField" binding="ToastEarlyLeads">
         <constraints>
@@ -1589,7 +1923,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4e2d0" class="javax.swing.JTextField" binding="MiddieEarlyLeads">
         <constraints>
@@ -1598,7 +1935,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="eee7c" class="javax.swing.JTextField" binding="CurryEarlyLeads">
         <constraints>
@@ -1607,7 +1947,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="35d21" class="javax.swing.JTextField" binding="GrangeEarlyLeads">
         <constraints>
@@ -1616,7 +1959,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="d10fc" class="javax.swing.JTextField" binding="DishEarlyLeads">
         <constraints>
@@ -1625,7 +1971,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="208e" class="javax.swing.JTextField" binding="DRAEarlyLeads">
         <constraints>
@@ -1634,7 +1983,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="37668" class="javax.swing.JTextField" binding="CREarlyLeads">
         <constraints>
@@ -1643,7 +1995,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="8bfbc" class="javax.swing.JTextField" binding="JanitorEarlyLeads">
         <constraints>
@@ -1652,7 +2007,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2de71" class="javax.swing.JTextField" binding="CheckerLateLeads">
         <constraints>
@@ -1661,7 +2019,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="84d1d" class="javax.swing.JTextField" binding="PeaksLateLeads">
         <constraints>
@@ -1670,7 +2031,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b095b" class="javax.swing.JTextField" binding="HearthLateLeads">
         <constraints>
@@ -1679,7 +2043,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="71182" class="javax.swing.JTextField" binding="SaladsLateLeads">
         <constraints>
@@ -1688,7 +2055,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="6ff6b" class="javax.swing.JTextField" binding="ToastLateLeads">
         <constraints>
@@ -1697,7 +2067,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="47e1b" class="javax.swing.JTextField" binding="MiddieLateLeads">
         <constraints>
@@ -1706,7 +2079,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f6562" class="javax.swing.JTextField" binding="CurryLateLeads">
         <constraints>
@@ -1715,7 +2091,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="c770f" class="javax.swing.JTextField" binding="GrangeLateLeads">
         <constraints>
@@ -1724,7 +2103,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="38fa9" class="javax.swing.JTextField" binding="DishLateLeads">
         <constraints>
@@ -1733,7 +2115,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9525b" class="javax.swing.JTextField" binding="DRALateLeads">
         <constraints>
@@ -1742,7 +2127,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4d200" class="javax.swing.JTextField" binding="CRLateLeads">
         <constraints>
@@ -1751,7 +2139,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="b0969" class="javax.swing.JTextField" binding="JanitorLateLeads">
         <constraints>
@@ -1760,7 +2151,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10173531"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="c26de" class="javax.swing.JTextField" binding="CheckerDinnerLeads">
         <constraints>
@@ -1769,7 +2163,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="75e02" class="javax.swing.JTextField" binding="PeaksDinnerLeads">
         <constraints>
@@ -1778,7 +2175,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="4315e" class="javax.swing.JTextField" binding="HearthDinnerLeads">
         <constraints>
@@ -1787,7 +2187,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ea02" class="javax.swing.JTextField" binding="SaladsDinnerLeads">
         <constraints>
@@ -1796,7 +2199,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="43b73" class="javax.swing.JTextField" binding="ToastDinnerLeads">
         <constraints>
@@ -1805,7 +2211,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="c56dc" class="javax.swing.JTextField" binding="MiddieDinnerLeads">
         <constraints>
@@ -1814,7 +2223,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="f9cb6" class="javax.swing.JTextField" binding="CurryDinnerLeads">
         <constraints>
@@ -1823,7 +2235,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="cb49a" class="javax.swing.JTextField" binding="GrangeDinnerLeads">
         <constraints>
@@ -1832,7 +2247,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="277f0" class="javax.swing.JTextField" binding="DishDinnerLeads">
         <constraints>
@@ -1841,7 +2259,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="a3a4d" class="javax.swing.JTextField" binding="DRADinnerLeads">
         <constraints>
@@ -1850,7 +2271,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="32c13" class="javax.swing.JTextField" binding="CRDinnerLeads">
         <constraints>
@@ -1859,7 +2283,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="ee7c5" class="javax.swing.JTextField" binding="JanitorDinnerLeads">
         <constraints>
@@ -1868,7 +2295,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-9177641"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="9683f" class="javax.swing.JTextField" binding="CheckerMorningMin">
         <constraints>
@@ -1878,6 +2308,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <background color="-10160831"/>
           <horizontalAlignment value="0"/>
           <text value=""/>
         </properties>
@@ -1889,7 +2320,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="cb38c" class="javax.swing.JTextField" binding="CheckerLateMin">
         <constraints>
@@ -1898,7 +2332,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="1d7f" class="javax.swing.JTextField" binding="CheckerDinnerMin">
         <constraints>
@@ -1907,7 +2344,10 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10176191"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
       <component id="2c97" class="javax.swing.JTextField" binding="CheckerMorningMax">
         <constraints>
@@ -1916,7 +2356,22 @@
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="af80b" class="javax.swing.JTextField" binding="ToastLateMin">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-10160831"/>
+          <horizontalAlignment value="0"/>
+        </properties>
       </component>
     </children>
   </grid>

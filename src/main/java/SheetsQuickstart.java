@@ -50,6 +50,8 @@ public class SheetsQuickstart {
 
 
 
+
+
         while(ui.getAction() != -1) {
 
             System.out.print("");
@@ -200,7 +202,7 @@ public class SheetsQuickstart {
 
                TODO: Check if need to fix double checker
 
-               TODO: placement based on leads, float position
+               TODO:  float position
 
                TODO: Fix errors on multiple runs (as in run, hit restart, run again) i believe its probably just overloading things, doesnt 'reset'
 

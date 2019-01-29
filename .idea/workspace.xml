@@ -7,11 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" afterPath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/ShiftNumberChangeUI.class" afterPath="$PROJECT_DIR$/out/production/classes/ShiftNumberChangeUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/Schedule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Station.java" afterPath="$PROJECT_DIR$/src/main/java/Station.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" afterPath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" afterPath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -45,8 +48,8 @@
       <file leaf-file-name="ShiftNumberChangeUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3451">
-              <caret line="217" column="0" lean-forward="false" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
+            <state relative-caret-position="3893">
+              <caret line="602" column="0" lean-forward="false" selection-start-line="602" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#fillWithDefaults#0;class#ShiftNumberChangeUI#0" expanded="false" />
@@ -63,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="116" column="54" lean-forward="false" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
+            <state relative-caret-position="697">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,11 +79,12 @@
       <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+            <state relative-caret-position="680">
+              <caret line="172" column="100" lean-forward="false" selection-start-line="172" selection-start-column="100" selection-end-line="172" selection-end-column="100" />
               <folding>
                 <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+                <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
                 <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
                 <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
                 <element signature="method#building#0;class#Schedule#0" expanded="false" />
@@ -93,7 +97,7 @@
                 <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
                 <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
                 <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-                <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+                <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
                 <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
                 <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
                 <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
@@ -106,10 +110,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
+            <state relative-caret-position="861">
               <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding />
             </state>
@@ -504,11 +508,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChange.java" />
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Station.java" />
         <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
+        <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
       </list>
     </option>
@@ -542,6 +546,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -586,9 +591,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -975,16 +979,18 @@
       <workItem from="1548728255079" duration="1782000" />
       <workItem from="1548730074951" duration="1772000" />
       <workItem from="1548731950060" duration="1776000" />
-      <workItem from="1548733759848" duration="650000" />
+      <workItem from="1548733759848" duration="1778000" />
+      <workItem from="1548735572294" duration="1453000" />
+      <workItem from="1548781751852" duration="1678000" />
+      <workItem from="1548783605404" duration="445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323586000" />
+    <option name="totallyTimeSpent" value="328290000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -995,7 +1001,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3319194" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1363,6 +1369,29 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DuckListUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="72" column="11" lean-forward="false" selection-start-line="66" selection-start-column="8" selection-end-line="72" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Station.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="60" lean-forward="false" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
@@ -1375,8 +1404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3451">
-          <caret line="217" column="0" lean-forward="false" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
+        <state relative-caret-position="3893">
+          <caret line="602" column="0" lean-forward="false" selection-start-line="602" selection-start-column="0" selection-end-line="602" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#fillWithDefaults#0;class#ShiftNumberChangeUI#0" expanded="false" />
@@ -1385,44 +1414,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DuckListUI.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="72" column="11" lean-forward="false" selection-start-line="66" selection-start-column="8" selection-end-line="72" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Station.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="60" lean-forward="false" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+        <state relative-caret-position="697">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="197" column="0" lean-forward="false" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+        <state relative-caret-position="680">
+          <caret line="172" column="100" lean-forward="false" selection-start-line="172" selection-start-column="100" selection-end-line="172" selection-end-column="100" />
           <folding>
             <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
             <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
             <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
             <element signature="method#building#0;class#Schedule#0" expanded="false" />
@@ -1435,7 +1442,7 @@
             <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
             <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
             <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
             <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
             <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
             <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
@@ -1447,10 +1454,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="116" column="54" lean-forward="false" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
+        <state relative-caret-position="861">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
         </state>
       </provider>

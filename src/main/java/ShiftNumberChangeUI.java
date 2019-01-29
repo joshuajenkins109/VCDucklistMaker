@@ -600,6 +600,5 @@ public class ShiftNumberChangeUI {
 
 
     //TODO: create error check to ensure input is correct
-    //TODO: Run with new values
-    //TODO: Run and set new default
+
 }
