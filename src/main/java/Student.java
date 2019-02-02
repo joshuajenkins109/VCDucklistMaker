@@ -23,6 +23,7 @@ public class Student {
     private double draWeight;
     private double janWeight;
     private double coldWeight;
+    private double floatWeight;
 
     private boolean isLead;
     private boolean multipleShifts;
@@ -52,6 +53,7 @@ public class Student {
         this.draWeight = 1.0;
         this.janWeight = 1.0;
         this.coldWeight = 1.0;
+        this.floatWeight = 0;
         this.isLead = lead;
         this.multipleShifts = false;
     }
@@ -426,4 +428,11 @@ public class Student {
         this.janWeight = janWeight;
     }
 
+    public double getFloatWeight() {
+        return floatWeight;
+    }
+
+    public void setFloatWeight(double floatWeight) {
+        this.floatWeight = floatWeight;
+    }
 }

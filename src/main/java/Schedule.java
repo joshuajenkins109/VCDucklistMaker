@@ -154,6 +154,39 @@ public class Schedule {
         this.masterList.add(jan); //11
     }
 
+    private void updateWeights(Student student, List<Object> weights){
+        student.setCheckWeight(Double.valueOf((String)weights.get(1)));
+        student.setPeaksWeight(Double.valueOf((String)weights.get(2)));
+        student.setHearthWeight(Double.valueOf((String)weights.get(3)));
+        student.setSaladsWeight(Double.valueOf((String)weights.get(4)));
+        student.setToastWeight(Double.valueOf((String)weights.get(5)));
+        student.setMidWeight(Double.valueOf((String)weights.get(6)));
+        student.setCurryWeight(Double.valueOf((String)weights.get(7)));
+        student.setGrangeWeight(Double.valueOf((String)weights.get(8)));
+        student.setDishWeight(Double.valueOf((String)weights.get(9)));
+        student.setDraWeight(Double.valueOf((String)weights.get(10)));
+        student.setColdWeight(Double.valueOf((String)weights.get(11)));
+        student.setJanWeight(Double.valueOf((String)weights.get(12)));
+        student.setFloatWeight(Double.valueOf((String)weights.get(13)));
+    }
+
+    private void updateStudentWeights() throws IOException, GeneralSecurityException{
+        SheetsCommunicator sheet = new SheetsCommunicator();
+        List<List<Object>> weights = sheet.getStudentWeights();
+        for(int i = 0; i < pool.size(); i++){
+            for(Student student: pool.get(i)){
+                for(List<Object> row: weights){
+                    if( student.getName().compareTo((String)row.get(0))== 0){
+                        updateWeights(student, row);
+                        break;
+                    }
+                }
+            }
+        }
+
+
+    }
+
     public List<List<Object>> getDefaultStationNumbers(int day) throws IOException, GeneralSecurityException{
         SheetsCommunicator sheets = new SheetsCommunicator();
         List<List<Object>> values = new ArrayList<List<Object>>();
@@ -568,8 +601,9 @@ public class Schedule {
         }
     }
 
-    public List<List<List<Student>>> createDuck(List<List<Student>> pool){
+    public List<List<List<Student>>> createDuck(List<List<Student>> pool)throws IOException, GeneralSecurityException{
         this.pool = pool;
+        updateStudentWeights();
 
         while(pool.get(0).size() > 0) {
             if(leadsNeeded(0)) scheduleLeads(0, getLeads(pool.get(0)));

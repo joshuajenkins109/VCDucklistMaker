@@ -8,13 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" afterPath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/ShiftNumberChangeUI.class" afterPath="$PROJECT_DIR$/out/production/classes/ShiftNumberChangeUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/Schedule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" afterPath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" afterPath="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Student.java" afterPath="$PROJECT_DIR$/src/main/java/Student.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -36,8 +37,8 @@
       <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
-              <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="1547">
+              <caret line="114" column="36" lean-forward="false" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,27 +70,96 @@
       <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="172" column="100" lean-forward="false" selection-start-line="172" selection-start-column="100" selection-end-line="172" selection-end-column="100" />
+            <state relative-caret-position="246">
+              <caret line="161" column="31" lean-forward="false" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
               <folding>
                 <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+                <element signature="e#1016#1031#0" expanded="true" />
+                <element signature="e#1084#1099#0" expanded="true" />
+                <element signature="e#1153#1168#0" expanded="true" />
+                <element signature="e#1222#1237#0" expanded="true" />
+                <element signature="e#1290#1305#0" expanded="true" />
+                <element signature="e#1356#1371#0" expanded="true" />
+                <element signature="e#1424#1439#0" expanded="true" />
+                <element signature="e#1493#1508#0" expanded="true" />
+                <element signature="e#1560#1575#0" expanded="true" />
+                <element signature="e#1626#1641#0" expanded="true" />
+                <element signature="e#1692#1707#0" expanded="true" />
+                <element signature="e#1759#1774#0" expanded="true" />
+                <element signature="e#1826#1835#0" expanded="true" />
+                <element signature="e#1890#1899#0" expanded="true" />
+                <element signature="e#1953#1962#0" expanded="true" />
+                <element signature="e#2012#2021#0" expanded="true" />
+                <element signature="e#2072#2081#0" expanded="true" />
+                <element signature="e#2136#2145#0" expanded="true" />
+                <element signature="e#2199#2208#0" expanded="true" />
+                <element signature="e#2258#2267#0" expanded="true" />
+                <element signature="e#2319#2328#0" expanded="true" />
+                <element signature="e#2384#2393#0" expanded="true" />
+                <element signature="e#2448#2457#0" expanded="true" />
+                <element signature="e#2508#2517#0" expanded="true" />
+                <element signature="e#2569#2578#0" expanded="true" />
+                <element signature="e#2634#2643#0" expanded="true" />
+                <element signature="e#2698#2707#0" expanded="true" />
+                <element signature="e#2758#2767#0" expanded="true" />
+                <element signature="e#2818#2827#0" expanded="true" />
+                <element signature="e#2882#2891#0" expanded="true" />
+                <element signature="e#2945#2954#0" expanded="true" />
+                <element signature="e#3004#3013#0" expanded="true" />
+                <element signature="e#3062#3071#0" expanded="true" />
+                <element signature="e#3124#3133#0" expanded="true" />
+                <element signature="e#3185#3194#0" expanded="true" />
+                <element signature="e#3242#3251#0" expanded="true" />
+                <element signature="e#3302#3311#0" expanded="true" />
+                <element signature="e#3366#3375#0" expanded="true" />
+                <element signature="e#3429#3438#0" expanded="true" />
+                <element signature="e#3488#3497#0" expanded="true" />
+                <element signature="e#3549#3558#0" expanded="true" />
+                <element signature="e#3614#3623#0" expanded="true" />
+                <element signature="e#3678#3687#0" expanded="true" />
+                <element signature="e#3738#3747#0" expanded="true" />
+                <element signature="e#3797#3806#0" expanded="true" />
+                <element signature="e#3860#3869#0" expanded="true" />
+                <element signature="e#3922#3931#0" expanded="true" />
+                <element signature="e#3980#3989#0" expanded="true" />
+                <element signature="e#4038#4047#0" expanded="true" />
+                <element signature="e#4100#4109#0" expanded="true" />
+                <element signature="e#4161#4170#0" expanded="true" />
+                <element signature="e#4218#4227#0" expanded="true" />
+                <element signature="e#4276#4285#0" expanded="true" />
+                <element signature="e#4338#4347#0" expanded="true" />
+                <element signature="e#4399#4408#0" expanded="true" />
+                <element signature="e#4456#4465#0" expanded="true" />
+                <element signature="e#4515#4524#0" expanded="true" />
+                <element signature="e#4578#4587#0" expanded="true" />
+                <element signature="e#4640#4649#0" expanded="true" />
+                <element signature="e#4698#4707#0" expanded="true" />
+                <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+                <element signature="e#8500#8514#0" expanded="true" />
                 <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+                <element signature="e#17366#17375#0" expanded="true" />
                 <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
                 <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
                 <element signature="method#building#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+                <element signature="e#20319#20328#0" expanded="true" />
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+                <element signature="e#20905#20920#0" expanded="true" />
+                <element signature="e#20966#20975#0" expanded="true" />
+                <element signature="e#21022#21031#0" expanded="true" />
+                <element signature="e#21077#21086#0" expanded="true" />
+                <element signature="e#21131#21140#0" expanded="true" />
                 <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
                 <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
                 <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
@@ -110,12 +180,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
-              <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="6120">
+              <caret line="430" column="36" lean-forward="false" selection-start-line="430" selection-start-column="36" selection-end-line="430" selection-end-column="36" />
+              <folding>
+                <element signature="e#15278#15279#0" expanded="true" />
+                <element signature="e#15332#15333#0" expanded="true" />
+                <element signature="e#15378#15379#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,16 +212,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResultsUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ResultsUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -176,6 +240,7 @@
       <find>cannot</find>
       <find>read</find>
       <find>only</find>
+      <find>get</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -503,17 +568,17 @@
         <option value="$PROJECT_DIR$/src/main/java/ResultsUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/CoverageUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/CoverageUI.form" />
-        <option value="$PROJECT_DIR$/src/main/java/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChange.form" />
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChange.java" />
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.form" />
-        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
         <option value="$PROJECT_DIR$/src/main/java/DuckListUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Station.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
       </list>
     </option>
   </component>
@@ -524,8 +589,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="925" />
-    <option name="y" value="41" />
+    <option name="x" value="68" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -545,7 +609,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -592,7 +656,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -983,11 +1047,25 @@
       <workItem from="1548735572294" duration="1453000" />
       <workItem from="1548781751852" duration="1678000" />
       <workItem from="1548783605404" duration="445000" />
+      <workItem from="1548802172084" duration="1842000" />
+      <workItem from="1548804206890" duration="610000" />
+      <workItem from="1548807232412" duration="1768000" />
+      <workItem from="1548894035378" duration="811000" />
+      <workItem from="1548896409118" duration="371000" />
+      <workItem from="1548991176202" duration="265000" />
+      <workItem from="1549064182450" duration="1818000" />
+      <workItem from="1549066483278" duration="616000" />
+      <workItem from="1549072580201" duration="2170000" />
+      <workItem from="1549129384402" duration="1858000" />
+      <workItem from="1549131291735" duration="1736000" />
+      <workItem from="1549137992625" duration="1672000" />
+      <workItem from="1549139719541" duration="1773000" />
+      <workItem from="1549141530887" duration="2364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328290000" />
+    <option name="totallyTimeSpent" value="347964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1000,8 +1078,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3319194" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1012,8 +1090,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1265,13 +1343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="432" column="0" lean-forward="false" selection-start-line="432" selection-start-column="0" selection-end-line="432" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1353,7 +1424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1392,13 +1462,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="201">
+          <caret line="656" column="0" lean-forward="false" selection-start-line="656" selection-start-column="0" selection-end-line="656" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1414,27 +1481,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="114" column="36" lean-forward="false" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6120">
+          <caret line="430" column="36" lean-forward="false" selection-start-line="430" selection-start-column="36" selection-end-line="430" selection-end-column="36" />
+          <folding>
+            <element signature="e#15278#15279#0" expanded="true" />
+            <element signature="e#15332#15333#0" expanded="true" />
+            <element signature="e#15378#15379#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="172" column="100" lean-forward="false" selection-start-line="172" selection-start-column="100" selection-end-line="172" selection-end-column="100" />
+        <state relative-caret-position="246">
+          <caret line="161" column="31" lean-forward="false" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
           <folding>
             <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+            <element signature="e#1016#1031#0" expanded="true" />
+            <element signature="e#1084#1099#0" expanded="true" />
+            <element signature="e#1153#1168#0" expanded="true" />
+            <element signature="e#1222#1237#0" expanded="true" />
+            <element signature="e#1290#1305#0" expanded="true" />
+            <element signature="e#1356#1371#0" expanded="true" />
+            <element signature="e#1424#1439#0" expanded="true" />
+            <element signature="e#1493#1508#0" expanded="true" />
+            <element signature="e#1560#1575#0" expanded="true" />
+            <element signature="e#1626#1641#0" expanded="true" />
+            <element signature="e#1692#1707#0" expanded="true" />
+            <element signature="e#1759#1774#0" expanded="true" />
+            <element signature="e#1826#1835#0" expanded="true" />
+            <element signature="e#1890#1899#0" expanded="true" />
+            <element signature="e#1953#1962#0" expanded="true" />
+            <element signature="e#2012#2021#0" expanded="true" />
+            <element signature="e#2072#2081#0" expanded="true" />
+            <element signature="e#2136#2145#0" expanded="true" />
+            <element signature="e#2199#2208#0" expanded="true" />
+            <element signature="e#2258#2267#0" expanded="true" />
+            <element signature="e#2319#2328#0" expanded="true" />
+            <element signature="e#2384#2393#0" expanded="true" />
+            <element signature="e#2448#2457#0" expanded="true" />
+            <element signature="e#2508#2517#0" expanded="true" />
+            <element signature="e#2569#2578#0" expanded="true" />
+            <element signature="e#2634#2643#0" expanded="true" />
+            <element signature="e#2698#2707#0" expanded="true" />
+            <element signature="e#2758#2767#0" expanded="true" />
+            <element signature="e#2818#2827#0" expanded="true" />
+            <element signature="e#2882#2891#0" expanded="true" />
+            <element signature="e#2945#2954#0" expanded="true" />
+            <element signature="e#3004#3013#0" expanded="true" />
+            <element signature="e#3062#3071#0" expanded="true" />
+            <element signature="e#3124#3133#0" expanded="true" />
+            <element signature="e#3185#3194#0" expanded="true" />
+            <element signature="e#3242#3251#0" expanded="true" />
+            <element signature="e#3302#3311#0" expanded="true" />
+            <element signature="e#3366#3375#0" expanded="true" />
+            <element signature="e#3429#3438#0" expanded="true" />
+            <element signature="e#3488#3497#0" expanded="true" />
+            <element signature="e#3549#3558#0" expanded="true" />
+            <element signature="e#3614#3623#0" expanded="true" />
+            <element signature="e#3678#3687#0" expanded="true" />
+            <element signature="e#3738#3747#0" expanded="true" />
+            <element signature="e#3797#3806#0" expanded="true" />
+            <element signature="e#3860#3869#0" expanded="true" />
+            <element signature="e#3922#3931#0" expanded="true" />
+            <element signature="e#3980#3989#0" expanded="true" />
+            <element signature="e#4038#4047#0" expanded="true" />
+            <element signature="e#4100#4109#0" expanded="true" />
+            <element signature="e#4161#4170#0" expanded="true" />
+            <element signature="e#4218#4227#0" expanded="true" />
+            <element signature="e#4276#4285#0" expanded="true" />
+            <element signature="e#4338#4347#0" expanded="true" />
+            <element signature="e#4399#4408#0" expanded="true" />
+            <element signature="e#4456#4465#0" expanded="true" />
+            <element signature="e#4515#4524#0" expanded="true" />
+            <element signature="e#4578#4587#0" expanded="true" />
+            <element signature="e#4640#4649#0" expanded="true" />
+            <element signature="e#4698#4707#0" expanded="true" />
+            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+            <element signature="e#8500#8514#0" expanded="true" />
             <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+            <element signature="e#17366#17375#0" expanded="true" />
             <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
             <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
             <element signature="method#building#0;class#Schedule#0" expanded="false" />
             <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#20319#20328#0" expanded="true" />
             <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="e#20905#20920#0" expanded="true" />
+            <element signature="e#20966#20975#0" expanded="true" />
+            <element signature="e#21022#21031#0" expanded="true" />
+            <element signature="e#21077#21086#0" expanded="true" />
+            <element signature="e#21131#21140#0" expanded="true" />
             <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
             <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
             <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
@@ -1451,14 +1609,6 @@
             <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
             <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

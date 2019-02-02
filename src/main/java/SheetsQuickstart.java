@@ -22,6 +22,8 @@ public class SheetsQuickstart {
         CoverageUI cui = new CoverageUI();
         ShiftNumberChangeUI sui = new ShiftNumberChangeUI();
 
+
+
         JFrame frame = new JFrame("DuckListUI");
         frame.setContentPane(ui.getMainView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

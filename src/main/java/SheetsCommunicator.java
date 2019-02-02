@@ -58,7 +58,7 @@ public class SheetsCommunicator {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         // *old schedule* final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
         final String spreadsheetId = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
-        final String range = "Sheet1!A6:O182";                                                          //TODO: Figure out how to make this dynamic **** CAUSES ERROR IF OVEREXTENDED
+        final String range = "Sheet1!A6:O176";                                                          //TODO: Figure out how to make this dynamic **** CAUSES ERROR IF OVEREXTENDED
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -74,6 +74,47 @@ public class SheetsCommunicator {
         return schedule;
     }
 
+    public void updateStudentWeightList() throws IOException, GeneralSecurityException{
+            //add names to weights that don't exist yet
+            //remove names from weights that no longer exist
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, "Sheet4")
+                .execute();
+
+        ValueRange besponse = service.spreadsheets().values()
+                .get(spreadsheetId, "Sheet5")
+                .execute();
+
+        List<List<Object>> values = response.getValues();
+
+        List<List<Object>> balues = besponse.getValues();
+
+
+
+
+
+    }
+
+    public List<List<Object>> getStudentWeights() throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, "StudentWeights")
+                .execute();
+
+        return response.getValues();
+    }
+
     public List<List<Object>> getShiftDefaults(String range) throws IOException, GeneralSecurityException {
             final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
             final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -84,7 +125,9 @@ public class SheetsCommunicator {
                     .get(spreadsheetId, range)
                     .execute();
 
+
             List<List<Object>> values = response.getValues();
+
 
             return values;
     }
