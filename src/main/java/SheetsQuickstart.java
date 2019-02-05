@@ -22,6 +22,7 @@ public class SheetsQuickstart {
         CoverageUI cui = new CoverageUI();
         ShiftNumberChangeUI sui = new ShiftNumberChangeUI();
 
+        sheet.updateStudentsWeights();
 
 
         JFrame frame = new JFrame("DuckListUI");

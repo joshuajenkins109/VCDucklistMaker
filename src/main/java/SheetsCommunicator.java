@@ -10,8 +10,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
-import com.google.api.services.sheets.v4.model.ValueRange;
+import com.google.api.services.sheets.v4.model.*;
 import org.apache.http.protocol.HTTP;
 
 
@@ -19,9 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class SheetsCommunicator {
 
@@ -74,31 +71,111 @@ public class SheetsCommunicator {
         return schedule;
     }
 
-    public void updateStudentWeightList() throws IOException, GeneralSecurityException{
-            //add names to weights that don't exist yet
-            //remove names from weights that no longer exist
+    private void addStudentToWeights(String name, int rowIndex) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
+        List<Request> requests = new ArrayList<>();
+        List<CellData> cells = new ArrayList<>();
+
+        cells.add( new CellData()
+        .setUserEnteredValue(new ExtendedValue()
+            .setStringValue(name))
+        .setUserEnteredFormat(new CellFormat()
+            .setTextFormat(new TextFormat()
+                .setFontSize(12))));
+
+        for(int i = 0; i < 12; i++)
+        {
+            cells.add( new CellData()
+                    .setUserEnteredValue(new ExtendedValue()
+                            .setStringValue("1")
+                    )
+                    .setUserEnteredFormat(new CellFormat()
+                            .setHorizontalAlignment("Center")
+                            .setTextFormat(new TextFormat()
+                                    .setFontSize(12))));
+        }
+        cells.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue("0")
+                )
+                .setUserEnteredFormat(new CellFormat()
+                    .setHorizontalAlignment("Center")
+                    .setTextFormat(new TextFormat()
+                        .setFontSize(12))));
+
+        requests.add(new Request()
+            .setInsertDimension(new InsertDimensionRequest()
+            .setRange(new DimensionRange()
+                .setSheetId(999419915)
+                .setDimension("ROWS")
+                    .setStartIndex(rowIndex)
+                .setEndIndex(rowIndex+1))));
+
+
+        requests.add(new Request()
+            .setUpdateCells(new UpdateCellsRequest()
+                .setRows(Arrays.asList(
+                        new RowData().setValues(cells)))
+                .setStart( new GridCoordinate()
+                    .setSheetId(999419915)
+                    .setRowIndex(rowIndex)
+                    .setColumnIndex(0))
+                .setFields("userEnteredValue,userEnteredFormat")));
+
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
+
+    }
+
+
+    public void updateStudentsWeights() throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        final String spreadsheetId2 = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
         ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, "Sheet4")
+                .get(spreadsheetId2, "Sheet1")
                 .execute();
 
-        ValueRange besponse = service.spreadsheets().values()
-                .get(spreadsheetId, "Sheet5")
+        ValueRange response2 = service.spreadsheets().values()
+                .get(spreadsheetId, "StudentWeights")
                 .execute();
 
-        List<List<Object>> values = response.getValues();
-
-        List<List<Object>> balues = besponse.getValues();
-
+        List<List<Object>> firstSheet = response.getValues();
+        List<List<Object>> secondSheet = response2.getValues();
 
 
+        for(int i = 6; i < firstSheet.size(); i++){
 
+            for(int j = 1; j < secondSheet.size(); j++){
+                if(firstSheet.get(i).size() > 0){
+                    if(firstSheet.get(i).get(0).toString().compareTo("") != 0 &&
+                            firstSheet.get(i).get(0).toString().compareTo("Crew") != 0 &&
+                            firstSheet.get(i).get(0).toString().compareTo("Temps") != 0){
 
+                        if(secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) == 0)
+                        {
+                            break;
+                        }
+                        if(secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) > 0){
+                            addStudentToWeights(firstSheet.get(i).get(0).toString(), j);
+                            secondSheet.add(j, firstSheet.get(i));
+                            break;
+                        }
+                    }
+                }
+
+            }
+        }
     }
 
     public List<List<Object>> getStudentWeights() throws IOException, GeneralSecurityException{
@@ -153,12 +230,7 @@ public class SheetsCommunicator {
     }
 
 
-    public void addToWeights() throws IOException, GeneralSecurityException{
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        final String spreadSheetId = "1QALURwm4JhbCV8wKDhAPRc1vbFCfV5BZQhdaxezMspc";
-        final String range = "Sheet1!A1:M200";                                                          //TODO Figure out how to make this dynamic
 
-    }
 
 
 }

@@ -603,9 +603,21 @@ public class Schedule {
 
     public List<List<List<Student>>> createDuck(List<List<Student>> pool)throws IOException, GeneralSecurityException{
         this.pool = pool;
+        System.out.println("here");
         updateStudentWeights();
+        System.out.println("here2");
 
         while(pool.get(0).size() > 0) {
+            System.out.println("size: "+ pool.get(0).size());
+            if(pool.get(0).size() < 4){
+                for(int i = 0; i < stationList.size(); i++){
+                    System.out.println("Station "+i+" Min: "+ stationList.get(i).getMorningPeopleNeeded() + "  Max: " + stationList.get(i).getMorningMaxWorkers() + "  T: " + stationList.get(i).getTotalMorning());
+                    System.out.println("Station "+i+" Min: "+ stationList.get(i).getEarlyMidPeopleNeeded() + "  Max: " + stationList.get(i).getEarlyMidMaxWorkers() + "  T: " + stationList.get(i).getEarlyMid() );
+                }
+                for(int i = 0; i < pool.get(0).size(); i++){
+                    System.out.println(pool.get(0).get(i).getName()+" "+ pool.get(0).get(i).getSchedule().get(1) + " - " + pool.get(0).get(i).getSchedule().get(2));
+                }
+            }
             if(leadsNeeded(0)) scheduleLeads(0, getLeads(pool.get(0)));
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(0), 1);
@@ -823,7 +835,8 @@ public class Schedule {
                     stationList.get(8).addMorningStudent();
                 }
             }
-            if (stationList.get(9).getMorningPeopleNeeded() > stationList.get(8).getTotalMorning() && pool.get(0).size() != 0){  //fill dra
+
+            if (stationList.get(9).getMorningPeopleNeeded() > stationList.get(9).getTotalMorning() && pool.get(0).size() != 0){  //fill dra
                 Student temp = randomChooser(pool.get(0), 10);
                 if(temp.getMultipleShifts()){
                     if((worksShift(pool.get(1), temp.getName()) || worksShift(pool.get(2), temp.getName()) )&& !(worksShift(pool.get(3), temp.getName()))){ //if they work Morning + Mid, add them to same station for both shifts
