@@ -88,6 +88,7 @@ public class SheetsQuickstart {
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
                 ui.setAction(0);
+                sheet.createDuckList(schedule.getMasterList(), ui.getDay());
                 List<String> printer = schedule.printToString(trying, ui.getDay());
                 rui.setMorningDuckList(printer.get(0));
                 rui.setMidDuckList(printer.get(1));

@@ -3512,4 +3512,8 @@ public class Schedule {
         return filled;
 
     }
+
+    public List<List<List<Student>>> getMasterList() {
+        return masterList;
+    }
 }
