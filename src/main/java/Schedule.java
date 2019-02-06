@@ -39,6 +39,7 @@ public class Schedule {
         List<List<Student>> dra = new ArrayList<List<Student>>();
         List<List<Student>> jan = new ArrayList<List<Student>>();
         List<List<Student>> cold = new ArrayList<List<Student>>();
+        List<List<Student>> floats = new ArrayList<>();
 
         List<Student> checkMorn = new ArrayList<Student>();
         List<Student> checkEarlyMid = new ArrayList<Student>();
@@ -88,6 +89,10 @@ public class Schedule {
         List<Student> coldEarlyMid = new ArrayList<Student>();
         List<Student> coldLateMid = new ArrayList<Student>();
         List<Student> coldDin = new ArrayList<Student>();
+        List<Student> floatMorn = new ArrayList<>();
+        List<Student> floatEarlyMid = new ArrayList<>();
+        List<Student> floatLateMid = new ArrayList<>();
+        List<Student> floatDin = new ArrayList<>();
 
         checker.add(checkMorn);
         checker.add(checkEarlyMid);
@@ -137,6 +142,10 @@ public class Schedule {
         cold.add(coldEarlyMid);
         cold.add(coldLateMid);
         cold.add(coldDin);
+        floats.add(floatMorn);
+        floats.add(floatEarlyMid);
+        floats.add(floatLateMid);
+        floats.add(floatDin);
 
 
 
@@ -152,6 +161,7 @@ public class Schedule {
         this.masterList.add(dra);//9
         this.masterList.add(cold);//10
         this.masterList.add(jan); //11
+        this.masterList.add(floats); //12
     }
 
     private void updateWeights(Student student, List<Object> weights){
@@ -304,7 +314,13 @@ public class Schedule {
         return leads;
     }
 
-
+    private List<Student> getFloats(List<Student> pool){
+        List<Student> floats = new ArrayList<>();
+        for(Student student: pool){
+            if(student.getFloat()) floats.add(student);
+        }
+        return floats;
+    }
     /*
        Builds list of students from list of objects retrieved from google sheets
 
@@ -346,8 +362,7 @@ public class Schedule {
         @param int day (day index for intended day
 
      */
-    public List<Student> buildDayPool(int day)
-    {
+    public List<Student> buildDayPool(int day) {
         List<Student> pool = new ArrayList<Student>();
         for(int i = 0; i < students.size(); i++)
         {
@@ -601,22 +616,53 @@ public class Schedule {
         }
     }
 
+    private void scheduleFloat(int shift, List<Student> floats){
+        Student temp = randomChooser(floats, 13);
+        if(temp.getMultipleShifts()){
+            if(shift == 0){
+                if(worksShift(pool.get(1), temp.getName()) && !worksShift(pool.get(1), temp.getName())){
+                    this.masterList.get(12).get(0).add(temp);
+                    this.masterList.get(12).get(1).add(temp);
+                    this.pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    this.pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                }
+                else if(worksShift(pool.get(3), temp.getName())){
+                    this.masterList.get(12).get(0).add(temp);
+                    this.masterList.get(12).get(1).add(temp);
+                    this.masterList.get(12).get(3).add(temp);
+                    this.pool.set(0, removeByName(temp.getName(), pool.get(0)));
+                    this.pool.set(1, removeByName(temp.getName(), pool.get(1)));
+                    this.pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                }
+            }
+            else{
+                if(worksShift(pool.get(3), temp.getName())){
+                    this.masterList.get(12).get(shift).add(temp);
+                    this.masterList.get(12).get(3).add(temp);
+                    this.pool.set(shift, removeByName(temp.getName(), pool.get(shift)));
+                    this.pool.set(3, removeByName(temp.getName(), pool.get(3)));
+                }
+            }
+
+        }
+        else{
+            this.masterList.get(12).get(shift).add(temp);
+            this.pool.set(shift, removeByName(temp.getName(), pool.get(shift)));
+        }
+    }
+
     public List<List<List<Student>>> createDuck(List<List<Student>> pool)throws IOException, GeneralSecurityException{
         this.pool = pool;
-        System.out.println("here");
         updateStudentWeights();
-        System.out.println("here2");
+        int floatTracker = 0;
 
         while(pool.get(0).size() > 0) {
-            System.out.println("size: "+ pool.get(0).size());
-            if(pool.get(0).size() < 4){
-                for(int i = 0; i < stationList.size(); i++){
-                    System.out.println("Station "+i+" Min: "+ stationList.get(i).getMorningPeopleNeeded() + "  Max: " + stationList.get(i).getMorningMaxWorkers() + "  T: " + stationList.get(i).getTotalMorning());
-                    System.out.println("Station "+i+" Min: "+ stationList.get(i).getEarlyMidPeopleNeeded() + "  Max: " + stationList.get(i).getEarlyMidMaxWorkers() + "  T: " + stationList.get(i).getEarlyMid() );
-                }
-                for(int i = 0; i < pool.get(0).size(); i++){
-                    System.out.println(pool.get(0).get(i).getName()+" "+ pool.get(0).get(i).getSchedule().get(1) + " - " + pool.get(0).get(i).getSchedule().get(2));
-                }
+            if(floatTracker == 0 && getFloats(pool.get(0)).size() > 0){
+                scheduleFloat(0, getFloats(pool.get(0)));
+                floatTracker++;
+            }
+            else if(floatTracker == 0){
+                floatTracker++;
             }
             if(leadsNeeded(0)) scheduleLeads(0, getLeads(pool.get(0)));
             if (stationList.get(0).getMorningPeopleNeeded() > stationList.get(0).getTotalMorning() && pool.get(0).size() != 0) {  // fill checker
@@ -1407,6 +1453,13 @@ public class Schedule {
         }
 
         while(pool.get(1).size() > 0) {
+            if(floatTracker == 1 && getFloats(pool.get(1)).size() > 0){
+                scheduleFloat(1, getFloats(pool.get(1)));
+                floatTracker++;
+            }
+            else if(floatTracker == 1){
+                floatTracker++;
+            }
             if(leadsNeeded(1)) scheduleLeads(1, getLeads(pool.get(1)));
             if (stationList.get(0).getEarlyMidPeopleNeeded() > stationList.get(0).getEarlyMid() && pool.get(1).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(1), 1);
@@ -2024,6 +2077,13 @@ public class Schedule {
 
         }
         while(pool.get(2).size() > 0) {
+            if(floatTracker == 2 && getFloats(pool.get(2)).size() > 0){
+                scheduleFloat(2, getFloats(pool.get(2)));
+                floatTracker++;
+            }
+            else if(floatTracker == 2){
+                floatTracker++;
+            }
             if(leadsNeeded(2)) scheduleLeads(2, getLeads(pool.get(2)));
             if (stationList.get(0).getLateMidPeopleNeeded() > stationList.get(0).getLateMid() && pool.get(2).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(2), 1);
@@ -2640,6 +2700,10 @@ public class Schedule {
 
         }
         while(pool.get(3).size() > 0) {
+            if(floatTracker == 3 && getFloats(pool.get(3)).size() > 0){
+                scheduleFloat(3, getFloats(pool.get(3)));
+                floatTracker++;
+            }
             if(leadsNeeded(3)) scheduleLeads(3, getLeads(pool.get(3)));
             if (stationList.get(0).getDinnerPeopleNeeded() > stationList.get(0).getTotalDinner() && pool.get(3).size() != 0) {  // fill checker
                 Student temp = randomChooser(pool.get(3), 1);
@@ -2852,6 +2916,7 @@ public class Schedule {
             if( station == 10) totalWeight += student.getDraWeight();
             if( station == 11) totalWeight += student.getColdWeight();
             if( station == 12) totalWeight += student.getJanWeight();
+            if( station == 13) totalWeight += student.getFloatWeight();
         }
         double r = Math.random() * totalWeight;
         double countWeight = 0.0;
@@ -2868,6 +2933,7 @@ public class Schedule {
             if( station == 10) countWeight += student.getDraWeight();
             if( station == 11) countWeight += student.getColdWeight();
             if( station == 12) countWeight += student.getJanWeight();
+            if( station == 13) countWeight += student.getFloatWeight();
             //System.out.println("C: " + countWeight + " r: " + r);
             if(countWeight >= r){
                 return student;
@@ -3225,6 +3291,12 @@ public class Schedule {
             output += trying.get(8).get(0).get(i).getName() + trying.get(8).get(0).get(i).getSchedule().get(day) + "-" + trying.get(8).get(0).get(i).getSchedule().get(day+1) +", ";
         }
         output += "\n";
+        output += "Float: ";
+        for(int i = 0; i < trying.get(12).get(0).size(); i++){
+            if(trying.get(12).get(0).get(i).getLead()) output += "*";
+            output += trying.get(12).get(0).get(i).getName() + trying.get(12).get(0).get(i).getSchedule().get(day) + "-" + trying.get(12).get(0).get(i).getSchedule().get(day+1) +", ";
+        }
+        output += "\n";
         output += "Janitor: ";
         for(int i = 0; i < trying.get(11).get(0).size(); i++) {
             if(trying.get(11).get(0).get(i).getLead()) output += "*";
@@ -3346,6 +3418,16 @@ public class Schedule {
             if(i % 4 == 0){ output2 += "\n"; }
         }
         output2 += "\n";
+        output2 += "Float: ";
+        for(int i = 0; i < trying.get(12).get(1).size(); i++){
+            if(trying.get(12).get(1).get(i).getLead()) output += "*";
+            output2 += trying.get(12).get(1).get(i).getName() + trying.get(12).get(1).get(i).getSchedule().get(day) + "-" + trying.get(12).get(1).get(i).getSchedule().get(day+1) +", ";
+        }
+        for(int i = 0; i < trying.get(12).get(2).size(); i++){
+            if(trying.get(12).get(2).get(i).getLead()) output += "*";
+            output2 += trying.get(12).get(2).get(i).getName() + trying.get(12).get(2).get(i).getSchedule().get(day) + "-" + trying.get(12).get(2).get(i).getSchedule().get(day+1) +", ";
+        }
+        output2 += "\n";
         output2 += "Janitor: ";
         for(int i = 0; i < trying.get(11).get(1).size(); i++) {
             if(trying.get(11).get(1).get(i).getLead()) output2 += "*";
@@ -3423,6 +3505,12 @@ public class Schedule {
             if(trying.get(8).get(3).get(i).getLead()) output3 += "*";
             output3 += trying.get(8).get(3).get(i).getName() +trying.get(8).get(3).get(i).getSchedule().get(day) + "-" + trying.get(8).get(3).get(i).getSchedule().get(day+1) + ", ";
             if(i % 4 == 0){ output3 += "\n"; }
+        }
+        output3 += "\n";
+        output3 += "Float: ";
+        for(int i = 0; i < trying.get(12).get(3).size(); i++){
+            if(trying.get(12).get(3).get(i).getLead()) output += "*";
+            output3 += trying.get(12).get(3).get(i).getName() + trying.get(12).get(3).get(i).getSchedule().get(day) + "-" + trying.get(12).get(3).get(i).getSchedule().get(day+1) +", ";
         }
         output3 += "\n";
         output3 += "Janitor: ";

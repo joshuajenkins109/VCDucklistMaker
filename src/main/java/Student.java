@@ -274,6 +274,12 @@ public class Student {
 
     public boolean getLead(){ return this.isLead;}
 
+    public boolean getFloat(){
+        if(getFloatWeight() > 0) return true;
+        else return false;
+    }
+
+
 
     public String getName() {
         return name;

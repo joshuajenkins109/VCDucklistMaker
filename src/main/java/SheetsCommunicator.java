@@ -72,6 +72,170 @@ public class SheetsCommunicator {
         return schedule;
     }
 
+    private List<List<List<String>>> buildFullTimeList(){
+        List<String> checkerMorning = new ArrayList<>();
+        List<String> checkerMid = new ArrayList<>();
+        List<String> checkerDinner = new ArrayList<>();
+        List<String> middleMorning = new ArrayList<>();
+        List<String> middleMid = new ArrayList<>();
+        List<String> middleDinner = new ArrayList<>();
+        List<String> curryMorning = new ArrayList<>();
+        List<String> curryMid = new ArrayList<>();
+        List<String> curryDinner = new ArrayList<>();
+        List<String> grangeMorning = new ArrayList<>();
+        List<String> grangeMid = new ArrayList<>();
+        List<String> grangeDinner = new ArrayList<>();
+        List<String> toastMorning = new ArrayList<>();
+        List<String> toastMid = new ArrayList<>();
+        List<String> toastDinner = new ArrayList<>();
+        List<String> hearthMorning = new ArrayList<>();
+        List<String> hearthMid = new ArrayList<>();
+        List<String> hearthDinner = new ArrayList<>();
+        List<String> peaksMorning = new ArrayList<>();
+        List<String> peaksMid = new ArrayList<>();
+        List<String> peaksDinner = new ArrayList<>();
+        List<String> saladsMorning = new ArrayList<>();
+        List<String> saladsMid = new ArrayList<>();
+        List<String> saladsDinner = new ArrayList<>();
+        List<String> coldRunnerMorning = new ArrayList<>();
+        List<String> coldRunnerMid = new ArrayList<>();
+        List<String> coldRunnerDinner = new ArrayList<>();
+        List<String> draMorning = new ArrayList<>();
+        List<String> draMid = new ArrayList<>();
+        List<String> draDinner = new ArrayList<>();
+        List<String> dishMorning = new ArrayList<>();
+        List<String> dishMid = new ArrayList<>();
+        List<String> dishDinner = new ArrayList<>();
+        List<String> productionMorning = new ArrayList<>();
+        List<String> productionMid = new ArrayList<>();
+        List<String> productionDinner = new ArrayList<>();
+
+        List<List<String>> checker = new ArrayList<>();
+        List<List<String>> middle = new ArrayList<>();
+        List<List<String>> curry = new ArrayList<>();
+        List<List<String>> grange = new ArrayList<>();
+        List<List<String>> toast = new ArrayList<>();
+        List<List<String>> hearth = new ArrayList<>();
+        List<List<String>> peaks = new ArrayList<>();
+        List<List<String>> salads = new ArrayList<>();
+        List<List<String>> coldRunner = new ArrayList<>();
+        List<List<String>> dra = new ArrayList<>();
+        List<List<String>> dish = new ArrayList<>();
+        List<List<String>> production = new ArrayList<>();
+
+        checker.add(checkerMorning);
+        checker.add(checkerMid);
+        checker.add(checkerDinner);
+        middle.add(middleMorning);
+        middle.add(middleMid);
+        middle.add(middleDinner);
+        curry.add(curryMorning);
+        curry.add(curryMid);
+        curry.add(curryDinner);
+        grange.add(grangeMorning);
+        grange.add(grangeMid);
+        grange.add(grangeDinner);
+        toast.add(toastMorning);
+        toast.add(toastMid);
+        toast.add(toastDinner);
+        hearth.add(hearthMorning);
+        hearth.add(hearthMid);
+        hearth.add(hearthDinner);
+        peaks.add(peaksMorning);
+        peaks.add(peaksMid);
+        peaks.add(peaksDinner);
+        salads.add(saladsMorning);
+        salads.add(saladsMid);
+        salads.add(saladsDinner);
+        coldRunner.add(coldRunnerMorning);
+        coldRunner.add(coldRunnerMid);
+        coldRunner.add(coldRunnerDinner);
+        dra.add(draMorning);
+        dra.add(draMid);
+        dra.add(draDinner);
+        dish.add(dishMorning);
+        dish.add(dishMid);
+        dish.add(dishDinner);
+        production.add(productionMorning);
+        production.add(productionMid);
+        production.add(productionDinner);
+
+        List<List<List<String>>> fullTimers = new ArrayList<>();
+        fullTimers.add(checker);
+        fullTimers.add(middle);
+        fullTimers.add(curry);
+        fullTimers.add(grange);
+        fullTimers.add(toast);
+        fullTimers.add(hearth);
+        fullTimers.add(peaks);
+        fullTimers.add(salads);
+        fullTimers.add(coldRunner);
+        fullTimers.add(dra);
+        fullTimers.add(dish);
+        fullTimers.add(production);
+
+        return fullTimers;
+
+    }
+    private List<List<List<String>>> getFullTime(int day)throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        final String range = "FullTime";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, range)
+                .execute();
+
+        List<List<Object>> values = response.getValues();
+        // 0-names   1-m 2-mi 3-d 4-m 5-mi 6-d   day%3
+        List<List<List<String>>> fullTimers = buildFullTimeList();
+
+        for(int i = 1; i < values.size(); i++){
+            for(int j = day; j < values.get(i).size(); j++){
+                if(j == day+3)break;
+                if(values.get(i).get(j).toString().compareTo("0") == 0){
+                    fullTimers.get(0).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("1") == 0){
+                    fullTimers.get(1).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("2") == 0){
+                    fullTimers.get(2).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("3") == 0){
+                    fullTimers.get(3).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("4") == 0){
+                    fullTimers.get(4).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("5") == 0){
+                    fullTimers.get(5).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("6") == 0){
+                    fullTimers.get(6).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("7") == 0){
+                    fullTimers.get(7).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("8") == 0){
+                    fullTimers.get(8).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("9") == 0){
+                    fullTimers.get(9).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("10") == 0){
+                    fullTimers.get(10).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+                else if(values.get(i).get(j).toString().compareTo("11") == 0){
+                    fullTimers.get(11).get((j-1)%3).add(values.get(i).get(0).toString());
+                }
+            }
+        }
+        return fullTimers;
+    }
+
     private void addStudentToWeights(String name, int rowIndex) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -231,47 +395,70 @@ public class SheetsCommunicator {
     }
 
     public void createDuckList(List<List<List<Student>>> students, int day) throws IOException, GeneralSecurityException{
-        setCheckerDuckListValues(students, day, 0);
-        setCheckerDuckListValues(students, day, 1);
-        setCheckerDuckListValues(students, day, 3);
-        setMiddleDuckListValues(students, day, 0);
-        setMiddleDuckListValues(students, day, 1);
-        setMiddleDuckListValues(students, day, 3);
-        setCurryDuckListValues(students, day, 0);
-        setCurryDuckListValues(students, day, 1);
-        setCurryDuckListValues(students, day, 3);
-        setGrangeDuckListValues(students, day, 0);
-        setGrangeDuckListValues(students, day, 1);
-        setGrangeDuckListValues(students, day, 3);
-        setToastDuckListValues(students, day, 0);
-        setToastDuckListValues(students, day, 1);
-        setToastDuckListValues(students, day, 3);
-        setDuckListValues(students, day, 0, 2, 24); //hearth
-        setDuckListValues(students, day, 1, 2, 24);
-        setDuckListValues(students, day, 3, 2, 24);
-        setDuckListValues(students, day, 0, 1, 27); //peaks
-        setDuckListValues(students, day, 1,1, 27);
-        setDuckListValues(students, day, 3, 1, 27);
-        setDuckListValues(students, day, 0, 3, 30); //salads
-        setDuckListValues(students, day, 1,3, 30);
-        setDuckListValues(students, day, 3, 3, 30);
-        setDuckListValues(students, day, 0, 10, 33); //Cold Runner
-        setDuckListValues(students, day, 1,10, 33);
-        setDuckListValues(students, day, 3, 10, 33);
-        setDuckListValues(students, day, 0, 9, 36); //DRA
-        setDuckListValues(students, day, 1,9, 36);
-        setDuckListValues(students, day, 3, 9, 36);
-        setDishDuckListValues(students, day, 0);
-        setDishDuckListValues(students, day, 1);
-        setDishDuckListValues(students, day, 3);
-        setJanitorDuckListValues(students, day, 0);
+        int ftday = 0;
+        if(day == 1) ftday = 1;
+        if(day == 3) ftday = 4;
+        if(day == 5) ftday = 7;
+        if(day == 7) ftday = 10;
+        if(day == 9) ftday = 13;
+        if(day == 11) ftday = 16;
+        if(day == 13) ftday = 19;
+        List<List<List<String>>> fullTime = getFullTime(ftday);
+        setCheckerDuckListValues(students, fullTime, day, 0);
+        setCheckerDuckListValues(students, fullTime, day, 1);
+        setCheckerDuckListValues(students, fullTime, day, 3);
+        System.out.println("Checkers done");
+        setMiddleDuckListValues(students, fullTime, day, 0);
+        setMiddleDuckListValues(students, fullTime, day, 1);
+        setMiddleDuckListValues(students, fullTime, day, 3);
+        System.out.println("Middle done");
+        setCurryDuckListValues(students, fullTime, day, 0);
+        setCurryDuckListValues(students, fullTime, day, 1);
+        setCurryDuckListValues(students, fullTime, day, 3);
+        System.out.println("Curry done");
+        setGrangeDuckListValues(students, fullTime, day, 0);
+        setGrangeDuckListValues(students, fullTime, day, 1);
+        setGrangeDuckListValues(students, fullTime, day, 3);
+        System.out.println("Grange done");
+        setToastDuckListValues(students, fullTime, day, 0);
+        setToastDuckListValues(students, fullTime, day, 1);
+        setToastDuckListValues(students, fullTime, day, 3);
+        System.out.println("Toast done");
+        setDuckListValues(students, fullTime, day, 0, 2, 5,24); //hearth
+        setDuckListValues(students, fullTime, day, 1, 2, 5,24);
+        setDuckListValues(students, fullTime, day, 3, 2, 5,24);
+        System.out.println("Hearth done");
+        setDuckListValues(students, fullTime, day, 0, 1, 6,27); //peaks
+        setDuckListValues(students, fullTime, day, 1, 1, 6,27);
+        setDuckListValues(students, fullTime, day, 3, 1, 6,27);
+        System.out.println("Peaks done");
+        setDuckListValues(students, fullTime, day, 0, 3, 7,30); //salads
+        setDuckListValues(students, fullTime, day, 1, 3, 7,30);
+        setDuckListValues(students, fullTime, day, 3, 3, 7,30);
+        System.out.println("Salads done");
+        setDuckListValues(students, fullTime, day, 0, 10, 8,33); //Cold Runner
+        setDuckListValues(students, fullTime, day, 1, 10, 8,33);
+        setDuckListValues(students, fullTime, day, 3, 10, 8,33);
+        System.out.println("CR done");
+        setDuckListValues(students, fullTime, day, 0, 9, 9,36); //DRA
+        setDuckListValues(students, fullTime, day, 1, 9, 9,36);
+        setDuckListValues(students, fullTime, day, 3, 9, 9,36);
+        System.out.println("dra done");
+        setDishDuckListValues(students, fullTime, day, 0);
+        setDishDuckListValues(students, fullTime, day, 1);
+        setDishDuckListValues(students, fullTime, day, 3);
+        System.out.println("Dish done");
+        setFloatDuckListValues(students, day, 0);
+        setFloatDuckListValues(students, day, 1);
+        setFloatDuckListValues(students, day, 3);
+        System.out.println("float done");
+        setProductionDuckListValues(fullTime, 0);
         setJanitorDuckListValues(students, day, 1);
         setJanitorDuckListValues(students, day, 3);
-
-
+        System.out.println("Janitor done");
     }
 
-    private void setCheckerDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setCheckerDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -287,6 +474,20 @@ public class SheetsCommunicator {
         List<CellData> checkerCellLine2 = new ArrayList<>();
         String checkerDataLine1 = "";
         String checkerDataLine2 = "";
+        if(shift == 0 || shift == 1){
+            if(fullTime.get(0).get(shift).size() > 0){
+                for(int i = 0; i < fullTime.get(0).get(shift).size(); i++){
+                    checkerDataLine1 += fullTime.get(0).get(shift).get(i) +", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if(fullTime.get(0).get(shift-1).size() > 0){
+                for(int i = 0; i < fullTime.get(0).get(shift-1).size(); i++){
+                    checkerDataLine1 += fullTime.get(0).get(shift-1).get(i) +", ";
+                }
+            }
+        }
         if(students.get(0).get(shift).size() > 0){
             checkerDataLine1 += students.get(0).get(shift).get(0).getName() + " (" + students.get(0).get(shift).get(0).getSchedule().get(day) + "-" + students.get(0).get(shift).get(0).getSchedule().get(day+1)+")";
         }
@@ -309,7 +510,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                        )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         checkerCellLine2.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -318,7 +527,16 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
 
         if(shift == 0 || shift == 1) {
             requests.add(new Request()
@@ -366,7 +584,7 @@ public class SheetsCommunicator {
 
     }
 
-    private void setMiddleDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setMiddleDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -384,7 +602,20 @@ public class SheetsCommunicator {
         String middleDataLine1 = "";
         String middleDataLine2 = "";
         String middleDataLine3 = "";
-
+        if(shift == 0 || shift == 1) {
+            if (fullTime.get(1).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(1).get(shift).size(); i++) {
+                    middleDataLine1 += fullTime.get(1).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(1).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(1).get(shift-1).size(); i++) {
+                    middleDataLine1 += fullTime.get(1).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if(students.get(5).get(shift).size() > 0){
             for(int i = 0; i < students.get(5).get(shift).size(); i++){
                 if(i == 2) break;
@@ -440,7 +671,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         middleCellLine2.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -449,7 +688,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         middleCellLine3.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -458,7 +705,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
 
 
@@ -526,7 +781,7 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
     }
 
-    private void setCurryDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setCurryDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -544,7 +799,20 @@ public class SheetsCommunicator {
         String curryDataLine1 = "";
         String curryDataLine2 = "";
         String curryDataLine3 = "";
-
+        if(shift == 0 || shift == 1) {
+            if (fullTime.get(2).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(2).get(shift).size(); i++) {
+                    curryDataLine1 += fullTime.get(2).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(2).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(2).get(shift-1).size(); i++) {
+                    curryDataLine1 += fullTime.get(2).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if(students.get(6).get(shift).size() > 0){
             for(int i = 0; i < students.get(6).get(shift).size(); i++){
                 if(i == 2) break;
@@ -600,7 +868,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         curryCellLine2.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -609,7 +885,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         curryCellLine3.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -618,7 +902,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
 
 
@@ -686,7 +978,7 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
     }
 
-    private void setGrangeDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setGrangeDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -704,7 +996,20 @@ public class SheetsCommunicator {
         String grangeDataLine1 = "";
         String grangeDataLine2 = "";
         String grangeDataLine3 = "";
-
+        if(shift == 0 || shift == 1) {
+            if (fullTime.get(3).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(3).get(shift).size(); i++) {
+                    grangeDataLine1 += fullTime.get(3).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(3).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(3).get(shift-1).size(); i++) {
+                    grangeDataLine1 += fullTime.get(3).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if(students.get(7).get(shift).size() > 0){
             for(int i = 0; i < students.get(7).get(shift).size(); i++){
                 if(i == 2) break;
@@ -760,7 +1065,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         grangeCellLine2.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -769,7 +1082,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         grangeCellLine3.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -778,7 +1099,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
 
 
@@ -846,7 +1175,7 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
     }
 
-    private void setToastDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setToastDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -857,16 +1186,30 @@ public class SheetsCommunicator {
 
 
         List<Request> requests = new ArrayList<>();
-
+        List<CellData> toastCellLine0 = new ArrayList<>();
         List<CellData> toastCellLine1 = new ArrayList<>();
         List<CellData> toastCellLine2 = new ArrayList<>();
         List<CellData> toastCellLine3 = new ArrayList<>();
         List<CellData> toastCellLine4 = new ArrayList<>();
+        String toastDataLine0 = "";
         String toastDataLine1 = "";
         String toastDataLine2 = "";
         String toastDataLine3 = "";
         String toastDataLine4 = "";
-
+        if(shift == 0 || shift == 1) {
+            if (fullTime.get(4).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(4).get(shift).size(); i++) {
+                    toastDataLine0 += fullTime.get(4).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(4).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(4).get(shift-1).size(); i++) {
+                    toastDataLine0 += fullTime.get(4).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if(students.get(4).get(shift).size() > 0) {
             for (int i = 0; i < students.get(4).get(shift).size(); i++) {
                 if (i == 2) break;
@@ -925,7 +1268,22 @@ public class SheetsCommunicator {
                     toastDataLine4 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
                 }
         }
-
+        toastCellLine0.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(toastDataLine0))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(8)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         toastCellLine1.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(toastDataLine1))
@@ -933,7 +1291,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                                 )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         toastCellLine2.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -942,7 +1308,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         toastCellLine3.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -951,7 +1325,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         toastCellLine4.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -960,9 +1342,26 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         if(shift == 0 || shift == 1) {
+            requests.add(new Request()
+                    .setUpdateCells(new UpdateCellsRequest()
+                            .setRows(Arrays.asList(
+                                    new RowData().setValues(toastCellLine0)))
+                            .setStart(new GridCoordinate()
+                                    .setSheetId(1656413616)
+                                    .setRowIndex(18)
+                                    .setColumnIndex(shift))
+                            .setFields("userEnteredValue,userEnteredFormat")));
             requests.add(new Request()
                     .setUpdateCells(new UpdateCellsRequest()
                             .setRows(Arrays.asList(
@@ -1001,6 +1400,15 @@ public class SheetsCommunicator {
                             .setFields("userEnteredValue,userEnteredFormat")));
         }
         else if(shift == 3){
+            requests.add(new Request()
+                    .setUpdateCells(new UpdateCellsRequest()
+                            .setRows(Arrays.asList(
+                                    new RowData().setValues(toastCellLine0)))
+                            .setStart(new GridCoordinate()
+                                    .setSheetId(1656413616)
+                                    .setRowIndex(18)
+                                    .setColumnIndex(shift-1))
+                            .setFields("userEnteredValue,userEnteredFormat")));
             requests.add(new Request()
                     .setUpdateCells(new UpdateCellsRequest()
                             .setRows(Arrays.asList(
@@ -1043,7 +1451,7 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
     }
 
-    private void setDuckListValues(List<List<List<Student>>> students, int day, int shift, int station, int index) throws IOException, GeneralSecurityException {
+    private void setDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift, int station, int ftstation, int index) throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -1058,6 +1466,20 @@ public class SheetsCommunicator {
         List<CellData> cellLine2 = new ArrayList<>();
         String dataLine1 = "";
         String dataLine2 = "";
+        if(shift == 0 || shift ==1) {
+            if (fullTime.get(ftstation).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(ftstation).get(shift).size(); i++) {
+                    dataLine1 += fullTime.get(ftstation).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(ftstation).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(ftstation).get(shift-1).size(); i++) {
+                    dataLine1 += fullTime.get(ftstation).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if (students.get(station).get(shift).size() > 0) {
             for (int i = 0; i < students.get(station).get(shift).size(); i++) {
                 if (i == 2) break;
@@ -1090,7 +1512,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         cellLine2.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -1099,7 +1529,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         if (shift == 0 || shift == 1) {
             requests.add(new Request()
@@ -1148,7 +1586,7 @@ public class SheetsCommunicator {
 
     }
 
-    private void setDishDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
+    private void setDishDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
@@ -1174,7 +1612,20 @@ public class SheetsCommunicator {
         String dishDataLine5 = "";
         String dishDataLine6 = "";
         String dishDataLine7 = "";
-
+        if(shift == 0 || shift == 1) {
+            if (fullTime.get(10).get(shift).size() > 0) {
+                for (int i = 0; i < fullTime.get(10).get(shift).size(); i++) {
+                    dishDataLine1 += fullTime.get(10).get(shift).get(i) + ", ";
+                }
+            }
+        }
+        else if(shift == 3){
+            if (fullTime.get(10).get(shift-1).size() > 0) {
+                for (int i = 0; i < fullTime.get(10).get(shift-1).size(); i++) {
+                    dishDataLine1 += fullTime.get(10).get(shift-1).get(i) + ", ";
+                }
+            }
+        }
         if(students.get(8).get(shift).size() > 0){
             for(int i = 0; i < students.get(8).get(shift).size(); i++){
                 if(i == 2)break;
@@ -1485,7 +1936,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         dishCellLine2.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -1494,7 +1953,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         dishCellLine3.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dishDataLine3))
@@ -1502,7 +1969,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         dishCellLine4.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dishDataLine4))
@@ -1510,7 +1985,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         dishCellLine5.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dishDataLine5))
@@ -1518,7 +2001,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         dishCellLine6.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dishDataLine6))
@@ -1526,7 +2017,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
         dishCellLine7.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dishDataLine7))
@@ -1534,7 +2033,15 @@ public class SheetsCommunicator {
                         .setTextFormat(new TextFormat()
                                 .setFontSize(8)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         if (shift == 0 || shift == 1) {
             requests.add(new Request()
@@ -1704,7 +2211,15 @@ public class SheetsCommunicator {
                                 .setFontSize(10)
                                 .setBold(true)
                         )
-                        .setWrapStrategy("Wrap")));
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
 
         if(shift == 0 || shift == 1){
             requests.add(new Request()
@@ -1728,6 +2243,132 @@ public class SheetsCommunicator {
                                     .setColumnIndex(shift-1))
                             .setFields("userEnteredValue,userEnteredFormat")));
         }
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
+    }
+
+    private void setFloatDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException {
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+
+        List<Request> requests = new ArrayList<>();
+
+        List<CellData> cellLine1 = new ArrayList<>();
+        String dataLine1 = "Float: ";
+        if (students.get(12).get(shift).size() > 0) {
+            for (int i = 0; i < students.get(12).get(shift).size(); i++) {
+                dataLine1 += students.get(12).get(shift).get(i).getName() + " (" + students.get(12).get(shift).get(i).getSchedule().get(day) + "-" + students.get(12).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+            }
+        }
+        if (shift == 1 && students.get(12).get(shift + 1).size() > 0) {
+            for (int i = 0; i < students.get(12).get(shift + 1).size(); i++) {
+                dataLine1 += students.get(12).get(shift + 1).get(i).getName() + " (" + students.get(12).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(12).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
+            }
+        }
+
+        cellLine1.add(new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(dataLine1))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                                .setBold(true)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
+        if (shift == 0 || shift == 1) {
+            requests.add(new Request()
+                    .setUpdateCells(new UpdateCellsRequest()
+                            .setRows(Arrays.asList(
+                                    new RowData().setValues(cellLine1)))
+                            .setStart(new GridCoordinate()
+                                    .setSheetId(1656413616)
+                                    .setRowIndex(46)
+                                    .setColumnIndex(shift))
+                            .setFields("userEnteredValue,userEnteredFormat")));
+        }
+        if (shift == 3) {
+            requests.add(new Request()
+                    .setUpdateCells(new UpdateCellsRequest()
+                            .setRows(Arrays.asList(
+                                    new RowData().setValues(cellLine1)))
+                            .setStart(new GridCoordinate()
+                                    .setSheetId(1656413616)
+                                    .setRowIndex(46)
+                                    .setColumnIndex(shift - 1))
+                            .setFields("userEnteredValue,userEnteredFormat")));
+        }
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
+    }
+
+    private void setProductionDuckListValues(List<List<List<String>>> fullTime,int shift)throws IOException, GeneralSecurityException{
+
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        List<Request> requests = new ArrayList<>();
+
+        List<CellData> cellLine1 = new ArrayList<>();
+        String dataLine1 = "AM Production: ";
+
+        if(fullTime.get(11).get(shift).size() > 0){
+            for(int i = 0; i < fullTime.get(11).get(shift).size(); i++){
+                dataLine1 += fullTime.get(11).get(shift).get(i) +", ";
+            }
+        }
+        cellLine1.add(new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(dataLine1))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                                .setBold(true)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(48)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
     }
 
 
