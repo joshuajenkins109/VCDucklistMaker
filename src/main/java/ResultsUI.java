@@ -9,6 +9,7 @@ public class ResultsUI {
     private JTextArea midDuckList;
     private JTextArea dinnerDuckList;
     private JButton ExitButton;
+    private JButton ExitandSaveButton;
     private int exitCode = 0;
 
     public void setExitCode(int exitCode) {
@@ -30,6 +31,12 @@ public class ResultsUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setExitCode(-1);
+            }
+        });
+        ExitandSaveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setExitCode(-2);
             }
         });
     }

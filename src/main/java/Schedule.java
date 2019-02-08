@@ -166,16 +166,16 @@ public class Schedule {
 
     private void updateWeights(Student student, List<Object> weights){
         student.setCheckWeight(Double.valueOf((String)weights.get(1)));
-        student.setPeaksWeight(Double.valueOf((String)weights.get(2)));
-        student.setHearthWeight(Double.valueOf((String)weights.get(3)));
-        student.setSaladsWeight(Double.valueOf((String)weights.get(4)));
+        student.setPeaksWeight(Double.valueOf((String)weights.get(7)));
+        student.setHearthWeight(Double.valueOf((String)weights.get(6)));
+        student.setSaladsWeight(Double.valueOf((String)weights.get(8)));
         student.setToastWeight(Double.valueOf((String)weights.get(5)));
-        student.setMidWeight(Double.valueOf((String)weights.get(6)));
-        student.setCurryWeight(Double.valueOf((String)weights.get(7)));
-        student.setGrangeWeight(Double.valueOf((String)weights.get(8)));
-        student.setDishWeight(Double.valueOf((String)weights.get(9)));
+        student.setMidWeight(Double.valueOf((String)weights.get(2)));
+        student.setCurryWeight(Double.valueOf((String)weights.get(3)));
+        student.setGrangeWeight(Double.valueOf((String)weights.get(4)));
+        student.setDishWeight(Double.valueOf((String)weights.get(11)));
         student.setDraWeight(Double.valueOf((String)weights.get(10)));
-        student.setColdWeight(Double.valueOf((String)weights.get(11)));
+        student.setColdWeight(Double.valueOf((String)weights.get(9)));
         student.setJanWeight(Double.valueOf((String)weights.get(12)));
         student.setFloatWeight(Double.valueOf((String)weights.get(13)));
     }

@@ -57,6 +57,7 @@ public class SheetsQuickstart {
 
 
 
+
         while(ui.getAction() != -1) {
 
             System.out.print("");
@@ -74,6 +75,11 @@ public class SheetsQuickstart {
                 ui.setAction(0);
             }
             if(rui.getExitCode() == -1) {
+                resultsFrame.setVisible(false);
+                break;
+            }
+            if(rui.getExitCode() == -2){
+                sheet.adjustStudentWeights();
                 resultsFrame.setVisible(false);
                 break;
             }
@@ -114,6 +120,7 @@ public class SheetsQuickstart {
                 schedule.fillStations(sui.buildShiftNumbers());
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
+                sheet.createDuckList(schedule.getMasterList(), ui.getDay());
 
                 ui.setAction(0);
                 sui.setAction(0);
@@ -133,7 +140,7 @@ public class SheetsQuickstart {
                 schedule.fillStations(sui.buildShiftNumbers());
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
-
+                sheet.createDuckList(schedule.getMasterList(), ui.getDay());
                 ui.setAction(0);
                 sui.setAction(0);
 
@@ -202,18 +209,18 @@ public class SheetsQuickstart {
 
         /*
 
-               TODO: Write to document
+
 
                TODO: Make schedule reading more efficient at catching human error (cl vs CL)
 
                TODO: Check if need to fix double checker
 
-               TODO:  float position
+
 
                TODO: Fix errors on multiple runs (as in run, hit restart, run again) i believe its probably just overloading things, doesnt 'reset'
 
 
-               TODO: Produce names so Ryan can easily cross check list as he makes changes.
+         
 
 
 

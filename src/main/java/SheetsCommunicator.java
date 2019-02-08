@@ -56,7 +56,7 @@ public class SheetsCommunicator {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         // *old schedule* final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
         final String spreadsheetId = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
-        final String range = "Sheet1!A6:O176";                                                          //TODO: Figure out how to make this dynamic **** CAUSES ERROR IF OVEREXTENDED
+        final String range = "Sheet1!A6:O179";                                                          //TODO: Figure out how to make this dynamic **** CAUSES ERROR IF OVEREXTENDED
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -336,6 +336,10 @@ public class SheetsCommunicator {
                             secondSheet.add(j, firstSheet.get(i));
                             break;
                         }
+                        if(j == secondSheet.size() - 1 && secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) < 0 ){
+                            addStudentToWeights(firstSheet.get(i).get(0).toString(), j+1);
+                            secondSheet.add(firstSheet.get(i));
+                        }
                     }
                 }
 
@@ -421,7 +425,9 @@ public class SheetsCommunicator {
         setGrangeDuckListValues(students, fullTime, day, 3);
         System.out.println("Grange done");
         setToastDuckListValues(students, fullTime, day, 0);
+        System.out.println("ToastMorning");
         setToastDuckListValues(students, fullTime, day, 1);
+        System.out.println("toastmid");
         setToastDuckListValues(students, fullTime, day, 3);
         System.out.println("Toast done");
         setDuckListValues(students, fullTime, day, 0, 2, 5,24); //hearth
@@ -508,7 +514,7 @@ public class SheetsCommunicator {
                         .setStringValue(checkerDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -525,7 +531,7 @@ public class SheetsCommunicator {
                         .setStringValue(checkerDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -669,7 +675,7 @@ public class SheetsCommunicator {
                         .setStringValue(middleDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -686,7 +692,7 @@ public class SheetsCommunicator {
                         .setStringValue(middleDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -703,7 +709,7 @@ public class SheetsCommunicator {
                         .setStringValue(middleDataLine3))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -866,7 +872,7 @@ public class SheetsCommunicator {
                         .setStringValue(curryDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -883,7 +889,7 @@ public class SheetsCommunicator {
                         .setStringValue(curryDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -900,7 +906,7 @@ public class SheetsCommunicator {
                         .setStringValue(curryDataLine3))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1063,7 +1069,7 @@ public class SheetsCommunicator {
                         .setStringValue(grangeDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1080,7 +1086,7 @@ public class SheetsCommunicator {
                         .setStringValue(grangeDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1097,7 +1103,7 @@ public class SheetsCommunicator {
                         .setStringValue(grangeDataLine3))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1233,47 +1239,48 @@ public class SheetsCommunicator {
                 }
             }
         }
-        if(shift == 1 && students.get(4).get(shift+1).size() > 0){
-            if(students.get(4).get(shift).size() < 3){
-                for(int i = 0; i < students.get(4).get(shift+1).size(); i++){
-                    if(i==2)break;
-                    toastDataLine2 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
+        if(shift == 1 && students.get(4).get(shift+1).size() > 0) {
+            if (students.get(4).get(shift).size() < 3) {
+                for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
+                    if (i == 2) break;
+                    toastDataLine2 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
                 }
-                if(students.get(4).get(shift+1).size() > 2){
-                    for(int i = 2; i < students.get(4).get(shift+1).size(); i++){
-                        if(i == 4) break;
-                        toastDataLine3 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
+                if (students.get(4).get(shift + 1).size() > 2) {
+                    for (int i = 2; i < students.get(4).get(shift + 1).size(); i++) {
+                        if (i == 4) break;
+                        toastDataLine3 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
                 }
-                if(students.get(4).get(shift+1).size() > 4){
-                    for(int i = 4; i < students.get(4).get(shift+1).size(); i++){
-                        toastDataLine4 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
-                    }
-                }
-            }
-            else if(students.get(4).get(shift).size() >= 3 &&  students.get(4).get(shift).size() < 6){
-                for(int i = 0; i < students.get(4).get(shift+1).size(); i++){
-                    if(i == 2) break;
-                    toastDataLine3 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
-                }
-            }
-                if(students.get(4).get(shift+1).size() > 2){
-                    for(int i = 2; i < students.get(4).get(shift+1).size(); i++){
-                        toastDataLine4 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
+                if (students.get(4).get(shift + 1).size() > 4) {
+                    for (int i = 4; i < students.get(4).get(shift + 1).size(); i++) {
+                        toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
                 }
             }
-            else if(students.get(4).get(shift).size() >= 6){
-                for(int i = 0; i < students.get(4).get(shift+1).size(); i++){
-                    toastDataLine4 += students.get(4).get(shift+1).get(i).getName() + " (" +students.get(4).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift+1).get(i).getSchedule().get(day+1)+")" + ", ";
+            else if (students.get(4).get(shift).size() >= 3 && students.get(4).get(shift).size() < 6) {
+                for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
+                    if (i == 2) break;
+                    toastDataLine3 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
                 }
+
+                if (students.get(4).get(shift + 1).size() > 2) {
+                    for (int i = 2; i < students.get(4).get(shift + 1).size(); i++) {
+                        toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
+                    }
+                }
+            }
+            else if (students.get(4).get(shift).size() >= 6) {
+                for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
+                    toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
+                }
+            }
         }
         toastCellLine0.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(toastDataLine0))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1289,7 +1296,7 @@ public class SheetsCommunicator {
                         .setStringValue(toastDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                                 )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1306,7 +1313,7 @@ public class SheetsCommunicator {
                         .setStringValue(toastDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1323,7 +1330,7 @@ public class SheetsCommunicator {
                         .setStringValue(toastDataLine3))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1340,7 +1347,7 @@ public class SheetsCommunicator {
                         .setStringValue(toastDataLine4))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1510,7 +1517,7 @@ public class SheetsCommunicator {
                         .setStringValue(dataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1527,7 +1534,7 @@ public class SheetsCommunicator {
                         .setStringValue(dataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1934,7 +1941,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine1))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1951,7 +1958,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine2))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1967,7 +1974,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine3))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1983,7 +1990,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine4))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -1999,7 +2006,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine5))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -2015,7 +2022,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine6))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -2031,7 +2038,7 @@ public class SheetsCommunicator {
                         .setStringValue(dishDataLine7))
                 .setUserEnteredFormat(new CellFormat()
                         .setTextFormat(new TextFormat()
-                                .setFontSize(8)
+                                .setFontSize(10)
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
@@ -2190,7 +2197,7 @@ public class SheetsCommunicator {
         List<Request> requests = new ArrayList<>();
 
         List<CellData> cellLine1 = new ArrayList<>();
-        String dataLine1 = "Janitor: ";
+        String dataLine1 = "Janitor:, ";
         if(students.get(11).get(shift).size() > 0)
         {
             for(int i = 0; i < students.get(11).get(shift).size(); i++){
@@ -2202,6 +2209,7 @@ public class SheetsCommunicator {
                 dataLine1 += students.get(11).get(shift+1).get(i).getName() + " (" + students.get(11).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(11).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
             }
         }
+
 
         cellLine1.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -2370,6 +2378,209 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
+
+    private List<String> getStudentsFromString(String line){
+        List<String> names = Arrays.asList(line.split(",[ ]*"));
+        List<String> studentNames = new ArrayList<>();
+        for(String name: names){
+            if(name.contains("(")){ studentNames.add(name.substring(0, name.indexOf("(")-1)); }
+        }
+        return studentNames;
+    }
+
+    private List<List<List<String>>> getDuckListValues()throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, "Ducklist")
+                .execute();
+
+        List<List<Object>> values = response.getValues();
+
+
+        List<List<List<String>>> students = new ArrayList<>();
+        for(int i = 0; i < 12; i++) {
+            List<List<String>> station = new ArrayList<>();
+            students.add(station);
+        }
+        //  M M D
+        //  S S S
+        //  S S S
+        for(int i = 3; i < 5; i++) {
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(0).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 6; i < 9; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(1).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 10; i < 13; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(2).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 14; i < 17; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(3).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 18; i < 23; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(4).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 24; i < 26; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(5).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 27; i < 29; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(6).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 30; i < 32; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(7).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 33; i < 35; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(8).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 36; i < 38; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(9).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        for(int i = 39; i < 46; i++){
+            if(values.get(i).size() > 0){
+                for(int j = 0; j < values.get(i).size(); j++){
+                    students.get(10).add(getStudentsFromString((String)values.get(i).get(j)));
+                }
+            }
+        }
+        if(values.get(48).size() > 0){
+            for(int j = 0; j < values.get(48).size(); j++){
+                students.get(11).add(getStudentsFromString((String)values.get(48).get(j)));
+            }
+        }
+        return students;
+
+    }
+
+    public void adjustStudentWeights()throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        List<List<Object>> weights = getStudentWeights();
+        List<List<List<String>>> students = getDuckListValues();
+        List<Request> requests = new ArrayList<>();
+        for(int l = 0; l < students.size(); l++) {
+            for (int k = 0; k < students.get(l).size(); k++) {
+                for (int i = 0; i < students.get(l).get(k).size(); i++) {
+                    for (int j = 1; j < weights.size(); j++) {
+                        if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) == 0) {
+                            requests = adjustWeight(l+1, j, weights.get(j), requests);
+                            break;
+                        }
+                        if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) < 0) break;
+                    }
+                }
+            }
+        }
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
+    }
+
+    private List<Request> adjustWeight(int station, int index, List<Object> currentWeights, List<Request> requests){
+
+
+        for(int i = 1; i < 13; i++){
+            if(Double.parseDouble(currentWeights.get(i).toString()) != 0){
+                if(station == i){
+                    //lower weight
+                    double weight = Double.parseDouble(currentWeights.get(i).toString());
+                    if(weight > .1){ weight -= 0.1;}
+                    List<CellData> cellLine1 = new ArrayList<>();
+                    cellLine1.add(new CellData()
+                            .setUserEnteredValue(new ExtendedValue()
+                                    .setNumberValue(weight))
+                            .setUserEnteredFormat(new CellFormat()
+                                    .setTextFormat(new TextFormat()
+                                            .setFontSize(12)
+                                        )
+                                    .setHorizontalAlignment("Center")));
+
+                    requests.add(new Request()
+                            .setUpdateCells(new UpdateCellsRequest()
+                                    .setRows(Arrays.asList(
+                                            new RowData().setValues(cellLine1)))
+                                    .setStart(new GridCoordinate()
+                                            .setSheetId(999419915)
+                                            .setRowIndex(index)
+                                            .setColumnIndex(i))
+                                    .setFields("userEnteredValue,userEnteredFormat")));
+                }
+                else{
+                    double weight = Double.parseDouble(currentWeights.get(i).toString()) + .05;
+
+                    List<CellData> cellLine1 = new ArrayList<>();
+                    cellLine1.add(new CellData()
+                            .setUserEnteredValue(new ExtendedValue()
+                                    .setNumberValue(weight))
+                            .setUserEnteredFormat(new CellFormat()
+                                    .setTextFormat(new TextFormat()
+                                            .setFontSize(12))
+                                    .setHorizontalAlignment("Center")));
+                    requests.add(new Request()
+                            .setUpdateCells(new UpdateCellsRequest()
+                                    .setRows(Arrays.asList(
+                                            new RowData().setValues(cellLine1)))
+                                    .setStart(new GridCoordinate()
+                                            .setSheetId(999419915)
+                                            .setRowIndex(index)
+                                            .setColumnIndex(i))
+                                    .setFields("userEnteredValue,userEnteredFormat")));
+                }
+            }
+        }
+        return requests;
+
+    }
+
+
 
 
 }
