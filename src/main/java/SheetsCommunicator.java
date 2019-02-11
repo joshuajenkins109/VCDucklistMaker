@@ -56,7 +56,7 @@ public class SheetsCommunicator {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         // *old schedule* final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
         final String spreadsheetId = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
-        final String range = "Sheet1!A6:O179";                                                          //TODO: Figure out how to make this dynamic **** CAUSES ERROR IF OVEREXTENDED
+        final String range = "Sheet1";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -67,7 +67,9 @@ public class SheetsCommunicator {
 
 
         List<List<Object>> values = response.getValues();
+
         Schedule schedule = new Schedule(values);
+
 
         return schedule;
     }
@@ -272,6 +274,16 @@ public class SheetsCommunicator {
                     .setHorizontalAlignment("Center")
                     .setTextFormat(new TextFormat()
                         .setFontSize(12))));
+        for(int i = 0; i < 3; i++){
+            cells.add( new CellData()
+                    .setUserEnteredValue(new ExtendedValue()
+                            .setStringValue("null")
+                    )
+                    .setUserEnteredFormat(new CellFormat()
+                            .setHorizontalAlignment("Center")
+                            .setTextFormat(new TextFormat()
+                                    .setFontSize(12))));
+        }
 
         requests.add(new Request()
             .setInsertDimension(new InsertDimensionRequest()
@@ -327,16 +339,16 @@ public class SheetsCommunicator {
                             firstSheet.get(i).get(0).toString().compareTo("Crew") != 0 &&
                             firstSheet.get(i).get(0).toString().compareTo("Temps") != 0){
 
-                        if(secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) == 0)
+                        if(secondSheet.get(j).get(0).toString().compareToIgnoreCase(firstSheet.get(i).get(0).toString()) == 0)
                         {
                             break;
                         }
-                        if(secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) > 0){
+                        if(secondSheet.get(j).get(0).toString().compareToIgnoreCase(firstSheet.get(i).get(0).toString()) > 0){
                             addStudentToWeights(firstSheet.get(i).get(0).toString(), j);
                             secondSheet.add(j, firstSheet.get(i));
                             break;
                         }
-                        if(j == secondSheet.size() - 1 && secondSheet.get(j).get(0).toString().compareTo(firstSheet.get(i).get(0).toString()) < 0 ){
+                        if(j == secondSheet.size() - 1 && secondSheet.get(j).get(0).toString().compareToIgnoreCase(firstSheet.get(i).get(0).toString()) < 0 ){
                             addStudentToWeights(firstSheet.get(i).get(0).toString(), j+1);
                             secondSheet.add(firstSheet.get(i));
                         }
@@ -2506,13 +2518,18 @@ public class SheetsCommunicator {
         List<List<Object>> weights = getStudentWeights();
         List<List<List<String>>> students = getDuckListValues();
         List<Request> requests = new ArrayList<>();
+        List<Integer> alreadyUpdated = new ArrayList<>();
         for(int l = 0; l < students.size(); l++) {
             for (int k = 0; k < students.get(l).size(); k++) {
                 for (int i = 0; i < students.get(l).get(k).size(); i++) {
                     for (int j = 1; j < weights.size(); j++) {
                         if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) == 0) {
-                            requests = adjustWeight(l+1, j, weights.get(j), requests);
-                            break;
+                            if(!alreadyUpdated.contains(j)) {
+                                requests = updateWorkedLast(l, j, weights.get(j), requests);
+                                requests = adjustWeight(l + 1, j, weights.get(j), requests);
+                                alreadyUpdated.add(j);
+                                break;
+                            }
                         }
                         if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) < 0) break;
                     }
@@ -2530,9 +2547,8 @@ public class SheetsCommunicator {
         for(int i = 1; i < 13; i++){
             if(Double.parseDouble(currentWeights.get(i).toString()) != 0){
                 if(station == i){
-                    //lower weight
                     double weight = Double.parseDouble(currentWeights.get(i).toString());
-                    if(weight > .1){ weight -= 0.1;}
+                    if(weight > .2 && weight < 10){ weight -= 0.2;}
                     List<CellData> cellLine1 = new ArrayList<>();
                     cellLine1.add(new CellData()
                             .setUserEnteredValue(new ExtendedValue()
@@ -2554,8 +2570,8 @@ public class SheetsCommunicator {
                                     .setFields("userEnteredValue,userEnteredFormat")));
                 }
                 else{
-                    double weight = Double.parseDouble(currentWeights.get(i).toString()) + .05;
-
+                    double weight = Double.parseDouble(currentWeights.get(i).toString());
+                    if(weight < 9.75) weight += .05;
                     List<CellData> cellLine1 = new ArrayList<>();
                     cellLine1.add(new CellData()
                             .setUserEnteredValue(new ExtendedValue()
@@ -2578,6 +2594,85 @@ public class SheetsCommunicator {
         }
         return requests;
 
+    }
+
+    private List<Request> updateWorkedLast(int station, int index, List<Object> currentWeights, List<Request> requests){
+        String secondLast = currentWeights.get(15).toString();
+        String last = currentWeights.get(14).toString();
+        String newLast = "";
+        if(station == 0) newLast = "Checker";
+        else if(station == 1) newLast = "Middle";
+        else if(station == 2) newLast = "Curry";
+        else if(station == 3) newLast = "Grange";
+        else if(station == 4) newLast = "Toast";
+        else if(station == 5) newLast = "Hearth";
+        else if(station == 6) newLast = "Peaks";
+        else if(station == 7) newLast = "Salads";
+        else if(station == 8) newLast = "Cold Runner";
+        else if(station == 9) newLast = "DRA";
+        else if(station == 10) newLast = "Dish";
+        else if(station == 11) newLast = "Janitor";
+
+
+
+
+        List<CellData> lastPlacement = new ArrayList<>();
+        List<CellData> secondLastPlacement = new ArrayList<>();
+        List<CellData> thirdLastPlacement = new ArrayList<>();
+        lastPlacement.add(new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(newLast))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(12)
+                        )
+                        .setHorizontalAlignment("Center")));
+        secondLastPlacement.add(new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(last))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(12)
+                        )
+                        .setHorizontalAlignment("Center")));
+        thirdLastPlacement.add(new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(secondLast))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(12)
+                        )
+                        .setHorizontalAlignment("Center")));
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(lastPlacement)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(999419915)
+                                .setRowIndex(index)
+                                .setColumnIndex(14))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(secondLastPlacement)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(999419915)
+                                .setRowIndex(index)
+                                .setColumnIndex(15))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(thirdLastPlacement)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(999419915)
+                                .setRowIndex(index)
+                                .setColumnIndex(16))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+        return requests;
     }
 
 

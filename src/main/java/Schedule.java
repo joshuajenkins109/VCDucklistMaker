@@ -178,7 +178,13 @@ public class Schedule {
         student.setColdWeight(Double.valueOf((String)weights.get(9)));
         student.setJanWeight(Double.valueOf((String)weights.get(12)));
         student.setFloatWeight(Double.valueOf((String)weights.get(13)));
+
+        if( student.getDishWeight() < 10 && weights.get(14).toString().compareToIgnoreCase("Dish") == 0 && weights.get(15).toString().compareToIgnoreCase("Dish") == 0 ){
+            student.setDishWeight(0);
+        }
+
     }
+
 
     private void updateStudentWeights() throws IOException, GeneralSecurityException{
         SheetsCommunicator sheet = new SheetsCommunicator();
@@ -186,7 +192,7 @@ public class Schedule {
         for(int i = 0; i < pool.size(); i++){
             for(Student student: pool.get(i)){
                 for(List<Object> row: weights){
-                    if( student.getName().compareTo((String)row.get(0))== 0){
+                    if( student.getName().compareToIgnoreCase((String)row.get(0))== 0){
                         updateWeights(student, row);
                         break;
                     }
@@ -332,7 +338,7 @@ public class Schedule {
         List<Student> students = new ArrayList<>();
         int studentIndex = 0;
         boolean leads = true;
-        for(int i = 0; i < times.size(); i++){
+        for(int i = 5; i < times.size(); i++){
             if(times.get(i).size() > 0){
                 if(times.get(i).get(0).toString().compareTo("Crew") == 0) {
                     leads = false;
@@ -396,12 +402,12 @@ public class Schedule {
          //Weekday morning (starting before 8am)
       try{
           //System.out.println(studentsWorking.get(i).getName());
-          if(studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") &&
+          if((studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") || studentsWorking.get(i).getSchedule().get(day).toString().endsWith("AM") ) &&
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) < 8 &&
-         Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 5 && day != 1 && day != 13){
+                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 5 && day != 1 && day != 13){
              //System.out.println("Morning: " + studentsWorking.get(i).getName())   ;
              pool.get(0).add(studentsWorking.get(i));
-             if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
+             if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") == 0){
                  pool.get(2).add(studentsWorking.get(i));
                  pool.get(3).add(studentsWorking.get(i));
                  studentsWorking.get(i).setMultipleShifts(true);
@@ -413,12 +419,12 @@ public class Schedule {
          }
 
          //Weekend morning (starting before 10am)
-         else if(studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") &&
+         else if((studentsWorking.get(i).getSchedule().get(day).toString().endsWith("am") || studentsWorking.get(i).getSchedule().get(day).toString().endsWith("AM")) &&
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) < 10 &&
                  Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 5 && (day == 1 || day == 13)){
              pool.get(0).add(studentsWorking.get(i));
              //if they leave at CL add them to mid and close as well
-             if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
+             if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") == 0){
                  pool.get(1).add(studentsWorking.get(i));
                  pool.get(3).add(studentsWorking.get(i));
                  studentsWorking.get(i).setMultipleShifts(true);
@@ -430,7 +436,7 @@ public class Schedule {
              }
          }
          //Weekend/Weekday Mid + Close shift (starting before 3pm and Closing)
-         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0 &&
+         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") == 0 &&
                  ((Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) < 3) ||
                          (Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 7)  )){
              pool.get(2).add(studentsWorking.get(i));
@@ -438,7 +444,7 @@ public class Schedule {
           studentsWorking.get(i).setMultipleShifts(true);
          }
          //weekend/weekday Close (Starts 3pm or later and Closing)
-         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") == 0){
+         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") == 0){
              pool.get(3).add(studentsWorking.get(i));
          }
          else if(studentsWorking.get(i).getSchedule().get(day).toString().compareTo("") == 0){
@@ -446,14 +452,14 @@ public class Schedule {
              System.out.println("something went wrong here");
          }
          //weekday early mid (not opening or closing and here before 11am)
-         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") != 0 &&
+         else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") != 0 &&
               ((Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 6) ||
                       (studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1).compareTo("1") == 0 &&
                       studentsWorking.get(i).getSchedule().get(day).toString().substring(1,2).compareTo("0") == 0)) && day != 1 && day != 13){
             pool.get(1).add(studentsWorking.get(i));
       }
         //weekend early mid (not opening or closing and here before 12pm)
-        else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareTo("CL") != 0 &&
+        else if(studentsWorking.get(i).getSchedule().get(day+1).toString().compareToIgnoreCase("CL") != 0 &&
               ((Integer.parseInt(studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1)) > 6) ||
                       (studentsWorking.get(i).getSchedule().get(day).toString().substring(0,1).compareTo("1") == 0 &&
                               ((studentsWorking.get(i).getSchedule().get(day).toString().substring(1,2).compareTo("0") == 0) ||
@@ -466,7 +472,7 @@ public class Schedule {
              pool.get(2).add(studentsWorking.get(i));
          }}
          catch(Exception exception){
-          System.out.println("Cannot convert********************************************"); //todo: check with justin on this
+          System.out.println("Cannot convert********************************************");
          }
      }
         return pool;

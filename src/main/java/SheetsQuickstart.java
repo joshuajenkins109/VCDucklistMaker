@@ -217,30 +217,19 @@ public class SheetsQuickstart {
 
 
 
+
                TODO: Fix errors on multiple runs (as in run, hit restart, run again) i believe its probably just overloading things, doesnt 'reset'
 
 
-         
 
 
-
-
-
-
-         */
-
-        /*
-
-            TODO: how to make people keep their weights for scheduiling stations when the list of students gets updated everytime i run the program. find way to have it update instead of rerun?
-
-                -store weights seperately? *** im thinking store in google sheet, reference based on name. no two students can have same name.
-                -or update only new -> could be time intensive :(
 
 
 
 
 
          */
+
 
 
 
