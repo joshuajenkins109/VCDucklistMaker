@@ -7,18 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" afterPath="$PROJECT_DIR$/out/artifacts/sheetsreader_jar/sheetsreader.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/ResultsUI$1.class" afterPath="$PROJECT_DIR$/out/production/classes/ResultsUI$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/ResultsUI$2.class" afterPath="$PROJECT_DIR$/out/production/classes/ResultsUI$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/ResultsUI.class" afterPath="$PROJECT_DIR$/out/production/classes/ResultsUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Schedule.class" afterPath="$PROJECT_DIR$/out/production/classes/Schedule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/Schedule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -175,12 +166,14 @@
       <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="30" column="8" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+            <state relative-caret-position="267">
+              <caret line="326" column="84" lean-forward="false" selection-start-line="326" selection-start-column="84" selection-end-line="326" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
@@ -189,6 +182,7 @@
                 <element signature="method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1110,12 +1104,12 @@
       <workItem from="1549907593127" duration="1771000" />
       <workItem from="1549909453558" duration="1795000" />
       <workItem from="1549911285736" duration="1809000" />
-      <workItem from="1549913172081" duration="55000" />
+      <workItem from="1549913172081" duration="869000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440840000" />
+    <option name="totallyTimeSpent" value="441654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1123,12 +1117,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32661718" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17603393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17603393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1146,7 +1141,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32661718" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1591,12 +1585,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="30" column="8" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+        <state relative-caret-position="267">
+          <caret line="326" column="84" lean-forward="false" selection-start-line="326" selection-start-column="84" selection-end-line="326" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1605,6 +1601,7 @@
             <element signature="method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />

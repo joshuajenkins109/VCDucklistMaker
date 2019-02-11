@@ -29,8 +29,9 @@ public class SheetsCommunicator {
 
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+    private String scheduleID;
 
-    public SheetsCommunicator(){}
+    public SheetsCommunicator()throws IOException, GeneralSecurityException{this.scheduleID = getCurrentScheduleID();}
 
     /**
      * Creates an authorized Credential object.
@@ -52,19 +53,31 @@ public class SheetsCommunicator {
             return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
         }
 
+    private String getCurrentScheduleID()throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        ValueRange response = service.spreadsheets().values()
+                .get(spreadsheetId, "ScheduleID")
+                .execute();
+
+        List<List<Object>> values = response.getValues();
+
+        return values.get(0).get(0).toString();
+    }
+
     public Schedule generateList() throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        // *old schedule* final String spreadsheetId = "1JwjcwHRbxiq6T16uxJFP2lEbJl4C0FkH7HVlRqHo_ps";
-        final String spreadsheetId = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
         final String range = "Sheet1";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
         ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, range)
+                .get(scheduleID, range)
                 .execute();
-
-
 
         List<List<Object>> values = response.getValues();
 
@@ -314,13 +327,13 @@ public class SheetsCommunicator {
     public void updateStudentsWeights() throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
-        final String spreadsheetId2 = "1IdPO_3d2Y1Zcs0ZIIWrBsBG7TZ0mt3aLIL11cyHMl4M";
+
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
         ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId2, "Sheet1")
+                .get(scheduleID, "Sheet1")
                 .execute();
 
         ValueRange response2 = service.spreadsheets().values()
