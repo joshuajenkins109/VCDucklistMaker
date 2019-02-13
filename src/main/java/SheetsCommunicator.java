@@ -1901,7 +1901,7 @@ public class SheetsCommunicator {
                 }
 
             }
-            
+
         }
         dishCellLine1.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()

@@ -350,10 +350,10 @@ public class Schedule {
             if(times.get(i).size() > 1) {
                 //If student has split shift name won't be on same row, so it sets it to the name from previous row
                 if(times.get(i).get(0).toString().compareTo("") != 0) {
-                    students.add(new Student(times.get(i).get(0).toString(), times.get(i), leads));
+                    if(!times.get(i).get(0).toString().contains("(")) students.add(new Student(times.get(i).get(0).toString(), times.get(i), leads));
                 }
                 else if(times.get(i-1).get(0).toString().compareTo("") != 0){
-                    students.add(new Student(times.get(i-1).get(0).toString(), times.get(i), leads));
+                    if(!times.get(i-1).get(0).toString().contains("("))students.add(new Student(times.get(i-1).get(0).toString(), times.get(i), leads));
                 }
             }
         }
