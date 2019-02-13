@@ -18,6 +18,7 @@ import sun.java2d.loops.FillRect;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.security.GeneralSecurityException;
 import java.util.*;
 
@@ -42,7 +43,24 @@ public class SheetsCommunicator {
         private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
             // Load client secrets.
             InputStream in = SheetsQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-            GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+            GoogleClientSecrets clientSecrets;
+            if(in == null){
+                String in2 = "{\n" +
+                        "  \"installed\":\n" +
+                        "  {\n" +
+                        "    \"client_id\":\"654732257802-u4jqmi5pl4p4vvkoa4qf8lravn7ap35j.apps.googleusercontent.com\",\n" +
+                        "    \"project_id\":\"duclistmaker-1535572080429\",\n" +
+                        "    \"auth_uri\":\"https://accounts.google.com/o/oauth2/auth\",\n" +
+                        "    \"token_uri\":\"https://www.googleapis.com/oauth2/v3/token\",\n" +
+                        "    \"auth_provider_x509_cert_url\":\"https://www.googleapis.com/oauth2/v1/certs\",\n" +
+                        "    \"client_secret\":\"99RcR7sSz7NB7xHHb9wllgkY\",\n" +
+                        "    \"redirect_uris\":[\"urn:ietf:wg:oauth:2.0:oob\",\"http://localhost\"]\n" +
+                        "  }\n" +
+                        "}";
+                 clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new StringReader(in2));
+            }
+            else{clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));}
+
 
             // Build flow and trigger user authorization request.
             GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
@@ -1661,119 +1679,41 @@ public class SheetsCommunicator {
         if(students.get(8).get(shift).size() > 0){
             for(int i = 0; i < students.get(8).get(shift).size(); i++){
                 if(i == 2)break;
-                dishDataLine1 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+                dishDataLine2 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
             }
             if(students.get(8).get(shift).size() > 2){
                 for(int i = 2; i < students.get(8).get(shift).size(); i++){
                     if(i == 4)break;
-                    dishDataLine2 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+                    dishDataLine3 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
                 }
             }
             if(students.get(8).get(shift).size() > 4){
                 for(int i = 4; i < students.get(8).get(shift).size(); i++){
                     if(i == 6)break;
-                    dishDataLine3 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+                    dishDataLine4 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
                 }
             }
             if(students.get(8).get(shift).size() > 6){
                 for(int i = 6; i < students.get(8).get(shift).size(); i++){
                     if( i == 8) break;
-                    dishDataLine4 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+                    dishDataLine5 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
                 }
             }
             if(students.get(8).get(shift).size() > 8){
                 for(int i = 8; i < students.get(8).get(shift).size(); i++){
                     if(i == 10)break;
-                    dishDataLine5 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
+                    dishDataLine6 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
                 }
             }
             if(students.get(8).get(shift).size() > 10){
                 for(int i = 10; i < students.get(8).get(shift).size(); i++){
-                    if(i == 12)break;
-                    dishDataLine6 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + ")";
+                    dishDataLine7 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + ")";
                 }
             }
-            if(students.get(8).get(shift).size() > 12){
-                for(int i = 12; i < students.get(8).get(shift).size(); i++){
-                    dishDataLine7 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + "), ";
-                }
-            }
+
         }
         if(shift == 1 && students.get(8).get(shift+1).size() > 0){
             if(students.get(8).get(shift).size() < 2){
-                dishDataLine1 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
-                if(students.get(8).get(shift+1).size() > 1){
-                    for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 3)break;
-                        dishDataLine2 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 3){
-                    for(int i = 3; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 5)break;
-                        dishDataLine3 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 5){
-                    for(int i = 5; i < students.get(8).get(shift+1).size(); i++){
-                        if( i == 7) break;
-                        dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 7){
-                    for(int i = 7; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 9)break;
-                        dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 9){
-                    for(int i = 9; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 11)break;
-                        dishDataLine6 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 11){
-                    for(int i = 11; i < students.get(8).get(shift+1).size(); i++){
-                        dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-            }
-            else if(students.get(8).get(shift).size() == 2){
-                for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
-                    if(i == 2)break;
-                    dishDataLine2 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                }
-                if(students.get(8).get(shift+1).size() > 2){
-                    for(int i = 2; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 4)break;
-                        dishDataLine3 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 4){
-                    for(int i = 4; i < students.get(8).get(shift+1).size(); i++){
-                        if( i == 6) break;
-                        dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 6){
-                    for(int i = 6; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 8)break;
-                        dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 8){
-                    for(int i = 8; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 10)break;
-                        dishDataLine6 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-                if(students.get(8).get(shift+1).size() > 10){
-                    for(int i = 10; i < students.get(8).get(shift+1).size(); i++){
-                        dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-            }
-            else if(students.get(8).get(shift).size() == 3){
                 dishDataLine2 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
                 if(students.get(8).get(shift+1).size() > 1){
                     for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
@@ -1783,13 +1723,13 @@ public class SheetsCommunicator {
                 }
                 if(students.get(8).get(shift+1).size() > 3){
                     for(int i = 3; i < students.get(8).get(shift+1).size(); i++){
-                        if( i == 5) break;
+                        if(i == 5)break;
                         dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
                 if(students.get(8).get(shift+1).size() > 5){
                     for(int i = 5; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 7)break;
+                        if( i == 7) break;
                         dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
@@ -1804,21 +1744,22 @@ public class SheetsCommunicator {
                         dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
+
             }
-            else if(students.get(8).get(shift).size() == 4){
+            else if(students.get(8).get(shift).size() == 2){
                 for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
                     if(i == 2)break;
                     dishDataLine3 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                 }
                 if(students.get(8).get(shift+1).size() > 2){
                     for(int i = 2; i < students.get(8).get(shift+1).size(); i++){
-                        if( i == 4) break;
+                        if(i == 4)break;
                         dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
                 if(students.get(8).get(shift+1).size() > 4){
                     for(int i = 4; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 6)break;
+                        if( i == 6) break;
                         dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
@@ -1833,18 +1774,19 @@ public class SheetsCommunicator {
                         dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
+
             }
-            else if(students.get(8).get(shift).size() == 5){
+            else if(students.get(8).get(shift).size() == 3){
                 dishDataLine3 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
                 if(students.get(8).get(shift+1).size() > 1){
                     for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
-                        if( i == 3) break;
+                        if(i == 3)break;
                         dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
                 if(students.get(8).get(shift+1).size() > 3){
                     for(int i = 3; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 5)break;
+                        if( i == 5) break;
                         dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
@@ -1860,14 +1802,14 @@ public class SheetsCommunicator {
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() == 6){
+            else if(students.get(8).get(shift).size() == 4){
                 for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
-                    if( i == 2) break;
+                    if(i == 2)break;
                     dishDataLine4 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                 }
                 if(students.get(8).get(shift+1).size() > 2){
                     for(int i = 2; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 4)break;
+                        if( i == 4) break;
                         dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
@@ -1883,11 +1825,11 @@ public class SheetsCommunicator {
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() == 7){
+            else if(students.get(8).get(shift).size() == 5){
                 dishDataLine4 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
                 if(students.get(8).get(shift+1).size() > 1){
                     for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 3)break;
+                        if( i == 3) break;
                         dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
@@ -1903,25 +1845,24 @@ public class SheetsCommunicator {
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() == 8){
+            else if(students.get(8).get(shift).size() == 6){
                 for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
-                    if(i == 2)break;
+                    if( i == 2) break;
                     dishDataLine5 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                 }
                 if(students.get(8).get(shift+1).size() > 2){
                     for(int i = 2; i < students.get(8).get(shift+1).size(); i++){
-                        if(i == 6)break;
+                        if(i == 4)break;
                         dishDataLine6 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
-                if(students.get(8).get(shift+1).size() > 6){
-                    for(int i = 6; i < students.get(8).get(shift+1).size(); i++){
+                if(students.get(8).get(shift+1).size() > 4){
+                    for(int i = 4; i < students.get(8).get(shift+1).size(); i++){
                         dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
-
             }
-            else if(students.get(8).get(shift).size() == 9){
+            else if(students.get(8).get(shift).size() == 7){
                 dishDataLine5 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
                 if(students.get(8).get(shift+1).size() > 1){
                     for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
@@ -1935,19 +1876,18 @@ public class SheetsCommunicator {
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() == 10){
+            else if(students.get(8).get(shift).size() == 8){
                 for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
                     if(i == 2)break;
                     dishDataLine6 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                 }
-
                 if(students.get(8).get(shift+1).size() > 2){
                     for(int i = 2; i < students.get(8).get(shift+1).size(); i++){
                         dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() == 11){
+            else if(students.get(8).get(shift).size() == 9){
                 dishDataLine6 += students.get(8).get(shift+1).get(0).getName() + " (" + students.get(8).get(shift+1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(0).getSchedule().get(day + 1) + "), ";
                 if(students.get(8).get(shift+1).size() > 1){
                     for(int i = 1; i < students.get(8).get(shift+1).size(); i++){
@@ -1955,11 +1895,13 @@ public class SheetsCommunicator {
                     }
                 }
             }
-            else if(students.get(8).get(shift).size() > 11){
+            else if(students.get(8).get(shift).size() >= 10){
                 for(int i = 0; i < students.get(8).get(shift+1).size(); i++){
                     dishDataLine7 += students.get(8).get(shift+1).get(i).getName() + " (" + students.get(8).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
                 }
+
             }
+            
         }
         dishCellLine1.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -2519,6 +2461,50 @@ public class SheetsCommunicator {
         }
         return students;
 
+    }
+
+    private List<Student> sortStudents(List<Student> students,  int day){
+        final int day1 = day;
+        List<Student> sortedStudents = new ArrayList<>();
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getLead()){
+                sortedStudents.add(students.get(i));
+                students.remove(i);
+            }
+        }
+        /*
+        Collections.sort(players, new Comparator<HockeyPlayer>() {
+        @Override public int compare(HockeyPlayer p1, HockeyPlayer p2) {
+            return p1.goalsScored - p2.goalsScored; // Ascending
+        }
+         */
+        Collections.sort(students, new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return  o1.getSchedule().get(day1).toString().compareTo(o2.getSchedule().get(day1).toString());
+            }
+        });
+        Collections.sort(sortedStudents, new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return  o1.getSchedule().get(day1).toString().compareTo(o2.getSchedule().get(day1).toString());
+            }
+        });
+        for(Student student: students){
+            sortedStudents.add(student);
+        }
+        return sortedStudents;
+
+    }
+
+    public List<List<List<Student>>> sortMasterStudentList(List<List<List<Student>>> students, int day){
+        for(int i = 0; i < students.size(); i++)
+        {
+            for(int j = 0; j < students.get(i).size(); j++){
+                students.get(i).set(j, sortStudents(students.get(i).get(j), day));
+            }
+        }
+        return students;
     }
 
     public void adjustStudentWeights()throws IOException, GeneralSecurityException{
