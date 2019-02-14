@@ -34,6 +34,11 @@ public class SheetsQuickstart {
         frame.setVisible(true);
         Schedule schedule = sheet.generateList();
 
+        String test = "TEST: ";
+        for(Student student :schedule.getStudents()){
+            test += student.getName();
+        }
+
         List<Student> pool = new ArrayList<Student>();
         List<List<Student>> bigpool = new ArrayList<List<Student>>();
         List<List<List<Student>>> trying = new ArrayList<List<List<Student>>>();
@@ -101,7 +106,7 @@ public class SheetsQuickstart {
                 ui.setAction(0);
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
                 List<String> printer = schedule.printToString(trying, ui.getDay());
-                rui.setMorningDuckList(sheet.getScheduleID());
+                rui.setMorningDuckList(test);
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
                 frame.setVisible(false);
