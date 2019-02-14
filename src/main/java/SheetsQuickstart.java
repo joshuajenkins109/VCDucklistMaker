@@ -126,7 +126,7 @@ public class SheetsQuickstart {
                 sui.setAction(0);
 
                 List<String> printer = schedule.printToString(trying, sui.getDay());
-                rui.setMorningDuckList(printer.get(0));
+                rui.setMorningDuckList(Integer.toString(trying.size()));
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
                 shiftNumberChangeFrame.setVisible(false);
