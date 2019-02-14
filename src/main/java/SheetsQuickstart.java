@@ -34,11 +34,6 @@ public class SheetsQuickstart {
         frame.setVisible(true);
         Schedule schedule = sheet.generateList();
 
-        String test = "TEST: ";
-        for(int i = 0; i < schedule.getStudents().size(); i++){
-            test += schedule.getStudents().get(i).getName();
-            if(i == 4) break;
-        }
 
         List<Student> pool = new ArrayList<Student>();
         List<List<Student>> bigpool = new ArrayList<List<Student>>();
@@ -98,8 +93,11 @@ public class SheetsQuickstart {
             }
             if(ui.getAction() == 1){
 
-
+                String test = "";
                 pool = schedule.buildDayPool(ui.getDay());
+                for(Student student: pool){
+                    test += student.getName();
+                }
                 bigpool = schedule.buildPool(pool, ui.getDay());
                 schedule.fillStations(schedule.getDefaultStationNumbers(ui.getDay()));
                 trying = schedule.createDuck(bigpool);

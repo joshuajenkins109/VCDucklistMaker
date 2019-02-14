@@ -29,12 +29,12 @@
       <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+            <state relative-caret-position="457">
+              <caret line="96" column="58" lean-forward="true" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
               <folding>
-                <element signature="e#1102#1111#0" expanded="true" />
-                <element signature="e#1166#1181#0" expanded="true" />
-                <element signature="e#1241#1262#0" expanded="true" />
+                <element signature="e#905#914#0" expanded="true" />
+                <element signature="e#969#984#0" expanded="true" />
+                <element signature="e#1044#1065#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,9 +43,18 @@
       <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="7" column="69" lean-forward="true" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
+            <state relative-caret-position="-139">
+              <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
               <folding>
+                <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
+                <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+                <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
+                <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+                <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+                <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
                 <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
                 <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
@@ -1068,12 +1077,12 @@
       <workItem from="1550101306637" duration="1776000" />
       <workItem from="1550103670565" duration="1891000" />
       <workItem from="1550105595592" duration="1512000" />
-      <workItem from="1550185738298" duration="577000" />
+      <workItem from="1550185738298" duration="909000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="470408000" />
+    <option name="totallyTimeSpent" value="470740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1157,9 +1166,9 @@
         <state relative-caret-position="1190">
           <caret line="70" column="34" lean-forward="false" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1183,9 +1192,9 @@
         <state relative-caret-position="918">
           <caret line="73" column="43" lean-forward="false" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1209,9 +1218,9 @@
         <state relative-caret-position="935">
           <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1235,9 +1244,9 @@
         <state relative-caret-position="918">
           <caret line="73" column="58" lean-forward="false" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1261,9 +1270,9 @@
         <state relative-caret-position="935">
           <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1287,9 +1296,9 @@
         <state relative-caret-position="714">
           <caret line="61" column="44" lean-forward="false" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1499,33 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="69" lean-forward="true" selection-start-line="7" selection-start-column="69" selection-end-line="7" selection-end-column="69" />
-          <folding>
-            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
-            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
-            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1564,14 +1546,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+          <folding>
+            <element signature="method#Schedule#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+            <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+            <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
+            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+        <state relative-caret-position="457">
+          <caret line="96" column="58" lean-forward="true" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
           <folding>
-            <element signature="e#1102#1111#0" expanded="true" />
-            <element signature="e#1166#1181#0" expanded="true" />
-            <element signature="e#1241#1262#0" expanded="true" />
+            <element signature="e#905#914#0" expanded="true" />
+            <element signature="e#969#984#0" expanded="true" />
+            <element signature="e#1044#1065#0" expanded="true" />
           </folding>
         </state>
       </provider>
