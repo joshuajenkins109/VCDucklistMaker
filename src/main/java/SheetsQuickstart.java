@@ -95,9 +95,7 @@ public class SheetsQuickstart {
 
                 String test = "";
                 pool = schedule.buildDayPool(ui.getDay());
-                for(Student student: pool){
-                    test += student.getName();
-                }
+                test = Integer.toString(pool.size());
                 bigpool = schedule.buildPool(pool, ui.getDay());
                 schedule.fillStations(schedule.getDefaultStationNumbers(ui.getDay()));
                 trying = schedule.createDuck(bigpool);
