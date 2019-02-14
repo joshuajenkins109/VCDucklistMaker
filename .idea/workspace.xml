@@ -30,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
-              <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+              <caret line="105" column="53" lean-forward="false" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
               <folding>
                 <element signature="e#905#914#0" expanded="true" />
                 <element signature="e#969#984#0" expanded="true" />
@@ -1078,12 +1078,12 @@
       <workItem from="1550103670565" duration="1891000" />
       <workItem from="1550105595592" duration="1512000" />
       <workItem from="1550185738298" duration="1676000" />
-      <workItem from="1550187547546" duration="268000" />
+      <workItem from="1550187547546" duration="674000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="471775000" />
+    <option name="totallyTimeSpent" value="472181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1586,7 +1586,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
-          <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+          <caret line="105" column="53" lean-forward="false" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
           <folding>
             <element signature="e#905#914#0" expanded="true" />
             <element signature="e#969#984#0" expanded="true" />
