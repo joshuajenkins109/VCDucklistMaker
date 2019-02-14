@@ -93,9 +93,9 @@ public class SheetsQuickstart {
             }
             if(ui.getAction() == 1){
 
-                String test = "";
+                String whydoesthiswork = "";
                 pool = schedule.buildDayPool(ui.getDay());
-                test = Integer.toString(pool.size());
+                whydoesthiswork = Integer.toString(pool.size());
                 bigpool = schedule.buildPool(pool, ui.getDay());
                 schedule.fillStations(schedule.getDefaultStationNumbers(ui.getDay()));
                 trying = schedule.createDuck(bigpool);
@@ -103,7 +103,7 @@ public class SheetsQuickstart {
                 ui.setAction(0);
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
                 List<String> printer = schedule.printToString(trying, ui.getDay());
-                rui.setMorningDuckList(test);
+                rui.setMorningDuckList(printer.get(0));
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
                 frame.setVisible(false);
