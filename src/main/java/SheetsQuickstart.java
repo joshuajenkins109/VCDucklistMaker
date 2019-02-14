@@ -35,8 +35,9 @@ public class SheetsQuickstart {
         Schedule schedule = sheet.generateList();
 
         String test = "TEST: ";
-        for(Student student :schedule.getStudents()){
-            test += student.getName();
+        for(int i = 0; i < schedule.getStudents().size(); i++){
+            test += schedule.getStudents().get(i).getName();
+            if(i == 4) break;
         }
 
         List<Student> pool = new ArrayList<Student>();
