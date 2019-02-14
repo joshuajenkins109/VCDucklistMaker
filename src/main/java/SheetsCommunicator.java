@@ -71,6 +71,10 @@ public class SheetsCommunicator {
             return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
         }
 
+    public String getScheduleID(){
+            return this.scheduleID;
+    }
+
     private String getCurrentScheduleID()throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";

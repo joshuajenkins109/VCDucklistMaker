@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,12 +30,12 @@
       <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="109" column="46" lean-forward="false" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
+            <state relative-caret-position="551">
+              <caret line="102" column="83" lean-forward="false" selection-start-line="102" selection-start-column="83" selection-end-line="102" selection-end-column="83" />
               <folding>
-                <element signature="e#901#910#0" expanded="true" />
-                <element signature="e#965#980#0" expanded="true" />
-                <element signature="e#1040#1061#0" expanded="true" />
+                <element signature="e#904#913#0" expanded="true" />
+                <element signature="e#968#983#0" expanded="true" />
+                <element signature="e#1043#1064#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,7 +44,7 @@
       <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5984">
+            <state relative-caret-position="17">
               <caret line="355" column="37" lean-forward="false" selection-start-line="355" selection-start-column="37" selection-end-line="355" selection-end-column="37" />
               <folding>
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
@@ -72,13 +73,14 @@
       <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5950">
-              <caret line="1903" column="0" lean-forward="false" selection-start-line="1903" selection-start-column="0" selection-end-line="1903" selection-end-column="0" />
+            <state relative-caret-position="349">
+              <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="e#3942#3943#0" expanded="true" />
+                <element signature="e#3984#3985#0" expanded="true" />
                 <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
@@ -473,8 +475,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/ResultsUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/ResultsUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
       </list>
     </option>
@@ -1066,12 +1068,12 @@
       <workItem from="1550099204873" duration="1271000" />
       <workItem from="1550101306637" duration="1776000" />
       <workItem from="1550103670565" duration="1891000" />
-      <workItem from="1550105595592" duration="972000" />
+      <workItem from="1550105595592" duration="1398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="469291000" />
+    <option name="totallyTimeSpent" value="469717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1155,9 +1157,9 @@
         <state relative-caret-position="1190">
           <caret line="70" column="34" lean-forward="false" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1181,9 +1183,9 @@
         <state relative-caret-position="918">
           <caret line="73" column="43" lean-forward="false" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1207,9 +1209,9 @@
         <state relative-caret-position="935">
           <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1233,9 +1235,9 @@
         <state relative-caret-position="918">
           <caret line="73" column="58" lean-forward="false" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1259,9 +1261,9 @@
         <state relative-caret-position="935">
           <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1285,9 +1287,9 @@
         <state relative-caret-position="714">
           <caret line="61" column="44" lean-forward="false" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1497,15 +1499,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="355" column="37" lean-forward="false" selection-start-line="355" selection-start-column="37" selection-end-line="355" selection-end-column="37" />
+          <folding>
+            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
+            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5950">
-          <caret line="1903" column="0" lean-forward="false" selection-start-line="1903" selection-start-column="0" selection-end-line="1903" selection-end-column="0" />
+        <state relative-caret-position="349">
+          <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="e#3942#3943#0" expanded="true" />
+            <element signature="e#3984#3985#0" expanded="true" />
             <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1534,41 +1564,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5984">
-          <caret line="355" column="37" lean-forward="false" selection-start-line="355" selection-start-column="37" selection-end-line="355" selection-end-column="37" />
-          <folding>
-            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
-            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
-            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="109" column="46" lean-forward="false" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
+        <state relative-caret-position="551">
+          <caret line="102" column="83" lean-forward="false" selection-start-line="102" selection-start-column="83" selection-end-line="102" selection-end-column="83" />
           <folding>
-            <element signature="e#901#910#0" expanded="true" />
-            <element signature="e#965#980#0" expanded="true" />
-            <element signature="e#1040#1061#0" expanded="true" />
+            <element signature="e#904#913#0" expanded="true" />
+            <element signature="e#968#983#0" expanded="true" />
+            <element signature="e#1043#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
