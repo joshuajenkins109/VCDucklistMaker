@@ -98,7 +98,7 @@ public class SheetsQuickstart {
                 ui.setAction(0);
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
                 List<String> printer = schedule.printToString(trying, ui.getDay());
-                rui.setMorningDuckList(printer.get(0));
+                rui.setMorningDuckList(Integer.toString(trying.size()));
                 rui.setMidDuckList(printer.get(1));
                 rui.setDinnerDuckList(printer.get(2));
                 frame.setVisible(false);
@@ -143,7 +143,6 @@ public class SheetsQuickstart {
                 sheet.createDuckList(schedule.getMasterList(), ui.getDay());
                 ui.setAction(0);
                 sui.setAction(0);
-
                 List<String> printer = schedule.printToString(trying, sui.getDay());
                 rui.setMorningDuckList(printer.get(0));
                 rui.setMidDuckList(printer.get(1));
