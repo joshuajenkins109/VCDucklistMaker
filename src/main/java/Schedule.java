@@ -3549,8 +3549,15 @@ public class Schedule {
         return result;
 
     }
-    /// TODO: cool idea, in coverage I can mark priority based on how well shifts are filled with current schedule
-
+    public List<Integer> getCoverageList(List<List<Student>> pool) {
+        List<Integer> coverage = new ArrayList<>();
+        coverage.add(pool.get(0).size());
+        coverage.add(pool.get(1).size() + pool.get(2).size());
+        coverage.add(pool.get(3).size());
+        coverage.add(pool.get(1).size());
+        coverage.add(pool.get(2).size());
+        return coverage;
+    }
     private Boolean neededMidMinShiftsFilled(List<Station> stations){
         Boolean filled = true;
         for(Station station: stations){

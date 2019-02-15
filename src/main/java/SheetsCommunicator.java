@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.security.GeneralSecurityException;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class SheetsCommunicator {
@@ -441,6 +443,238 @@ public class SheetsCommunicator {
 
     }
 
+    private List<Request> timestampCoverage(List<Request> requests){
+
+        LocalDateTime time =  LocalDateTime.now();
+        DateTimeFormatter format =
+                DateTimeFormatter.ofPattern("MM-dd-yyyy ");
+        String curTime = "";
+        if(time.getHour() > 12){
+            curTime = Integer.toString(time.getHour()-12) + ":" + time.getMinute() + " PM";
+        }
+        else if(time.getHour() == 12) curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" PM";
+        else curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" AM";
+        String formatedDateTime = "Last Updated: " + time.format(format) + curTime;
+
+        List<CellData> cellLine1 = new ArrayList<>();
+        cellLine1.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(formatedDateTime))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(0)
+                                .setColumnIndex(4))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        return requests;
+    }
+
+    private List<Request> updateCoverage(int day, List<Request> requests, List<Integer> coverage)throws IOException, GeneralSecurityException{
+
+
+
+        List<CellData> cellLine1 = new ArrayList<>();
+        List<CellData> cellLine2 = new ArrayList<>();
+        List<CellData> cellLine3 = new ArrayList<>();
+        List<CellData> cellLine4 = new ArrayList<>();
+        List<CellData> cellLine5 = new ArrayList<>();
+
+        String morning = "";
+        String mid = "";
+        String dinner = "";
+        String earlyMid = "";
+        String lateMid = "";
+
+
+        cellLine1.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setNumberValue(coverage.get(0).doubleValue()))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+        cellLine2.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setNumberValue(coverage.get(1).doubleValue()))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+        cellLine3.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setNumberValue(coverage.get(2).doubleValue()))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+        cellLine4.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setNumberValue(coverage.get(3).doubleValue()))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+        cellLine5.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setNumberValue(coverage.get(4).doubleValue()))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(2)
+                                .setColumnIndex(day+1))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(3)
+                                .setColumnIndex(day+1))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(4)
+                                .setColumnIndex(day+1))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(6)
+                                .setColumnIndex(day+1))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(7)
+                                .setColumnIndex(day+1))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+        return requests;
+
+    }
+
+    public void updateCoverageSheet(List<List<Integer>> coverage)throws IOException, GeneralSecurityException{
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        final String spreadsheetId = "1IN7WGwEPukwDjdyVmDBe57oQFeOA1DeIZ1k1EEX5yzQ";
+
+        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        List<Request> requests = new ArrayList<>();
+        requests = timestampCoverage(requests);
+        requests = updateCoverage(0, requests, coverage.get(0));
+        requests = updateCoverage(1, requests, coverage.get(1));
+        requests = updateCoverage(2, requests, coverage.get(2));
+        requests = updateCoverage(3, requests, coverage.get(3));
+        requests = updateCoverage(4, requests, coverage.get(4));
+        requests = updateCoverage(5, requests, coverage.get(5));
+        requests = updateCoverage(6, requests, coverage.get(6));
+        BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+        BatchUpdateSpreadsheetResponse response = service.spreadsheets()
+                .batchUpdate(spreadsheetId, body).execute();
+
+    }
+
     public void createDuckList(List<List<List<Student>>> students, int day) throws IOException, GeneralSecurityException{
         int ftday = 0;
         if(day == 1) ftday = 1;
@@ -512,6 +746,7 @@ public class SheetsCommunicator {
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
 
 
+
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -561,7 +796,10 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
+
                                         .setStyle("Solid")
                                         )
                                 .setLeft(new Border()
@@ -578,6 +816,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -722,6 +962,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -739,6 +981,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -756,6 +1000,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -919,6 +1165,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -936,6 +1184,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -953,6 +1203,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1116,6 +1368,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1133,6 +1387,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1150,6 +1406,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1327,6 +1585,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1343,6 +1603,8 @@ public class SheetsCommunicator {
                                 )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1360,6 +1622,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1377,6 +1641,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1394,6 +1660,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1564,6 +1832,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1581,6 +1851,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1912,6 +2184,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1929,6 +2203,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1945,6 +2221,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1961,6 +2239,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1977,6 +2257,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -1993,6 +2275,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -2009,6 +2293,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -2188,6 +2474,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -2257,6 +2545,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )
@@ -2321,6 +2611,8 @@ public class SheetsCommunicator {
                         )
                         .setWrapStrategy("Wrap")
                         .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
                                 .setBottom(new Border()
                                         .setStyle("Solid")
                                 )

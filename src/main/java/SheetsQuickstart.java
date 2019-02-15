@@ -160,27 +160,36 @@ public class SheetsQuickstart {
 
             }
             if(ui.getAction() == 3){
+                List<List<Integer>> coverages = new ArrayList<>();
                 pool = schedule.buildDayPool(1);
                 bigpool = schedule.buildPool(pool, 1);
                 cui.setSundayCoverage(schedule.getCoverage(bigpool,1));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(3);
                 bigpool = schedule.buildPool(pool, 3);
                 cui.setMondayCoverage(schedule.getCoverage(bigpool,3));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(5);
                 bigpool = schedule.buildPool(pool, 5);
                 cui.setTuesdayCoverage(schedule.getCoverage(bigpool,5));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(7);
                 bigpool = schedule.buildPool(pool, 7);
                 cui.setWednesdayCoverage(schedule.getCoverage(bigpool,7));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(9);
                 bigpool = schedule.buildPool(pool, 9);
                 cui.setThursdayCoverage(schedule.getCoverage(bigpool,9));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(11);
                 bigpool = schedule.buildPool(pool, 11);
                 cui.setFridayCoverage(schedule.getCoverage(bigpool,11));
+                coverages.add(schedule.getCoverageList(bigpool));
                 pool = schedule.buildDayPool(13);
                 bigpool = schedule.buildPool(pool, 13);
                 cui.setSaturdayCoverage(schedule.getCoverage(bigpool,13));
+                coverages.add(schedule.getCoverageList(bigpool));
+                sheet.updateCoverageSheet(coverages);
                 frame.setVisible(false);
                 coverageFrame.setVisible(true);
                 ui.setAction(0);
