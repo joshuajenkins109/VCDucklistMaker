@@ -631,7 +631,7 @@ public class SheetsCommunicator {
         requests.add(new Request()
                 .setUpdateCells(new UpdateCellsRequest()
                         .setRows(Arrays.asList(
-                                new RowData().setValues(cellLine2)))
+                                new RowData().setValues(cellLine4)))
                         .setStart(new GridCoordinate()
                                 .setSheetId(0)
                                 .setRowIndex(6)
@@ -642,7 +642,7 @@ public class SheetsCommunicator {
         requests.add(new Request()
                 .setUpdateCells(new UpdateCellsRequest()
                         .setRows(Arrays.asList(
-                                new RowData().setValues(cellLine3)))
+                                new RowData().setValues(cellLine5)))
                         .setStart(new GridCoordinate()
                                 .setSheetId(0)
                                 .setRowIndex(7)
