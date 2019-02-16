@@ -2523,7 +2523,7 @@ public class SheetsCommunicator {
         List<Request> requests = new ArrayList<>();
 
         List<CellData> cellLine1 = new ArrayList<>();
-        String dataLine1 = "Float: ";
+        String dataLine1 = "Float:, ";
         if (students.get(12).get(shift).size() > 0) {
             for (int i = 0; i < students.get(12).get(shift).size(); i++) {
                 dataLine1 += students.get(12).get(shift).get(i).getName() + " (" + students.get(12).get(shift).get(i).getSchedule().get(day) + "-" + students.get(12).get(shift).get(i).getSchedule().get(day + 1) + "), ";
@@ -2639,6 +2639,7 @@ public class SheetsCommunicator {
     }
 
     private List<String> getStudentsFromString(String line){
+
         List<String> names = Arrays.asList(line.split(",[ ]*"));
         List<String> studentNames = new ArrayList<>();
         for(String name: names){
@@ -2662,7 +2663,7 @@ public class SheetsCommunicator {
 
 
         List<List<List<String>>> students = new ArrayList<>();
-        for(int i = 0; i < 12; i++) {
+        for(int i = 0; i < 13; i++) {
             List<List<String>> station = new ArrayList<>();
             students.add(station);
         }
@@ -2751,6 +2752,12 @@ public class SheetsCommunicator {
                 students.get(11).add(getStudentsFromString((String)values.get(48).get(j)));
             }
         }
+        if(values.get(46).size() > 0){
+            for(int j = 0; j < values.get(46).size(); j++){
+                students.get(12).add(getStudentsFromString((String)values.get(46).get(j)));
+            }
+        }
+
         return students;
 
     }
@@ -2814,6 +2821,7 @@ public class SheetsCommunicator {
             for (int k = 0; k < students.get(l).size(); k++) {
                 for (int i = 0; i < students.get(l).get(k).size(); i++) {
                     for (int j = 1; j < weights.size(); j++) {
+                        if(l == 12) System.out.println("LOOKIE: "+students.get(l).get(k).get(i).toString());
                         if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) == 0) {
                             if(!alreadyUpdated.contains(j)) {
                                 requests = updateWorkedLast(l, j, weights.get(j), requests);
@@ -2903,6 +2911,7 @@ public class SheetsCommunicator {
         else if(station == 9) newLast = "DRA";
         else if(station == 10) newLast = "Dish";
         else if(station == 11) newLast = "Janitor";
+        else if(station == 12) newLast = "Float";
 
 
 
