@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$1.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$2.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -44,17 +40,15 @@
       <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2244">
-              <caret line="3558" column="24" lean-forward="false" selection-start-line="3558" selection-start-column="24" selection-end-line="3558" selection-end-column="24" />
+            <state relative-caret-position="1054">
+              <caret line="322" column="35" lean-forward="false" selection-start-line="322" selection-start-column="26" selection-end-line="322" selection-end-column="35" />
               <folding>
                 <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
-                <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
                 <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
                 <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
                 <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
                 <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
                 <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
-                <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
                 <element signature="method#building#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
@@ -66,11 +60,12 @@
                 <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
                 <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
                 <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
-                <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
                 <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
                 <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
                 <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
                 <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+                <element signature="method#getCoverageList#0;class#Schedule#0" expanded="false" />
                 <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
                 <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
                 <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
@@ -79,11 +74,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="861">
+              <caret line="277" column="45" lean-forward="false" selection-start-line="277" selection-start-column="45" selection-end-line="277" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="2525" column="35" lean-forward="false" selection-start-line="2525" selection-start-column="35" selection-end-line="2525" selection-end-column="35" />
+            <state relative-caret-position="1411">
+              <caret line="2513" column="141" lean-forward="false" selection-start-line="2513" selection-start-column="141" selection-end-line="2513" selection-end-column="141" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -108,7 +113,10 @@
                 <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setProductionDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
@@ -145,8 +153,8 @@
       <find>read</find>
       <find>only</find>
       <find>get</find>
-      <find>getFloats</find>
       <find>scheduleFloat</find>
+      <find>getFloats</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -516,6 +524,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -562,10 +571,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1090,14 +1098,18 @@
       <workItem from="1550274979283" duration="486000" />
       <workItem from="1550336954416" duration="1819000" />
       <workItem from="1550338892377" duration="1809000" />
+      <workItem from="1550340791129" duration="769000" />
+      <workItem from="1550357400385" duration="1130000" />
+      <workItem from="1550369826129" duration="78000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486684000" />
+    <option name="totallyTimeSpent" value="488661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1107,7 +1119,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1611877" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1611877" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1119,8 +1131,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1167,7 +1179,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="62" />
+      <option name="time" value="63" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1396,13 +1408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="276" column="10" lean-forward="false" selection-start-line="276" selection-start-column="10" selection-end-line="276" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3893">
@@ -1495,42 +1500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="3558" column="24" lean-forward="false" selection-start-line="3558" selection-start-column="24" selection-end-line="3558" selection-end-column="24" />
-          <folding>
-            <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
-            <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
-            <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
-            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
-            <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
-            <element signature="method#building#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
-            <element signature="method#createDuck#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
-            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3162">
@@ -1541,8 +1510,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="2525" column="35" lean-forward="false" selection-start-line="2525" selection-start-column="35" selection-end-line="2525" selection-end-column="35" />
+        <state relative-caret-position="1411">
+          <caret line="2513" column="141" lean-forward="false" selection-start-line="2513" selection-start-column="141" selection-end-line="2513" selection-end-column="141" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1567,11 +1536,57 @@
             <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setProductionDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="322" column="35" lean-forward="false" selection-start-line="322" selection-start-column="26" selection-end-line="322" selection-end-column="35" />
+          <folding>
+            <element signature="method#buildMasterList#0;class#Schedule#0" expanded="false" />
+            <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+            <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#building#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleFloat#0;class#Schedule#0" expanded="false" />
+            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverageList#0;class#Schedule#0" expanded="false" />
+            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="277" column="45" lean-forward="false" selection-start-line="277" selection-start-column="45" selection-end-line="277" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
