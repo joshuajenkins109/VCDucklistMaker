@@ -11,8 +11,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.*;
-import org.apache.http.protocol.HTTP;
-import sun.java2d.loops.FillRect;
+
 
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ public class SheetsCommunicator {
      * @return An authorized Credential object.
                 * @throws IOException If the credentials.json file cannot be found.
                 */
-        private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
             // Load client secrets.
             InputStream in = SheetsQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
             GoogleClientSecrets clientSecrets;
@@ -72,7 +71,13 @@ public class SheetsCommunicator {
                     .build();
             return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
         }
-
+    /**
+     * Retreives current Schedule Id from google sheet
+     *
+     * @return Schedule ID String
+     * @throws IOException If the Credentials cannot be found.
+     * @throws GeneralSecurityException
+     */
     private String getCurrentScheduleID()throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -88,7 +93,13 @@ public class SheetsCommunicator {
 
         return values.get(0).get(0).toString();
     }
-
+    /**
+     * Build Schedule Object with values current schedule
+     *
+     * @return A Schedule object.
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public Schedule generateList() throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String range = "Sheet1";
@@ -106,7 +117,12 @@ public class SheetsCommunicator {
 
         return schedule;
     }
-
+    /**
+     * Builds List<List<List<String>>> for full time employees to be added to
+     *
+     * @return A List<List<List<String>>> sized for full time stations/positions
+     *
+     */
     private List<List<List<String>>> buildFullTimeList(){
         List<String> checkerMorning = new ArrayList<>();
         List<String> checkerMid = new ArrayList<>();
@@ -212,6 +228,13 @@ public class SheetsCommunicator {
         return fullTimers;
 
     }
+    /**
+     * Retrieves full time employee times/placements and inserts them into List
+     * @param day integer representing day of service
+     * @return List<List<List<String>>> full time employees
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     private List<List<List<String>>> getFullTime(int day)throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -224,7 +247,7 @@ public class SheetsCommunicator {
                 .execute();
 
         List<List<Object>> values = response.getValues();
-        // 0-names   1-m 2-mi 3-d 4-m 5-mi 6-d   day%3
+
         List<List<List<String>>> fullTimers = buildFullTimeList();
 
         for(int i = 1; i < values.size(); i++){
@@ -270,7 +293,13 @@ public class SheetsCommunicator {
         }
         return fullTimers;
     }
-
+    /**
+     * Inserts new student into studentWeights sheet with default values
+     * @param name String name of student being placed
+     * @param rowIndex row in sheet in which student is placed
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     private void addStudentToWeights(String name, int rowIndex) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -342,8 +371,11 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
 
     }
-
-
+    /**
+     * Adds new students from schedule to studentWeights
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void updateStudentsWeights() throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -391,7 +423,13 @@ public class SheetsCommunicator {
             }
         }
     }
-
+    /**
+     * Retrieves studentWeights sheet values
+     *
+     * @return List<List<Object>> containing studentWeights values
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public List<List<Object>> getStudentWeights() throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -405,7 +443,13 @@ public class SheetsCommunicator {
 
         return response.getValues();
     }
-
+    /**
+     * Gets station numbers from shiftDefaults sheet for given day
+     * @param range String representing the sheets range for given day
+     * @return List<List<Object>> containing station defaults for mins/maxes
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public List<List<Object>> getShiftDefaults(String range) throws IOException, GeneralSecurityException {
             final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
             final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -422,7 +466,13 @@ public class SheetsCommunicator {
 
             return values;
     }
-
+    /**
+     * Sets new default values to shiftDefaults sheet
+     * @param range String representing the sheets range for given day
+     * @param input values to set shift defaults as
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void setShiftDefaults(String range, List<List<Object>> input) throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -442,53 +492,14 @@ public class SheetsCommunicator {
                         .execute();
 
     }
-
-    private List<Request> timestampCoverage(List<Request> requests){
-
-        LocalDateTime time =  LocalDateTime.now();
-        DateTimeFormatter format =
-                DateTimeFormatter.ofPattern("MM-dd-yyyy ");
-        String curTime = "";
-        if(time.getHour() > 12){
-            curTime = Integer.toString(time.getHour()-12) + ":" + time.getMinute() + " PM";
-        }
-        else if(time.getHour() == 12) curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" PM";
-        else curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" AM";
-        String formatedDateTime = "Last Updated: " + time.format(format) + curTime;
-
-        List<CellData> cellLine1 = new ArrayList<>();
-        cellLine1.add( new CellData()
-                .setUserEnteredValue(new ExtendedValue()
-                        .setStringValue(formatedDateTime))
-                .setUserEnteredFormat(new CellFormat()
-                        .setTextFormat(new TextFormat()
-                                .setFontSize(10)
-                        )
-                        .setWrapStrategy("Wrap")
-                        .setBorders(new Borders()
-                                .setTop(new Border()
-                                        .setStyle("Solid"))
-                                .setBottom(new Border()
-
-                                        .setStyle("Solid")
-                                )
-                                .setLeft(new Border()
-                                        .setStyle("Solid"))
-                                .setRight(new Border()
-                                        .setStyle("Solid")))));
-
-        requests.add(new Request()
-                .setUpdateCells(new UpdateCellsRequest()
-                        .setRows(Arrays.asList(
-                                new RowData().setValues(cellLine1)))
-                        .setStart(new GridCoordinate()
-                                .setSheetId(0)
-                                .setRowIndex(0)
-                                .setColumnIndex(4))
-                        .setFields("userEnteredValue,userEnteredFormat")));
-        return requests;
-    }
-
+    /**
+     * Adds Requests to update coverage sheet with given values
+     * @param day Int representing day to update
+     * @param requests List to add new requests to
+     * @param coverage Values to update coverage with
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     private List<Request> updateCoverage(int day, List<Request> requests, List<Integer> coverage)throws IOException, GeneralSecurityException{
 
 
@@ -652,7 +663,12 @@ public class SheetsCommunicator {
         return requests;
 
     }
-
+    /**
+     * Calls updateCoverage for each day and executes requests
+     * @param coverage values to update coverage with
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void updateCoverageSheet(List<List<Integer>> coverage)throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1IN7WGwEPukwDjdyVmDBe57oQFeOA1DeIZ1k1EEX5yzQ";
@@ -675,6 +691,13 @@ public class SheetsCommunicator {
 
     }
 
+    /**
+     * Calls all updates to Duck List for given day
+     * @param students sorted list of students to add to Duck List
+     * @param day int representing day of Duck List
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void createDuckList(List<List<List<Student>>> students, int day) throws IOException, GeneralSecurityException{
         int ftday = 0;
         if(day == 1) ftday = 1;
@@ -740,7 +763,16 @@ public class SheetsCommunicator {
         setJanitorDuckListValues(students, day, 3);
         System.out.println("Janitor done");
     }
-
+    /**
+     * Populates Duck List Cells for each station
+     * @param students list of students to populate Duck List with
+     * @param fullTime list of full time employees to populate Duck List with
+     * @param day int representing the day of the Duck List
+     * @param shift int representing shift to be added to
+     *
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     private void setCheckerDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -872,7 +904,6 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
 
     }
-
     private void setMiddleDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -1075,7 +1106,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setCurryDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -1278,7 +1308,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setGrangeDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -1481,7 +1510,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setToastDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -1768,7 +1796,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift, int station, int ftstation, int index) throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -1907,7 +1934,6 @@ public class SheetsCommunicator {
 
 
     }
-
     private void setDishDuckListValues(List<List<List<Student>>> students, List<List<List<String>>> fullTime, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -2437,7 +2463,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setJanitorDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -2510,7 +2535,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setFloatDuckListValues(List<List<List<Student>>> students, int day, int shift) throws IOException, GeneralSecurityException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -2581,7 +2605,6 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
-
     private void setProductionDuckListValues(List<List<List<String>>> fullTime,int shift)throws IOException, GeneralSecurityException{
 
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -2638,6 +2661,12 @@ public class SheetsCommunicator {
                 .batchUpdate(spreadsheetId, body).execute();
     }
 
+    /**
+     * Retrieves students string of employees from Duck List
+     * @param line String to search for students on
+     * @return list of students
+     *
+     */
     private List<String> getStudentsFromString(String line){
 
         List<String> names = Arrays.asList(line.split(",[ ]*"));
@@ -2647,7 +2676,12 @@ public class SheetsCommunicator {
         }
         return studentNames;
     }
-
+    /**
+     * Gets values from completed Duck List
+     * @return list of strings taken from Duck List values
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     private List<List<List<String>>> getDuckListValues()throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -2667,9 +2701,7 @@ public class SheetsCommunicator {
             List<List<String>> station = new ArrayList<>();
             students.add(station);
         }
-        //  M M D
-        //  S S S
-        //  S S S
+
         for(int i = 3; i < 5; i++) {
             if(values.get(i).size() > 0){
                 for(int j = 0; j < values.get(i).size(); j++){
@@ -2761,7 +2793,12 @@ public class SheetsCommunicator {
         return students;
 
     }
-
+    /**
+     * Sorts list of students to be placed on Duck List (Leads first, in order of arrival time)
+     * @param students list of students to be sorted
+     * @param day int representing day of scheduling
+     * @return sorted list of students
+     */
     private List<Student> sortStudents(List<Student> students,  int day){
         final int day1 = day;
         List<Student> sortedStudents = new ArrayList<>();
@@ -2771,12 +2808,7 @@ public class SheetsCommunicator {
                 students.remove(i);
             }
         }
-        /*
-        Collections.sort(players, new Comparator<HockeyPlayer>() {
-        @Override public int compare(HockeyPlayer p1, HockeyPlayer p2) {
-            return p1.goalsScored - p2.goalsScored; // Ascending
-        }
-         */
+
         Collections.sort(students, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
@@ -2795,7 +2827,12 @@ public class SheetsCommunicator {
         return sortedStudents;
 
     }
-
+    /**
+     * Calls sortStudents on entirety of masterList of students
+     * @param students masterList of students
+     * @param day int representing day of shifts
+     * @returns sorted masterList of students
+     */
     public List<List<List<Student>>> sortMasterStudentList(List<List<List<Student>>> students, int day){
         for(int i = 0; i < students.size(); i++)
         {
@@ -2805,7 +2842,11 @@ public class SheetsCommunicator {
         }
         return students;
     }
-
+    /**
+     * Executes requests to update studentWeights sheet after a student works a shift
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void adjustStudentWeights()throws IOException, GeneralSecurityException{
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         final String spreadsheetId = "1BuWoL8uGgCgx24TKtDjx-j8406BZ36xbaGyOq359sfA";
@@ -2821,7 +2862,6 @@ public class SheetsCommunicator {
             for (int k = 0; k < students.get(l).size(); k++) {
                 for (int i = 0; i < students.get(l).get(k).size(); i++) {
                     for (int j = 1; j < weights.size(); j++) {
-                        if(l == 12) System.out.println("LOOKIE: "+students.get(l).get(k).get(i).toString());
                         if (students.get(l).get(k).get(i).compareTo((String) weights.get(j).get(0)) == 0) {
                             if(!alreadyUpdated.contains(j)) {
                                 requests = updateWorkedLast(l, j, weights.get(j), requests);
@@ -2839,7 +2879,65 @@ public class SheetsCommunicator {
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
     }
+    /**
+     * Adds a request to add timestamp to coverage sheet
+     * @param requests list to add request to
+     * @return updated list of requests
+     *
+     */
+    private List<Request> timestampCoverage(List<Request> requests){
 
+        LocalDateTime time =  LocalDateTime.now();
+        DateTimeFormatter format =
+                DateTimeFormatter.ofPattern("MM-dd-yyyy ");
+        String curTime = "";
+        if(time.getHour() > 12){
+            curTime = Integer.toString(time.getHour()-12) + ":" + time.getMinute() + " PM";
+        }
+        else if(time.getHour() == 12) curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" PM";
+        else curTime = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute())+" AM";
+        String formattedDateTime = "Last Updated: " + time.format(format) + curTime;
+
+        List<CellData> cellLine1 = new ArrayList<>();
+        cellLine1.add( new CellData()
+                .setUserEnteredValue(new ExtendedValue()
+                        .setStringValue(formattedDateTime))
+                .setUserEnteredFormat(new CellFormat()
+                        .setTextFormat(new TextFormat()
+                                .setFontSize(10)
+                        )
+                        .setWrapStrategy("Wrap")
+                        .setBorders(new Borders()
+                                .setTop(new Border()
+                                        .setStyle("Solid"))
+                                .setBottom(new Border()
+
+                                        .setStyle("Solid")
+                                )
+                                .setLeft(new Border()
+                                        .setStyle("Solid"))
+                                .setRight(new Border()
+                                        .setStyle("Solid")))));
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(0)
+                                .setRowIndex(0)
+                                .setColumnIndex(4))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        return requests;
+    }
+    /**
+     * Adds Request to update values of weights for individual student
+     * @param station int representing station worked
+     * @param index students location in studentWeights Sheet
+     * @param currentWeights students current weights (to be updated)
+     * @param requests list of requests to be added to
+     * @returns updated list of requests
+     */
     private List<Request> adjustWeight(int station, int index, List<Object> currentWeights, List<Request> requests){
 
 
@@ -2894,7 +2992,14 @@ public class SheetsCommunicator {
         return requests;
 
     }
-
+    /**
+     * Adds Request to update studentWeights sheet with last worked shift
+     * @param station int representing station worked
+     * @param index students location in studentWeights Sheet
+     * @param currentWeights students current weights (and worked last) (to be updated)
+     * @param requests list of requests to be added to
+     * @returns updated list of requests
+     */
     private List<Request> updateWorkedLast(int station, int index, List<Object> currentWeights, List<Request> requests){
         String secondLast = currentWeights.get(15).toString();
         String last = currentWeights.get(14).toString();
