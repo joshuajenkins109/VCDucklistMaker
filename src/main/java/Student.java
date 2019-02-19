@@ -58,15 +58,9 @@ public class Student {
         this.multipleShifts = false;
     }
 
-
-
     public List<Object> getSchedule(){
         return this.schedule;
     }
-    public void printSchedule() {
-        System.out.println(this.schedule);
-    }
-    public void setSchedule(List<Object> schedule) {this.schedule = schedule;}
 
     private void setWorkDays(){
         for(int i = 1; i < this.schedule.size(); i+=2){
@@ -82,15 +76,12 @@ public class Student {
         }
     }
 
-
     public boolean getLead(){ return this.isLead;}
 
     public boolean getFloat(){
         if(getFloatWeight() > 0) return true;
         else return false;
     }
-
-
 
     public String getName() {
         return name;
