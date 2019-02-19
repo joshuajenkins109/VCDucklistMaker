@@ -197,60 +197,15 @@ public class SheetsQuickstart {
 
         }
         System.exit(0);
-        //System.out.println(values);
-
-       // System.out.println(values.size());
-
-       /* for(int i = 0; i < values.size()-1; i++){
-
-
-            if(values.get(i).size() >= 2) {
-                if (values.get(i).get(1).toString().compareTo("") != 0) {
-                    System.out.println(values.get(i).get(0));
-                }
-            }
-        }*/
-     /*   int stunumb = 76;
-       Schedule schedule = new Schedule(values);
-
 
 
 
         /*
 
-
-
-               TODO: Make schedule reading more efficient at catching human error (cl vs CL)
-
                TODO: Check if need to fix double checker
-
-
-
-
                TODO: Fix errors on multiple runs (as in run, hit restart, run again) i believe its probably just overloading things, doesnt 'reset'
 
-               TODO: Order people on ducklist -> leads first -> then maybe by time in
-
-
-
-
-
-
-
-
-
          */
-
-
-
-
-
-
-
-
-
-
-
 
 
 
