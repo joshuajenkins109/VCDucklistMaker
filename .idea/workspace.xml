@@ -7,13 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Schedule.class" afterPath="$PROJECT_DIR$/out/production/classes/Schedule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Student.class" afterPath="$PROJECT_DIR$/out/production/classes/Student.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Student.java" afterPath="$PROJECT_DIR$/src/main/java/Student.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -114,10 +109,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
+            <state relative-caret-position="793">
               <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
               <folding>
                 <element signature="method#Student#0;class#Student#0" expanded="false" />
@@ -129,13 +124,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="42" column="18" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="42" selection-end-column="18" />
+            <state relative-caret-position="445">
+              <caret line="2947" column="34" lean-forward="false" selection-start-line="2947" selection-start-column="34" selection-end-line="2947" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="docComment;method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
@@ -185,7 +181,6 @@
                 <element signature="docComment;method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="docComment;method#adjustWeight#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#adjustWeight#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="docComment;method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
               </folding>
@@ -557,10 +552,10 @@
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/ResultsUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/ResultsUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
         <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/java/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
       </list>
     </option>
   </component>
@@ -592,8 +587,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -640,7 +634,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -655,7 +650,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="104" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="248" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jar_files (5)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
@@ -1177,12 +1172,13 @@
       <workItem from="1550534688991" duration="1822000" />
       <workItem from="1550536542380" duration="1778000" />
       <workItem from="1550538354906" duration="758000" />
-      <workItem from="1550594481819" duration="117000" />
+      <workItem from="1550594481819" duration="162000" />
+      <workItem from="1550717861411" duration="120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="501099000" />
+    <option name="totallyTimeSpent" value="501264000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1599,68 +1595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="42" column="18" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="42" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#updateStudentsWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#updateStudentsWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#updateCoverage#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#updateCoverage#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#updateCoverageSheet#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#updateCoverageSheet#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setProductionDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#adjustStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#adjustStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#adjustWeight#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#adjustWeight#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="docComment;method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -1731,13 +1665,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
+        <state relative-caret-position="793">
           <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding>
             <element signature="method#Student#0;class#Student#0" expanded="false" />
             <element signature="method#setWorkDays#0;class#Student#0" expanded="false" />
             <element signature="method#getFloat#0;class#Student#0" expanded="false" />
             <element signature="method#getWork#0;class#Student#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="2947" column="34" lean-forward="false" selection-start-line="2947" selection-start-column="34" selection-end-line="2947" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getCurrentScheduleID#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#generateList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#buildFullTimeList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getFullTime#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#addStudentToWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#updateStudentsWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#updateStudentsWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setShiftDefaults#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#updateCoverage#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#updateCoverage#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#updateCoverageSheet#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#updateCoverageSheet#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setProductionDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getStudentsFromString#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#getDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#sortStudents#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#sortMasterStudentList#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#adjustStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#adjustStudentWeights#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#timestampCoverage#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#adjustWeight#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="docComment;method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#updateWorkedLast#0;class#SheetsCommunicator#0" expanded="false" />
           </folding>
         </state>
       </provider>

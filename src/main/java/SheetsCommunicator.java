@@ -2945,7 +2945,7 @@ public class SheetsCommunicator {
             if(Double.parseDouble(currentWeights.get(i).toString()) != 0){
                 if(station == i){
                     double weight = Double.parseDouble(currentWeights.get(i).toString());
-                    if(weight > .2 && weight < 10){ weight -= 0.2;}
+                    if(weight > .4 && weight < 10){ weight -= 0.4;}
                     List<CellData> cellLine1 = new ArrayList<>();
                     cellLine1.add(new CellData()
                             .setUserEnteredValue(new ExtendedValue()
