@@ -22,6 +22,12 @@ public class SheetsQuickstart {
         CoverageUI cui = new CoverageUI();
         ShiftNumberChangeUI sui = new ShiftNumberChangeUI();
 
+        try{
+            Thread.sleep(4000);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
         sheet.updateStudentsWeights();
 
 
