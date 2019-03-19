@@ -3014,6 +3014,34 @@ public class Schedule {
         return studentPool;
     }
     /**
+     * Moves Early Mid students in select stations arriving before 10 to Morning list for printing purposes
+     *      @param day day of ducklist
+     */
+    public void sortForPrinting(int day){
+        //Tuesday Wednesday Thursday move early mid Hearth students starting before 10 to morning
+        if(day == 5 || day == 7 || day == 9){
+            for(int i = 0; i < masterList.get(2).get(1).size(); i++){
+                if(masterList.get(2).get(1).get(i).getSchedule().get(day).toString().substring(0,1).compareTo("9") == 0 ||
+                        masterList.get(2).get(1).get(i).getSchedule().get(day).toString().substring(0,1).compareTo("8") == 0){
+                    Student temp = masterList.get(2).get(1).get(i);
+                    masterList.get(2).get(0).add(temp);
+                    masterList.get(2).get(1).remove(i);
+                }
+            }
+        }
+        //All days move early mid middle, curry, and grange students starting before 10 to morning
+        for(int i = 5; i < 8; i++){
+            for(int j = 0; j < masterList.get(i).get(1).size(); j++){
+                if(masterList.get(i).get(1).get(j).getSchedule().get(day).toString().substring(0,1).compareTo("9") == 0 ||
+                        masterList.get(i).get(1).get(j).getSchedule().get(day).toString().substring(0,1).compareTo("8") == 0){
+                    Student temp = masterList.get(i).get(1).get(j);
+                    masterList.get(i).get(0).add(temp);
+                    masterList.get(i).get(1).remove(j);
+                }
+            }
+        }
+    }
+    /**
      * Prints Duck List to System
      *      @param students pool of placed students to print
      *      @param day int representing day of shifts
