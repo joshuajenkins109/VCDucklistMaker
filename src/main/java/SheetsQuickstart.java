@@ -63,10 +63,12 @@ public class SheetsQuickstart {
             System.out.print("");
 
             if(rui.getExitCode() == 1){
+                schedule.buildMasterList();
                 resultsFrame.setVisible(false);
                 frame.setVisible(true);
                 ui.setAction(0);
                 rui.setExitCode(0);
+
             }
             if(cui.getExitCode() == 1){
                 coverageFrame.setVisible(false);
@@ -96,7 +98,9 @@ public class SheetsQuickstart {
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
                 ui.setAction(0);
+
                 schedule.sortForPrinting(ui.getDay());
+                schedule.setMasterList(sheet.combineMidShifts(schedule.getMasterList()));
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
                 List<String> printer = schedule.printToString(trying, ui.getDay());
                 rui.setMorningDuckList(printer.get(0));
@@ -122,6 +126,7 @@ public class SheetsQuickstart {
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
                 schedule.sortForPrinting(ui.getDay());
+                schedule.setMasterList(sheet.combineMidShifts(schedule.getMasterList()));
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
 
                 ui.setAction(0);
@@ -143,6 +148,7 @@ public class SheetsQuickstart {
                 trying = schedule.createDuck(bigpool);
                 schedule.printToSystem(trying, ui.getDay());
                 schedule.sortForPrinting(ui.getDay());
+                schedule.setMasterList(sheet.combineMidShifts(schedule.getMasterList()));
                 sheet.createDuckList(sheet.sortMasterStudentList(schedule.getMasterList(), ui.getDay()), ui.getDay());
                 ui.setAction(0);
                 sui.setAction(0);

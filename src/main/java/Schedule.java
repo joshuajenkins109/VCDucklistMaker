@@ -26,7 +26,7 @@ public class Schedule {
     /**
      * Builds masterList with stations and shifts
      */
-    private void buildMasterList(){
+    public void buildMasterList(){
         List<List<Student>> checker = new ArrayList<List<Student>>();
         List<List<Student>> peaks = new ArrayList<List<Student>>();
         List<List<Student>> hearth = new ArrayList<List<Student>>();
@@ -147,21 +147,23 @@ public class Schedule {
         floats.add(floatLateMid);
         floats.add(floatDin);
 
+        List<List<List<Student>>> blankMasterList = new ArrayList<>();
 
+        blankMasterList.add(checker); //0
+        blankMasterList.add(peaks); //1
+        blankMasterList.add(hearth); //2
+        blankMasterList.add(salads); //3
+        blankMasterList.add(toast); //4
+        blankMasterList.add(mid); //5
+        blankMasterList.add(curry); //6
+        blankMasterList.add(grange); //7
+        blankMasterList.add(dish); //8
+        blankMasterList.add(dra);//9
+        blankMasterList.add(cold);//10
+        blankMasterList.add(jan); //11
+        blankMasterList.add(floats); //12
 
-        this.masterList.add(checker); //0
-        this.masterList.add(peaks); //1
-        this.masterList.add(hearth); //2
-        this.masterList.add(salads); //3
-        this.masterList.add(toast); //4
-        this.masterList.add(mid); //5
-        this.masterList.add(curry); //6
-        this.masterList.add(grange); //7
-        this.masterList.add(dish); //8
-        this.masterList.add(dra);//9
-        this.masterList.add(cold);//10
-        this.masterList.add(jan); //11
-        this.masterList.add(floats); //12
+        setMasterList(blankMasterList);
     }
     /**
      * Updates Student object with weights from sheet
@@ -3729,5 +3731,9 @@ public class Schedule {
 
     public List<List<List<Student>>> getMasterList() {
         return masterList;
+    }
+
+    public void setMasterList(List<List<List<Student>>> masterList) {
+        this.masterList = masterList;
     }
 }

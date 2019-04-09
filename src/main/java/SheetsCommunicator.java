@@ -711,57 +711,57 @@ public class SheetsCommunicator {
         List<List<List<String>>> fullTime = getFullTime(ftday);
         setCheckerDuckListValues(students, fullTime, day, 0);
         setCheckerDuckListValues(students, fullTime, day, 1);
-        setCheckerDuckListValues(students, fullTime, day, 3);
+        setCheckerDuckListValues(students, fullTime, day, 2);
         System.out.println("Checkers done");
         setMiddleDuckListValues(students, fullTime, day, 0);
         setMiddleDuckListValues(students, fullTime, day, 1);
-        setMiddleDuckListValues(students, fullTime, day, 3);
+        setMiddleDuckListValues(students, fullTime, day, 2);
         System.out.println("Middle done");
         setCurryDuckListValues(students, fullTime, day, 0);
         setCurryDuckListValues(students, fullTime, day, 1);
-        setCurryDuckListValues(students, fullTime, day, 3);
+        setCurryDuckListValues(students, fullTime, day, 2);
         System.out.println("Curry done");
         setGrangeDuckListValues(students, fullTime, day, 0);
         setGrangeDuckListValues(students, fullTime, day, 1);
-        setGrangeDuckListValues(students, fullTime, day, 3);
+        setGrangeDuckListValues(students, fullTime, day, 2);
         System.out.println("Grange done");
         setToastDuckListValues(students, fullTime, day, 0);
         System.out.println("ToastMorning");
         setToastDuckListValues(students, fullTime, day, 1);
         System.out.println("toastmid");
-        setToastDuckListValues(students, fullTime, day, 3);
+        setToastDuckListValues(students, fullTime, day, 2);
         System.out.println("Toast done");
         setDuckListValues(students, fullTime, day, 0, 2, 5,24); //hearth
         setDuckListValues(students, fullTime, day, 1, 2, 5,24);
-        setDuckListValues(students, fullTime, day, 3, 2, 5,24);
+        setDuckListValues(students, fullTime, day, 2, 2, 5,24);
         System.out.println("Hearth done");
         setDuckListValues(students, fullTime, day, 0, 1, 6,27); //peaks
         setDuckListValues(students, fullTime, day, 1, 1, 6,27);
-        setDuckListValues(students, fullTime, day, 3, 1, 6,27);
+        setDuckListValues(students, fullTime, day, 2, 1, 6,27);
         System.out.println("Peaks done");
         setDuckListValues(students, fullTime, day, 0, 3, 7,30); //salads
         setDuckListValues(students, fullTime, day, 1, 3, 7,30);
-        setDuckListValues(students, fullTime, day, 3, 3, 7,30);
+        setDuckListValues(students, fullTime, day, 2, 3, 7,30);
         System.out.println("Salads done");
         setDuckListValues(students, fullTime, day, 0, 10, 8,33); //Cold Runner
         setDuckListValues(students, fullTime, day, 1, 10, 8,33);
-        setDuckListValues(students, fullTime, day, 3, 10, 8,33);
+        setDuckListValues(students, fullTime, day, 2, 10, 8,33);
         System.out.println("CR done");
         setDuckListValues(students, fullTime, day, 0, 9, 9,36); //DRA
         setDuckListValues(students, fullTime, day, 1, 9, 9,36);
-        setDuckListValues(students, fullTime, day, 3, 9, 9,36);
+        setDuckListValues(students, fullTime, day, 2, 9, 9,36);
         System.out.println("dra done");
         setDishDuckListValues(students, fullTime, day, 0);
         setDishDuckListValues(students, fullTime, day, 1);
-        setDishDuckListValues(students, fullTime, day, 3);
+        setDishDuckListValues(students, fullTime, day, 2);
         System.out.println("Dish done");
         setFloatDuckListValues(students, day, 0);
         setFloatDuckListValues(students, day, 1);
-        setFloatDuckListValues(students, day, 3);
+        setFloatDuckListValues(students, day, 2);
         System.out.println("float done");
         setProductionDuckListValues(fullTime, 0);
         setJanitorDuckListValues(students, day, 1);
-        setJanitorDuckListValues(students, day, 3);
+        setJanitorDuckListValues(students, day, 2);
         System.out.println("Janitor done");
     }
     /**
@@ -791,18 +791,10 @@ public class SheetsCommunicator {
         List<CellData> checkerCellLine2 = new ArrayList<>();
         String checkerDataLine1 = "";
         String checkerDataLine2 = "";
-        if(shift == 0 || shift == 1){
-            if(fullTime.get(0).get(shift).size() > 0){
-                for(int i = 0; i < fullTime.get(0).get(shift).size(); i++){
-                    checkerDataLine1 += fullTime.get(0).get(shift).get(i) +", ";
-                }
-            }
-        }
-        else if(shift == 3){
-            if(fullTime.get(0).get(shift-1).size() > 0){
-                for(int i = 0; i < fullTime.get(0).get(shift-1).size(); i++){
-                    checkerDataLine1 += fullTime.get(0).get(shift-1).get(i) +", ";
-                }
+
+        if(fullTime.get(0).get(shift).size() > 0){
+            for(int i = 0; i < fullTime.get(0).get(shift).size(); i++){
+                checkerDataLine1 += fullTime.get(0).get(shift).get(i) +", ";
             }
         }
         if(students.get(0).get(shift).size() > 0){
@@ -813,13 +805,7 @@ public class SheetsCommunicator {
                 checkerDataLine2 += students.get(0).get(shift).get(i).getName() + " (" + students.get(0).get(shift).get(i).getSchedule().get(day) + "-" + students.get(0).get(shift).get(i).getSchedule().get(day+1)+"), ";
             }
         }
-        if(shift == 1){
-            if(students.get(0).get(shift+1).size() > 0){
-                for(int i = 0; i < students.get(0).get(shift+1).size(); i++){
-                    checkerDataLine2 += students.get(0).get(shift+1).get(i).getName() + " (" + students.get(0).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(0).get(shift+1).get(i).getSchedule().get(day+1)+"), ";
-                }
-            }
-        }
+
         checkerCellLine1.add( new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(checkerDataLine1))
@@ -860,46 +846,26 @@ public class SheetsCommunicator {
                                         .setStyle("Solid")))));
 
 
-        if(shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(checkerCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(3)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(checkerCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(4)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(checkerCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(3)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(checkerCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(4)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(checkerCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(3)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(checkerCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(4)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -925,21 +891,14 @@ public class SheetsCommunicator {
         String middleDataLine3 = "";
 
         //Add Full Time Employees
-        if (shift == 0 || shift == 1) {
-            if (fullTime.get(1).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(1).get(shift).size(); i++) {
-                    middleDataLine1 += fullTime.get(1).get(shift).get(i) + ", ";
-                }
-            }
-        } else if (shift == 3) {
-            if (fullTime.get(1).get(shift - 1).size() > 0) {
-                for (int i = 0; i < fullTime.get(1).get(shift - 1).size(); i++) {
-                    middleDataLine1 += fullTime.get(1).get(shift - 1).get(i) + ", ";
-                }
+        if (fullTime.get(1).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(1).get(shift).size(); i++) {
+                middleDataLine1 += fullTime.get(1).get(shift).get(i) + ", ";
             }
         }
+
         //Measure size for pretty placement
-        if(students.get(5).get(shift).size() < 3 && shift!=1){
+        if(students.get(5).get(shift).size() < 3){
             if (students.get(5).get(shift).size() > 0) {
                 middleDataLine2 += students.get(5).get(shift).get(0).getName() + " (" + students.get(5).get(shift).get(0).getSchedule().get(day) + "-" + students.get(5).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             }
@@ -947,12 +906,12 @@ public class SheetsCommunicator {
                 middleDataLine3 += students.get(5).get(shift).get(1).getName() + " (" + students.get(5).get(shift).get(1).getSchedule().get(day) + "-" + students.get(5).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             }
         }
-        else if(shift != 1 && students.get(5).get(shift).size() == 3){
+        else if(students.get(5).get(shift).size() == 3){
             middleDataLine1 += students.get(5).get(shift).get(0).getName() + " (" + students.get(5).get(shift).get(0).getSchedule().get(day) + "-" + students.get(5).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             middleDataLine2 += students.get(5).get(shift).get(1).getName() + " (" + students.get(5).get(shift).get(1).getSchedule().get(day) + "-" + students.get(5).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             middleDataLine3 += students.get(5).get(shift).get(2).getName() + " (" + students.get(5).get(shift).get(2).getSchedule().get(day) + "-" + students.get(5).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
         }
-        else if(shift !=1 && students.get(5).get(shift).size() == 4){
+        else if(students.get(5).get(shift).size() == 4){
             middleDataLine1 += students.get(5).get(shift).get(0).getName() + " (" + students.get(5).get(shift).get(0).getSchedule().get(day) + "-" + students.get(5).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             middleDataLine2 += students.get(5).get(shift).get(1).getName() + " (" + students.get(5).get(shift).get(1).getSchedule().get(day) + "-" + students.get(5).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             middleDataLine2 += students.get(5).get(shift).get(2).getName() + " (" + students.get(5).get(shift).get(2).getSchedule().get(day) + "-" + students.get(5).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
@@ -975,34 +934,6 @@ public class SheetsCommunicator {
                     for (int i = 4; i < students.get(5).get(shift).size(); i++) {
                         middleDataLine3 += students.get(5).get(shift).get(i).getName() + " (" + students.get(5).get(shift).get(i).getSchedule().get(day) + "-" + students.get(5).get(shift).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
-                }
-
-
-            }
-            if (shift == 1 && students.get(5).get(shift + 1).size() > 0) {
-                if (students.get(5).get(shift).size() < 3) {
-                    for (int i = 0; i < students.get(5).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        middleDataLine2 += students.get(5).get(shift + 1).get(i).getName() + " (" + students.get(5).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(5).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-                    if (students.get(5).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(5).get(shift + 1).size(); i++) {
-                            middleDataLine3 += students.get(5).get(shift + 1).get(i).getName() + " (" + students.get(5).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(5).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(5).get(shift).size() == 3) {
-
-                    middleDataLine2 += students.get(5).get(shift + 1).get(0).getName() + " (" + students.get(5).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(5).get(shift + 1).get(0).getSchedule().get(day + 1) + ")" + ", ";
-                    if (students.get(5).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(5).get(shift + 1).size(); i++) {
-                            middleDataLine3 += students.get(5).get(shift + 1).get(i).getName() + " (" + students.get(5).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(5).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(5).get(shift).size() > 3) {
-                    for (int i = 0; i < students.get(5).get(shift + 1).size(); i++) {
-                        middleDataLine3 += students.get(5).get(shift + 1).get(i).getName() + " (" + students.get(5).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(5).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-
                 }
             }
         }
@@ -1065,65 +996,36 @@ public class SheetsCommunicator {
 
 
 
-        if(shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(6)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(7)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(8)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(middleCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(6)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(middleCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(7)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(middleCellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(8)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
 
-        }
-        else if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(6)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(7)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(middleCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(8)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -1146,22 +1048,15 @@ public class SheetsCommunicator {
         String curryDataLine1 = "";
         String curryDataLine2 = "";
         String curryDataLine3 = "";
-        if(shift == 0 || shift == 1) {
-            if (fullTime.get(2).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(2).get(shift).size(); i++) {
-                    curryDataLine1 += fullTime.get(2).get(shift).get(i) + ", ";
-                }
-            }
-        }
-        else if(shift == 3){
-            if (fullTime.get(2).get(shift-1).size() > 0) {
-                for (int i = 0; i < fullTime.get(2).get(shift-1).size(); i++) {
-                    curryDataLine1 += fullTime.get(2).get(shift-1).get(i) + ", ";
-                }
+
+        if (fullTime.get(2).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(2).get(shift).size(); i++) {
+                curryDataLine1 += fullTime.get(2).get(shift).get(i) + ", ";
             }
         }
 
-        if(shift != 1 && students.get(6).get(shift).size() < 3){
+
+        if(students.get(6).get(shift).size() < 3){
 
             if (students.get(6).get(shift).size() > 0) {
                 curryDataLine2 += students.get(6).get(shift).get(0).getName() + " (" + students.get(6).get(shift).get(0).getSchedule().get(day) + "-" + students.get(6).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
@@ -1171,7 +1066,7 @@ public class SheetsCommunicator {
             }
 
         }
-        else if(shift != 1 && students.get(6).get(shift).size() == 3){
+        else if(students.get(6).get(shift).size() == 3){
             curryDataLine1 += students.get(6).get(shift).get(0).getName() + " (" + students.get(6).get(shift).get(0).getSchedule().get(day) + "-" + students.get(6).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             curryDataLine2 += students.get(6).get(shift).get(1).getName() + " (" + students.get(6).get(shift).get(1).getSchedule().get(day) + "-" + students.get(6).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             curryDataLine3 += students.get(6).get(shift).get(2).getName() + " (" + students.get(6).get(shift).get(2).getSchedule().get(day) + "-" + students.get(6).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
@@ -1195,32 +1090,6 @@ public class SheetsCommunicator {
                 }
 
 
-            }
-            if (shift == 1 && students.get(6).get(shift + 1).size() > 0) {
-                if (students.get(6).get(shift).size() < 3) {
-                    for (int i = 0; i < students.get(6).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        curryDataLine2 += students.get(6).get(shift + 1).get(i).getName() + " (" + students.get(6).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(6).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-                    if (students.get(6).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(6).get(shift + 1).size(); i++) {
-                            curryDataLine3 += students.get(6).get(shift + 1).get(i).getName() + " (" + students.get(6).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(6).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(6).get(shift).size() == 3) {
-
-                    curryDataLine2 += students.get(6).get(shift + 1).get(0).getName() + " (" + students.get(6).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(6).get(shift + 1).get(0).getSchedule().get(day + 1) + ")" + ", ";
-                    if (students.get(6).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(6).get(shift + 1).size(); i++) {
-                            curryDataLine3 += students.get(6).get(shift + 1).get(i).getName() + " (" + students.get(6).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(6).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(6).get(shift).size() > 3) {
-                    for (int i = 0; i < students.get(6).get(shift + 1).size(); i++) {
-                        curryDataLine3 += students.get(6).get(shift + 1).get(i).getName() + " (" + students.get(6).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(6).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-
-                }
             }
         }
         curryCellLine1.add( new CellData()
@@ -1282,65 +1151,35 @@ public class SheetsCommunicator {
 
 
 
-        if(shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(10)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(11)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(12)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
 
-        }
-        else if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(10)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(11)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(curryCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(12)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(curryCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(10)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(curryCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(11)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(curryCellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(12)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -1363,23 +1202,16 @@ public class SheetsCommunicator {
         String grangeDataLine1 = "";
         String grangeDataLine2 = "";
         String grangeDataLine3 = "";
-        if(shift == 0 || shift == 1) {
-            if (fullTime.get(3).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(3).get(shift).size(); i++) {
-                    grangeDataLine1 += fullTime.get(3).get(shift).get(i) + ", ";
-                }
-            }
-        }
-        else if(shift == 3){
-            if (fullTime.get(3).get(shift-1).size() > 0) {
-                for (int i = 0; i < fullTime.get(3).get(shift-1).size(); i++) {
-                    grangeDataLine1 += fullTime.get(3).get(shift-1).get(i) + ", ";
-                }
+
+        if (fullTime.get(3).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(3).get(shift).size(); i++) {
+                grangeDataLine1 += fullTime.get(3).get(shift).get(i) + ", ";
             }
         }
 
 
-        if(shift != 1 && students.get(7).get(shift).size() < 3){
+
+        if(students.get(7).get(shift).size() < 3){
 
             if (students.get(7).get(shift).size() > 0) {
                 grangeDataLine2 += students.get(7).get(shift).get(0).getName() + " (" + students.get(7).get(shift).get(0).getSchedule().get(day) + "-" + students.get(7).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
@@ -1388,12 +1220,12 @@ public class SheetsCommunicator {
                 grangeDataLine3 += students.get(7).get(shift).get(1).getName() + " (" + students.get(7).get(shift).get(1).getSchedule().get(day) + "-" + students.get(7).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             }
         }
-        else if(shift != 1 && students.get(7).get(shift).size() == 3){
+        else if(students.get(7).get(shift).size() == 3){
             grangeDataLine1 += students.get(7).get(shift).get(0).getName() + " (" + students.get(7).get(shift).get(0).getSchedule().get(day) + "-" + students.get(7).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             grangeDataLine2 += students.get(7).get(shift).get(1).getName() + " (" + students.get(7).get(shift).get(1).getSchedule().get(day) + "-" + students.get(7).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             grangeDataLine3 += students.get(7).get(shift).get(2).getName() + " (" + students.get(7).get(shift).get(2).getSchedule().get(day) + "-" + students.get(7).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
         }
-        else if(shift != 1 && students.get(7).get(shift).size() == 4){
+        else if(students.get(7).get(shift).size() == 4){
             grangeDataLine1 += students.get(7).get(shift).get(0).getName() + " (" + students.get(7).get(shift).get(0).getSchedule().get(day) + "-" + students.get(7).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             grangeDataLine2 += students.get(7).get(shift).get(1).getName() + " (" + students.get(7).get(shift).get(1).getSchedule().get(day) + "-" + students.get(7).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             grangeDataLine2 += students.get(7).get(shift).get(2).getName() + " (" + students.get(7).get(shift).get(2).getSchedule().get(day) + "-" + students.get(7).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
@@ -1418,32 +1250,6 @@ public class SheetsCommunicator {
                 }
 
 
-            }
-            if (shift == 1 && students.get(7).get(shift + 1).size() > 0) {
-                if (students.get(7).get(shift).size() < 3) {
-                    for (int i = 0; i < students.get(7).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        grangeDataLine2 += students.get(7).get(shift + 1).get(i).getName() + " (" + students.get(7).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-                    if (students.get(7).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(7).get(shift + 1).size(); i++) {
-                            grangeDataLine3 += students.get(7).get(shift + 1).get(i).getName() + " (" + students.get(7).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(7).get(shift).size() == 3) {
-
-                    grangeDataLine2 += students.get(7).get(shift + 1).get(0).getName() + " (" + students.get(7).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(7).get(shift + 1).get(0).getSchedule().get(day + 1) + ")" + ", ";
-                    if (students.get(7).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(7).get(shift + 1).size(); i++) {
-                            grangeDataLine3 += students.get(7).get(shift + 1).get(i).getName() + " (" + students.get(7).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(7).get(shift).size() > 3) {
-                    for (int i = 0; i < students.get(7).get(shift + 1).size(); i++) {
-                        grangeDataLine3 += students.get(7).get(shift + 1).get(i).getName() + " (" + students.get(7).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-
-                }
             }
         }
         grangeCellLine1.add( new CellData()
@@ -1505,65 +1311,35 @@ public class SheetsCommunicator {
 
 
 
-        if(shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(14)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(15)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(16)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(grangeCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(14)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(grangeCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(15)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(grangeCellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(16)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
 
-        }
-        else if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(14)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(15)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(grangeCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(16)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -1589,22 +1365,15 @@ public class SheetsCommunicator {
         String toastDataLine2 = "";
         String toastDataLine3 = "";
         String toastDataLine4 = "";
-        if(shift == 0 || shift == 1) {
-            if (fullTime.get(4).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(4).get(shift).size(); i++) {
-                    toastDataLine0 += fullTime.get(4).get(shift).get(i) + ", ";
-                }
-            }
-        }
-        else if(shift == 3){
-            if (fullTime.get(4).get(shift-1).size() > 0) {
-                for (int i = 0; i < fullTime.get(4).get(shift-1).size(); i++) {
-                    toastDataLine0 += fullTime.get(4).get(shift-1).get(i) + ", ";
-                }
+        if (fullTime.get(4).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(4).get(shift).size(); i++) {
+                toastDataLine0 += fullTime.get(4).get(shift).get(i) + ", ";
             }
         }
 
-        if(shift != 1 && students.get(4).get(shift).size() < 3){
+
+
+        if(students.get(4).get(shift).size() < 3){
 
             if (students.get(4).get(shift).size() > 0) {
                 toastDataLine2 += students.get(4).get(shift).get(0).getName() + " (" + students.get(4).get(shift).get(0).getSchedule().get(day) + "-" + students.get(4).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
@@ -1613,23 +1382,31 @@ public class SheetsCommunicator {
                 toastDataLine3 += students.get(4).get(shift).get(1).getName() + " (" + students.get(4).get(shift).get(1).getSchedule().get(day) + "-" + students.get(4).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             }
         }
-        else if(shift != 1 && students.get(4).get(shift).size() == 3){
+        else if(students.get(4).get(shift).size() == 3){
             toastDataLine1 += students.get(4).get(shift).get(0).getName() + " (" + students.get(4).get(shift).get(0).getSchedule().get(day) + "-" + students.get(4).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine2 += students.get(4).get(shift).get(1).getName() + " (" + students.get(4).get(shift).get(1).getSchedule().get(day) + "-" + students.get(4).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine3 += students.get(4).get(shift).get(2).getName() + " (" + students.get(4).get(shift).get(2).getSchedule().get(day) + "-" + students.get(4).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
         }
-        else if(shift !=1 && students.get(4).get(shift).size() == 4){
+        else if(students.get(4).get(shift).size() == 4){
             toastDataLine1 += students.get(4).get(shift).get(0).getName() + " (" + students.get(4).get(shift).get(0).getSchedule().get(day) + "-" + students.get(4).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine2 += students.get(4).get(shift).get(1).getName() + " (" + students.get(4).get(shift).get(1).getSchedule().get(day) + "-" + students.get(4).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine3 += students.get(4).get(shift).get(2).getName() + " (" + students.get(4).get(shift).get(2).getSchedule().get(day) + "-" + students.get(4).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine4 += students.get(4).get(shift).get(3).getName() + " (" + students.get(4).get(shift).get(3).getSchedule().get(day) + "-" + students.get(4).get(shift).get(3).getSchedule().get(day + 1) + ")" + ", ";
         }
-        else if(shift !=1 && students.get(4).get(shift).size() == 5){
+        else if(students.get(4).get(shift).size() == 5){
             toastDataLine1 += students.get(4).get(shift).get(0).getName() + " (" + students.get(4).get(shift).get(0).getSchedule().get(day) + "-" + students.get(4).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine1 += students.get(4).get(shift).get(1).getName() + " (" + students.get(4).get(shift).get(1).getSchedule().get(day) + "-" + students.get(4).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine2 += students.get(4).get(shift).get(2).getName() + " (" + students.get(4).get(shift).get(2).getSchedule().get(day) + "-" + students.get(4).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine3 += students.get(4).get(shift).get(3).getName() + " (" + students.get(4).get(shift).get(3).getSchedule().get(day) + "-" + students.get(4).get(shift).get(3).getSchedule().get(day + 1) + ")" + ", ";
             toastDataLine4 += students.get(4).get(shift).get(4).getName() + " (" + students.get(4).get(shift).get(4).getSchedule().get(day) + "-" + students.get(4).get(shift).get(4).getSchedule().get(day + 1) + ")" + ", ";
+        }
+        else if(students.get(4).get(shift).size() == 6){
+            toastDataLine1 += students.get(4).get(shift).get(0).getName() + " (" + students.get(4).get(shift).get(0).getSchedule().get(day) + "-" + students.get(4).get(shift).get(0).getSchedule().get(day + 1) + ")" + ", ";
+            toastDataLine1 += students.get(4).get(shift).get(1).getName() + " (" + students.get(4).get(shift).get(1).getSchedule().get(day) + "-" + students.get(4).get(shift).get(1).getSchedule().get(day + 1) + ")" + ", ";
+            toastDataLine2 += students.get(4).get(shift).get(2).getName() + " (" + students.get(4).get(shift).get(2).getSchedule().get(day) + "-" + students.get(4).get(shift).get(2).getSchedule().get(day + 1) + ")" + ", ";
+            toastDataLine2 += students.get(4).get(shift).get(3).getName() + " (" + students.get(4).get(shift).get(3).getSchedule().get(day) + "-" + students.get(4).get(shift).get(3).getSchedule().get(day + 1) + ")" + ", ";
+            toastDataLine3 += students.get(4).get(shift).get(4).getName() + " (" + students.get(4).get(shift).get(4).getSchedule().get(day) + "-" + students.get(4).get(shift).get(4).getSchedule().get(day + 1) + ")" + ", ";
+            toastDataLine4 += students.get(4).get(shift).get(5).getName() + " (" + students.get(4).get(shift).get(5).getSchedule().get(day) + "-" + students.get(4).get(shift).get(5).getSchedule().get(day + 1) + ")" + ", ";
         }
         else {
             if (students.get(4).get(shift).size() > 0) {
@@ -1652,40 +1429,6 @@ public class SheetsCommunicator {
                 if (students.get(4).get(shift).size() > 6) {
                     for (int i = 6; i < students.get(4).get(shift).size(); i++) {
                         toastDataLine4 += students.get(4).get(shift).get(i).getName() + " (" + students.get(4).get(shift).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-                }
-            }
-            if (shift == 1 && students.get(4).get(shift + 1).size() > 0) {
-                if (students.get(4).get(shift).size() < 3) {
-                    for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        toastDataLine2 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-                    if (students.get(4).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(4).get(shift + 1).size(); i++) {
-                            if (i == 4) break;
-                            toastDataLine3 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                    if (students.get(4).get(shift + 1).size() > 4) {
-                        for (int i = 4; i < students.get(4).get(shift + 1).size(); i++) {
-                            toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(4).get(shift).size() >= 3 && students.get(4).get(shift).size() < 6) {
-                    for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        toastDataLine3 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                    }
-
-                    if (students.get(4).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(4).get(shift + 1).size(); i++) {
-                            toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
-                        }
-                    }
-                } else if (students.get(4).get(shift).size() >= 6) {
-                    for (int i = 0; i < students.get(4).get(shift + 1).size(); i++) {
-                        toastDataLine4 += students.get(4).get(shift + 1).get(i).getName() + " (" + students.get(4).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(4).get(shift + 1).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
                 }
             }
@@ -1784,100 +1527,52 @@ public class SheetsCommunicator {
                                 .setRight(new Border()
                                         .setStyle("Solid")))));
 
-        if(shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine0)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(18)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(19)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(20)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(21)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine4)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(22)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        else if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine0)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(18)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(19)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(20)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(21)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(toastCellLine4)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(22)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(toastCellLine0)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(18)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(toastCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(19)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(toastCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(20)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(toastCellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(21)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(toastCellLine4)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(22)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -1897,20 +1592,14 @@ public class SheetsCommunicator {
         List<CellData> cellLine2 = new ArrayList<>();
         String dataLine1 = "";
         String dataLine2 = "";
-        if(shift == 0 || shift ==1) {
-            if (fullTime.get(ftstation).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(ftstation).get(shift).size(); i++) {
-                    dataLine1 += fullTime.get(ftstation).get(shift).get(i) + ", ";
-                }
+
+        if (fullTime.get(ftstation).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(ftstation).get(shift).size(); i++) {
+                dataLine1 += fullTime.get(ftstation).get(shift).get(i) + ", ";
             }
         }
-        else if(shift == 3){
-            if (fullTime.get(ftstation).get(shift-1).size() > 0) {
-                for (int i = 0; i < fullTime.get(ftstation).get(shift-1).size(); i++) {
-                    dataLine1 += fullTime.get(ftstation).get(shift-1).get(i) + ", ";
-                }
-            }
-        }
+
+
         if (students.get(station).get(shift).size() > 0) {
             for (int i = 0; i < students.get(station).get(shift).size(); i++) {
                 if (i == 1) break;
@@ -1922,20 +1611,7 @@ public class SheetsCommunicator {
                 }
             }
         }
-        if (shift == 1 && students.get(station).get(shift + 1).size() > 0) {
-            if (students.get(station).get(shift).size() < 2) {
-                dataLine1 += students.get(station).get(shift + 1).get(0).getName() + " (" + students.get(station).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(station).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                if (students.get(station).get(shift + 1).size() > 1) {
-                    for (int i = 1; i < students.get(station).get(shift + 1).size(); i++) {
-                        dataLine2 += students.get(station).get(shift + 1).get(i).getName() + " (" + students.get(station).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(station).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                }
-            } else {
-                for (int i = 0; i < students.get(station).get(shift + 1).size(); i++) {
-                    dataLine2 += students.get(station).get(shift + 1).get(i).getName() + " (" + students.get(station).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(station).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                }
-            }
-        }
+
         cellLine1.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
                         .setStringValue(dataLine1))
@@ -1974,46 +1650,26 @@ public class SheetsCommunicator {
                                 .setRight(new Border()
                                         .setStyle("Solid")))));
 
-        if (shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(index)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(index+1)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        if (shift == 3) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(index)
-                                    .setColumnIndex(shift - 1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(index+1)
-                                    .setColumnIndex(shift - 1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(index)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(index+1)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -2054,23 +1710,17 @@ public class SheetsCommunicator {
         dishlines.add(dishDataLine5);
         dishlines.add(dishDataLine6);
         dishlines.add(dishDataLine7);
-        if(shift == 0 || shift == 1) {
-            if (fullTime.get(10).get(shift).size() > 0) {
-                for (int i = 0; i < fullTime.get(10).get(shift).size(); i++) {
-                    dishDataLine1 += fullTime.get(10).get(shift).get(i) + ", ";
-                }
-            }
-        }
-        else if(shift == 3){
-            if (fullTime.get(10).get(shift-1).size() > 0) {
-                for (int i = 0; i < fullTime.get(10).get(shift-1).size(); i++) {
-                    dishDataLine1 += fullTime.get(10).get(shift-1).get(i) + ", ";
-                }
+
+        if (fullTime.get(10).get(shift).size() > 0) {
+            for (int i = 0; i < fullTime.get(10).get(shift).size(); i++) {
+                dishDataLine1 += fullTime.get(10).get(shift).get(i) + ", ";
             }
         }
 
 
-        if(shift != 1 && students.get(8).get(shift).size() < 7){
+
+
+        if(students.get(8).get(shift).size() < 7){
             if(students.get(8).get(shift).size() > 0){
                 dishDataLine2 += students.get(8).get(shift).get(0).getName() + " (" + students.get(8).get(shift).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift).get(0).getSchedule().get(day + 1) + "), ";
             }
@@ -2090,7 +1740,7 @@ public class SheetsCommunicator {
                 dishDataLine7 += students.get(8).get(shift).get(5).getName() + " (" + students.get(8).get(shift).get(5).getSchedule().get(day) + "-" + students.get(8).get(shift).get(5).getSchedule().get(day + 1) + "), ";
             }
         }
-        else if(shift != 1 && students.get(8).get(shift).size() < 14){
+        else if(students.get(8).get(shift).size() < 14){
             //for( size-1 % 6 amount of times) (add two to line
             dishDataLine1 += students.get(8).get(shift).get(0).getName() + " (" + students.get(8).get(shift).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift).get(0).getSchedule().get(day + 1) + "), ";
             float cntr = 0;
@@ -2157,188 +1807,6 @@ public class SheetsCommunicator {
                     for (int i = 10; i < students.get(8).get(shift).size(); i++) {
                         dishDataLine7 += students.get(8).get(shift).get(i).getName() + " (" + students.get(8).get(shift).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift).get(i).getSchedule().get(day + 1) + ")";
                     }
-                }
-
-            }
-            if (shift == 1 && students.get(8).get(shift + 1).size() > 0) {
-                if (students.get(8).get(shift).size() < 2) {
-                    dishDataLine2 += students.get(8).get(shift + 1).get(0).getName() + " (" + students.get(8).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                    if (students.get(8).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 3) break;
-                            dishDataLine3 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 3) {
-                        for (int i = 3; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 5) break;
-                            dishDataLine4 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 5) {
-                        for (int i = 5; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 7) break;
-                            dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 7) {
-                        for (int i = 7; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 9) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 9) {
-                        for (int i = 9; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-
-                } else if (students.get(8).get(shift).size() == 2) {
-                    for (int i = 0; i < students.get(8).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        dishDataLine3 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                    if (students.get(8).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 4) break;
-                            dishDataLine4 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 4) {
-                        for (int i = 4; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 6) break;
-                            dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 6) {
-                        for (int i = 6; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 8) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 8) {
-                        for (int i = 8; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-
-                } else if (students.get(8).get(shift).size() == 3) {
-                    dishDataLine3 += students.get(8).get(shift + 1).get(0).getName() + " (" + students.get(8).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                    if (students.get(8).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 3) break;
-                            dishDataLine4 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 3) {
-                        for (int i = 3; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 5) break;
-                            dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 5) {
-                        for (int i = 5; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 7) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 7) {
-                        for (int i = 7; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 4) {
-                    for (int i = 0; i < students.get(8).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        dishDataLine4 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                    if (students.get(8).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 4) break;
-                            dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 4) {
-                        for (int i = 4; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 6) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 6) {
-                        for (int i = 6; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 5) {
-                    dishDataLine4 += students.get(8).get(shift + 1).get(0).getName() + " (" + students.get(8).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                    if (students.get(8).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 3) break;
-                            dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 3) {
-                        for (int i = 3; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 5) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 5) {
-                        for (int i = 5; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 6) {
-                    for (int i = 0; i < students.get(8).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        dishDataLine5 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                    if (students.get(8).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 4) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 4) {
-                        for (int i = 4; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 7) {
-                    dishDataLine5 += students.get(8).get(shift + 1).get(0).getName() + " (" + students.get(8).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                    if (students.get(8).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(8).get(shift + 1).size(); i++) {
-                            if (i == 3) break;
-                            dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                    if (students.get(8).get(shift + 1).size() > 3) {
-                        for (int i = 3; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 8) {
-                    for (int i = 0; i < students.get(8).get(shift + 1).size(); i++) {
-                        if (i == 2) break;
-                        dishDataLine6 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-                    if (students.get(8).get(shift + 1).size() > 2) {
-                        for (int i = 2; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() == 9) {
-                    dishDataLine6 += students.get(8).get(shift + 1).get(0).getName() + " (" + students.get(8).get(shift + 1).get(0).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(0).getSchedule().get(day + 1) + "), ";
-                    if (students.get(8).get(shift + 1).size() > 1) {
-                        for (int i = 1; i < students.get(8).get(shift + 1).size(); i++) {
-                            dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                        }
-                    }
-                } else if (students.get(8).get(shift).size() >= 10) {
-                    for (int i = 0; i < students.get(8).get(shift + 1).size(); i++) {
-                        dishDataLine7 += students.get(8).get(shift + 1).get(i).getName() + " (" + students.get(8).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(8).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-                    }
-
                 }
 
             }
@@ -2471,136 +1939,71 @@ public class SheetsCommunicator {
                                 .setRight(new Border()
                                         .setStyle("Solid")))));
 
-        if (shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(39)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(40)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(41)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine4)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(42)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine5)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(43)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine6)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(44)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine7)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(45)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        if (shift == 3) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(39)
-                                    .setColumnIndex(shift - 1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine2)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(40)
-                                    .setColumnIndex(shift - 1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine3)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(41)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine4)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(42)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine5)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(43)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine6)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(44)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(dishCellLine7)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(45)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(39)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine2)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(40)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine3)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(41)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine4)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(42)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine5)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(43)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine6)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(44)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(dishCellLine7)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(45)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -2624,11 +2027,7 @@ public class SheetsCommunicator {
                 dataLine1 += students.get(11).get(shift).get(i).getName() + " (" + students.get(11).get(shift).get(i).getSchedule().get(day) + "-" + students.get(11).get(shift).get(i).getSchedule().get(day + 1) + "), ";
             }
         }
-        if( shift == 1 && students.get(11).get(shift+1).size() > 0){
-            for(int i = 0; i < students.get(11).get(shift+1).size(); i++){
-                dataLine1 += students.get(11).get(shift+1).get(i).getName() + " (" + students.get(11).get(shift+1).get(i).getSchedule().get(day) + "-" + students.get(11).get(shift+1).get(i).getSchedule().get(day + 1) + "), ";
-            }
-        }
+
 
 
         cellLine1.add(new CellData()
@@ -2651,28 +2050,18 @@ public class SheetsCommunicator {
                                 .setRight(new Border()
                                         .setStyle("Solid")))));
 
-        if(shift == 0 || shift == 1){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(48)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        if(shift == 3){
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(48)
-                                    .setColumnIndex(shift-1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(48)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -2695,11 +2084,7 @@ public class SheetsCommunicator {
                 dataLine1 += students.get(12).get(shift).get(i).getName() + " (" + students.get(12).get(shift).get(i).getSchedule().get(day) + "-" + students.get(12).get(shift).get(i).getSchedule().get(day + 1) + "), ";
             }
         }
-        if (shift == 1 && students.get(12).get(shift + 1).size() > 0) {
-            for (int i = 0; i < students.get(12).get(shift + 1).size(); i++) {
-                dataLine1 += students.get(12).get(shift + 1).get(i).getName() + " (" + students.get(12).get(shift + 1).get(i).getSchedule().get(day) + "-" + students.get(12).get(shift + 1).get(i).getSchedule().get(day + 1) + "), ";
-            }
-        }
+
 
         cellLine1.add(new CellData()
                 .setUserEnteredValue(new ExtendedValue()
@@ -2721,28 +2106,17 @@ public class SheetsCommunicator {
                                 .setRight(new Border()
                                         .setStyle("Solid")))));
 
-        if (shift == 0 || shift == 1) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(46)
-                                    .setColumnIndex(shift))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
-        if (shift == 3) {
-            requests.add(new Request()
-                    .setUpdateCells(new UpdateCellsRequest()
-                            .setRows(Arrays.asList(
-                                    new RowData().setValues(cellLine1)))
-                            .setStart(new GridCoordinate()
-                                    .setSheetId(1656413616)
-                                    .setRowIndex(46)
-                                    .setColumnIndex(shift - 1))
-                            .setFields("userEnteredValue,userEnteredFormat")));
-        }
+
+        requests.add(new Request()
+                .setUpdateCells(new UpdateCellsRequest()
+                        .setRows(Arrays.asList(
+                                new RowData().setValues(cellLine1)))
+                        .setStart(new GridCoordinate()
+                                .setSheetId(1656413616)
+                                .setRowIndex(46)
+                                .setColumnIndex(shift))
+                        .setFields("userEnteredValue,userEnteredFormat")));
+
         BatchUpdateSpreadsheetRequest body = new BatchUpdateSpreadsheetRequest().setRequests(requests);
         BatchUpdateSpreadsheetResponse response = service.spreadsheets()
                 .batchUpdate(spreadsheetId, body).execute();
@@ -2983,6 +2357,23 @@ public class SheetsCommunicator {
             }
         }
         return students;
+    }
+    //TODO: DOCUMENTATION
+    public List<List<List<Student>>> combineMidShifts(List<List<List<Student>>> students){
+        List<List<List<Student>>> combinedStudents = new ArrayList<>();
+        //students.get(i).get(0)    combine( students.get(i).get(1) ""(2) ) (3)
+        for(int i = 0; i < students.size(); i++){
+            List<List<Student>> station = new ArrayList<>();
+            List<Student> combinedMid = new ArrayList<>();
+            combinedMid.addAll(students.get(i).get(1));
+            combinedMid.addAll(students.get(i).get(2));
+            station.add(students.get(i).get(0));
+            station.add(combinedMid);
+            station.add(students.get(i).get(3));
+            combinedStudents.add(station);
+
+        }
+        return combinedStudents;
     }
     /**
      * Executes requests to update studentWeights sheet after a student works a shift
