@@ -7,15 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8055541-a1ca-4b98-a9f1-10525d738042" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Schedule.class" afterPath="$PROJECT_DIR$/out/production/classes/Schedule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$1.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$2.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsCommunicator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" afterPath="$PROJECT_DIR$/out/production/classes/SheetsQuickstart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tokens/StoredCredential" afterPath="$PROJECT_DIR$/tokens/StoredCredential" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/Schedule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" afterPath="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SheetsQuickstart.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+            <state relative-caret-position="17">
+              <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -61,78 +53,16 @@
       <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
+            <state relative-caret-position="2754">
               <caret line="165" column="37" lean-forward="false" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="37" />
               <folding>
-                <element signature="e#1017#1032#0" expanded="true" />
-                <element signature="e#1085#1100#0" expanded="true" />
-                <element signature="e#1154#1169#0" expanded="true" />
-                <element signature="e#1223#1238#0" expanded="true" />
-                <element signature="e#1291#1306#0" expanded="true" />
-                <element signature="e#1357#1372#0" expanded="true" />
-                <element signature="e#1425#1440#0" expanded="true" />
-                <element signature="e#1494#1509#0" expanded="true" />
-                <element signature="e#1561#1576#0" expanded="true" />
-                <element signature="e#1627#1642#0" expanded="true" />
-                <element signature="e#1693#1708#0" expanded="true" />
-                <element signature="e#1760#1775#0" expanded="true" />
-                <element signature="e#1883#1892#0" expanded="true" />
-                <element signature="e#1947#1956#0" expanded="true" />
-                <element signature="e#2010#2019#0" expanded="true" />
-                <element signature="e#2069#2078#0" expanded="true" />
-                <element signature="e#2129#2138#0" expanded="true" />
-                <element signature="e#2193#2202#0" expanded="true" />
-                <element signature="e#2256#2265#0" expanded="true" />
-                <element signature="e#2315#2324#0" expanded="true" />
-                <element signature="e#2376#2385#0" expanded="true" />
-                <element signature="e#2441#2450#0" expanded="true" />
-                <element signature="e#2505#2514#0" expanded="true" />
-                <element signature="e#2565#2574#0" expanded="true" />
-                <element signature="e#2626#2635#0" expanded="true" />
-                <element signature="e#2691#2700#0" expanded="true" />
-                <element signature="e#2755#2764#0" expanded="true" />
-                <element signature="e#2815#2824#0" expanded="true" />
-                <element signature="e#2875#2884#0" expanded="true" />
-                <element signature="e#2939#2948#0" expanded="true" />
-                <element signature="e#3002#3011#0" expanded="true" />
-                <element signature="e#3061#3070#0" expanded="true" />
-                <element signature="e#3119#3128#0" expanded="true" />
-                <element signature="e#3181#3190#0" expanded="true" />
-                <element signature="e#3242#3251#0" expanded="true" />
-                <element signature="e#3299#3308#0" expanded="true" />
-                <element signature="e#3359#3368#0" expanded="true" />
-                <element signature="e#3423#3432#0" expanded="true" />
-                <element signature="e#3486#3495#0" expanded="true" />
-                <element signature="e#3545#3554#0" expanded="true" />
-                <element signature="e#3606#3615#0" expanded="true" />
-                <element signature="e#3671#3680#0" expanded="true" />
-                <element signature="e#3735#3744#0" expanded="true" />
-                <element signature="e#3795#3804#0" expanded="true" />
-                <element signature="e#3854#3863#0" expanded="true" />
-                <element signature="e#3917#3926#0" expanded="true" />
-                <element signature="e#3979#3988#0" expanded="true" />
-                <element signature="e#4037#4046#0" expanded="true" />
-                <element signature="e#4095#4104#0" expanded="true" />
-                <element signature="e#4157#4166#0" expanded="true" />
-                <element signature="e#4218#4227#0" expanded="true" />
-                <element signature="e#4275#4284#0" expanded="true" />
-                <element signature="e#4333#4342#0" expanded="true" />
-                <element signature="e#4395#4404#0" expanded="true" />
-                <element signature="e#4456#4465#0" expanded="true" />
-                <element signature="e#4513#4522#0" expanded="true" />
-                <element signature="e#4572#4581#0" expanded="true" />
-                <element signature="e#4635#4644#0" expanded="true" />
-                <element signature="e#4697#4706#0" expanded="true" />
-                <element signature="e#4755#4764#0" expanded="true" />
                 <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
                 <element signature="docComment;method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
                 <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
                 <element signature="docComment;method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
                 <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
-                <element signature="e#9803#9817#0" expanded="true" />
                 <element signature="docComment;method#fillStations#0;class#Schedule#0" expanded="false" />
                 <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
-                <element signature="e#18800#18809#0" expanded="true" />
                 <element signature="docComment;method#leadsNeeded#0;class#Schedule#0" expanded="false" />
                 <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
                 <element signature="docComment;method#getLeads#0;class#Schedule#0" expanded="false" />
@@ -145,11 +75,6 @@
                 <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
                 <element signature="docComment;method#buildPool#0;class#Schedule#0" expanded="false" />
                 <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-                <element signature="e#23312#23327#0" expanded="true" />
-                <element signature="e#23373#23382#0" expanded="true" />
-                <element signature="e#23429#23438#0" expanded="true" />
-                <element signature="e#23484#23493#0" expanded="true" />
-                <element signature="e#23538#23547#0" expanded="true" />
                 <element signature="docComment;method#worksShift#0;class#Schedule#0" expanded="false" />
                 <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
                 <element signature="docComment;method#addLateDinner#0;class#Schedule#0" expanded="false" />
@@ -214,11 +139,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="937">
-              <caret line="1346" column="0" lean-forward="false" selection-start-line="1346" selection-start-column="0" selection-end-line="1346" selection-end-column="0" />
+            <state relative-caret-position="1479">
+              <caret line="1679" column="84" lean-forward="false" selection-start-line="1679" selection-start-column="84" selection-end-line="1679" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -652,8 +577,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/ShiftNumberChangeUI.form" />
         <option value="$PROJECT_DIR$/src/main/java/SheetsCommunicator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
         <option value="$PROJECT_DIR$/src/main/java/Schedule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SheetsQuickstart.java" />
       </list>
     </option>
   </component>
@@ -684,8 +609,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -738,8 +661,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1292,12 +1217,15 @@
       <workItem from="1554837764189" duration="1495000" />
       <workItem from="1554839321180" duration="1761000" />
       <workItem from="1554841135009" duration="1911000" />
-      <workItem from="1554843461802" duration="402000" />
+      <workItem from="1554843461802" duration="612000" />
+      <workItem from="1555000728268" duration="47000" />
+      <workItem from="1555619169441" duration="970000" />
+      <workItem from="1555627035173" duration="102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="519424000" />
+    <option name="totallyTimeSpent" value="520753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1047" extended-state="0" />
@@ -1311,8 +1239,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1627409" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1708,149 +1636,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="165" column="37" lean-forward="false" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="37" />
-          <folding>
-            <element signature="e#1017#1032#0" expanded="true" />
-            <element signature="e#1085#1100#0" expanded="true" />
-            <element signature="e#1154#1169#0" expanded="true" />
-            <element signature="e#1223#1238#0" expanded="true" />
-            <element signature="e#1291#1306#0" expanded="true" />
-            <element signature="e#1357#1372#0" expanded="true" />
-            <element signature="e#1425#1440#0" expanded="true" />
-            <element signature="e#1494#1509#0" expanded="true" />
-            <element signature="e#1561#1576#0" expanded="true" />
-            <element signature="e#1627#1642#0" expanded="true" />
-            <element signature="e#1693#1708#0" expanded="true" />
-            <element signature="e#1760#1775#0" expanded="true" />
-            <element signature="e#1883#1892#0" expanded="true" />
-            <element signature="e#1947#1956#0" expanded="true" />
-            <element signature="e#2010#2019#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2129#2138#0" expanded="true" />
-            <element signature="e#2193#2202#0" expanded="true" />
-            <element signature="e#2256#2265#0" expanded="true" />
-            <element signature="e#2315#2324#0" expanded="true" />
-            <element signature="e#2376#2385#0" expanded="true" />
-            <element signature="e#2441#2450#0" expanded="true" />
-            <element signature="e#2505#2514#0" expanded="true" />
-            <element signature="e#2565#2574#0" expanded="true" />
-            <element signature="e#2626#2635#0" expanded="true" />
-            <element signature="e#2691#2700#0" expanded="true" />
-            <element signature="e#2755#2764#0" expanded="true" />
-            <element signature="e#2815#2824#0" expanded="true" />
-            <element signature="e#2875#2884#0" expanded="true" />
-            <element signature="e#2939#2948#0" expanded="true" />
-            <element signature="e#3002#3011#0" expanded="true" />
-            <element signature="e#3061#3070#0" expanded="true" />
-            <element signature="e#3119#3128#0" expanded="true" />
-            <element signature="e#3181#3190#0" expanded="true" />
-            <element signature="e#3242#3251#0" expanded="true" />
-            <element signature="e#3299#3308#0" expanded="true" />
-            <element signature="e#3359#3368#0" expanded="true" />
-            <element signature="e#3423#3432#0" expanded="true" />
-            <element signature="e#3486#3495#0" expanded="true" />
-            <element signature="e#3545#3554#0" expanded="true" />
-            <element signature="e#3606#3615#0" expanded="true" />
-            <element signature="e#3671#3680#0" expanded="true" />
-            <element signature="e#3735#3744#0" expanded="true" />
-            <element signature="e#3795#3804#0" expanded="true" />
-            <element signature="e#3854#3863#0" expanded="true" />
-            <element signature="e#3917#3926#0" expanded="true" />
-            <element signature="e#3979#3988#0" expanded="true" />
-            <element signature="e#4037#4046#0" expanded="true" />
-            <element signature="e#4095#4104#0" expanded="true" />
-            <element signature="e#4157#4166#0" expanded="true" />
-            <element signature="e#4218#4227#0" expanded="true" />
-            <element signature="e#4275#4284#0" expanded="true" />
-            <element signature="e#4333#4342#0" expanded="true" />
-            <element signature="e#4395#4404#0" expanded="true" />
-            <element signature="e#4456#4465#0" expanded="true" />
-            <element signature="e#4513#4522#0" expanded="true" />
-            <element signature="e#4572#4581#0" expanded="true" />
-            <element signature="e#4635#4644#0" expanded="true" />
-            <element signature="e#4697#4706#0" expanded="true" />
-            <element signature="e#4755#4764#0" expanded="true" />
-            <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
-            <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
-            <element signature="e#9803#9817#0" expanded="true" />
-            <element signature="docComment;method#fillStations#0;class#Schedule#0" expanded="false" />
-            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
-            <element signature="e#18800#18809#0" expanded="true" />
-            <element signature="docComment;method#leadsNeeded#0;class#Schedule#0" expanded="false" />
-            <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#getLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#getFloats#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#building#0;class#Schedule#0" expanded="false" />
-            <element signature="method#building#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#buildDayPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
-            <element signature="e#23312#23327#0" expanded="true" />
-            <element signature="e#23373#23382#0" expanded="true" />
-            <element signature="e#23429#23438#0" expanded="true" />
-            <element signature="e#23484#23493#0" expanded="true" />
-            <element signature="e#23538#23547#0" expanded="true" />
-            <element signature="docComment;method#worksShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#addLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#addLeadToShift#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#addAll#0;class#Schedule#0" expanded="false" />
-            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#scheduleFloat#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#createDuck#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#sortForPrinting#0;class#Schedule#0" expanded="false" />
-            <element signature="method#sortForPrinting#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#printToString#0;class#Schedule#0" expanded="false" />
-            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#getCoverage#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#getCoverageList#0;class#Schedule#0" expanded="false" />
-            <element signature="method#getCoverageList#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="docComment;method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="937">
-          <caret line="1346" column="0" lean-forward="false" selection-start-line="1346" selection-start-column="0" selection-end-line="1346" selection-end-column="0" />
+        <state relative-caret-position="1479">
+          <caret line="1679" column="84" lean-forward="false" selection-start-line="1679" selection-start-column="84" selection-end-line="1679" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1907,6 +1696,78 @@
             <element signature="docComment;method#setDishString#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setDishString#0;class#SheetsCommunicator#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Schedule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2754">
+          <caret line="165" column="37" lean-forward="false" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="37" />
+          <folding>
+            <element signature="method#updateWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="method#updateStudentWeights#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getDefaultStationNumbers#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#fillStations#0;class#Schedule#0" expanded="false" />
+            <element signature="method#fillStations#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#leadsNeeded#0;class#Schedule#0" expanded="false" />
+            <element signature="method#leadsNeeded#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#getLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#getFloats#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getFloats#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#building#0;class#Schedule#0" expanded="false" />
+            <element signature="method#building#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildDayPool#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="method#buildPool#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#worksShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#worksShift#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#addLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addEarlyLateDinner#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addMorningEarlyMid#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#addLeadToShift#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addLeadToShift#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#addAll#0;class#Schedule#0" expanded="false" />
+            <element signature="method#addAll#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#scheduleLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="method#scheduleLeads#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#scheduleFloat#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#createDuck#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="method#randomChooser#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="method#removeByName#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#sortForPrinting#0;class#Schedule#0" expanded="false" />
+            <element signature="method#sortForPrinting#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToSystem#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="method#printToString#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#getCoverage#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverage#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#getCoverageList#0;class#Schedule#0" expanded="false" />
+            <element signature="method#getCoverageList#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#neededMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableMidMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="docComment;method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+            <element signature="method#availableCloseMinShiftsFilled#0;class#Schedule#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SheetsQuickstart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>

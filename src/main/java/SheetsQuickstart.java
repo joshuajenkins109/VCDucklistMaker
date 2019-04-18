@@ -24,13 +24,12 @@ public class SheetsQuickstart {
 
         sheet.updateStudentsWeights();
 
-
+        Schedule schedule = sheet.generateList();
         JFrame frame = new JFrame("DuckListUI");
         frame.setContentPane(ui.getMainView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        Schedule schedule = sheet.generateList();
         List<Student> pool = new ArrayList<Student>();
         List<List<Student>> bigpool = new ArrayList<List<Student>>();
         List<List<List<Student>>> trying = new ArrayList<List<List<Student>>>();
@@ -46,6 +45,8 @@ public class SheetsQuickstart {
         shiftNumberChangeFrame.setContentPane(sui.getShiftNumberChangeView());
         shiftNumberChangeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         shiftNumberChangeFrame.pack();
+
+
 
 
 
