@@ -1605,7 +1605,7 @@ public class SheetsCommunicator {
                 if (i == 1) break;
                 dataLine1 += students.get(station).get(shift).get(i).getName() + " (" + students.get(station).get(shift).get(i).getSchedule().get(day) + "-" + students.get(station).get(shift).get(i).getSchedule().get(day + 1) + "), ";
             }
-            if (students.get(station).get(shift).size() > 2) {
+            if (students.get(station).get(shift).size() > 1) {
                 for (int i = 1; i < students.get(station).get(shift).size(); i++) {
                     dataLine2 += students.get(station).get(shift).get(i).getName() + " (" + students.get(station).get(shift).get(i).getSchedule().get(day) + "-" + students.get(station).get(shift).get(i).getSchedule().get(day + 1) + "), ";
                 }
