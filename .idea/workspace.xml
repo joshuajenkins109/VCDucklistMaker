@@ -131,8 +131,8 @@
       <file leaf-file-name="SheetsCommunicator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="1607" column="59" lean-forward="false" selection-start-line="1607" selection-start-column="59" selection-end-line="1607" selection-end-column="59" />
+            <state relative-caret-position="7056">
+              <caret line="1186" column="176" lean-forward="false" selection-start-line="1186" selection-start-column="176" selection-end-line="1186" selection-end-column="176" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -161,11 +161,8 @@
                 <element signature="docComment;method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="docComment;method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-                <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+                <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
                 <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1209,12 +1206,12 @@
       <workItem from="1554843461802" duration="612000" />
       <workItem from="1555000728268" duration="47000" />
       <workItem from="1555619169441" duration="970000" />
-      <workItem from="1555627035173" duration="795000" />
+      <workItem from="1555627035173" duration="1263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="521446000" />
+    <option name="totallyTimeSpent" value="521914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1047" extended-state="0" />
@@ -1699,8 +1696,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SheetsCommunicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="1607" column="59" lean-forward="false" selection-start-line="1607" selection-start-column="59" selection-end-line="1607" selection-end-column="59" />
+        <state relative-caret-position="7056">
+          <caret line="1186" column="176" lean-forward="false" selection-start-line="1186" selection-start-column="176" selection-end-line="1186" selection-end-column="176" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getCredentials#0;class#SheetsCommunicator#0" expanded="false" />
@@ -1729,11 +1726,8 @@
             <element signature="docComment;method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#createDuckList#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="docComment;method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setCheckerDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setMiddleDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setCurryDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setGrangeDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
-            <element signature="method#setToastDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
+            <element signature="method#setDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setDishDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setJanitorDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />
             <element signature="method#setFloatDuckListValues#0;class#SheetsCommunicator#0" expanded="false" />

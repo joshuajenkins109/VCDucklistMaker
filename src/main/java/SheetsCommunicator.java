@@ -1237,13 +1237,13 @@ public class SheetsCommunicator {
                     if (i == 1) break;
                     grangeDataLine1 += students.get(7).get(shift).get(i).getName() + " (" + students.get(7).get(shift).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift).get(i).getSchedule().get(day + 1) + ")" + ", ";
                 }
-                if (students.get(7).get(shift).size() > 2) {
+                if (students.get(7).get(shift).size() > 1) {
                     for (int i = 1; i < students.get(7).get(shift).size(); i++) {
                         if (i == 3) break;
                         grangeDataLine2 += students.get(7).get(shift).get(i).getName() + " (" + students.get(7).get(shift).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
                 }
-                if (students.get(7).get(shift).size() > 4) {
+                if (students.get(7).get(shift).size() > 3) {
                     for (int i = 3; i < students.get(7).get(shift).size(); i++) {
                         grangeDataLine3 += students.get(7).get(shift).get(i).getName() + " (" + students.get(7).get(shift).get(i).getSchedule().get(day) + "-" + students.get(7).get(shift).get(i).getSchedule().get(day + 1) + ")" + ", ";
                     }
