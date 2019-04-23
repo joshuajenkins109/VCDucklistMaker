@@ -25,6 +25,11 @@ public class SheetsQuickstart {
         sheet.updateStudentsWeights();
 
         Schedule schedule = sheet.generateList();
+
+        while(true){
+            if(!schedule.getStudents().isEmpty()) break;
+        }
+
         JFrame frame = new JFrame("DuckListUI");
         frame.setContentPane(ui.getMainView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

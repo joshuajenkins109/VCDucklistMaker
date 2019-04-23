@@ -23,6 +23,10 @@ public class Schedule {
         buildMasterList();
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
     /**
      * Builds masterList with stations and shifts
      */
